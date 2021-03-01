@@ -11,10 +11,11 @@ export const HeaderHeightWithStatusBar = HeaderHeight + StatusBarHeight;
 const Container = styled(Row).attrs(({ align = 'end' }) => ({
   align,
 }))`
-  height: ${HeaderHeightWithStatusBar};
-  padding-top: ${StatusBarHeight};
+  height: ${HeaderHeightWithStatusBar + 16};
+  padding-top: ${StatusBarHeight + 16};
   width: ${({ width }) => width};
   z-index: 1;
+  margin-bottom: 48;
 `;
 
 export default function Header(props) {

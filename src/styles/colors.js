@@ -56,6 +56,7 @@ const getColorsByTheme = darkMode => {
     dark: '#25292E', // '37, 41, 46'
     darkGrey: '#71778A', // '113, 119, 138'
     flamingo: '#E540F1', // '229, 64, 241'
+    gold: '#ffd600',
     green: '#2CCC00', // '58, 166, 134'
     grey: '#A9ADB9', // '169, 173, 185'
     grey20: '#333333', // '51, 51, 51'
@@ -120,6 +121,7 @@ const getColorsByTheme = darkMode => {
     offWhite: [base.white, base.offWhite],
     rainbow: ['#FFB114', '#FF54BB', '#7EA4DE'],
     savings: ['#FFFFFF', '#F7F9FA'],
+    savingsHighlight: ['#231557', '#44107a', '#ff1361', '#fff800'],
     searchBar: ['#FCFDFE', '#F0F2F5'],
     sendBackground: ['#FAFAFA00', '#FAFAFAFF'],
     whiteButton: ['#FFFFFF', '#F7F9FA'],

@@ -53,7 +53,7 @@ const AccountName = styled(TruncatedText).attrs({
   truncationLength: 4,
   weight: 'bold',
 })`
-  height: ${android ? '38' : '33'};
+  font-size: 32px;
   margin-top: ${android ? '-10' : '-1'};
   margin-bottom: ${android ? '10' : '1'};
   max-width: ${({ deviceWidth }) => deviceWidth - dropdownArrowWidth - 60};
@@ -281,7 +281,7 @@ export default function ProfileMasthead({
           onPress={handlePressCopyAddress}
           radiusWrapperStyle={{ marginRight: 10, width: 150 }}
           scaleTo={0.88}
-          text="Copy Address"
+          text="Copy"
           width={127}
           wrapperProps={{
             containerStyle: {

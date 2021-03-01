@@ -34,10 +34,10 @@ const ChildrenAmountText = styled(Text).attrs({
 `;
 
 const RotatingArrowIcon = styled(AnimatedImgixImage).attrs(
-  ({ theme: { colors } }) => ({
+  ({ theme: { colors }, isShowcase }) => ({
     resizeMode: ImgixImage.resizeMode.contain,
     source: CaretImageSource,
-    tintColor: colors.dark,
+    tintColor: isShowcase ? colors.gold : colors.dark,
   })
 )`
   height: 18;
@@ -105,7 +105,10 @@ const TokenFamilyHeader = ({
           <Animated.View style={{ opacity: animation }}>
             <ChildrenAmountText>{childrenAmount}</ChildrenAmountText>
           </Animated.View>
-          <RotatingArrowIcon style={{ transform: [{ rotate }] }} />
+          <RotatingArrowIcon
+            isShowcase={title === 'Showcase'}
+            style={{ transform: [{ rotate }] }}
+          />
         </RowWithMargins>
       </Content>
     </ButtonPressAnimation>

@@ -1,12 +1,21 @@
 import { toUpper } from 'lodash';
 import React, { useMemo } from 'react';
+import LinearGradient from 'react-native-linear-gradient';
+import styled from 'styled-components/native';
 import { useTheme } from '../../context/ThemeContext';
 import { darkModeThemeColors } from '../../styles/colors';
 import { getFirstGrapheme } from '../../utils';
-import { Centered } from '../layout';
+import { Centered, Flex } from '../layout';
 import { Text } from '../text';
 import { borders } from '@rainbow-me/styles';
 import ShadowStack from 'react-native-shadow-stack';
+
+const ButtonBorder = styled(LinearGradient)`
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+`;
 
 const buildShadows = (color, size, darkMode, colors) => {
   if (size === 'small' || size === 'smaller') {
@@ -47,7 +56,7 @@ const sizeConfigs = colors => ({
     textSize: 'bigger',
   },
   medium: {
-    dimensions: 40,
+    dimensions: 52,
     shadow: [
       [0, 4, 6, colors.shadow, 0.04],
       [0, 1, 3, colors.shadow, 0.08],
@@ -55,7 +64,7 @@ const sizeConfigs = colors => ({
     textSize: 'larger',
   },
   small: {
-    dimensions: 34,
+    dimensions: 42,
     textSize: 'large',
   },
   smaller: {
@@ -87,19 +96,26 @@ const ContactAvatar = ({ color, size = 'medium', value, ...props }) => {
     <ShadowStack
       {...props}
       {...borders.buildCircleAsObject(dimensions)}
-      backgroundColor={colors.avatarColor[color] || color}
       shadows={shadows}
     >
       <Centered flex={1}>
-        <Text
-          align="center"
-          color={colors.whiteLabel}
-          letterSpacing="zero"
-          size={textSize}
-          weight="bold"
-        >
-          {value && getFirstGrapheme(toUpper(value))}
-        </Text>
+        <ButtonBorder colors={['#fe5196', '#f77062']}>
+          <Flex
+            {...borders.buildCircleAsObject(dimensions - 6)}
+            backgroundColor={colors.avatarColor[color] || color}
+            justify="center"
+          >
+            <Text
+              align="center"
+              color={colors.whiteLabel}
+              letterSpacing="zero"
+              size={textSize}
+              weight="bold"
+            >
+              {value && getFirstGrapheme(toUpper(value))}
+            </Text>
+          </Flex>
+        </ButtonBorder>
       </Centered>
     </ShadowStack>
   );

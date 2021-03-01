@@ -2,15 +2,10 @@ import styled from 'styled-components';
 import Text from './Text';
 
 const H1 = styled(Text).attrs(
-  ({
-    letterSpacing = 'rounded',
-    weight = 'bold',
-    color,
-    theme: { colors },
-  }) => ({
+  ({ letterSpacing = 1, weight = 'bold', color, theme: { colors } }) => ({
     color: color || colors.dark,
     letterSpacing,
-    size: 'big',
+    size: 32,
     weight,
   })
 )``;

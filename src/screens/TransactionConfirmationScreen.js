@@ -854,7 +854,7 @@ const TransactionConfirmationScreen = () => {
                   <WalletText>{accountName}</WalletText>
                 </RowWithMargins>
               </Column>
-              <Column align="flex-end" flex={1} justify="end">
+              <Column align="end" flex={1} justify="end">
                 <WalletLabel align="right">Balance</WalletLabel>
                 <WalletText
                   align="right"

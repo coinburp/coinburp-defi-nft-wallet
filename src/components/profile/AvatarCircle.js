@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { useAccountProfile } from '../../hooks';
@@ -9,11 +10,17 @@ import { Text } from '../text';
 import { position } from '@rainbow-me/styles';
 import ShadowStack from 'react-native-shadow-stack';
 
-const AvatarCircleSize = 65;
+const AvatarCircleSize = 116;
 
 const AvatarCircleView = styled(Flex)`
   ${position.size(AvatarCircleSize)};
-  margin-bottom: 16px;
+  border-radius: ${AvatarCircleSize};
+  justify-content: ${ios ? 'flex-start' : 'center'};
+  align-items: ${ios ? 'flex-start' : 'center'};
+`;
+
+const AvatarCircleBorder = styled(LinearGradient)`
+  ${position.size(AvatarCircleSize + 12)};
   justify-content: ${ios ? 'flex-start' : 'center'};
   align-items: ${ios ? 'flex-start' : 'center'};
 `;
@@ -68,23 +75,27 @@ export default function AvatarCircle({
       scaleTo={isAvatarPickerAvailable ? 0.9 : 1}
     >
       <ShadowStack
-        {...position.sizeAsObject(AvatarCircleSize)}
+        {...position.sizeAsObject(AvatarCircleSize + 12)}
         backgroundColor={overlayStyles ? 'rgb(51, 54, 59)' : colors.white}
-        borderRadius={AvatarCircleSize}
+        borderRadius={AvatarCircleSize + 12}
         marginBottom={12}
         shadows={shadows[overlayStyles ? 'overlay' : 'default']}
         {...(android && {
-          height: 64,
-          width: 64,
+          height: AvatarCircleSize + 12,
+          width: AvatarCircleSize + 12,
         })}
       >
         {image ? (
           <ImageAvatar image={image} size="large" />
         ) : (
-          <AvatarCircleView backgroundColor={colors.avatarColor[accountColor]}>
-            <FirstLetter>{accountSymbol}</FirstLetter>
-            {!overlayStyles && <InnerBorder opacity={0.02} radius={65} />}
-          </AvatarCircleView>
+          <AvatarCircleBorder colors={['#fe5196', '#f77062']}>
+            <AvatarCircleView
+              backgroundColor={colors.avatarColor[accountColor]}
+            >
+              <FirstLetter>{accountSymbol}</FirstLetter>
+              {!overlayStyles && <InnerBorder opacity={0.02} radius={65} />}
+            </AvatarCircleView>
+          </AvatarCircleBorder>
         )}
       </ShadowStack>
     </ButtonPressAnimation>

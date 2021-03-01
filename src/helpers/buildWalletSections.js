@@ -129,14 +129,15 @@ const addEth = section => {
 const buildWalletSections = (
   balanceSection,
   uniqueTokenFamiliesSection,
-  uniswapSection
+  uniswapSection,
+  savingSection
 ) => {
-  const sections = [uniswapSection, uniqueTokenFamiliesSection];
+  const sections = [uniswapSection, uniqueTokenFamiliesSection, savingSection];
 
   const filteredSections =
     filterWalletSections(sections).length > 0
       ? [addEth(balanceSection), ...filterWalletSections(sections)]
-      : filterWalletSections([balanceSection]);
+      : filterWalletSections([balanceSection, savingSection]);
   const isEmpty = !filteredSections.length;
 
   return {
@@ -199,12 +200,22 @@ const withBalanceSavingsSection = savings => {
     });
   }
 
-  const savingsSection = {
-    assets: savingsAssets,
-    savingsContainer: true,
-    totalValue: totalUnderlyingNativeValue,
+  return {
+    data: [
+      {
+        assets: savingsAssets,
+        savingsContainer: true,
+        totalValue: totalUnderlyingNativeValue,
+      },
+    ],
+    header: {
+      title: 'Stake & Earn',
+      totalItems: savingsAssets.length,
+      totalValue: '',
+    },
+    name: 'savings',
+    renderItem: balancesRenderItem,
   };
-  return savingsSection;
 };
 
 const coinEditContextMenu = (
@@ -247,7 +258,7 @@ const withBalanceSection = (
   allAssets,
   allAssetsCount,
   assetsTotal,
-  savingsSection,
+  // savingsSection,
   isBalancesSectionEmpty,
   isLoadingAssets,
   language,
@@ -269,12 +280,12 @@ const withBalanceSection = (
   );
   let balanceSectionData = [...assets];
 
-  const totalBalanceWithSavingsValue = add(
-    totalBalancesValue,
-    get(savingsSection, 'totalValue', 0)
-  );
+  // const totalBalanceWithSavingsValue = add(
+  //   totalBalancesValue,
+  //   // get(savingsSection, 'totalValue', 0)
+  // );
   const totalBalanceWithAllSectionValues = add(
-    totalBalanceWithSavingsValue,
+    totalBalancesValue,
     uniswapTotal
   );
 
@@ -284,7 +295,7 @@ const withBalanceSection = (
   );
 
   if (networkTypes.mainnet === network) {
-    balanceSectionData.push(savingsSection);
+    // balanceSectionData.push(savingsSection);
   }
 
   if (isLoadingAssets) {
@@ -407,7 +418,6 @@ const balanceSectionSelector = createSelector(
     allAssetsSelector,
     allAssetsCountSelector,
     assetsTotalSelector,
-    balanceSavingsSectionSelector,
     isBalancesSectionEmptySelector,
     isLoadingAssetsSelector,
     languageSelector,
@@ -428,6 +438,11 @@ const uniqueTokenFamiliesSelector = createSelector(
 );
 
 export const buildWalletSectionsSelector = createSelector(
-  [balanceSectionSelector, uniqueTokenFamiliesSelector, uniswapSectionSelector],
+  [
+    balanceSectionSelector,
+    uniqueTokenFamiliesSelector,
+    uniswapSectionSelector,
+    balanceSavingsSectionSelector,
+  ],
   buildWalletSections
 );

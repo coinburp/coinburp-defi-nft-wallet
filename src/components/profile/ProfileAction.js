@@ -1,4 +1,5 @@
 import React from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components';
 import { ButtonPressAnimation } from '../animations';
 import { Icon } from '../icons';
@@ -12,12 +13,17 @@ const Container = styled(RowWithMargins).attrs({
   margin: 6,
 })`
   background-color: ${({ theme: { colors } }) => colors.transparent};
-  height: 34;
+  height: 52;
   padding-bottom: 2;
 `;
 
+const ButtonGradient = styled(LinearGradient)`
+  border-radius: 24px;
+  padding: 0 5px;
+`;
+
 const ProfileActionIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
-  color: colors.appleBlue,
+  color: colors.white,
 }))`
   ${({ iconSize }) => position.size(iconSize)};
   margin-top: 0.5;
@@ -30,18 +36,20 @@ const ProfileAction = ({ icon, iconSize = 16, onPress, text, ...props }) => (
     radiusAndroid={24}
     {...props}
   >
-    <Container>
-      <ProfileActionIcon iconSize={iconSize} name={icon} />
-      <Text
-        color="appleBlue"
-        letterSpacing="roundedMedium"
-        lineHeight={19}
-        size="lmedium"
-        weight="semibold"
-      >
-        {text}
-      </Text>
-    </Container>
+    <ButtonGradient colors={['#f77062', '#fe5196']}>
+      <Container>
+        <ProfileActionIcon iconSize={iconSize} name={icon} />
+        <Text
+          color="white"
+          letterSpacing="roundedMedium"
+          lineHeight={19}
+          size="lmedium"
+          weight="semibold"
+        >
+          {text}
+        </Text>
+      </Container>
+    </ButtonGradient>
   </ButtonPressAnimation>
 );
 

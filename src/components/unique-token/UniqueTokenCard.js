@@ -4,6 +4,7 @@ import { magicMemo } from '../../utils';
 import { ButtonPressAnimation } from '../animations';
 import { InnerBorder } from '../layout';
 import UniqueTokenImage from './UniqueTokenImage';
+import { useShowcaseTokens } from '@rainbow-me/hooks';
 import { shadow as shadowUtil } from '@rainbow-me/styles';
 
 const UniqueTokenCardBorderRadius = 20;
@@ -42,6 +43,10 @@ const UniqueTokenCard = ({
 
   const { colors } = useTheme();
 
+  const { showcaseTokens } = useShowcaseTokens();
+
+  const isShowcase = !!showcaseTokens.find(i => item.uniqueId === i);
+
   const defaultShadow = useMemo(() => UniqueTokenCardShadowFactory(colors), [
     colors,
   ]);
@@ -67,6 +72,15 @@ const UniqueTokenCard = ({
             opacity={0.04}
             radius={UniqueTokenCardBorderRadius}
             width={0.5}
+          />
+        )}
+        {isShowcase && (
+          <InnerBorder
+            color={colors.gold}
+            ignoreDarkMode
+            opacity={1}
+            radius={UniqueTokenCardBorderRadius}
+            width={4}
           />
         )}
       </Content>

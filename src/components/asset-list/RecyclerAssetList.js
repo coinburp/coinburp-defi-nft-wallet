@@ -228,6 +228,10 @@ class RecyclerAssetList extends Component {
           ({ name }) => name === 'collectibles'
         );
         const poolsIndex = findIndex(sections, ({ name }) => name === 'pools');
+        const savingsIndex = findIndex(
+          sections,
+          ({ name }) => name === 'savings'
+        );
 
         const { sectionsIndices } = this.state;
         if (sectionsIndices.includes(index)) {
@@ -266,7 +270,8 @@ class RecyclerAssetList extends Component {
           balancesIndex > -1 &&
           (index <= sectionsIndices[collectiblesIndex] ||
             collectiblesIndex < 0) &&
-          (index <= sectionsIndices[poolsIndex] || poolsIndex < 0)
+          (index <= sectionsIndices[poolsIndex] || poolsIndex < 0) &&
+          (index <= sectionsIndices[savingsIndex] || savingsIndex < 0)
         ) {
           const balanceItemsCount = get(
             sections,
@@ -352,7 +357,10 @@ class RecyclerAssetList extends Component {
         }
 
         if (collectiblesIndex > -1) {
-          if (index > sectionsIndices[collectiblesIndex]) {
+          if (
+            index > sectionsIndices[collectiblesIndex] &&
+            index < sectionsIndices[savingsIndex]
+          ) {
             const familyIndex = this.state.items[index].familySectionIndex;
             const isFirst = index === sectionsIndices[collectiblesIndex] + 1;
             const isHeader =
@@ -376,6 +384,17 @@ class RecyclerAssetList extends Component {
               isHeader,
             };
           }
+        }
+
+        if (savingsIndex > -1) {
+          return {
+            height: ViewTypes.COIN_SAVINGS.calculateHeight({
+              amountOfRows: sections[savingsIndex].data[0].assets?.length || 0,
+              isLast: poolsIndex < 0,
+              isOpen: this.props.openSavings,
+            }),
+            index: ViewTypes.COIN_SAVINGS.index,
+          };
         }
 
         return {

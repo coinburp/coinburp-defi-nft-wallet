@@ -24,9 +24,7 @@ const openSmallBalancesAdditionalHeight = 15;
 const closedSmallBalancesAdditionalHeight = 18;
 
 const savingsOpenAdditionalHeight = -7.5;
-const savingsClosedAdditionalHeight = -5;
-const savingsLastOpenAdditionalHeight = -13;
-const savingsLastClosedAdditionalHeight = -10;
+const savingsLastOpenAdditionalHeight = 175;
 
 const poolsOpenAdditionalHeight = -12;
 const poolsClosedAdditionalHeight = -15;
@@ -123,17 +121,12 @@ export const ViewTypes = {
   },
 
   COIN_SAVINGS: {
-    calculateHeight: ({ isOpen, isLast, amountOfRows }) =>
-      isOpen
-        ? TokenFamilyHeaderHeight +
-          (isLast
-            ? ListFooter.height + savingsLastOpenAdditionalHeight
-            : savingsOpenAdditionalHeight) +
-          SavingsCoinRowHeight * amountOfRows
-        : TokenFamilyHeaderHeight +
-          (isLast
-            ? ListFooter.height + savingsLastClosedAdditionalHeight
-            : savingsClosedAdditionalHeight),
+    calculateHeight: ({ isLast, amountOfRows }) =>
+      TokenFamilyHeaderHeight +
+      (isLast
+        ? ListFooter.height + savingsLastOpenAdditionalHeight
+        : savingsOpenAdditionalHeight) +
+      SavingsCoinRowHeight * amountOfRows,
     index: 4,
     renderComponent: ({ data }) => {
       const { item = {} } = data;

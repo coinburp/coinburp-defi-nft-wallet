@@ -12,14 +12,15 @@ const shadowsFactory = colors => [
   [0, 1, 3, colors.shadow, 0.08],
 ];
 
-const TrophyEmoji = styled(Emoji).attrs({
+const StarEmoji = styled(Emoji).attrs({
   align: 'center',
-  name: 'trophy',
+  name: 'star',
   size: 'medium',
 })`
   height: 22;
   margin-right: 4.5;
   text-align-vertical: center;
+  top: -3;
 `;
 
 const TokenFamilyHeaderIcon = ({
@@ -37,7 +38,7 @@ const TokenFamilyHeaderIcon = ({
   const shadows = useMemo(() => shadowsFactory(colors), [colors]);
 
   return familyName === 'Showcase' ? (
-    <TrophyEmoji />
+    <StarEmoji />
   ) : (
     <ShadowStack
       {...circleStyle}
