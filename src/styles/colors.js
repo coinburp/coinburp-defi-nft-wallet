@@ -6,6 +6,7 @@ import currentColors from '../context/currentColors';
 const buildRgba = (color, alpha = 1) => `rgba(${chroma(color).rgb()},${alpha})`;
 const darkModeColors = {
   appleBlue: '#0E76FD',
+  background: '#12131A',
   black: '#FFFFFF',
   blueGreyDark: '#E0E8FF',
   blueGreyDark20: '#3A3D45',
@@ -31,6 +32,7 @@ const darkModeColors = {
   shadowBlack: '#000000',
   shadowGrey: '#000000',
   shimmer: '#1F2229',
+  showcaseBackground: 'rgba(255, 214, 0, 0.08)',
   skeleton: '#191B21',
   stackBackground: '#000000',
   trueBlack: '#000000',
@@ -45,6 +47,7 @@ const isRGB = (color = '') => toLower(color).substring(0, 3) === 'rgb';
 const getColorsByTheme = darkMode => {
   let base = {
     appleBlue: '#0E76FD', // '14, 118, 253'
+    background: '#f5f9fd',
     black: '#000000', // '0, 0, 0'
     blueGreyDark: '#3C4252', // '60, 66, 82'
     blueGreyDark50: '#9DA0A8', // this color is blueGreyDark at 50% over white
@@ -53,6 +56,7 @@ const getColorsByTheme = darkMode => {
     blueGreyDarkLight: '#F3F4F5', // '243, 244, 245'
     brightRed: '#FF7171', // '255, 113, 113'
     chartGreen: '#66D28F', // '102, 210, 143'
+    coinburp: '#00dc68',
     dark: '#25292E', // '37, 41, 46'
     darkGrey: '#71778A', // '113, 119, 138'
     flamingo: '#E540F1', // '229, 64, 241'
@@ -84,6 +88,7 @@ const getColorsByTheme = darkMode => {
     shadowBlack: '#000000', // '0, 0, 0'
     shadowGrey: '#6F6F6F', // '111, 111, 111'
     shimmer: '#EDEEF1', // '237, 238, 241'
+    showcaseBackground: 'rgba(255, 214, 0, 0.08)',
     skeleton: '#F6F7F8', // '246, 247, 248'
     stackBackground: '#0A0A0A', // '10, 10, 10'
     swapPurple: '#575CFF', // '87, 92, 255'
@@ -200,6 +205,7 @@ const getColorsByTheme = darkMode => {
       offWhite: ['#1F222A', '#1F222A'],
       rainbow: ['#FFB114', '#FF54BB', '#7EA4DE'],
       savings: ['#1F222A', '#1F222A'],
+      savingsHighlight: ['#231557', '#44107a', '#ff1361', '#fff800'],
       searchBar: [buildRgba('#1F222A', 0.4), '#1F222A'],
       sendBackground: ['#12131A00', '#12131AFF'],
       whiteButton: ['#404656', buildRgba('#404656', 0.8)],

@@ -18,7 +18,7 @@ const Page = ({ color, showBottomInset, showTopInset, ...props }, ref) => {
     <PageElement
       {...props}
       bottomInset={showBottomInset ? insets.bottom : 0}
-      color={color || colors.white}
+      color={color || colors.background}
       ref={ref}
       topInset={showTopInset ? insets.top : 0}
     />

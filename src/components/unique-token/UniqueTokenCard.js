@@ -62,7 +62,9 @@ const UniqueTokenCard = ({
     >
       <Content {...props} height={height} style={style} width={width}>
         <UniqueTokenImage
-          backgroundColor={background || colors.lightestGrey}
+          backgroundColor={
+            background || isShowcase ? colors.showcaseBackground : colors.white
+          }
           imageUrl={image_preview_url}
           item={item}
           resizeMode={resizeMode}

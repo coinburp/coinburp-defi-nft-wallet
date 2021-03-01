@@ -21,6 +21,7 @@ import {
   removeSelectedCoin,
 } from '@rainbow-me/redux/editOptions';
 import { isNewValueForObjectPaths, isNewValueForPath } from '@rainbow-me/utils';
+import { margin, padding } from '@rainbow-me/styles';
 
 const editTranslateOffsetInner = android ? -8 : 0;
 const editTranslateOffset = 32 - (android ? editTranslateOffsetInner : 0);
@@ -118,6 +119,7 @@ const BalanceCoinRow = ({
   const [previousPinned, setPreviousPinned] = useState(0);
   const { isCoinListEdited } = useCoinListEdited();
   const isCoinListEditedValue = useCoinListEditedValue();
+  const { colors } = useTheme();
   useEffect(() => {
     if (toggle && (recentlyPinnedCount > previousPinned || !isCoinListEdited)) {
       setPreviousPinned(recentlyPinnedCount);

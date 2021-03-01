@@ -23,7 +23,7 @@ const AssetListHeader = ({
     {...props}
   >
     {totalValue ? (
-      <H1 align="right" letterSpacing="roundedTight" weight="bold">
+      <H1 align="right" letterSpacing="roundedTight" weight={900}>
         {totalValue}
       </H1>
     ) : null}

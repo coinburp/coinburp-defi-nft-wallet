@@ -20,7 +20,7 @@ const Content = styled(Row).attrs({
   justify: 'space-between',
 })`
   ${({ isCoinRow }) => padding(0, isCoinRow ? 16 : 19)};
-  background-color: ${({ theme: { colors } }) => colors.white};
+  background-color: ${({ theme: { colors } }) => colors.background};
   height: ${TokenFamilyHeaderHeight};
   width: 100%;
 `;
@@ -28,7 +28,8 @@ const Content = styled(Row).attrs({
 const ChildrenAmountText = styled(Text).attrs({
   align: 'right',
   letterSpacing: 'roundedTight',
-  size: 'large',
+  size: 20,
+  weight: 900,
 })`
   margin-bottom: 1;
 `;
@@ -50,8 +51,8 @@ const TitleText = styled(TruncatedText).attrs({
   align: 'left',
   letterSpacing: 'roundedMedium',
   lineHeight: 'normal',
-  size: 'large',
-  weight: 'bold',
+  size: 20,
+  weight: 900,
 })`
   flex: 1;
   margin-bottom: 1;

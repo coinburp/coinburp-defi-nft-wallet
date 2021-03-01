@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { useNavigation } from '../../navigation/Navigation';
 import Icon from '../icons/Icon';
-import { Centered } from '../layout';
+import {Centered, Flex} from '../layout';
 import HeaderButton from './HeaderButton';
 import Routes from '@rainbow-me/routes';
 import { borders } from '@rainbow-me/styles';
@@ -14,11 +14,11 @@ const CameraHeaderButtonShadows = colors => [
 ];
 
 const CameraIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
-  color: colors.whiteLabel,
-  name: 'camera',
+  color: colors.coinburp,
+  name: 'scanner',
 }))`
-  margin-bottom: 1;
-  max-width: 18;
+  margin-bottom: 1px;
+  max-width: 32px;
 `;
 
 export default function CameraHeaderButton() {
@@ -34,15 +34,13 @@ export default function CameraHeaderButton() {
 
   return (
     <HeaderButton onPress={onPress} testID="goToCamera" transformOrigin="right">
-      <ShadowStack
+      <Flex
         {...borders.buildCircleAsObject(34)}
-        backgroundColor={colors.paleBlue}
-        shadows={shadows}
       >
         <Centered cover>
           <CameraIcon />
         </Centered>
-      </ShadowStack>
+      </Flex>
     </HeaderButton>
   );
 }

@@ -1,21 +1,12 @@
 import { toUpper } from 'lodash';
 import React, { useMemo } from 'react';
-import LinearGradient from 'react-native-linear-gradient';
-import styled from 'styled-components/native';
 import { useTheme } from '../../context/ThemeContext';
 import { darkModeThemeColors } from '../../styles/colors';
 import { getFirstGrapheme } from '../../utils';
-import { Centered, Flex } from '../layout';
+import { Centered, Flex, InnerBorder } from '../layout';
 import { Text } from '../text';
 import { borders } from '@rainbow-me/styles';
 import ShadowStack from 'react-native-shadow-stack';
-
-const ButtonBorder = styled(LinearGradient)`
-  align-items: center;
-  height: 100%;
-  justify-content: center;
-  width: 100%;
-`;
 
 const buildShadows = (color, size, darkMode, colors) => {
   if (size === 'small' || size === 'smaller') {
@@ -64,7 +55,7 @@ const sizeConfigs = colors => ({
     textSize: 'larger',
   },
   small: {
-    dimensions: 42,
+    dimensions: 48,
     textSize: 'large',
   },
   smaller: {
@@ -93,31 +84,37 @@ const ContactAvatar = ({ color, size = 'medium', value, ...props }) => {
   ]);
 
   return (
-    <ShadowStack
+    <Flex
       {...props}
       {...borders.buildCircleAsObject(dimensions)}
       shadows={shadows}
     >
       <Centered flex={1}>
-        <ButtonBorder colors={['#fe5196', '#f77062']}>
-          <Flex
-            {...borders.buildCircleAsObject(dimensions - 6)}
-            backgroundColor={colors.avatarColor[color] || color}
-            justify="center"
+        <Flex
+          {...borders.buildCircleAsObject(dimensions - 6)}
+          align="center"
+          backgroundColor={colors.avatarColor[color] || color}
+          justify="center"
+        >
+          <Text
+            align="center"
+            color={colors.whiteLabel}
+            letterSpacing="zero"
+            size={textSize}
+            weight="bold"
           >
-            <Text
-              align="center"
-              color={colors.whiteLabel}
-              letterSpacing="zero"
-              size={textSize}
-              weight="bold"
-            >
-              {value && getFirstGrapheme(toUpper(value))}
-            </Text>
-          </Flex>
-        </ButtonBorder>
+            {value && getFirstGrapheme(toUpper(value))}
+          </Text>
+        </Flex>
+        <InnerBorder
+          color={colors.coinburp}
+          ignoreDarkMode
+          opacity={1}
+          radius={48}
+          width={4}
+        />
       </Centered>
-    </ShadowStack>
+    </Flex>
   );
 };
 

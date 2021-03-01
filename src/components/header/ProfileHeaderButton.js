@@ -4,7 +4,7 @@ import { useNavigation } from '../../navigation/Navigation';
 import { NumberBadge } from '../badge';
 import { ContactAvatar } from '../contacts';
 import ImageAvatar from '../contacts/ImageAvatar';
-import { Centered } from '../layout';
+import { Centered, InnerBorder } from '../layout';
 import HeaderButton from './HeaderButton';
 import Routes from '@rainbow-me/routes';
 

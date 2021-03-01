@@ -40,18 +40,19 @@ const TokenFamilyHeaderIcon = ({
   return familyName === 'Showcase' ? (
     <StarEmoji />
   ) : (
-    <ShadowStack
-      {...circleStyle}
-      backgroundColor={colors.white}
-      shadows={shadows}
-      style={style}
-    >
-      {familyImage ? (
-        <ImageWithCachedMetadata imageUrl={familyImage} style={circleStyle} />
-      ) : (
-        <FallbackIcon {...circleStyle} symbol={initials(familyName)} />
-      )}
-    </ShadowStack>
+    null
+    // <ShadowStack
+    //   {...circleStyle}
+    //   backgroundColor={colors.white}
+    //   shadows={shadows}
+    //   style={style}
+    // >
+    //   {familyImage ? (
+    //     <ImageWithCachedMetadata imageUrl={familyImage} style={circleStyle} />
+    //   ) : (
+    //     <FallbackIcon {...circleStyle} symbol={initials(familyName)} />
+    //   )}
+    // </ShadowStack>
   );
 };
 

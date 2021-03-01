@@ -807,7 +807,7 @@ class RecyclerAssetList extends Component {
 
     return (
       <View
-        backgroundColor={colors.white}
+        backgroundColor={colors.background}
         flex={1}
         onLayout={this.handleOnLayout}
         overflow="hidden"
@@ -834,7 +834,7 @@ class RecyclerAssetList extends Component {
               refreshControl: fetchData && this.renderRefreshControl(),
             }}
             style={{
-              backgroundColor: colors.white,
+              backgroundColor: colors.background,
               flex: 1,
               minHeight: 1,
             }}

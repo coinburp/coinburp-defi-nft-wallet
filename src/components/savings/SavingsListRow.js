@@ -5,6 +5,7 @@ import { InteractionManager } from 'react-native';
 import { IS_TESTING } from 'react-native-dotenv';
 import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components';
+import { useTheme } from '../../context/ThemeContext';
 import {
   SavingsSheetEmptyHeight,
   SavingsSheetHeight,
@@ -14,7 +15,7 @@ import { CoinIcon } from '../coin-icon';
 import DAIIcon from '../icons/svg/DAIIcon';
 import SavingsIcon from '../icons/svg/SavingsIcon';
 import { Centered, Column, Flex, Row } from '../layout';
-import { Text, GradientText } from '../text';
+import { GradientText, Text } from '../text';
 import APYPill from './APYPill';
 import SavingsListRowAnimatedNumber from './SavingsListRowAnimatedNumber';
 import SavingsListRowEmptyState from './SavingsListRowEmptyState';
@@ -38,12 +39,12 @@ const NOOP = () => undefined;
 const SavingsListRowGradient = magicMemo(
   ({ colors }) => (
     <LinearGradient
+      angle={136}
       borderRadius={49}
       colors={colors.gradients.savingsHighlight}
-      end={{ x: 1, y: 1 }}
       pointerEvents="none"
-      start={{ x: 0, y: 0 }}
       style={position.coverAsObject}
+      useAngle
     />
   ),
   'colors'
@@ -63,18 +64,28 @@ const SavingsListRowShadowStack = styled(ShadowStack).attrs(
 )``;
 
 const DaiText = styled(GradientText).attrs({
-  angle: -90,
+  angle: 318,
   colors: ['#ff2700', '#ffdb00'],
-  end: { x: 1, y: 0.5 },
   size: 20,
-  start: { x: 0, y: 0.5 },
-  steps: [0, 0.8, 1],
-  weight: 'bold',
+  steps: [0, 0.42, 0.88, 1],
+  weight: 900,
+})`
+  height: 27px;
+`;
+
+const ButtonText = styled(GradientText).attrs({
+  angle: 277,
+  colors: ['#ff2700', '#ffdb00'],
+  size: 16,
+  steps: [0, 0.99, 1],
+  weight: 900,
 })``;
 
-const APYText = styled(Text)`
+const APYText = styled(Text).attrs({
+  size: 20,
+  weight: 900,
+})`
   color: white;
-  font-weight: bold;
 `;
 
 const Pill = styled(LinearGradient)`
@@ -91,6 +102,7 @@ const StakeButton = styled(Flex)`
   background-color: white;
   border-radius: 24px;
   height: 52px;
+  width: 100%;
 `;
 
 const SavingsListRow = ({
@@ -182,7 +194,15 @@ const SavingsListRow = ({
 
   const displayValue = formatSavingsAmount(value);
 
-  const { colors } = useTheme();
+  const { isDarkMode, colors } = useTheme();
+
+  const shadows = useMemo(
+    () => [
+      [0, 10, 30, colors.shadow, 0.2],
+      [0, 5, 15, colors.shadow, isDarkMode ? 0 : 0.4],
+    ],
+    [isDarkMode, colors]
+  );
 
   return !underlying || !underlying.address ? null : (
     <ButtonPressAnimation
@@ -228,42 +248,35 @@ const SavingsListRow = ({
             <Row align="center">
               <DAIIcon />
               <Column css={padding(0, 0, 0, 15)} justify="space-between">
-                <Text color="white" lineHeight="normal" size={20} weight="bold">
+                <Text color="#fff" lineHeight="normal" size={20} weight={900}>
                   Dai
                 </Text>
-                <Text color="white" lineHeight="normal" size={14}>
+                <Text color="#fff" lineHeight="normal" size={14} weight="bold">
                   DAI
                 </Text>
               </Column>
             </Row>
             <Pill
+              angle={277}
               colors={['#ff2700', '#ffdb00']}
-              end={{ x: 0, y: 0.5 }}
-              start={{ x: 1, y: 0.5 }}
+              locations={[0.1, 0.99, 1]}
+              useAngle
             >
               <APYText>{apyTruncated}% APY</APYText>
             </Pill>
           </Row>
-          <Column align="center" justify="space-around">
+          <Column align="center" css={padding(24)} justify="space-between">
             <SavingsIcon />
-            <Row>
-              <Text color="white" size={20} weight="bold">
-                Stake{' '}
-              </Text>
-              <DaiText>
-                Dai
-              </DaiText>
-              <Text color="white" size={20} weight="bold">
-                {' '}
-                today and
+            <Row css={padding(16, 48, 24, 48)}>
+              <Text align="center" color="#fff" size={20} weight={900}>
+                Stake <DaiText>Dai</DaiText> today and earn {apyTruncated}% APY!
               </Text>
             </Row>
-            <Text color="white" size={20} weight="bold">
-              earn {apyTruncated}% APY!
-            </Text>
-            <StakeButton>
-              <Text>Stake Dai</Text>
-            </StakeButton>
+            <ShadowStack height={100} shadows={shadows} width={295}>
+              <StakeButton>
+                <ButtonText>Stake Dai</ButtonText>
+              </StakeButton>
+            </ShadowStack>
           </Column>
         </SavingsListRowShadowStack>
       </Centered>

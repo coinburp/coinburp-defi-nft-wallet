@@ -24,7 +24,7 @@ const openSmallBalancesAdditionalHeight = 15;
 const closedSmallBalancesAdditionalHeight = 18;
 
 const savingsOpenAdditionalHeight = -7.5;
-const savingsLastOpenAdditionalHeight = 175;
+const savingsLastOpenAdditionalHeight = 275;
 
 const poolsOpenAdditionalHeight = -12;
 const poolsClosedAdditionalHeight = -15;
