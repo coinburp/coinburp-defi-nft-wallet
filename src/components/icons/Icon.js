@@ -18,6 +18,7 @@ import ClockIcon from './svg/ClockIcon';
 import CloseCircledIcon from './svg/CloseCircledIcon';
 import CloseIcon from './svg/CloseIcon';
 import CompassIcon from './svg/CompassIcon';
+import ConnectWaveIcon from './svg/ConnectWaveIcon';
 import CopyIcon from './svg/CopyIcon';
 import CrosshairIcon from './svg/CrosshairIcon';
 import DotIcon from './svg/DotIcon';
@@ -34,6 +35,7 @@ import EmojiTravelIcon from './svg/EmojiTravelIcon';
 import FaceIdIcon from './svg/FaceIdIcon';
 import FatArrowIcon from './svg/FatArrowIcon';
 import GearIcon from './svg/GearIcon';
+import GuideIcon from './svg/GuideIcon';
 import HandleIcon from './svg/HandleIcon';
 import HiddenIcon from './svg/HiddenIcon';
 import InboxIcon from './svg/InboxIcon';
@@ -61,6 +63,7 @@ import TouchIdIcon from './svg/TouchIdIcon';
 import WalletConnectIcon from './svg/WalletConnectIcon';
 import WarningCircledIcon from './svg/WarningCircledIcon';
 import WarningIcon from './svg/WarningIcon';
+import WithdrawArrowIcon from './svg/WithdrawArrowIcon';
 
 const IconTypes = {
   applePay: ApplePayIcon,
@@ -79,6 +82,7 @@ const IconTypes = {
   close: CloseIcon,
   closeCircled: CloseCircledIcon,
   compass: CompassIcon,
+  connectWave: ConnectWaveIcon,
   copy: CopyIcon,
   crosshair: CrosshairIcon,
   dot: DotIcon,
@@ -97,6 +101,7 @@ const IconTypes = {
   fatArrow: FatArrowIcon,
   fingerprint: TouchIdIcon,
   gear: GearIcon,
+  guide: GuideIcon,
   handle: HandleIcon,
   hidden: HiddenIcon,
   inbox: InboxIcon,
@@ -125,6 +130,7 @@ const IconTypes = {
   walletConnect: WalletConnectIcon,
   warning: WarningIcon,
   warningCircled: WarningCircledIcon,
+  withdrawIcon: WithdrawArrowIcon,
 };
 
 const Icon = ({ name, testID, ...props }, ref) => {

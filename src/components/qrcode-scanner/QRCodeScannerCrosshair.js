@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { useIsEmulator } from 'react-native-device-info';
 import styled from 'styled-components';
 import { Icon } from '../icons';
@@ -16,22 +17,31 @@ const Container = styled(Centered)`
 `;
 
 const Crosshair = styled(Icon).attrs({
-  name: 'crosshair',
+  name: 'guide',
 })`
   ${position.cover};
 `;
 
 export default function QRCodeScannerCrosshair() {
   const { width: deviceWidth } = useDimensions();
-  const { result: isEmulator } = useIsEmulator();
+  //const { result: isEmulator } = useIsEmulator();
 
   const { colors } = useTheme();
   return (
     <Container size={deviceWidth * CrossHairAspectRatio}>
       <Crosshair color={colors.whiteLabel} />
-      <Text color="whiteLabel" lineHeight="none" size="large" weight="bold">
-        {isEmulator ? 'Simulator Mode' : 'Find a code to scan'}
-      </Text>
+      
+      <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
+        <Text color="whiteLabel" lineHeight="none" size="large" weight="bold"
+          style={{
+            textShadowColor: 'rgba(0, 0, 0, 0.75)',
+            textShadowOffset: {width: -1, height: 1},
+            textShadowRadius: 10
+          }}
+        >
+          Find a code to scan
+        </Text>
+      </View>
     </Container>
   );
 }
