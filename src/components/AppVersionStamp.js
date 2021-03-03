@@ -9,7 +9,7 @@ const DEBUG_TAP_COUNT = 15;
 
 const StampText = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'center',
-  color: colors.alpha(colors.blueGreyDark, 0.2),
+  color: colors.skyBlue,
   lineHeight: 'normal',
   size: 'smedium',
   weight: 'bold',
