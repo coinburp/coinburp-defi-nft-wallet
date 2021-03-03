@@ -80,7 +80,10 @@ export default function AvatarCircle({
         {image ? (
           <ImageAvatar image={image} size="large" />
         ) : (
-          <AvatarCircleView backgroundColor={colors.avatarColor[accountColor]}>
+          <AvatarCircleView
+            backgroundColor={colors.avatarColor[accountColor]}
+            borderRadius={AvatarCircleSize}
+          >
             <FirstLetter>{accountSymbol}</FirstLetter>
             {!overlayStyles && <InnerBorder opacity={0.02} radius={65} />}
             <InnerBorder

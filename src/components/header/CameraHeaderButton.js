@@ -15,7 +15,7 @@ const CameraHeaderButtonShadows = colors => [
 
 const CameraIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
   color: colors.coinburp,
-  name: 'scanner',
+  name: 'scan',
 }))`
   margin-bottom: 1px;
   max-width: 32px;

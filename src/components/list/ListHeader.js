@@ -9,7 +9,7 @@ import SavingsListHeader from '../savings/SavingsListHeader';
 import { H1 } from '../text';
 import { padding, position } from '@rainbow-me/styles';
 
-export const ListHeaderHeight = 44;
+export const ListHeaderHeight = 68;
 
 const BackgroundGradient = styled(LinearGradient).attrs(
   ({ theme: { colors } }) => ({

@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { OpacityToggler } from '../components/animations';
 import { AssetList } from '../components/asset-list';
+import WalletActionButton from '../components/buttons/WalletActionButton';
 import { ExchangeFab, FabWrapper, SendFab } from '../components/fab';
 import {
   CameraHeaderButton,
@@ -15,7 +16,7 @@ import {
   Header,
   ProfileHeaderButton,
 } from '../components/header';
-import { Page } from '../components/layout';
+import { Centered, Page, Row } from '../components/layout';
 import useExperimentalFlag, {
   DISCOVER_SHEET,
 } from '../config/experimentalHooks';
@@ -31,7 +32,7 @@ import {
 } from '../hooks';
 import { useCoinListEditedValue } from '../hooks/useCoinListEdited';
 import { updateRefetchSavings } from '../redux/data';
-import { position } from '@rainbow-me/styles';
+import { padding, position } from '@rainbow-me/styles';
 
 const HeaderOpacityToggler = styled(OpacityToggler).attrs(({ isVisible }) => ({
   endingOpacity: 0.4,
@@ -103,31 +104,48 @@ export default function WalletScreen() {
       reattaching of react subviews */}
       <Animated.View style={{ opacity: isCoinListEditedValue }} />
       <Animated.Code exec={scrollViewTracker} />
-      <FabWrapper
-        disabled={isEmpty || !!params?.emptyWallet}
-        fabs={fabs}
-        isCoinListEdited={isCoinListEdited}
-        isReadOnlyWallet={isReadOnlyWallet}
-      >
-        <HeaderOpacityToggler isVisible={isCoinListEdited}>
-          <Header justify="space-between">
-            <ProfileHeaderButton />
-            {discoverSheetAvailable ? (
-              <DiscoverHeaderButton />
-            ) : (
-              <CameraHeaderButton />
-            )}
-          </Header>
-        </HeaderOpacityToggler>
-        <AssetList
-          fetchData={refreshAccountData}
-          isEmpty={isEmpty || !!params?.emptyWallet}
-          isWalletEthZero={isWalletEthZero}
-          network={network}
-          scrollViewTracker={scrollViewTracker}
-          sections={sections}
-        />
-      </FabWrapper>
+      {/*<FabWrapper*/}
+      {/*  disabled={isEmpty || !!params?.emptyWallet}*/}
+      {/*  fabs={fabs}*/}
+      {/*  isCoinListEdited={isCoinListEdited}*/}
+      {/*  isReadOnlyWallet={isReadOnlyWallet}*/}
+      {/*>*/}
+      <HeaderOpacityToggler isVisible={isCoinListEdited}>
+        <Header justify="space-between">
+          <ProfileHeaderButton />
+          {discoverSheetAvailable ? (
+            <DiscoverHeaderButton />
+          ) : (
+            <CameraHeaderButton />
+          )}
+        </Header>
+        <Row css={padding(0, 50)} justify="space-between">
+          <WalletActionButton
+            isReadOnlyWallet={isReadOnlyWallet}
+            title="Deposit"
+            type="add"
+          />
+          <WalletActionButton
+            isReadOnlyWallet={isReadOnlyWallet}
+            title="Withdraw"
+            type="send"
+          />
+          <WalletActionButton
+            isReadOnlyWallet={isReadOnlyWallet}
+            title="Swap"
+            type="exchange"
+          />
+        </Row>
+      </HeaderOpacityToggler>
+      <AssetList
+        fetchData={refreshAccountData}
+        isEmpty={isEmpty || !!params?.emptyWallet}
+        isWalletEthZero={isWalletEthZero}
+        network={network}
+        scrollViewTracker={scrollViewTracker}
+        sections={sections}
+      />
+      {/*</FabWrapper>*/}
     </WalletPage>
   );
 }

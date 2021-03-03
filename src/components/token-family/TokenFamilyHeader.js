@@ -2,7 +2,7 @@ import React from 'react';
 import Animated, { Easing } from 'react-native-reanimated';
 import { toRad, useTimingTransition } from 'react-native-redash';
 import styled from 'styled-components';
-import CaretImageSource from '../../assets/family-dropdown-arrow.png';
+import Arrow from '../../assets/drop-arrow.png';
 import { ButtonPressAnimation, interpolate } from '../animations';
 import { Row, RowWithMargins } from '../layout';
 import { Emoji, Text, TruncatedText } from '../text';
@@ -35,16 +35,16 @@ const ChildrenAmountText = styled(Text).attrs({
 `;
 
 const RotatingArrowIcon = styled(AnimatedImgixImage).attrs(
-  ({ theme: { colors }, isShowcase }) => ({
+  ({ theme: { colors } }) => ({
     resizeMode: ImgixImage.resizeMode.contain,
-    source: CaretImageSource,
-    tintColor: isShowcase ? colors.gold : colors.dark,
+    source: Arrow,
+    tintColor: colors.dark,
   })
 )`
-  height: 18;
+  height: 11;
   margin-bottom: 1;
   right: 5;
-  width: 8;
+  width: 18;
 `;
 
 const TitleText = styled(TruncatedText).attrs({
@@ -56,7 +56,7 @@ const TitleText = styled(TruncatedText).attrs({
 })`
   flex: 1;
   margin-bottom: 1;
-  padding-left: ${({ isShowcase }) => (!isShowcase ? 9 : 0)};
+  padding-left: ${({ isShowcase }) => (!isShowcase ? 0 : 12)};
   padding-right: 9;
 `;
 
@@ -78,7 +78,7 @@ const TokenFamilyHeader = ({
   const rotate = toRad(
     interpolate(animation, {
       inputRange: [0, 1],
-      outputRange: [90, 0],
+      outputRange: [0, -90],
     })
   );
 
@@ -107,7 +107,6 @@ const TokenFamilyHeader = ({
             <ChildrenAmountText>{childrenAmount}</ChildrenAmountText>
           </Animated.View>
           <RotatingArrowIcon
-            isShowcase={title === 'Showcase'}
             style={{ transform: [{ rotate }] }}
           />
         </RowWithMargins>

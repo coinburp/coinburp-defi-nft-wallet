@@ -26,6 +26,7 @@ const UniqueTokenCard = ({
   disabled,
   enableHapticFeedback = true,
   height,
+  isShowcase,
   item: { background, image_preview_url, ...item },
   onPress,
   resizeMode,
@@ -45,7 +46,7 @@ const UniqueTokenCard = ({
 
   const { showcaseTokens } = useShowcaseTokens();
 
-  const isShowcase = !!showcaseTokens.find(i => item.uniqueId === i);
+  // const isShowcase = !!showcaseTokens.find(i => item.uniqueId === i);
 
   const defaultShadow = useMemo(() => UniqueTokenCardShadowFactory(colors), [
     colors,
@@ -63,7 +64,7 @@ const UniqueTokenCard = ({
       <Content {...props} height={height} style={style} width={width}>
         <UniqueTokenImage
           backgroundColor={
-            background || isShowcase ? colors.showcaseBackground : colors.white
+            background || isShowcase ? colors.transparent : colors.white
           }
           imageUrl={image_preview_url}
           item={item}
@@ -78,7 +79,7 @@ const UniqueTokenCard = ({
         )}
         {isShowcase && (
           <InnerBorder
-            color={colors.gold}
+            color={colors.red}
             ignoreDarkMode
             opacity={1}
             radius={UniqueTokenCardBorderRadius}
