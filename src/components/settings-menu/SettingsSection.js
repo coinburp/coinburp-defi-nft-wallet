@@ -9,20 +9,8 @@ import { THEMES, useTheme } from '../../context/ThemeContext';
 import AppVersionStamp from '../AppVersionStamp';
 import { Icon } from '../icons';
 import { Column } from '../layout';
-import {
-  ListFooter,
-  ListItem,
-  ListItemArrowGroup,
-} from '../list';
+import { ListFooter, ListItem, ListItemArrowGroup } from '../list';
 import { Emoji, Text } from '../text';
-import BackupIcon from '@rainbow-me/assets/settingsBackup.png';
-import BackupIconDark from '@rainbow-me/assets/settingsBackupDark.png';
-import CurrencyIcon from '@rainbow-me/assets/settingsCurrency.png';
-import CurrencyIconDark from '@rainbow-me/assets/settingsCurrencyDark.png';
-import DarkModeIcon from '@rainbow-me/assets/settingsDarkMode.png';
-import DarkModeIconDark from '@rainbow-me/assets/settingsDarkModeDark.png';
-import NetworkIcon from '@rainbow-me/assets/settingsNetwork.png';
-import NetworkIconDark from '@rainbow-me/assets/settingsNetworkDark.png';
 import networkInfo from '@rainbow-me/helpers/networkInfo';
 import WalletTypes from '@rainbow-me/helpers/walletTypes';
 import {
@@ -86,9 +74,41 @@ const WarningIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
 }))`
   box-shadow: 0px 4px 6px
     ${({ theme: { colors, isDarkMode } }) =>
-      isDarkMode ? colors.shadow : colors.alpha(colors.orangeLight, 0.4)};
+      isDarkMode ? colors.white : colors.alpha(colors.white, 0.4)};
   margin-top: 1;
 `;
+
+const BackupIcon = styled(Icon).attrs({
+  name: 'backup',
+})``;
+
+const CurrencyIcon = styled(Icon).attrs({
+  name: 'dollar',
+})``;
+
+const NetworkIcon = styled(Icon).attrs({
+  name: 'cloud',
+})``;
+
+const DarkModeIcon = styled(Icon).attrs({
+  name: 'moon',
+})``;
+
+const ShareIcon = styled(Icon).attrs({
+  name: 'speaker',
+})``;
+
+const FallowIcon = styled(Icon).attrs({
+  name: 'user',
+})``;
+
+const FeedbackIcon = styled(Icon).attrs({
+  name: 'ring',
+})``;
+
+const ReviewIcon = styled(Icon).attrs({
+  name: 'pencil',
+})``;
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -189,9 +209,7 @@ export default function SettingsSection({
       <Column marginTop={7}>
         {canBeBackedUp && (
           <ListItem
-            icon={
-              <SettingIcon source={isDarkMode ? BackupIconDark : BackupIcon} />
-            }
+            icon={<BackupIcon />}
             label="Backup"
             onPress={onPressBackup}
             onPressIcloudBackup={onPressIcloudBackup}
@@ -211,11 +229,7 @@ export default function SettingsSection({
           </ListItem>
         )}
         <ListItem
-          icon={
-            <SettingIcon
-              source={isDarkMode ? CurrencyIconDark : CurrencyIcon}
-            />
-          }
+          icon={<CurrencyIcon />}
           label="Currency"
           onPress={onPressCurrency}
           testID="currency-section"
@@ -223,9 +237,7 @@ export default function SettingsSection({
           <ListItemArrowGroup>{nativeCurrency || ''}</ListItemArrowGroup>
         </ListItem>
         <ListItem
-          icon={
-            <SettingIcon source={isDarkMode ? NetworkIconDark : NetworkIcon} />
-          }
+          icon={<NetworkIcon />}
           label="Network"
           onPress={onPressNetwork}
           testID="network-section"
@@ -235,11 +247,7 @@ export default function SettingsSection({
           </ListItemArrowGroup>
         </ListItem>
         <ListItem
-          icon={
-            <SettingIcon
-              source={isDarkMode ? DarkModeIconDark : DarkModeIcon}
-            />
-          }
+          icon={<DarkModeIcon />}
           label="Dark Mode"
           onPress={toggleTheme}
           testID="darkmode-section"
@@ -269,28 +277,28 @@ export default function SettingsSection({
       <ListFooter />
       <Column>
         <ListItem
-          icon={<Emoji name="rainbow" />}
+          icon={<ShareIcon />}
           label="Share Coinburp"
           onPress={onPressShare}
           testID="share-section"
           value={SettingsExternalURLs.coinburpHomepage}
         />
         <ListItem
-          icon={<Emoji name="bird" />}
+          icon={<FallowIcon />}
           label="Follow us on Twitter"
           onPress={onPressTwitter}
           testID="twitter-section"
           value={SettingsExternalURLs.twitter}
         />
         <ListItem
-          icon={<Emoji name={ios ? 'speech_balloon' : 'lady_beetle'} />}
-          label={ios ? 'Feedback & Support' : 'Feedback & Support'}
+          icon={<FeedbackIcon />}
+          label="Feedback & Support"
           onPress={onSendFeedback}
           testID="feedback-section"
         />
         {isReviewAvailable && (
           <ListItem
-            icon={<Emoji name="red_heart" />}
+            icon={<ReviewIcon/>}
             label="Review CoinBurp"
             onPress={onPressReview}
             testID="review-section"
