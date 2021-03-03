@@ -37,9 +37,7 @@ const CoinIcon = ({
         color={color}
         fallbackRenderer={CoinIconFallback}
         forceFallback={forceFallback}
-        shadowColor={
-          isDarkMode ? colors.shadow : tokenMetadata?.shadowColor || color
-        }
+        shadowColor={colors.transparent}
         size={size}
         symbol={symbol}
       />

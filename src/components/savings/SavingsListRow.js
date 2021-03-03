@@ -40,7 +40,7 @@ const SavingsListRowGradient = magicMemo(
   ({ colors }) => (
     <LinearGradient
       angle={136}
-      borderRadius={49}
+      borderRadius={24}
       colors={colors.gradients.savingsHighlight}
       pointerEvents="none"
       style={position.coverAsObject}
@@ -272,7 +272,7 @@ const SavingsListRow = ({
                 Stake <DaiText>Dai</DaiText> today and earn {apyTruncated}% APY!
               </Text>
             </Row>
-            <ShadowStack height={100} shadows={shadows} width={295}>
+            <ShadowStack backgroundColor={colors.transparent} height={100} shadows={shadows} width={295}>
               <StakeButton>
                 <ButtonText>Stake Dai</ButtonText>
               </StakeButton>
