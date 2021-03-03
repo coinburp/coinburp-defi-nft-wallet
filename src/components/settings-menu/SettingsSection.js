@@ -10,7 +10,7 @@ import AppVersionStamp from '../AppVersionStamp';
 import { Icon } from '../icons';
 import { Column } from '../layout';
 import { ListFooter, ListItem, ListItemArrowGroup } from '../list';
-import { Emoji, Text } from '../text';
+import { Emoji } from '../text';
 import networkInfo from '@rainbow-me/helpers/networkInfo';
 import WalletTypes from '@rainbow-me/helpers/walletTypes';
 import {
