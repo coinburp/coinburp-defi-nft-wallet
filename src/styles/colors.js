@@ -34,6 +34,7 @@ const darkModeColors = {
   shimmer: '#1F2229',
   showcaseBackground: 'rgba(255, 214, 0, 0.08)',
   skeleton: '#191B21',
+  skyBlue: '#afd2ff', // '175, 210, 255'
   stackBackground: '#000000',
   trueBlack: '#000000',
   trueWhite: '#FFFFFF',

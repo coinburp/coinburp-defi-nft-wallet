@@ -239,10 +239,10 @@ const SettingsTitle = ({ children }) => {
 
   return (
     <Text
-      align="center"
+      align="left"
       color={colors.dark}
       letterSpacing="roundedMedium"
-      size="large"
+      size="larger"
       weight="bold"
     >
       {children}

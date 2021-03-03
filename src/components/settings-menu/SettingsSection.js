@@ -78,37 +78,23 @@ const WarningIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
   margin-top: 1;
 `;
 
-const BackupIcon = styled(Icon).attrs({
-  name: 'backup',
-})``;
+const iconList = Object.freeze({
+  Backup: 'backup',
+  Currency: 'dollar',
+  DarkMode: 'moon',
+  Fallow: 'user',
+  Feedback: 'ring',
+  Network: 'cloud',
+  Review: 'pencil',
+  Share: 'speaker',
+});
 
-const CurrencyIcon = styled(Icon).attrs({
-  name: 'dollar',
-})``;
-
-const NetworkIcon = styled(Icon).attrs({
-  name: 'cloud',
-})``;
-
-const DarkModeIcon = styled(Icon).attrs({
-  name: 'moon',
-})``;
-
-const ShareIcon = styled(Icon).attrs({
-  name: 'speaker',
-})``;
-
-const FallowIcon = styled(Icon).attrs({
-  name: 'user',
-})``;
-
-const FeedbackIcon = styled(Icon).attrs({
-  name: 'ring',
-})``;
-
-const ReviewIcon = styled(Icon).attrs({
-  name: 'pencil',
-})``;
+const icons = Object.keys(iconList).reduce((list, key) => {
+  list[key] = styled(Icon).attrs({
+    name: iconList[key],
+  })``;
+  return list;
+}, {});
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -185,14 +171,12 @@ export default function SettingsSection({
     );
   }, []);
 
-  const { allBackedUp, areBackedUp, canBeBackedUp } = useMemo(
+  const { areBackedUp, canBeBackedUp /* allBackedUp */ } = useMemo(
     () => checkAllWallets(wallets),
     [wallets]
   );
 
-  const backupStatusColor = allBackedUp
-    ? colors.green
-    : colors.alpha(colors.blueGreyDark, 0.5);
+  const backupStatusColor = colors.skyBlue;
 
   const toggleTheme = useCallback(() => {
     if (colorScheme === THEMES.SYSTEM) {
@@ -209,7 +193,7 @@ export default function SettingsSection({
       <Column marginTop={7}>
         {canBeBackedUp && (
           <ListItem
-            icon={<BackupIcon />}
+            icon={<icons.Backup />}
             label="Backup"
             onPress={onPressBackup}
             onPressIcloudBackup={onPressIcloudBackup}
@@ -229,7 +213,7 @@ export default function SettingsSection({
           </ListItem>
         )}
         <ListItem
-          icon={<CurrencyIcon />}
+          icon={<icons.Currency />}
           label="Currency"
           onPress={onPressCurrency}
           testID="currency-section"
@@ -237,7 +221,7 @@ export default function SettingsSection({
           <ListItemArrowGroup>{nativeCurrency || ''}</ListItemArrowGroup>
         </ListItem>
         <ListItem
-          icon={<NetworkIcon />}
+          icon={<icons.Network />}
           label="Network"
           onPress={onPressNetwork}
           testID="network-section"
@@ -247,7 +231,7 @@ export default function SettingsSection({
           </ListItemArrowGroup>
         </ListItem>
         <ListItem
-          icon={<DarkModeIcon />}
+          icon={<icons.DarkMode />}
           label="Dark Mode"
           onPress={toggleTheme}
           testID="darkmode-section"
@@ -277,28 +261,28 @@ export default function SettingsSection({
       <ListFooter />
       <Column>
         <ListItem
-          icon={<ShareIcon />}
+          icon={<icons.Share />}
           label="Share Coinburp"
           onPress={onPressShare}
           testID="share-section"
           value={SettingsExternalURLs.coinburpHomepage}
         />
         <ListItem
-          icon={<FallowIcon />}
+          icon={<icons.Fallow />}
           label="Follow us on Twitter"
           onPress={onPressTwitter}
           testID="twitter-section"
           value={SettingsExternalURLs.twitter}
         />
         <ListItem
-          icon={<FeedbackIcon />}
+          icon={<icons.Feedback />}
           label="Feedback & Support"
           onPress={onSendFeedback}
           testID="feedback-section"
         />
         {isReviewAvailable && (
           <ListItem
-            icon={<ReviewIcon/>}
+            icon={<icons.Review />}
             label="Review CoinBurp"
             onPress={onPressReview}
             testID="review-section"
