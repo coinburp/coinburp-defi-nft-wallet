@@ -7,7 +7,7 @@ import { Row } from '../layout';
 import { Text as UnstyledText } from '../text';
 
 const BackArrow = styled(Icon).attrs(({ theme: { colors } }) => ({
-  color: colors.appleBlue,
+  color: colors.coinburp,
   direction: 'left',
   name: 'caret',
 }))`
@@ -29,9 +29,9 @@ const Container = styled(Row).attrs(({ side }) => ({
 
 const Text = styled(UnstyledText).attrs(({ theme: { colors } }) => ({
   align: 'center',
-  color: colors.appleBlue,
-  size: 'large',
-  weight: 'medium',
+  color: colors.coinburp,
+  size: 'larger',
+  weight: 'bold',
 }))`
   margin-left: ${({ side }) => (side === 'left' ? 4 : 0)};
 `;

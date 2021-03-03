@@ -8,12 +8,11 @@ import useExperimentalFlag from '../../config/experimentalHooks';
 import { THEMES, useTheme } from '../../context/ThemeContext';
 import AppVersionStamp from '../AppVersionStamp';
 import { Icon } from '../icons';
-import { Column, ColumnWithDividers } from '../layout';
+import { Column } from '../layout';
 import {
   ListFooter,
   ListItem,
   ListItemArrowGroup,
-  ListItemDivider,
 } from '../list';
 import { Emoji, Text } from '../text';
 import BackupIcon from '@rainbow-me/assets/settingsBackup.png';
@@ -41,11 +40,11 @@ import {
 const { RainbowRequestReview, RNReview } = NativeModules;
 
 export const SettingsExternalURLs = {
-  rainbowHomepage: 'https://rainbow.me',
+  coinburpHomepage: 'https://coinburp.com',
   review:
-    'itms-apps://itunes.apple.com/us/app/appName/id1457119021?mt=8&action=write-review',
-  twitterDeepLink: 'twitter://user?screen_name=rainbowdotme',
-  twitterWebUrl: 'https://twitter.com/rainbowdotme',
+    'itms-apps://itunes.apple.com/app/apple-store/id1486342307?mt=8&action=write-review',
+  twitterDeepLink: 'twitter://user?screen_name=coinburp',
+  twitterWebUrl: 'https://twitter.com/coinburp/',
 };
 
 const CheckmarkIcon = styled(Icon).attrs({
@@ -154,7 +153,7 @@ export default function SettingsSection({
 
   const onPressShare = useCallback(() => {
     Share.share({
-      message: `👋️ Hey friend! You should download Rainbow, it's my favorite Ethereum wallet 🌈️🌈️🌈️🌈️🌈️🌈️🌈️🌈️🌈️🌈️ ${SettingsExternalURLs.rainbowHomepage}`,
+      message: `👋️ Hey friend! You should download Coinburp, it's my favorite Ethereum wallet ${SettingsExternalURLs.coinburpHomepage}`,
     });
   }, []);
 
@@ -187,7 +186,7 @@ export default function SettingsSection({
 
   return (
     <Container backgroundColor={colors.white} scrollEnabled={isTinyPhone}>
-      <ColumnWithDividers dividerRenderer={ListItemDivider} marginTop={7}>
+      <Column marginTop={7}>
         {canBeBackedUp && (
           <ListItem
             icon={
@@ -241,7 +240,7 @@ export default function SettingsSection({
               source={isDarkMode ? DarkModeIconDark : DarkModeIcon}
             />
           }
-          label="Theme"
+          label="Dark Mode"
           onPress={toggleTheme}
           testID="darkmode-section"
         >
@@ -266,38 +265,38 @@ export default function SettingsSection({
         {/*    {supportedLanguages[language] || ''}*/}
         {/*  </ListItemArrowGroup>*/}
         {/*</ListItem>*/}
-      </ColumnWithDividers>
+      </Column>
       <ListFooter />
-      <ColumnWithDividers dividerRenderer={ListItemDivider}>
+      <Column>
         <ListItem
           icon={<Emoji name="rainbow" />}
-          label="Share Rainbow"
+          label="Share Coinburp"
           onPress={onPressShare}
           testID="share-section"
-          value={SettingsExternalURLs.rainbowHomepage}
+          value={SettingsExternalURLs.coinburpHomepage}
         />
         <ListItem
           icon={<Emoji name="bird" />}
-          label="Follow Us on Twitter"
+          label="Follow us on Twitter"
           onPress={onPressTwitter}
           testID="twitter-section"
           value={SettingsExternalURLs.twitter}
         />
         <ListItem
           icon={<Emoji name={ios ? 'speech_balloon' : 'lady_beetle'} />}
-          label={ios ? 'Feedback and Support' : 'Feedback & Bug Reports'}
+          label={ios ? 'Feedback & Support' : 'Feedback & Support'}
           onPress={onSendFeedback}
           testID="feedback-section"
         />
         {isReviewAvailable && (
           <ListItem
             icon={<Emoji name="red_heart" />}
-            label="Review Rainbow"
+            label="Review CoinBurp"
             onPress={onPressReview}
             testID="review-section"
           />
         )}
-      </ColumnWithDividers>
+      </Column>
       {IS_DEV && (
         <Fragment>
           <ListFooter height={10} />

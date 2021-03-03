@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+    <defs>
+        <linearGradient id="mpsf50e1wa" x1="100%" x2="0%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#F06"/>
+            <stop offset="48.29%" stop-color="#D41872"/>
+            <stop offset="100%" stop-color="#A445B2"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g>
+                    <g transform="translate(-40 -440) translate(16 112) translate(24 328)">
+                        <circle cx="20" cy="20" r="20" fill="url(#mpsf50e1wa)"/>
+                        <path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19.5 13.158v14.881c0 1.083-.85 1.961-1.898 1.961-.802 0-1.517-.52-1.787-1.301L13 22m14-2c.757 0 2-.553 2-2s-1.243-2-2-2m-13.901 6.048c-1.528-.686-2.599-2.288-2.599-4.153 0-2.492 1.91-4.512 4.267-4.512h1.954c4.374 0 8.133-1.391 9.779-3.383v15.79c-1.646-1.992-5.405-3.384-9.78-3.384h-1.953c-.592 0-1.156-.127-1.668-.358z"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
