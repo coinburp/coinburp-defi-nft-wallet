@@ -222,7 +222,7 @@ const headerConfigOptions = {
     headerTitleAlign: 'center',
   }),
   headerTitleStyle: {
-    color: colors.themedColors.black,
+    color: colors.themedColors.dark,
     fontFamily: fonts.family.SFProRounded,
     fontSize: parseFloat(fonts.size.large),
     fontWeight: fonts.weight.bold,
@@ -239,7 +239,7 @@ const SettingsTitle = ({ children }) => {
 
   return (
     <Text
-      align="left"
+      align="center"
       color={colors.dark}
       letterSpacing="roundedMedium"
       size="larger"

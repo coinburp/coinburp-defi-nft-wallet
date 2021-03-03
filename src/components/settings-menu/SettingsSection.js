@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React, { Fragment, useCallback, useMemo } from 'react';
-import { Image, Linking, NativeModules, ScrollView, Share } from 'react-native';
+import { Linking, NativeModules, ScrollView, Share, Switch } from 'react-native';
 import styled from 'styled-components';
 import { REVIEW_ANDROID } from '../../config/experimental';
 import useExperimentalFlag from '../../config/experimentalHooks';
@@ -38,9 +38,8 @@ export const SettingsExternalURLs = {
 const CheckmarkIcon = styled(Icon).attrs({
   name: 'checkmarkCircled',
 })`
-  box-shadow: 0px 4px 6px
-    ${({ theme: { colors, isDarkMode } }) =>
-      colors.alpha(isDarkMode ? colors.shadow : colors.blueGreyDark50, 0.4)};
+  ${({ theme: { colors, isDarkMode } }) =>
+    colors.alpha(isDarkMode ? colors.shadow : colors.blueGreyDark50, 0.4)};
 `;
 
 const contentContainerStyle = { flex: 1 };
@@ -53,12 +52,12 @@ const Container = styled(ScrollView).attrs({
 `;
 
 // ⚠️ Beware: magic numbers lol
-const SettingIcon = styled(Image)`
-  ${position.size(60)};
-  margin-left: -16;
-  margin-right: -11;
-  margin-top: 8;
-`;
+// const SettingIcon = styled(Image)`
+//   ${position.size(60)};
+//   margin-left: -16;
+//   margin-right: -11;
+//   margin-top: 8;
+// `;
 
 const VersionStampContainer = styled(Column).attrs({
   align: 'center',
@@ -179,12 +178,10 @@ export default function SettingsSection({
   const backupStatusColor = colors.skyBlue;
 
   const toggleTheme = useCallback(() => {
-    if (colorScheme === THEMES.SYSTEM) {
+    if (colorScheme === THEMES.DARK) {
       setTheme(THEMES.LIGHT);
     } else if (colorScheme === THEMES.LIGHT) {
       setTheme(THEMES.DARK);
-    } else {
-      setTheme(THEMES.SYSTEM);
     }
   }, [setTheme, colorScheme]);
 
@@ -237,13 +234,12 @@ export default function SettingsSection({
           testID="darkmode-section"
         >
           <Column align="end" flex="1" justify="end">
-            <Text
-              color={colors.alpha(colors.blueGreyDark, 0.6)}
-              size="large"
-              weight="medium"
-            >
-              {capitalizeFirstLetter(colorScheme)}
-            </Text>
+            <Switch
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleTheme}
+              trackColor={{ false: colors.grey, true: colors.skyBlue }}
+              value={colorScheme === THEMES.DARK}
+            />
           </Column>
         </ListItem>
         {/*<ListItem
