@@ -37,9 +37,10 @@ const BalanceCoinRowCoinCheckButton = styled(CoinCheckButton).attrs({
 
 const PercentageText = styled(BottomRowText).attrs({
   align: 'right',
+  weight: 'bold',
 })`
   color: ${({ isPositive, theme: { colors } }) =>
-    isPositive ? colors.green : colors.alpha(colors.blueGreyDark, 0.5)};
+    isPositive ? colors.green : colors.neonRed};
 `;
 
 const BottomRowContainer = ios
@@ -71,7 +72,7 @@ const BottomRow = ({ balance, native }) => {
   return (
     <BottomRowContainer>
       <FlexItem flex={1}>
-        <BottomRowText color={colors.alpha(colors.blueGreyDark, 0.5)}>
+        <BottomRowText color={colors.blueGrey}>
           {get(balance, 'display', '')}
         </BottomRowText>
       </FlexItem>

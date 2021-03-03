@@ -21,14 +21,13 @@ const WalletConnectLearnMoreButton = () => {
       >
         <Centered direction="column">
           <Text
-            color="paleBlue"
+            color="#00dc68"
             css={padding(6, 0)}
             size="lmedium"
-            weight="semibold"
+            weight="bold"
           >
-            Learn More
+            What?
           </Text>
-          <Divider color={colors.rowDividerLight} inset={false} />
         </Centered>
       </ButtonPressAnimation>
     </Row>

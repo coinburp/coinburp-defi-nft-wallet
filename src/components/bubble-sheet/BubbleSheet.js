@@ -8,8 +8,6 @@ export const BubbleSheetBorderRadius = 30;
 
 const Container = styled(Column)`
   ${({ theme: { colors } }) => shadow.build(0, 10, 50, colors.shadowBlack, 0.6)}
-  background-color: ${({ theme: { colors } }) => colors.white};
-  border-radius: ${BubbleSheetBorderRadius};
   bottom: ${({ bottom }) => (bottom ? 21 : 0)};
   flex-grow: 0;
   flex-shrink: 1;

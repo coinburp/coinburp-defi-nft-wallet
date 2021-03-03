@@ -1,22 +1,25 @@
 import React, { createElement } from 'react';
 import styled from 'styled-components';
+import { useTheme } from '../../context/ThemeContext';
 import { CoinIcon, CoinIconGroup, CoinIconSize } from '../coin-icon';
 import { Column, Row } from '../layout';
-import { useAccountSettings } from '@rainbow-me/hooks';
-import { padding } from '@rainbow-me/styles';
+import { useAccountSettings, useDimensions } from '@rainbow-me/hooks';
+import { padding, margin } from '@rainbow-me/styles';
 
-const CoinRowPaddingTop = 9;
-const CoinRowPaddingBottom = 10;
+const CoinRowPaddingTop = 16;
+const CoinRowPaddingBottom = 16;
+const CoinRowMarginBottom = 12;
 export const CoinRowHeight =
-  CoinIconSize + CoinRowPaddingTop + CoinRowPaddingBottom;
+  CoinIconSize + CoinRowPaddingTop + CoinRowPaddingBottom + CoinRowMarginBottom;
 
 const Container = styled(Row).attrs({
   align: 'center',
   grow: 0,
   shrink: 1,
 })`
-  ${padding(CoinRowPaddingTop, 19, CoinRowPaddingBottom)};
-  width: 100%;
+  ${padding(CoinRowPaddingTop, 24, CoinRowPaddingBottom)};
+  ${margin(0, 16, CoinRowMarginBottom)};
+  width: ${({ width }) => width - 32};
 `;
 
 const Content = styled(Column).attrs({ justify: 'space-between' })`
@@ -44,9 +47,16 @@ export default function CoinRow({
   ...props
 }) {
   const accountSettings = useAccountSettings();
+  const { width } = useDimensions();
+  const { colors } = useTheme();
 
   return (
-    <Container css={containerStyles}>
+    <Container
+      backgroundColor={colors.white}
+      borderRadius={24}
+      css={containerStyles}
+      width={width}
+    >
       {isPool ? (
         <CoinIconGroup tokens={tokens} />
       ) : (

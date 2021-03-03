@@ -8,7 +8,7 @@ import CoinIconIndicator from './CoinIconIndicator';
 import { useColorForAsset } from '@rainbow-me/hooks';
 import { getTokenMetadata, isETH, magicMemo } from '@rainbow-me/utils';
 
-export const CoinIconSize = 40;
+export const CoinIconSize = 48;
 
 const StyledCoinIcon = styled(ReactCoinIcon)`
   opacity: ${({ isHidden }) => (isHidden ? 0.4 : 1)};
@@ -37,9 +37,7 @@ const CoinIcon = ({
         color={color}
         fallbackRenderer={CoinIconFallback}
         forceFallback={forceFallback}
-        shadowColor={
-          isDarkMode ? colors.shadow : tokenMetadata?.shadowColor || color
-        }
+        shadowColor={colors.transparent}
         size={size}
         symbol={symbol}
       />

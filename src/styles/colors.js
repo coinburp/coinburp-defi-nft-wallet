@@ -8,6 +8,7 @@ const darkModeColors = {
   appleBlue: '#0E76FD',
   background: '#12131A',
   black: '#FFFFFF',
+  blueGrey: '#afd2ff',
   blueGreyDark: '#E0E8FF',
   blueGreyDark20: '#3A3D45',
   blueGreyDark50: '#797D8B',
@@ -22,6 +23,7 @@ const darkModeColors = {
   lighterGrey: '#12131A',
   lightestGrey: '#FFFFFF',
   lightGrey: '#333333',
+  neonRed: '#ff0c00',
   offWhite: '#1F222A',
   offWhite80: '#1C1F27',
   rowDivider: 'rgba(60, 66, 82, 0.075)',
@@ -50,6 +52,7 @@ const getColorsByTheme = darkMode => {
     appleBlue: '#0E76FD', // '14, 118, 253'
     background: '#f5f9fd',
     black: '#000000', // '0, 0, 0'
+    blueGrey: '#afd2ff',
     blueGreyDark: '#3C4252', // '60, 66, 82'
     blueGreyDark50: '#9DA0A8', // this color is blueGreyDark at 50% over white
     blueGreyDark60: '#898D97', // this color is blueGreyDark at 60% over white
@@ -70,6 +73,7 @@ const getColorsByTheme = darkMode => {
     lightGrey: '#CDCFD4', // '205, 207, 212'
     mediumGrey: '#A1A5B3', // '161, 165, 179'
     mintDark: '#00E0A9', // '0, 224, 169'
+    neonRed: '#ff0c00',
     neonSkyblue: '#34FFFF', // '52, 255, 255'
     offWhite: '#F8F9FA', // '248, 249, 250'
     orange: '#FF9900', // '255, 153, 0'

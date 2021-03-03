@@ -1,28 +1,25 @@
 import React from 'react';
-import Divider from '../Divider';
-import { Centered, Column } from '../layout';
+// import Divider from '../Divider';
+import { Row } from '../layout';
 import WalletConnectExplainerItem from './WalletConnectExplainerItem';
 import WalletConnectLearnMoreButton from './WalletConnectLearnMoreButton';
 import { margin, padding } from '@rainbow-me/styles';
 
 export default function WalletConnectExplainer() {
   return (
-    <Column css={padding(21, 0, 26, 19)}>
+    <Row css={padding(0, 0, 50, 0)}>
       <WalletConnectExplainerItem
-        content="You can scan a QR code to send money."
-        emoji="💸️"
-        title="Scan to send"
+        content="Withdraw funds to an external wallet."
+        title="Withdraw"
+        isWithdraw
       />
-      <Centered css={margin(18, 0)}>
-        <Divider inset={false} />
-      </Centered>
       <WalletConnectExplainerItem
-        content="WalletConnect lets you connect to desktop websites by scanning a QR code."
-        emoji="📲"
-        title="Scan to connect your wallet"
+        content="Connect wallet with WalletConnect."
+        title="Connect"
+        isWithdraw={false}
       >
         <WalletConnectLearnMoreButton />
       </WalletConnectExplainerItem>
-    </Column>
+    </Row>
   );
 }
