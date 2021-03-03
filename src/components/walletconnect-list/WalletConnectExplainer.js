@@ -7,7 +7,7 @@ import { margin, padding } from '@rainbow-me/styles';
 
 export default function WalletConnectExplainer() {
   return (
-    <Row css={padding(21, 0, 26, 19)}>
+    <Row css={padding(0, 0, 50, 0)}>
       <WalletConnectExplainerItem
         content="Withdraw funds to an external wallet."
         title="Withdraw"
