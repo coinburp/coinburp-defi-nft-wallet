@@ -237,7 +237,7 @@ export default function SettingsSection({
             <Switch
               ios_backgroundColor="#3e3e3e"
               onValueChange={toggleTheme}
-              trackColor={{ false: colors.grey, true: colors.skyBlue }}
+              trackColor={{ false: colors.skyBlue, true: colors.skyBlue }}
               value={colorScheme === THEMES.DARK}
             />
           </Column>
