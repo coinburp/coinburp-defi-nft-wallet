@@ -280,6 +280,8 @@ const withBalanceSection = (
   );
   let balanceSectionData = [...assets];
 
+  console.log(assets[4]);
+
   // const totalBalanceWithSavingsValue = add(
   //   totalBalancesValue,
   //   // get(savingsSection, 'totalValue', 0)

@@ -36,6 +36,7 @@ export default function CoinRow({
   coinIconRender = CoinIcon,
   containerStyles,
   contentStyles,
+  editing,
   isHidden,
   isPinned,
   isPool,
@@ -55,7 +56,7 @@ export default function CoinRow({
       backgroundColor={colors.white}
       borderRadius={24}
       css={containerStyles}
-      width={width}
+      width={editing ? width - 42 : width}
     >
       {isPool ? (
         <CoinIconGroup tokens={tokens} />

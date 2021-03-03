@@ -1,59 +1,20 @@
-import React, { useMemo } from 'react';
-import { FallbackIcon } from 'react-coin-icon';
+import React from 'react';
 import styled from 'styled-components';
-import { initials } from '../../utils';
-import { Emoji } from '../text';
-import { ImageWithCachedMetadata } from '@rainbow-me/images';
-import { borders } from '@rainbow-me/styles';
-import ShadowStack from 'react-native-shadow-stack';
+import { Icon } from '../icons';
 
-const shadowsFactory = colors => [
-  [0, 4, android ? 1 : 6, colors.shadow, 0.04],
-  [0, 1, 3, colors.shadow, 0.08],
-];
-
-const StarEmoji = styled(Emoji).attrs({
+const HeartEmoji = styled(Icon).attrs({
   align: 'center',
-  name: 'star',
+  name: 'heart',
   size: 'medium',
 })`
-  height: 22;
-  margin-right: 4.5;
+  height: 20px;
+  margin-right: 4.5px;
   text-align-vertical: center;
-  top: -3;
+  top: -3px;
 `;
 
-const TokenFamilyHeaderIcon = ({
-  familyImage,
-  familyName,
-  isCoinRow,
-  style,
-}) => {
-  const { colors } = useTheme();
-  const circleStyle = useMemo(
-    () => borders.buildCircleAsObject(isCoinRow ? 40 : 32),
-    [isCoinRow]
-  );
-
-  const shadows = useMemo(() => shadowsFactory(colors), [colors]);
-
-  return familyName === 'Showcase' ? (
-    <StarEmoji />
-  ) : (
-    null
-    // <ShadowStack
-    //   {...circleStyle}
-    //   backgroundColor={colors.white}
-    //   shadows={shadows}
-    //   style={style}
-    // >
-    //   {familyImage ? (
-    //     <ImageWithCachedMetadata imageUrl={familyImage} style={circleStyle} />
-    //   ) : (
-    //     <FallbackIcon {...circleStyle} symbol={initials(familyName)} />
-    //   )}
-    // </ShadowStack>
-  );
+const TokenFamilyHeaderIcon = ({ familyName }) => {
+  return familyName === 'Showcase' ? <HeartEmoji /> : null;
 };
 
 export default React.memo(TokenFamilyHeaderIcon);

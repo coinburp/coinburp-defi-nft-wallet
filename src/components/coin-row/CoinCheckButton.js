@@ -32,8 +32,8 @@ const CheckmarkBackground = styled.View`
   ${borders.buildCircle(22)}
   ${padding(4.5)}
   ${({ theme: { isDarkMode, colors } }) =>
-    shadow.build(0, 4, 12, isDarkMode ? colors.shadow : colors.appleBlue, 0.4)}
-  background-color: ${({ theme: { colors } }) => colors.appleBlue};
+    shadow.build(0, 4, 12, isDarkMode ? colors.shadow : colors.coinburp, 0.4)}
+  background-color: ${({ theme: { colors } }) => colors.coinburp};
 `;
 
 const CoinCheckButton = ({ isAbsolute, onPress, toggle, ...props }) => {

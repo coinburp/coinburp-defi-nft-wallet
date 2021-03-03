@@ -25,7 +25,13 @@ const CollectibleTokenFamily = ({
   );
 
   const renderChild = useCallback(
-    i => <UniqueTokenRow item={item[i]} key={`${familyName}_${i}`} />,
+    i => (
+      <UniqueTokenRow
+        isShowcase={familyName === 'Showcase'}
+        item={item[i]}
+        key={`${familyName}_${i}`}
+      />
+    ),
     [familyName, item]
   );
 

@@ -26,7 +26,7 @@ const UniqueTokenCardItem = styled(UniqueTokenCard).attrs({
   margin-left: ${({ index }) => (index >= 1 ? CardMargin : 0)};
 `;
 
-const UniqueTokenRow = magicMemo(({ item }) => {
+const UniqueTokenRow = magicMemo(({ item, isShowcase }) => {
   const { isReadOnlyWallet } = useWallets();
   const { navigate } = useNavigation();
 
@@ -48,6 +48,7 @@ const UniqueTokenRow = magicMemo(({ item }) => {
       {item.map((uniqueToken, index) => (
         <UniqueTokenCardItem
           index={index}
+          isShowcase={isShowcase}
           item={uniqueToken}
           key={uniqueToken.uniqueId}
           onPress={handleItemPress}

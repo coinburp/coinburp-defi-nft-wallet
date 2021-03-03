@@ -37,6 +37,7 @@ import FatArrowIcon from './svg/FatArrowIcon';
 import GearIcon from './svg/GearIcon';
 import GuideIcon from './svg/GuideIcon';
 import HandleIcon from './svg/HandleIcon';
+import Heart from './svg/Heart';
 import HiddenIcon from './svg/HiddenIcon';
 import InboxIcon from './svg/InboxIcon';
 import InfoIcon from './svg/InfoIcon';
@@ -49,6 +50,7 @@ import PlusCircledIcon from './svg/PlusCircledIcon';
 import PlusIcon from './svg/PlusIcon';
 import ProgressIcon from './svg/ProgressIcon';
 import QRCodeIcon from './svg/QRCodeIcon';
+import Scan from './svg/Scan';
 import ScannerIcon from './svg/ScannerIcon';
 import SearchIcon from './svg/SearchIcon';
 import SendIcon from './svg/SendIcon';
@@ -103,6 +105,7 @@ const IconTypes = {
   gear: GearIcon,
   guide: GuideIcon,
   handle: HandleIcon,
+  heart: Heart,
   hidden: HiddenIcon,
   inbox: InboxIcon,
   info: InfoIcon,
@@ -115,6 +118,7 @@ const IconTypes = {
   plusCircled: PlusCircledIcon,
   progress: ProgressIcon,
   qrCode: QRCodeIcon,
+  scan: Scan,
   scanner: ScannerIcon,
   search: SearchIcon,
   send: SendIcon,

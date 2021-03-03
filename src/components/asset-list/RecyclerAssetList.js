@@ -280,7 +280,7 @@ class RecyclerAssetList extends Component {
           );
           const lastBalanceIndex =
             sectionsIndices[balancesIndex] + balanceItemsCount;
-          if (index === lastBalanceIndex - 2) {
+          if (index === lastBalanceIndex - 1) {
             if (this.coinDividerIndex !== index) {
               this.coinDividerIndex = index;
               if (this.props.isCoinListEdited) {
@@ -289,7 +289,7 @@ class RecyclerAssetList extends Component {
               }
             }
             if (
-              sections[balancesIndex].data[lastBalanceIndex - 2]
+              sections[balancesIndex].data[lastBalanceIndex - 1]
                 .smallBalancesContainer
             ) {
               return {
@@ -300,10 +300,10 @@ class RecyclerAssetList extends Component {
               };
             }
           }
-          if (index === lastBalanceIndex - 1) {
+          if (index === lastBalanceIndex) {
             if (
-              sections[balancesIndex].data[lastBalanceIndex - 2] &&
-              sections[balancesIndex].data[lastBalanceIndex - 2]
+              sections[balancesIndex].data[lastBalanceIndex - 1] &&
+              sections[balancesIndex].data[lastBalanceIndex - 1]
                 .smallBalancesContainer
             ) {
               smallBalancesIndex = index - 1;
@@ -320,23 +320,6 @@ class RecyclerAssetList extends Component {
                   ViewTypes.COIN_SMALL_BALANCES.visibleDuringCoinEdit,
               };
             }
-          }
-          if (index === lastBalanceIndex) {
-            if (
-              sections[balancesIndex].data[lastBalanceIndex - 1]
-                .savingsContainer
-            ) {
-              return {
-                height: ViewTypes.COIN_SAVINGS.calculateHeight({
-                  amountOfRows:
-                    sections[balancesIndex].data[index - 1].assets?.length || 0,
-                  isLast: poolsIndex < 0,
-                  isOpen: this.props.openSavings,
-                }),
-                index: ViewTypes.COIN_SAVINGS.index,
-              };
-            }
-            this.lastAssetIndex = index;
           }
           const firstBalanceIndex = sectionsIndices[balancesIndex] + 1;
           const isFirst =

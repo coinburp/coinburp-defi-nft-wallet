@@ -174,6 +174,7 @@ const BalanceCoinRow = ({
             <CoinRow
               bottomRowRender={BottomRow}
               containerStyles={containerStyles}
+              editing={isCoinListEdited}
               onPress={handlePress}
               topRowRender={TopRow}
               {...item}

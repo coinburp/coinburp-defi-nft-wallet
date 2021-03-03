@@ -18,12 +18,12 @@ const ButtonContent = styled(Row).attrs({
           0,
           4,
           12,
-          isDarkMode ? colors.shadow : colors.appleBlue,
+          isDarkMode ? colors.shadow : colors.coinburp,
           0.4
         )
       : ''};
   background-color: ${({ isActive, theme: { colors } }) =>
-    isActive ? colors.appleBlue : colors.alpha(colors.blueGreyDark, 0.06)};
+    isActive ? colors.coinburp : colors.alpha(colors.blueGreyDark, 0.06)};
   border-radius: 15;
   height: 30;
 `;
