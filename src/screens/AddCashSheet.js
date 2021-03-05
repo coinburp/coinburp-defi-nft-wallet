@@ -31,7 +31,6 @@ const sheetHeight =
 
 const SheetContainer = styled(Column)`
   ${borders.buildRadius('top', isNativeStackAvailable ? 0 : 16)};
-  background-color: ${({ colors }) => colors.white};
   height: ${isNativeStackAvailable ? deviceHeight : sheetHeight};
   top: ${isNativeStackAvailable ? 0 : statusBarHeight};
   width: 100%;
@@ -86,7 +85,7 @@ export default function AddCashSheet() {
   );
 
   return (
-    <SheetContainer colors={colors}>
+    <SheetContainer>
       <StatusBar barStyle="light-content" />
       <Column
         align="center"
@@ -95,19 +94,21 @@ export default function AddCashSheet() {
         paddingBottom={isNarrowPhone ? 15 : insets.bottom + 11}
       >
         <Column align="center" paddingVertical={6}>
-          <SheetHandle />
+          <SheetHandle color="white" />
           <ColumnWithMargins
             margin={4}
-            paddingTop={isNativeStackAvailable ? 7 : 5}
+            paddingTop={12}
           >
-            <SheetTitle>Add Cash</SheetTitle>
+            <SheetTitle color="white" size={32}>
+              Deposit
+            </SheetTitle>
             {!isPaymentComplete && (
               <SheetSubtitleCycler
                 animatedValue={errorAnimation}
                 errorIndex={errorIndex}
                 interval={SubtitleInterval}
                 items={Object.values(cashLimits)}
-                paddingVertical={14}
+                paddingVertical={16}
               />
             )}
           </ColumnWithMargins>

@@ -2,19 +2,44 @@ import { useRoute } from '@react-navigation/core';
 import analytics from '@segment/analytics-react-native';
 import { isEmpty } from 'lodash';
 import React, { Fragment, useCallback, useState } from 'react';
-import { Clock } from 'react-native-reanimated';
+import { TextInput } from 'react-native';
+import styled from 'styled-components';
+import { useTheme } from '../../context/ThemeContext';
 import { useDimensions, useIsWalletEthZero } from '../../hooks';
 import { Alert } from '../alerts';
-import { runSpring } from '../animations';
-import { Centered, ColumnWithMargins } from '../layout';
-import { Numpad, NumpadValue } from '../numpad';
+import DotArrow from '../icons/svg/DotArrow';
+import { Column, ColumnWithMargins, Row } from '../layout';
+import { Text } from '../text';
 import AddCashFooter from './AddCashFooter';
 import AddCashSelector from './AddCashSelector';
 import { DAI_ADDRESS, ETH_ADDRESS } from '@rainbow-me/references';
-import { padding } from '@rainbow-me/styles';
+import { buildTextStyles, fonts, margin, padding } from '@rainbow-me/styles';
 
-const currencies = [DAI_ADDRESS, ETH_ADDRESS];
+const currencies = [ETH_ADDRESS, DAI_ADDRESS];
 const minimumPurchaseAmountUSD = 1;
+
+const DepositAmountInput = styled(TextInput).attrs(({ theme: { colors } }) => ({
+  align: 'center',
+  color: colors.coinburp,
+  fontFamily: fonts.family.SFProRounded,
+  justify: 'center',
+  size: 48,
+}))`
+  ${buildTextStyles};
+  font-family: ${fonts.family.SFProRounded};
+  font-weight: 900;
+`;
+
+const CurrencySymbol = styled(Text).attrs(({ theme: { colors } }) => ({
+  color: colors.coinburp,
+  lineHeight: 48,
+  size: 48,
+  weight: 900,
+}))``;
+
+const ToArrow = styled(DotArrow)`
+  margin: 16px 0;
+`;
 
 const AddCashForm = ({
   limitWeekly,
@@ -22,14 +47,13 @@ const AddCashForm = ({
   onLimitExceeded,
   onPurchase,
   onShake,
-  shakeAnim,
 }) => {
+  const { width } = useDimensions();
+  const { colors } = useTheme();
+
   const isWalletEthZero = useIsWalletEthZero();
   const { params } = useRoute();
   const [paymentSheetVisible, setPaymentSheetVisible] = useState(false);
-
-  const { isNarrowPhone, isSmallPhone, isTallPhone } = useDimensions();
-  const [scaleAnim, setScaleAnim] = useState(1);
 
   const initialCurrencyIndex = isWalletEthZero ? 1 : 0;
   const [currency, setCurrency] = useState(currencies[initialCurrencyIndex]);
@@ -55,14 +79,22 @@ const AddCashForm = ({
   }, [currency, onPurchase, paymentSheetVisible, value]);
 
   const handleNumpadPress = useCallback(
-    newValue => {
+    e => {
+      e.preventDefault();
       setValue(prevValue => {
+        const t = e.nativeEvent?.text || '';
+        const newValue = t.length < prevValue.length ? 'back' : t[t.length - 1];
+
         const isExceedingWeeklyLimit =
           parseFloat(prevValue + parseFloat(newValue)) > limitWeekly;
 
         const isInvalidFirstEntry =
           !prevValue &&
           (newValue === '0' || newValue === '.' || newValue === 'back');
+
+        if (!prevValue && !isInvalidFirstEntry) {
+          return newValue;
+        }
 
         const isMaxDecimalCount =
           prevValue && prevValue.includes('.') && newValue === '.';
@@ -93,19 +125,6 @@ const AddCashForm = ({
         }
 
         onClearError();
-
-        let prevPosition = 1;
-        if (prevValue && prevValue.length > 3) {
-          prevPosition = 1 - (prevValue.length - 3) * 0.075;
-        }
-        if (nextValue.length > 3) {
-          const characterCount = 1 - (nextValue.length - 3) * 0.075;
-          setScaleAnim(
-            runSpring(new Clock(), prevPosition, characterCount, 0, 400, 40)
-          );
-        } else if (nextValue.length === 3) {
-          setScaleAnim(runSpring(new Clock(), prevPosition, 1, 0, 400, 40));
-        }
 
         return nextValue;
       });
@@ -143,30 +162,54 @@ const AddCashForm = ({
 
   return (
     <Fragment>
-      <Centered flex={1}>
+      <Column align="center" flex={1}>
+        <Column
+          align="center"
+          backgroundColor="white"
+          borderRadius={24}
+          justify="center"
+          width={width - 32}
+        >
+          <Row align="center" height={51} justify="space-between">
+            <Text size={16} weight="bold">
+              AMOUNT
+            </Text>
+          </Row>
+          <Row align="center" height={74} justify="space-between">
+            <CurrencySymbol>$</CurrencySymbol>
+            <DepositAmountInput
+              keyboardType="numeric"
+              onChange={handleNumpadPress}
+              placeholder="0"
+              placeholderTextColor={colors.coinburp}
+              value={value}
+            />
+          </Row>
+        </Column>
+        <Column height={68} justify="center">
+          <ToArrow />
+        </Column>
         <ColumnWithMargins
           align="center"
-          css={padding(0, 24, isNarrowPhone ? 12 : 24)}
+          backgroundColor="white"
+          borderRadius={24}
+          css={padding(16, 30, 43)}
           justify="center"
-          margin={isSmallPhone ? 0 : 8}
-          width="100%"
+          margin={0}
+          width={width - 32}
         >
-          <NumpadValue scale={scaleAnim} translateX={shakeAnim} value={value} />
-          <AddCashSelector
-            currencies={currencies}
-            initialCurrencyIndex={initialCurrencyIndex}
-            isWalletEthZero={isWalletEthZero}
-            onSelect={onCurrencyChange}
-          />
+          <Text css={margin(0, 0, 16)} size={16} weight="bold">
+            ASSET
+          </Text>
+          <Row justify="space-between">
+            <AddCashSelector
+              currencies={currencies}
+              initialCurrencyIndex={initialCurrencyIndex}
+              isWalletEthZero={isWalletEthZero}
+              onSelect={onCurrencyChange}
+            />
+          </Row>
         </ColumnWithMargins>
-      </Centered>
-      <ColumnWithMargins align="center" margin={isTallPhone ? 27 : 12}>
-        <Centered maxWidth={313}>
-          <Numpad
-            onPress={handleNumpadPress}
-            width={isNarrowPhone ? 275 : '100%'}
-          />
-        </Centered>
         <AddCashFooter
           disabled={
             isEmpty(value) || parseFloat(value) < minimumPurchaseAmountUSD
@@ -174,7 +217,7 @@ const AddCashForm = ({
           onDisabledPress={onShake}
           onSubmit={handlePurchase}
         />
-      </ColumnWithMargins>
+      </Column>
     </Fragment>
   );
 };

@@ -172,7 +172,7 @@ function MainNavigator() {
       <Stack.Screen
         component={AddCashSheet}
         name={Routes.ADD_CASH_SHEET}
-        options={sheetPreset}
+        options={exchangePreset}
       />
       <Stack.Screen
         component={ImportSeedPhraseSheet}

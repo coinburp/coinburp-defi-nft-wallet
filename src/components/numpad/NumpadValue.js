@@ -29,16 +29,21 @@ const TextMask = styled(Animated.View)`
 `;
 
 const ValueText = styled(Text).attrs(({ width, theme: { colors } }) => ({
-  align: 'center',
-  color: colors.white,
+  align: 'left',
+  color: colors.black,
   letterSpacing: 'roundedTightest',
-  lineHeight: Math.round(width * HeightMultiple),
-  size: Math.round(width * FontSizeMultiple),
-  weight: 'bold',
+  // lineHeight: Math.round(width * HeightMultiple),
+  // size: Math.round(width * FontSizeMultiple),
+  size: 32,
+  weight: 900,
 }))``;
 
 const NumpadValue = ({ scale, translateX, value, ...props }) => {
   const { width } = useDimensions();
+
+  return (
+    <ValueText width={width}>{'$' + (value ? value : '0')}</ValueText>
+  );
 
   const maskElement = (
     <TextMask style={{ transform: [{ scale, translateX }] }}>

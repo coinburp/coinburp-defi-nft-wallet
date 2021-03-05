@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components';
 
-export const HandleHeight = 5;
+export const HandleHeight = 8;
 
 const defaultColor = colors => colors.alpha(colors.blueGreyDark, 0.3);
 
@@ -13,10 +13,10 @@ const Handle = styled.View.attrs({
 })`
   background-color: ${({ color, theme: { colors } }) =>
     color || defaultColor(colors)};
-  border-radius: 3;
+  border-radius: 4px;
   height: ${HandleHeight};
   overflow: hidden;
-  width: 36;
+  width: 40px;
   z-index: 9;
 `;
 

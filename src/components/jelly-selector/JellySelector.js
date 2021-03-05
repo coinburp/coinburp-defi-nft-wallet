@@ -33,13 +33,16 @@ function resetPositionCalculations() {
 }
 
 const JellySelector = ({
+  align,
   backgroundColor,
   color: givenColor,
   defaultIndex = 0,
+  direction,
   disableSelection,
   enableHapticFeedback,
   height,
   items,
+  justify,
   onSelect,
   renderIndicator = JellySelectorColorIndicator,
   renderItem,
@@ -113,7 +116,13 @@ const JellySelector = ({
           width={width}
         />
       ) : null}
-      <JellySelectorRow height={height} renderRow={renderRow}>
+      <JellySelectorRow
+        align={align}
+        direction={direction || 'row'}
+        height={height}
+        justify={justify}
+        renderRow={renderRow}
+      >
         {items.map((item, index) => (
           <JellySelectorItem
             color={color}

@@ -24,12 +24,12 @@ const AddCashFooter = ({ disabled, onDisabledPress, onSubmit, ...props }) => {
   return (
     <ColumnWithMargins
       align="center"
-      margin={19}
-      paddingHorizontal={15}
+      margin={24}
+      paddingHorizontal={16}
       width="100%"
       {...props}
     >
-      <Row width="100%">
+      <Row marginVertical={24} width="100%">
         <ApplePayButton
           disabled={disabled}
           onDisabledPress={onDisabledPress}
@@ -48,7 +48,7 @@ const AddCashFooter = ({ disabled, onDisabledPress, onSubmit, ...props }) => {
               <Emoji name="earth_americas" size="smedium" />
             </Centered>
             <Text
-              color={colors.alpha(colors.blueGreyDark, 0.5)}
+              color="white"
               lineHeight="normal"
               size="lmedium"
               weight="semibold"
@@ -58,7 +58,7 @@ const AddCashFooter = ({ disabled, onDisabledPress, onSubmit, ...props }) => {
             <Centered marginLeft={2} marginTop={0.5}>
               <Icon
                 {...position.sizeAsObject(18)}
-                color={colors.alpha(colors.blueGreyDark, 0.3)}
+                color="white"
                 name="info"
               />
             </Centered>
