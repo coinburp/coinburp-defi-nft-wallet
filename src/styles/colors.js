@@ -36,6 +36,7 @@ const darkModeColors = {
   shimmer: '#1F2229',
   showcaseBackground: 'rgba(255, 214, 0, 0.08)',
   skeleton: '#191B21',
+  skyBlue: '#afd2ff', // '175, 210, 255'
   stackBackground: '#000000',
   trueBlack: '#000000',
   trueWhite: '#FFFFFF',
@@ -60,7 +61,7 @@ const getColorsByTheme = darkMode => {
     brightRed: '#FF7171', // '255, 113, 113'
     chartGreen: '#66D28F', // '102, 210, 143'
     coinburp: '#00dc68',
-    dark: '#25292E', // '37, 41, 46'
+    dark: '#000000', // '0, 0, 0'
     darkGrey: '#71778A', // '113, 119, 138'
     flamingo: '#E540F1', // '229, 64, 241'
     gold: '#ffd600',
@@ -76,7 +77,7 @@ const getColorsByTheme = darkMode => {
     neonSkyblue: '#34FFFF', // '52, 255, 255'
     offWhite: '#F8F9FA', // '248, 249, 250'
     orange: '#FF9900', // '255, 153, 0'
-    orangeLight: '#FEBE44', // '254, 190, 68'
+    orangeLight: '#FFD600', // '254, 190, 68'
     paleBlue: '#579DFF', // 87, 157, 255
     pink: '#FF54BB', // 255, 84, 187
     pinkLight: '#FF75E8', // '255, 117, 232'
@@ -94,6 +95,7 @@ const getColorsByTheme = darkMode => {
     shimmer: '#EDEEF1', // '237, 238, 241'
     showcaseBackground: 'rgba(255, 214, 0, 0.08)',
     skeleton: '#F6F7F8', // '246, 247, 248'
+    skyBlue: '#afd2ff', // '175, 210, 255'
     stackBackground: '#0A0A0A', // '10, 10, 10'
     swapPurple: '#575CFF', // '87, 92, 255'
     transparent: 'transparent',

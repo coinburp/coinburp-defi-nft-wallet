@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React, { Fragment, useCallback, useMemo } from 'react';
-import { Image, Linking, NativeModules, ScrollView, Share } from 'react-native';
+import { Linking, NativeModules, ScrollView, Share, Switch } from 'react-native';
 import styled from 'styled-components';
 import { REVIEW_ANDROID } from '../../config/experimental';
 import useExperimentalFlag from '../../config/experimentalHooks';
@@ -8,22 +8,9 @@ import useExperimentalFlag from '../../config/experimentalHooks';
 import { THEMES, useTheme } from '../../context/ThemeContext';
 import AppVersionStamp from '../AppVersionStamp';
 import { Icon } from '../icons';
-import { Column, ColumnWithDividers } from '../layout';
-import {
-  ListFooter,
-  ListItem,
-  ListItemArrowGroup,
-  ListItemDivider,
-} from '../list';
-import { Emoji, Text } from '../text';
-import BackupIcon from '@rainbow-me/assets/settingsBackup.png';
-import BackupIconDark from '@rainbow-me/assets/settingsBackupDark.png';
-import CurrencyIcon from '@rainbow-me/assets/settingsCurrency.png';
-import CurrencyIconDark from '@rainbow-me/assets/settingsCurrencyDark.png';
-import DarkModeIcon from '@rainbow-me/assets/settingsDarkMode.png';
-import DarkModeIconDark from '@rainbow-me/assets/settingsDarkModeDark.png';
-import NetworkIcon from '@rainbow-me/assets/settingsNetwork.png';
-import NetworkIconDark from '@rainbow-me/assets/settingsNetworkDark.png';
+import { Column } from '../layout';
+import { ListFooter, ListItem, ListItemArrowGroup } from '../list';
+import { Emoji } from '../text';
 import networkInfo from '@rainbow-me/helpers/networkInfo';
 import WalletTypes from '@rainbow-me/helpers/walletTypes';
 import {
@@ -41,19 +28,18 @@ import {
 const { RainbowRequestReview, RNReview } = NativeModules;
 
 export const SettingsExternalURLs = {
-  rainbowHomepage: 'https://rainbow.me',
+  coinburpHomepage: 'https://coinburp.com',
   review:
-    'itms-apps://itunes.apple.com/us/app/appName/id1457119021?mt=8&action=write-review',
-  twitterDeepLink: 'twitter://user?screen_name=rainbowdotme',
-  twitterWebUrl: 'https://twitter.com/rainbowdotme',
+    'itms-apps://itunes.apple.com/app/apple-store/id1486342307?mt=8&action=write-review',
+  twitterDeepLink: 'twitter://user?screen_name=coinburp',
+  twitterWebUrl: 'https://twitter.com/coinburp/',
 };
 
 const CheckmarkIcon = styled(Icon).attrs({
   name: 'checkmarkCircled',
 })`
-  box-shadow: 0px 4px 6px
-    ${({ theme: { colors, isDarkMode } }) =>
-      colors.alpha(isDarkMode ? colors.shadow : colors.blueGreyDark50, 0.4)};
+  ${({ theme: { colors, isDarkMode } }) =>
+    colors.alpha(isDarkMode ? colors.shadow : colors.blueGreyDark50, 0.4)};
 `;
 
 const contentContainerStyle = { flex: 1 };
@@ -66,12 +52,12 @@ const Container = styled(ScrollView).attrs({
 `;
 
 // ⚠️ Beware: magic numbers lol
-const SettingIcon = styled(Image)`
-  ${position.size(60)};
-  margin-left: -16;
-  margin-right: -11;
-  margin-top: 8;
-`;
+// const SettingIcon = styled(Image)`
+//   ${position.size(60)};
+//   margin-left: -16;
+//   margin-right: -11;
+//   margin-top: 8;
+// `;
 
 const VersionStampContainer = styled(Column).attrs({
   align: 'center',
@@ -87,9 +73,27 @@ const WarningIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
 }))`
   box-shadow: 0px 4px 6px
     ${({ theme: { colors, isDarkMode } }) =>
-      isDarkMode ? colors.shadow : colors.alpha(colors.orangeLight, 0.4)};
+      isDarkMode ? colors.white : colors.alpha(colors.white, 0.4)};
   margin-top: 1;
 `;
+
+const iconList = Object.freeze({
+  Backup: 'backup',
+  Currency: 'dollar',
+  DarkMode: 'moon',
+  Fallow: 'user',
+  Feedback: 'ring',
+  Network: 'cloud',
+  Review: 'pencil',
+  Share: 'speaker',
+});
+
+const icons = Object.keys(iconList).reduce((list, key) => {
+  list[key] = styled(Icon).attrs({
+    name: iconList[key],
+  })``;
+  return list;
+}, {});
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -154,7 +158,7 @@ export default function SettingsSection({
 
   const onPressShare = useCallback(() => {
     Share.share({
-      message: `👋️ Hey friend! You should download Rainbow, it's my favorite Ethereum wallet 🌈️🌈️🌈️🌈️🌈️🌈️🌈️🌈️🌈️🌈️ ${SettingsExternalURLs.rainbowHomepage}`,
+      message: `👋️ Hey friend! You should download Coinburp, it's my favorite Ethereum wallet ${SettingsExternalURLs.coinburpHomepage}`,
     });
   }, []);
 
@@ -166,33 +170,27 @@ export default function SettingsSection({
     );
   }, []);
 
-  const { allBackedUp, areBackedUp, canBeBackedUp } = useMemo(
+  const { areBackedUp, canBeBackedUp /* allBackedUp */ } = useMemo(
     () => checkAllWallets(wallets),
     [wallets]
   );
 
-  const backupStatusColor = allBackedUp
-    ? colors.green
-    : colors.alpha(colors.blueGreyDark, 0.5);
+  const backupStatusColor = colors.skyBlue;
 
   const toggleTheme = useCallback(() => {
-    if (colorScheme === THEMES.SYSTEM) {
+    if (colorScheme === THEMES.DARK) {
       setTheme(THEMES.LIGHT);
     } else if (colorScheme === THEMES.LIGHT) {
       setTheme(THEMES.DARK);
-    } else {
-      setTheme(THEMES.SYSTEM);
     }
   }, [setTheme, colorScheme]);
 
   return (
     <Container backgroundColor={colors.white} scrollEnabled={isTinyPhone}>
-      <ColumnWithDividers dividerRenderer={ListItemDivider} marginTop={7}>
+      <Column marginTop={7}>
         {canBeBackedUp && (
           <ListItem
-            icon={
-              <SettingIcon source={isDarkMode ? BackupIconDark : BackupIcon} />
-            }
+            icon={<icons.Backup />}
             label="Backup"
             onPress={onPressBackup}
             onPressIcloudBackup={onPressIcloudBackup}
@@ -212,11 +210,7 @@ export default function SettingsSection({
           </ListItem>
         )}
         <ListItem
-          icon={
-            <SettingIcon
-              source={isDarkMode ? CurrencyIconDark : CurrencyIcon}
-            />
-          }
+          icon={<icons.Currency />}
           label="Currency"
           onPress={onPressCurrency}
           testID="currency-section"
@@ -224,9 +218,7 @@ export default function SettingsSection({
           <ListItemArrowGroup>{nativeCurrency || ''}</ListItemArrowGroup>
         </ListItem>
         <ListItem
-          icon={
-            <SettingIcon source={isDarkMode ? NetworkIconDark : NetworkIcon} />
-          }
+          icon={<icons.Network />}
           label="Network"
           onPress={onPressNetwork}
           testID="network-section"
@@ -236,23 +228,18 @@ export default function SettingsSection({
           </ListItemArrowGroup>
         </ListItem>
         <ListItem
-          icon={
-            <SettingIcon
-              source={isDarkMode ? DarkModeIconDark : DarkModeIcon}
-            />
-          }
-          label="Theme"
+          icon={<icons.DarkMode />}
+          label="Dark Mode"
           onPress={toggleTheme}
           testID="darkmode-section"
         >
           <Column align="end" flex="1" justify="end">
-            <Text
-              color={colors.alpha(colors.blueGreyDark, 0.6)}
-              size="large"
-              weight="medium"
-            >
-              {capitalizeFirstLetter(colorScheme)}
-            </Text>
+            <Switch
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleTheme}
+              trackColor={{ false: colors.skyBlue, true: colors.skyBlue }}
+              value={colorScheme === THEMES.DARK}
+            />
           </Column>
         </ListItem>
         {/*<ListItem
@@ -266,38 +253,38 @@ export default function SettingsSection({
         {/*    {supportedLanguages[language] || ''}*/}
         {/*  </ListItemArrowGroup>*/}
         {/*</ListItem>*/}
-      </ColumnWithDividers>
+      </Column>
       <ListFooter />
-      <ColumnWithDividers dividerRenderer={ListItemDivider}>
+      <Column>
         <ListItem
-          icon={<Emoji name="rainbow" />}
-          label="Share Rainbow"
+          icon={<icons.Share />}
+          label="Share Coinburp"
           onPress={onPressShare}
           testID="share-section"
-          value={SettingsExternalURLs.rainbowHomepage}
+          value={SettingsExternalURLs.coinburpHomepage}
         />
         <ListItem
-          icon={<Emoji name="bird" />}
-          label="Follow Us on Twitter"
+          icon={<icons.Fallow />}
+          label="Follow us on Twitter"
           onPress={onPressTwitter}
           testID="twitter-section"
           value={SettingsExternalURLs.twitter}
         />
         <ListItem
-          icon={<Emoji name={ios ? 'speech_balloon' : 'lady_beetle'} />}
-          label={ios ? 'Feedback and Support' : 'Feedback & Bug Reports'}
+          icon={<icons.Feedback />}
+          label="Feedback & Support"
           onPress={onSendFeedback}
           testID="feedback-section"
         />
         {isReviewAvailable && (
           <ListItem
-            icon={<Emoji name="red_heart" />}
-            label="Review Rainbow"
+            icon={<icons.Review />}
+            label="Review CoinBurp"
             onPress={onPressReview}
             testID="review-section"
           />
         )}
-      </ColumnWithDividers>
+      </Column>
       {IS_DEV && (
         <Fragment>
           <ListFooter height={10} />

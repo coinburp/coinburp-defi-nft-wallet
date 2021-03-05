@@ -242,7 +242,7 @@ const SettingsTitle = ({ children }) => {
       align="center"
       color={colors.dark}
       letterSpacing="roundedMedium"
-      size="large"
+      size="larger"
       weight="bold"
     >
       {children}
