@@ -34,8 +34,8 @@ const Link = ({ url }) => {
       transformOrigin="left"
     >
       <Container>
-        <Icon color={colors.appleBlue} name="compass" />
-        <Text color={colors.appleBlue} size="lmedium" weight="semibold">
+        <Icon color={colors.coinburp} name="link" />
+        <Text color={colors.coinburp} css={{ left: 12 }} size={16} weight={900}>
           {formatURLForDisplay(url)}
         </Text>
       </Container>

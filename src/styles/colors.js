@@ -20,6 +20,7 @@ const darkModeColors = {
   green: '#00D146',
   grey: '#333333',
   grey20: '#333333',
+  heartPink: '#FD5194',
   lighterGrey: '#12131A',
   lightestGrey: '#FFFFFF',
   lightGrey: '#333333',
@@ -68,6 +69,7 @@ const getColorsByTheme = darkMode => {
     green: '#2CCC00', // '58, 166, 134'
     grey: '#A9ADB9', // '169, 173, 185'
     grey20: '#333333', // '51, 51, 51'
+    heartPink: '#FD5194',
     lighterGrey: '#F7F7F8', // '247, 247, 248'
     lightestGrey: '#E9EBEF', // '238, 233, 232'
     lightGrey: '#CDCFD4', // '205, 207, 212'

@@ -15,7 +15,7 @@ const CircleButton = styled(RadialGradient).attrs(({ theme: { colors } }) => ({
 `;
 
 const ContextIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
-  color: colors.alpha(colors.blueGreyDark, 0.4),
+  color: colors.coinburp,
   name: 'threeDots',
   tightDots: true,
 }))`

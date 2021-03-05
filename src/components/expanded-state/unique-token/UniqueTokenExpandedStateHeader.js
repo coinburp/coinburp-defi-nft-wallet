@@ -57,21 +57,21 @@ const UniqueTokenExpandedStateHeader = ({ asset }) => {
       <HeadingColumn>
         <RowWithMargins align="center" margin={3}>
           <Text
-            color={colors.blueGreyDark50}
-            letterSpacing="uppercase"
-            size="smedium"
-            uppercase
-            weight="semibold"
+            color={colors.blueGrey}
+            size={16}
+            weight={900}
           >
             {asset.asset_contract.name}
           </Text>
-          <Pill maxWidth={150}>#{asset.id}</Pill>
+          <Pill weight={900} color={colors.blueGrey} colors={['rgba(175, 210, 255, 0.16)']} maxWidth={150}>
+            #{asset.id}
+          </Pill>
         </RowWithMargins>
         <FlexItem flex={1}>
           <Text
             color={colors.dark}
             letterSpacing="roundedMedium"
-            size="big"
+            size={32}
             weight="bold"
           >
             {buildUniqueTokenName(asset)}

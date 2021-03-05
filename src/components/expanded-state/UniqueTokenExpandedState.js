@@ -1,6 +1,8 @@
 import React, { Fragment, useCallback, useMemo } from 'react';
 import Link from '../Link';
-import { Column, ColumnWithDividers } from '../layout';
+import { ButtonPressAnimation } from '../animations';
+import ShowcaseHeart from '../icons/svg/ShowcaseHeart';
+import { Centered, Column, ColumnWithDividers } from '../layout';
 import {
   SendActionButton,
   SheetActionButton,
@@ -16,8 +18,16 @@ import {
   UniqueTokenExpandedStateHeader,
   UniqueTokenExpandedStateImage,
 } from './unique-token';
-import { useDimensions, useShowcaseTokens } from '@rainbow-me/hooks';
+import isNativeStackAvailable from '@rainbow-me/helpers/isNativeStackAvailable';
+import {
+  useDimensions,
+  useExpandedStateNavigation,
+  useShowcaseTokens,
+} from '@rainbow-me/hooks';
+import Routes from '@rainbow-me/routes';
 import { magicMemo } from '@rainbow-me/utils';
+import WithdrawArrowIcon from "../icons/svg/WithdrawArrowIcon";
+import WithdrawIcon from "../icons/svg/WithdrawIcon";
 
 const UniqueTokenExpandedState = ({ asset }) => {
   const {
@@ -54,6 +64,20 @@ const UniqueTokenExpandedState = ({ asset }) => {
   const { height: screenHeight } = useDimensions();
   const { colors, isDarkMode } = useTheme();
 
+  const navigate = useExpandedStateNavigation();
+  const handlePressSend = useCallback(
+    () =>
+      navigate(Routes.SEND_FLOW, params =>
+        isNativeStackAvailable
+          ? {
+              params,
+              screen: Routes.SEND_SHEET,
+            }
+          : { ...params }
+      ),
+    [navigate]
+  );
+
   return (
     <Fragment>
       <SlackSheet
@@ -66,13 +90,24 @@ const UniqueTokenExpandedState = ({ asset }) => {
         <UniqueTokenExpandedStateHeader asset={asset} />
         <UniqueTokenExpandedStateImage asset={asset} />
         <SheetActionButtonRow>
-          <SheetActionButton
-            color={isDarkMode ? colors.darkModeDark : colors.dark}
-            label={isShowcaseAsset ? '􀁏 Showcase' : '􀁍 Showcase'}
-            onPress={handlePressShowcase}
-            weight="bold"
-          />
-          {isSendable && <SendActionButton />}
+          <ButtonPressAnimation onPress={handlePressShowcase}>
+            <Column align="center">
+              <ShowcaseHeart selected={isShowcaseAsset} />
+              <Text color={colors.heartPink} weight={900}>
+                Showcase
+              </Text>
+            </Column>
+          </ButtonPressAnimation>
+          {isSendable && (
+            <ButtonPressAnimation onPress={handlePressSend}>
+              <Column align="center">
+                <WithdrawIcon />
+                <Text color={colors.coinburp} weight={900}>
+                  Withdraw
+                </Text>
+              </Column>
+            </ButtonPressAnimation>
+          )}
         </SheetActionButtonRow>
         <SheetDivider />
         <ColumnWithDividers dividerRenderer={SheetDivider}>
@@ -90,9 +125,10 @@ const UniqueTokenExpandedState = ({ asset }) => {
             <ExpandedStateSection title={`About ${familyName}`}>
               <Column>
                 <Text
-                  color={colors.alpha(colors.blueGreyDark, 0.5)}
-                  lineHeight="paragraphSmall"
-                  size="lmedium"
+                  color={colors.blueGrey}
+                  lineHeight={24}
+                  size={16}
+                  weight="bold"
                 >
                   {familyDescription}
                 </Text>

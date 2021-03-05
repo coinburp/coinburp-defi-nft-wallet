@@ -23,11 +23,7 @@ export default function ExpandedStateSection({ children, title, ...props }) {
         {title}
       </Text>
       {typeof children === 'string' ? (
-        <Text
-          color={colors.alpha(colors.blueGreyDark, 0.5)}
-          lineHeight="paragraphSmall"
-          size="lmedium"
-        >
+        <Text color={colors.blueGrey} lineHeight={24} size={16} weight="bold">
           {children}
         </Text>
       ) : (

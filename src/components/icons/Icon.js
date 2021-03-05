@@ -41,6 +41,7 @@ import Heart from './svg/Heart';
 import HiddenIcon from './svg/HiddenIcon';
 import InboxIcon from './svg/InboxIcon';
 import InfoIcon from './svg/InfoIcon';
+import LinkIcon from './svg/LinkIcon';
 import LockIcon from './svg/LockIcon';
 import MinusCircledIcon from './svg/MinusCircledIcon';
 import OfflineIcon from './svg/OfflineIcon';
@@ -122,6 +123,7 @@ const IconTypes = {
   hidden: HiddenIcon,
   inbox: InboxIcon,
   info: InfoIcon,
+  link: LinkIcon,
   lock: LockIcon,
   minusCircled: MinusCircledIcon,
   moon: MoonIcon,

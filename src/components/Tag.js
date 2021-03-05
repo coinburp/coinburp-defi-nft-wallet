@@ -19,28 +19,28 @@ const Container = styled(Column)`
 
 const OuterBorder = styled(Centered)`
   border-color: ${({ theme: { colors } }) =>
-    colors.alpha(colors.blueGreyDark, 0.06)};
+          colors.blueGrey};
   border-radius: ${TagBorderRadius};
-  border-width: 1;
+  border-width: 2px;
   flex: none;
   overflow: hidden;
   z-index: 2;
 `;
 
 const Text = styled(TextElement).attrs(({ theme: { colors } }) => ({
-  color: colors.alpha(colors.blueGreyDark, 0.5),
+  color: colors.blueGrey,
   letterSpacing: 'roundedMedium',
-  size: 'lmedium',
-  weight: 'medium',
+  size: 24,
+  weight: 900,
 }))`
-  line-height: 18;
+  line-height: 24;
 `;
 
 const Title = styled(TextElement).attrs(({ theme: { colors } }) => ({
-  color: colors.alpha(colors.blueGreyDark, 0.4),
+  color: colors.blueGrey,
   letterSpacing: 'roundedMedium',
-  size: 'tiny',
-  weight: 'semibold',
+  size: 10,
+  weight: 'bold',
 }))`
   line-height: 13;
   margin-bottom: 1;
