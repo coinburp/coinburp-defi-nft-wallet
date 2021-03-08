@@ -28,7 +28,7 @@ import { useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
 import { abbreviations, showActionSheetWithOptions } from '@rainbow-me/utils';
 
-const dropdownArrowWidth = 21;
+const dropdownArrowWidth = 24;
 
 const FloatingEmojisRegion = styled(FloatingEmojis).attrs({
   distance: 250,
@@ -69,8 +69,8 @@ const AddCashButton = styled(RainbowButton).attrs({
 `;
 
 const DropdownArrow = styled(Centered)`
-  height: 9;
-  margin-top: 11;
+  height: 14px;
+  margin-top: 14px;
   width: ${dropdownArrowWidth};
 `;
 
@@ -255,14 +255,15 @@ export default function ProfileMasthead({
   return (
     <Column
       align="center"
-      height={addCashAvailable ? 260 : 185}
+      height={addCashAvailable ? 335 : 250}
       marginBottom={24}
-      marginTop={0}
+      marginTop={64}
     >
       {/* [AvatarCircle -> ImageAvatar -> ImgixImage], so no need to sign accountImage here. */}
       <AvatarCircle
         accountColor={accountColor}
         accountSymbol={accountSymbol}
+        borderColor={colors.gold}
         image={accountImage}
         isAvatarPickerAvailable={isAvatarPickerAvailable}
         onPress={handlePressAvatar}
@@ -271,18 +272,23 @@ export default function ProfileMasthead({
         <Row>
           <AccountName deviceWidth={deviceWidth}>{accountName}</AccountName>
           <DropdownArrow>
-            <Icon color={colors.dark} direction="down" name="caret" />
+            <Icon
+              color={colors.coinburp}
+              direction="down"
+              name="caretThick"
+              size={24}
+            />
           </DropdownArrow>
         </Row>
       </ButtonPressAnimation>
       <RowWithMargins align="center" margin={19}>
         <ProfileAction
-          icon="copy"
+          icon="copySolid"
           onPress={handlePressCopyAddress}
           radiusWrapperStyle={{ marginRight: 10, width: 150 }}
           scaleTo={0.88}
           text="Copy"
-          width={127}
+          width={106}
           wrapperProps={{
             containerStyle: {
               alignItems: 'flex-start',
@@ -293,12 +299,12 @@ export default function ProfileMasthead({
         />
         <FloatingEmojisRegion setOnNewEmoji={setOnNewEmoji} />
         <ProfileAction
-          icon="qrCode"
+          icon="qrIcon"
           onPress={handlePressReceive}
           radiusWrapperStyle={{ marginRight: 10, width: 104 }}
           scaleTo={0.88}
           text="Receive"
-          width={81}
+          width={136}
           wrapperProps={{
             containerStyle: {
               alignItems: 'flex-start',

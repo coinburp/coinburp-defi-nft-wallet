@@ -8,7 +8,7 @@ import { position } from '@rainbow-me/styles';
 
 const Container = styled(RowWithMargins).attrs({
   align: 'center',
-  justify: 'start',
+  justify: 'space-around',
   margin: 6,
 })`
   background-color: ${({ theme: { colors } }) => colors.transparent};
@@ -24,14 +24,14 @@ const ProfileActionIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
   margin-top: 0.5;
 `;
 
-const ProfileAction = ({ icon, iconSize = 24, onPress, text, ...props }) => (
+const ProfileAction = ({ icon, iconSize = 24, onPress, text, width, ...props }) => (
   <ButtonPressAnimation
     onPress={onPress}
     overflowMargin={5}
     radiusAndroid={24}
     {...props}
   >
-    <Container>
+    <Container width={width}>
       <ProfileActionIcon iconSize={iconSize} name={icon} />
       <Text
         color="coinburp"

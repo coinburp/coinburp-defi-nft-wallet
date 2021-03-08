@@ -10,16 +10,14 @@ import WithdrawIcon from '../icons/svg/WithdrawIcon';
 import { Column } from '../layout';
 import { Text } from '../text';
 import { enableActionsOnReadOnlyWallet } from '@rainbow-me/config/debug';
+import { useAccountProfile } from '@rainbow-me/hooks';
 import { useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
-
-// const SwapText = styled(Text)`
-//   color:
-// `
 
 export default function WalletActionButton({ type, title, isReadOnlyWallet }) {
   const { navigate } = useNavigation();
   const { colors } = useTheme();
+  const { accountAddress } = useAccountProfile();
 
   const icons = {
     add: <DepositIcon />,
@@ -31,7 +29,16 @@ export default function WalletActionButton({ type, title, isReadOnlyWallet }) {
     if (!isReadOnlyWallet || enableActionsOnReadOnlyWallet) {
       switch (type) {
         case 'add':
-          navigate(Routes.ADD_CASH_FLOW);
+          if (ios) {
+            navigate(Routes.ADD_CASH_FLOW, params => params);
+          } else {
+            navigate(Routes.WYRE_WEBVIEW_NAVIGATOR, {
+              params: {
+                address: accountAddress,
+              },
+              screen: Routes.WYRE_WEBVIEW,
+            });
+          }
           break;
         case 'send':
           navigate(Routes.SEND_FLOW);
@@ -48,9 +55,7 @@ export default function WalletActionButton({ type, title, isReadOnlyWallet }) {
   }, [navigate, isReadOnlyWallet]);
 
   return (
-    <ButtonPressAnimation
-      onPress={handlePress}
-    >
+    <ButtonPressAnimation onPress={handlePress}>
       <Column align="center">
         {icons[type]}
         <Text align="center" color={colors.coinburp} weight={900}>

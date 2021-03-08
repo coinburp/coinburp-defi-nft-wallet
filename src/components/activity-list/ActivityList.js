@@ -56,7 +56,7 @@ function ListFooterComponent({ label, onPress }) {
       ) : (
         <Text
           align="center"
-          color={colors.alpha(colors.blueGreyDark, 0.3)}
+          color={colors.blueGrey}
           lineHeight="loose"
           size="smedium"
           weight="bold"
@@ -133,7 +133,6 @@ const ActivityList = ({
     )
   ) : (
     <ActivityListEmptyState
-      emoji="👻"
       label="Your testnet transaction history starts now!"
     >
       {header}

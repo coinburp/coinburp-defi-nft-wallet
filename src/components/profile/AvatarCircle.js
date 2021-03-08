@@ -29,6 +29,7 @@ const FirstLetter = styled(Text).attrs(({ theme: { colors } }) => ({
 `;
 
 export default function AvatarCircle({
+  borderColor,
   isAvatarPickerAvailable,
   onPress,
   overlayStyles,
@@ -87,7 +88,7 @@ export default function AvatarCircle({
             <FirstLetter>{accountSymbol}</FirstLetter>
             {!overlayStyles && <InnerBorder opacity={0.02} radius={65} />}
             <InnerBorder
-              color={colors.coinburp}
+              color={borderColor || colors.coinburp}
               ignoreDarkMode
               opacity={1}
               radius={AvatarCircleSize}

@@ -15,7 +15,7 @@ const Container = styled(Column)`
   width: 200;
 `;
 
-const ActivityListEmptyState = ({ children, emoji, label }) => {
+const ActivityListEmptyState = ({ children, label }) => {
   const { colors } = useTheme();
 
   return (
@@ -23,18 +23,12 @@ const ActivityListEmptyState = ({ children, emoji, label }) => {
       {children}
       <Container>
         <Centered>
-          <Text letterSpacing="zero" size="h2">
-            {emoji}
-          </Text>
-        </Centered>
-        <Centered>
           <Text
             align="center"
-            color={colors.alpha(colors.blueGreyDark, 0.35)}
-            letterSpacing="roundedMedium"
-            lineHeight={24}
-            size="lmedium"
-            weight="semibold"
+            color={colors.blueGrey}
+            letterSpacing={1}
+            size={20}
+            weight="bold"
           >
             {label}
           </Text>

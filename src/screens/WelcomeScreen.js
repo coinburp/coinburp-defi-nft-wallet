@@ -27,12 +27,13 @@ import {
 } from '../handlers/cloudBackup';
 import { cloudPlatform } from '../utils/platform';
 
-import { useHideSplashScreen } from '@rainbow-me/hooks';
+import {useDimensions, useHideSplashScreen} from '@rainbow-me/hooks';
 import { ImgixImage } from '@rainbow-me/images';
 import { useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
 import { shadow } from '@rainbow-me/styles';
 import logger from 'logger';
+import CoinBurpText from "../components/icons/svg/CoinBurpText";
 
 const {
   and,
@@ -48,7 +49,7 @@ const {
 } = Reanimated;
 
 const ButtonContainer = styled(Reanimated.View)`
-  border-radius: ${({ height }) => height / 2};
+  border-radius: ${({ height }) => height / 2.6667};
 `;
 
 const ButtonContent = styled(RowWithMargins).attrs({
@@ -120,7 +121,6 @@ const RainbowButton = ({
       {ios && <Shadow style={shadowStyle} />}
       <ButtonContainer height={height} style={style}>
         <ButtonContent>
-          <ButtonEmoji name={emoji} />
           <ButtonLabel textColor={textColor}>{text}</ButtonLabel>
         </ButtonContent>
       </ButtonContainer>
@@ -137,7 +137,7 @@ const Container = styled.View`
 
 const ContentWrapper = styled(Animated.View)`
   align-items: center;
-  height: 192;
+  height: 278px;
   justify-content: space-between;
   margin-bottom: 20;
   z-index: 10;
@@ -419,6 +419,7 @@ export default function WelcomeScreen() {
 
   const buttonStyle = useMemoOne(
     () => ({
+      marginTop: 64,
       transform: [{ scale: createWalletButtonAnimation.current }],
       zIndex: 10,
     }),
@@ -436,6 +437,8 @@ export default function WelcomeScreen() {
     [createWalletButtonAnimation]
   );
 
+  const { width } = useDimensions();
+
   const rValue = useValue(0);
 
   const backgroundColor = useMemoOne(() => colorAnimation(rValue, false), []);
@@ -448,19 +451,14 @@ export default function WelcomeScreen() {
   }, [replace]);
 
   const createWalletButtonProps = useMemoOne(() => {
-    const color = colorAnimation(rValue, true);
     return {
-      emoji: 'castle',
       height: 54 + (ios ? 0 : 6),
       shadowStyle: {
-        backgroundColor: backgroundColor,
-        shadowColor: color,
+        opacity: 0,
       },
       style: {
         backgroundColor: colors.dark,
-        borderColor: backgroundColor,
-        borderWidth: ios ? 0 : 3,
-        width: 230 + (ios ? 0 : 6),
+        width: width - 32 + (ios ? 0 : 6),
       },
       text: 'Get a new wallet',
       textColor: colors.white,
@@ -478,23 +476,16 @@ export default function WelcomeScreen() {
       darkShadowStyle: {
         opacity: 0,
       },
-      emoji: 'old_key',
-      height: 56,
+      height: 64,
       shadowStyle: {
         opacity: 0,
       },
       style: {
-        backgroundColor: colors.blueGreyDarkLight,
-        width: 248,
+        backgroundColor: 'rgba(175, 210, 255, 0.16)',
+        width: width - 32,
       },
       text: 'I already have one',
-      textColor: colors.alpha(colors.blueGreyDark, 0.8),
-    };
-  }, [rValue]);
-
-  const textStyle = useMemoOne(() => {
-    return {
-      backgroundColor,
+      textColor: colors.blueGrey,
     };
   }, [rValue]);
 
@@ -510,13 +501,7 @@ export default function WelcomeScreen() {
       ))}
 
       <ContentWrapper style={contentStyle}>
-        {android && IS_TESTING === 'true' ? (
-          <RainbowText colors={colors} />
-        ) : (
-          <MaskedView maskElement={<RainbowText colors={colors} />}>
-            <RainbowTextMask style={textStyle} />
-          </MaskedView>
-        )}
+        <CoinBurpText />
 
         <ButtonWrapper style={buttonStyle}>
           <RainbowButton

@@ -15,7 +15,6 @@ const Container = styled(Row).attrs(({ align = 'end' }) => ({
   padding-top: ${StatusBarHeight + 16};
   width: ${({ width }) => width};
   z-index: 1;
-  margin-bottom: 48;
 `;
 
 export default function Header(props) {

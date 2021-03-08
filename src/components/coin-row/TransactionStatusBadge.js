@@ -5,6 +5,7 @@ import { Icon } from '../icons';
 import { Row } from '../layout';
 import { Text } from '../text';
 import TransactionStatusTypes from '@rainbow-me/helpers/transactionStatusTypes';
+import TransactionTypes from '@rainbow-me/helpers/transactionTypes';
 import { position } from '@rainbow-me/styles';
 import { magicMemo } from '@rainbow-me/utils';
 
@@ -38,7 +39,7 @@ const StatusProps = {
   [TransactionStatusTypes.failed]: {
     marginRight: 4,
     name: 'closeCircled',
-    style: position.maxSizeAsObject(12),
+    style: position.maxSizeAsObject(16),
   },
   [TransactionStatusTypes.purchased]: {
     marginRight: 2,
@@ -48,8 +49,8 @@ const StatusProps = {
     marginRight: 4,
   },
   [TransactionStatusTypes.received]: {
-    marginRight: 2,
-    name: 'arrow',
+    marginRight: 6,
+    name: 'depositIconSmall',
   },
   [TransactionStatusTypes.self]: {
     marginRight: 4,
@@ -59,14 +60,12 @@ const StatusProps = {
     marginRight: 4,
   },
   [TransactionStatusTypes.sent]: {
-    marginRight: 3,
-    name: 'sendSmall',
+    marginRight: 6,
+    name: 'withdrawIconSmall',
   },
   [TransactionStatusTypes.swapped]: {
-    marginRight: 3,
-    name: 'swap',
-    small: true,
-    style: position.maxSizeAsObject(12),
+    marginRight: 6,
+    name: 'swapCircle',
   },
   [TransactionStatusTypes.swapping]: {
     marginRight: 4,
@@ -80,19 +79,30 @@ const StatusProps = {
   },
 };
 
-const TransactionStatusBadge = ({ pending, status, style, title }) => {
+const TransactionStatusBadge = ({ pending, status, style, title, type }) => {
   const { colors } = useTheme();
   const isSwapping = status === TransactionStatusTypes.swapping;
 
-  let statusColor = colors.alpha(colors.blueGreyDark, 0.7);
-  if (pending) {
-    if (isSwapping) {
-      statusColor = colors.swapPurple;
-    } else {
-      statusColor = colors.appleBlue;
-    }
-  } else if (status === TransactionStatusTypes.swapped) {
-    statusColor = colors.swapPurple;
+  let statusColor = colors.coldGrey;
+  if (
+    status === TransactionStatusTypes.swapped ||
+    status === TransactionStatusTypes.sent
+  ) {
+    statusColor = colors.neonRed;
+  } else if (status === TransactionStatusTypes.received) {
+    statusColor = colors.neonGreen;
+  }
+
+  const isSwapReceived =
+    status === TransactionStatusTypes.received &&
+    type === TransactionTypes.trade;
+
+  if (status !== TransactionStatusTypes.failed) {
+    if (type === TransactionTypes.receive) title = 'Deposit';
+    if (type === TransactionTypes.send) title = 'Withdrawal';
+    if (type === TransactionTypes.trade) title = 'Swap Out';
+
+    if (isSwapReceived) title = 'Swap In';
   }
 
   return (
@@ -107,10 +117,13 @@ const TransactionStatusBadge = ({ pending, status, style, title }) => {
         <Icon
           color={statusColor}
           style={position.maxSizeAsObject(10)}
-          {...StatusProps[status]}
+          {...StatusProps[
+            isSwapReceived ? TransactionStatusTypes.swapped : status
+          ]}
         />
       )}
-      <Text color={statusColor} size="smedium" weight="semibold">
+      <Text color={statusColor} size={14} uppercase weight="bold">
+        {' '}
         {title}
       </Text>
     </Row>

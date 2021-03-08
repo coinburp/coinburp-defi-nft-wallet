@@ -14,6 +14,7 @@ const darkModeColors = {
   blueGreyDark50: '#797D8B',
   blueGreyDarker: '#000000',
   blueGreyDarkLight: '#1E2027',
+  coldGrey: '#8794a9',
   dark: '#E0E8FF',
   darkGrey: '#333333',
   darkModeDark: '#404656',
@@ -24,6 +25,7 @@ const darkModeColors = {
   lighterGrey: '#12131A',
   lightestGrey: '#FFFFFF',
   lightGrey: '#333333',
+  neonGreen: '#57dc2b',
   neonRed: '#ff0c00',
   offWhite: '#1F222A',
   offWhite80: '#1C1F27',
@@ -62,6 +64,7 @@ const getColorsByTheme = darkMode => {
     brightRed: '#FF7171', // '255, 113, 113'
     chartGreen: '#66D28F', // '102, 210, 143'
     coinburp: '#00dc68',
+    coldGrey: '#8794a9',
     dark: '#000000', // '0, 0, 0'
     darkGrey: '#71778A', // '113, 119, 138'
     flamingo: '#E540F1', // '229, 64, 241'
@@ -75,6 +78,7 @@ const getColorsByTheme = darkMode => {
     lightGrey: '#CDCFD4', // '205, 207, 212'
     mediumGrey: '#A1A5B3', // '161, 165, 179'
     mintDark: '#00E0A9', // '0, 224, 169'
+    neonGreen: '#57dc2b',
     neonRed: '#ff0c00',
     neonSkyblue: '#34FFFF', // '52, 255, 255'
     offWhite: '#F8F9FA', // '248, 249, 250'

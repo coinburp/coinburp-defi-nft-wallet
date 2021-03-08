@@ -10,6 +10,7 @@ import AvatarIcon from './svg/AvatarIcon';
 import BackspaceIcon from './svg/BackspaceIcon';
 import CameraIcon from './svg/CameraIcon';
 import CaretIcon from './svg/CaretIcon';
+import CaretThickIcon from './svg/CaretThickIcon';
 import CaretThinIcon from './svg/CaretThinIcon';
 import CheckmarkCircledIcon from './svg/CheckmarkCircledIcon';
 import CheckmarkIcon from './svg/CheckmarkIcon';
@@ -20,7 +21,9 @@ import CloseIcon from './svg/CloseIcon';
 import CompassIcon from './svg/CompassIcon';
 import ConnectWaveIcon from './svg/ConnectWaveIcon';
 import CopyIcon from './svg/CopyIcon';
+import CopySolidIcon from './svg/CopySolidIcon';
 import CrosshairIcon from './svg/CrosshairIcon';
+import DepositIconSmall from './svg/DepositIconSmall';
 import DotIcon from './svg/DotIcon';
 import DoubleCaretIcon from './svg/DoubleCaretIcon';
 import EmojiActivitiesIcon from './svg/EmojiActivitiesIcon';
@@ -51,21 +54,25 @@ import PlusCircledIcon from './svg/PlusCircledIcon';
 import PlusIcon from './svg/PlusIcon';
 import ProgressIcon from './svg/ProgressIcon';
 import QRCodeIcon from './svg/QRCodeIcon';
+import QRIcon from './svg/QRIcon';
 import Scan from './svg/Scan';
 import ScannerIcon from './svg/ScannerIcon';
 import SearchIcon from './svg/SearchIcon';
 import SendIcon from './svg/SendIcon';
 import SendSmallIcon from './svg/SendSmallIcon';
+import SettingsGearIcon from './svg/SettingsGearIcon';
 import ShareIcon from './svg/ShareIcon';
 import SignatureIcon from './svg/SignatureIcon';
 import SpinnerIcon from './svg/SpinnerIcon';
 import StarIcon from './svg/StarIcon';
 import SwapIcon from './svg/SwapIcon';
+import SwapCircleIcon from './svg/SwapCircleIcon';
 import ThreeDotsIcon from './svg/ThreeDotsIcon';
 import TouchIdIcon from './svg/TouchIdIcon';
 import WalletConnectIcon from './svg/WalletConnectIcon';
 import WarningCircledIcon from './svg/WarningCircledIcon';
 import WithdrawArrowIcon from './svg/WithdrawArrowIcon';
+import WithdrawIconSmall from './svg/WithdrawIconSmall';
 import {
   BackupIcon,
   CloudIcon,
@@ -88,6 +95,7 @@ const IconTypes = {
   backup: BackupIcon,
   camera: CameraIcon,
   caret: CaretIcon,
+  caretThick: CaretThickIcon,
   caretThin: CaretThinIcon,
   checkmark: CheckmarkIcon,
   checkmarkCircled: CheckmarkCircledIcon,
@@ -99,7 +107,9 @@ const IconTypes = {
   compass: CompassIcon,
   connectWave: ConnectWaveIcon,
   copy: CopyIcon,
+  copySolid: CopySolidIcon,
   crosshair: CrosshairIcon,
+  depositIconSmall: DepositIconSmall,
   dollar: DollarIcon,
   dot: DotIcon,
   doubleCaret: DoubleCaretIcon,
@@ -135,12 +145,14 @@ const IconTypes = {
   plusCircled: PlusCircledIcon,
   progress: ProgressIcon,
   qrCode: QRCodeIcon,
-  scan: Scan,
+  qrIcon: QRIcon,
   ring: RingIcon,
+  scan: Scan,
   scanner: ScannerIcon,
   search: SearchIcon,
   send: SendIcon,
   sendSmall: SendSmallIcon,
+  settingsGear: SettingsGearIcon,
   share: ShareIcon,
   signature: SignatureIcon,
   speaker: SpeakerIcon,
@@ -148,6 +160,7 @@ const IconTypes = {
   star: StarIcon,
   sunflower: Emoji,
   swap: SwapIcon,
+  swapCircle: SwapCircleIcon,
   threeDots: ThreeDotsIcon,
   touchid: TouchIdIcon,
   user: UserIcon,
@@ -155,6 +168,7 @@ const IconTypes = {
   warning: WarningIcon,
   warningCircled: WarningCircledIcon,
   withdrawIcon: WithdrawArrowIcon,
+  withdrawIconSmall: WithdrawIconSmall,
 };
 
 const Icon = ({ name, testID, ...props }, ref) => {

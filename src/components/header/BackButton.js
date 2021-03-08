@@ -62,7 +62,12 @@ export default function BackButton({
         {textChevron ? (
           <IconText color={color}>←</IconText>
         ) : (
-          <Icon color={color} direction={direction} name="caret" {...props} />
+          <Icon
+            color={color}
+            direction={direction}
+            name="caretThick"
+            {...props}
+          />
         )}
       </Container>
     </HeaderButton>

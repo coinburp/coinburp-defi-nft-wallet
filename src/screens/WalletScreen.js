@@ -119,23 +119,25 @@ export default function WalletScreen() {
             <CameraHeaderButton />
           )}
         </Header>
-        <Row css={padding(0, 50)} justify="space-between">
-          <WalletActionButton
-            isReadOnlyWallet={isReadOnlyWallet}
-            title="Deposit"
-            type="add"
-          />
-          <WalletActionButton
-            isReadOnlyWallet={isReadOnlyWallet}
-            title="Withdraw"
-            type="send"
-          />
-          <WalletActionButton
-            isReadOnlyWallet={isReadOnlyWallet}
-            title="Swap"
-            type="exchange"
-          />
-        </Row>
+        {isEmpty || !!params?.emptyWallet ? null : (
+          <Row css={padding(0, 50)} justify="space-between" marginTop={64}>
+            <WalletActionButton
+              isReadOnlyWallet={isReadOnlyWallet}
+              title="Deposit"
+              type="add"
+            />
+            <WalletActionButton
+              isReadOnlyWallet={isReadOnlyWallet}
+              title="Withdraw"
+              type="send"
+            />
+            <WalletActionButton
+              isReadOnlyWallet={isReadOnlyWallet}
+              title="Swap"
+              type="exchange"
+            />
+          </Row>
+        )}
       </HeaderOpacityToggler>
       <AssetList
         fetchData={refreshAccountData}

@@ -3,8 +3,8 @@ import { captureException } from '@sentry/react-native';
 import axios from 'axios';
 import { get, join, split, toLower, values } from 'lodash';
 import {
-  RAINBOW_WYRE_MERCHANT_ID,
-  RAINBOW_WYRE_MERCHANT_ID_TEST,
+  COINBURP_WYRE_MERCHANT_ID,
+  COINBURP_WYRE_MERCHANT_ID_TEST,
   WYRE_ACCOUNT_ID,
   WYRE_ACCOUNT_ID_TEST,
   WYRE_ENDPOINT,
@@ -68,8 +68,8 @@ export const showApplePayRequest = async (
 
   const merchantIdentifier =
     network === NetworkTypes.mainnet
-      ? RAINBOW_WYRE_MERCHANT_ID
-      : RAINBOW_WYRE_MERCHANT_ID_TEST;
+      ? COINBURP_WYRE_MERCHANT_ID
+      : COINBURP_WYRE_MERCHANT_ID_TEST;
 
   const methodData = [
     {

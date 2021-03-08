@@ -48,43 +48,46 @@ const BottomRow = ({ description, native, status, type }) => {
     status === TransactionStatusTypes.received &&
     type === TransactionTypes.trade;
 
-  let coinNameColor = colors.dark;
-  if (isOutgoingSwap) coinNameColor = colors.alpha(colors.blueGreyDark, 0.5);
-
-  let balanceTextColor = colors.alpha(colors.blueGreyDark, 0.5);
-  if (isReceived) balanceTextColor = colors.green;
-  if (isSent) balanceTextColor = colors.dark;
-  if (isIncomingSwap) balanceTextColor = colors.swapPurple;
-  if (isOutgoingSwap) balanceTextColor = colors.dark;
+  let prefix = null;
+  if (isSent || isOutgoingSwap) prefix = '-';
+  if (isReceived) prefix = '+';
 
   const nativeDisplay = get(native, 'display');
   const balanceText = nativeDisplay
-    ? compact([isFailed || isSent ? '-' : null, nativeDisplay]).join(' ')
+    ? compact([prefix, nativeDisplay]).join(' ')
     : '';
 
   return (
     <Row align="center" justify="space-between">
       <FlexItem flex={1}>
-        <CoinName color={coinNameColor}>{description}</CoinName>
+        <CoinName color={colors.dark}>{description}</CoinName>
       </FlexItem>
-      <BalanceText
-        color={balanceTextColor}
-        weight={isReceived ? 'medium' : null}
-      >
+      <BalanceText color={colors.dark} weight={isReceived ? 'medium' : null}>
         {balanceText}
       </BalanceText>
     </Row>
   );
 };
 
-const TopRow = ({ balance, pending, status, title }) => (
-  <RowWithMargins align="center" justify="space-between" margin={19}>
-    <TransactionStatusBadge pending={pending} status={status} title={title} />
-    <Row align="center" flex={1} justify="end">
-      <BottomRowText align="right">{get(balance, 'display', '')}</BottomRowText>
-    </Row>
-  </RowWithMargins>
-);
+const TopRow = ({ balance, pending, status, title, type }) => {
+  const { colors } = useTheme();
+
+  return (
+    <RowWithMargins align="center" justify="space-between" margin={19}>
+      <TransactionStatusBadge
+        pending={pending}
+        status={status}
+        title={title}
+        type={type}
+      />
+      <Row align="center" flex={1} justify="end">
+        <BottomRowText align="right" color={colors.blueGrey}>
+          {get(balance, 'display', '')}
+        </BottomRowText>
+      </Row>
+    </RowWithMargins>
+  );
+};
 
 export default function TransactionCoinRow({ item, ...props }) {
   const { contact } = item;
