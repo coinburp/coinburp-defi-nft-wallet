@@ -23,7 +23,7 @@ import { useHeight, useWalletConnectConnections } from '@rainbow-me/hooks';
 import { useNavigation } from '@rainbow-me/navigation';
 import { scrollPosition } from '@rainbow-me/navigation/ScrollPagerWrapper';
 import Routes from '@rainbow-me/routes';
-import { position } from '@rainbow-me/styles';
+import { position, fonts } from '@rainbow-me/styles';
 
 const { call, greaterThan, onChange } = Animated;
 
@@ -89,7 +89,7 @@ export default function QRScannerScreen() {
   const { colors } = useTheme();
 
   return (
-    <View>
+    <View style={{fontFamily: fonts.family.SFProRounded,}}>
       {discoverSheetAvailable && ios ? <DiscoverSheet /> : null}
       <ScannerContainer>
         <Background />

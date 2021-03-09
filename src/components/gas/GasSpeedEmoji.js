@@ -44,11 +44,7 @@ const GasSpeedEmoji = ({ containerHeight, label }) => {
 
   return (
     <Container height={containerHeight}>
-      <GasEmoji
-        left={gasSpeed.position[0]}
-        name={gasSpeed.emoji}
-        top={gasSpeed.position[1]}
-      />
+      <></>
     </Container>
   );
 };

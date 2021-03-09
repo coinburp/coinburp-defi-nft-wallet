@@ -82,13 +82,14 @@ export default function SwapInfo({ asset, amount }) {
       <Container>
         <CoinIcon
           address={asset?.address}
-          size={20}
+          size={38}
           symbol={asset?.symbol}
           testID="swap-info-container"
+          style={{ paddingRight: 12 }}
         />
         <Centered>
           <Text
-            color={colors.alpha(darkModeThemeColors.blueGreyDark, 0.6)}
+            color={colors.coinburpGrey}
             size="smedium"
             weight="semibold"
           >

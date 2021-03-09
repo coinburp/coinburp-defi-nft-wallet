@@ -8,6 +8,7 @@ import ArrowCircledIcon from './svg/ArrowCircledIcon';
 import ArrowIcon from './svg/ArrowIcon';
 import AvatarIcon from './svg/AvatarIcon';
 import BackspaceIcon from './svg/BackspaceIcon';
+import BackIcon from './svg/BackIcon'
 import CameraIcon from './svg/CameraIcon';
 import CaretIcon from './svg/CaretIcon';
 import CaretThickIcon from './svg/CaretThickIcon';
@@ -35,6 +36,7 @@ import EmojiRecentIcon from './svg/EmojiRecentIcon';
 import EmojiSmileysIcon from './svg/EmojiSmileysIcon';
 import EmojiSymbolsIcon from './svg/EmojiSymbolsIcon';
 import EmojiTravelIcon from './svg/EmojiTravelIcon';
+import FaceIcon from './svg/FaceIcon';
 import FaceIdIcon from './svg/FaceIdIcon';
 import FatArrowIcon from './svg/FatArrowIcon';
 import GearIcon from './svg/GearIcon';
@@ -93,6 +95,7 @@ const IconTypes = {
   avatar: AvatarIcon,
   backspace: BackspaceIcon,
   backup: BackupIcon,
+  scanBack: BackIcon,
   camera: CameraIcon,
   caret: CaretIcon,
   caretThick: CaretThickIcon,
@@ -122,8 +125,8 @@ const IconTypes = {
   emojiSmileys: EmojiSmileysIcon,
   emojiSymbols: EmojiSymbolsIcon,
   emojiTravel: EmojiTravelIcon,
-  face: FaceIdIcon,
-  faceid: FaceIdIcon,
+  face: FaceIcon,
+  faceid: FaceIcon,
   fatArrow: FatArrowIcon,
   fingerprint: TouchIdIcon,
   gear: GearIcon,

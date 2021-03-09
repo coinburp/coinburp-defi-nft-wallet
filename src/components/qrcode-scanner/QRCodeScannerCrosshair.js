@@ -6,7 +6,7 @@ import { Icon } from '../icons';
 import { Centered } from '../layout';
 import { Text } from '../text';
 import { useDimensions } from '@rainbow-me/hooks';
-import { position } from '@rainbow-me/styles';
+import { position, fonts } from '@rainbow-me/styles';
 
 const CrossHairAspectRatio = 259 / 375;
 
@@ -36,8 +36,11 @@ export default function QRCodeScannerCrosshair() {
           style={{
             textShadowColor: 'rgba(0, 0, 0, 0.75)',
             textShadowOffset: {width: -1, height: 1},
-            textShadowRadius: 10
+            textShadowRadius: 10,
+            fontFamily: fonts.family.SFProRounded,
+            fontWeight: '900',
           }}
+          weight='900'
         >
           Find a code to scan
         </Text>

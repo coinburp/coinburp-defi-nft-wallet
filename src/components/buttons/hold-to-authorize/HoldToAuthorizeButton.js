@@ -23,8 +23,8 @@ const { divide, multiply, proc } = Animated;
 
 const { ACTIVE, BEGAN, END, FAILED } = State;
 
-const ButtonBorderRadius = 30;
-const ButtonHeight = 59;
+const ButtonBorderRadius = 24;
+const ButtonHeight = 64;
 const SmallButtonHeight = 46;
 
 const ButtonDisabledBgColor = colors => ({
@@ -212,7 +212,7 @@ class HoldToAuthorizeButton extends PureComponent {
     const { isAuthorizing } = this.state;
     const androidWidth = Dimensions.get('window').width - 30;
 
-    let bgColor = backgroundColor || colors.appleBlue;
+    let bgColor = backgroundColor || colors.coinburp;
     if (disabled) {
       bgColor = disabledBackgroundColor || ButtonDisabledBgColor(colors)[theme];
     }
