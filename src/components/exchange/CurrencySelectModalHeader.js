@@ -27,17 +27,17 @@ const HeaderContainer = styled(Centered)`
 const Title = styled(TruncatedText).attrs({
   align: 'center',
   lineHeight: 'loose',
-  size: 'large',
+  size: 'larger',
   weight: 'heavy',
 })`
   ${padding(1, 0, 0)};
   height: 21;
 `;
 
-export default function CurrencySelectModalHeader({ testID }) {
+export default function CurrencySelectModalHeader({ testID, manualTitle = null }) {
   const { navigate, dangerouslyGetState } = useNavigation();
   const { params } = useRoute();
-  const title = params?.headerTitle;
+  const title =  manualTitle || params?.headerTitle;
 
   const { setPointerEvents } = params;
 
@@ -60,7 +60,7 @@ export default function CurrencySelectModalHeader({ testID }) {
           throttle
         />
       </BackButtonWrapper>
-      <Title>{title}</Title>
+      <Title weight="bold">{title}</Title>
     </HeaderContainer>
   );
 }

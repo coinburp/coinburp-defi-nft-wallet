@@ -328,7 +328,10 @@ export default function CurrencySelectModal() {
           {isFocusedAndroid && <StatusBar barStyle="dark-content" />}
           <GestureBlocker type="top" />
           <Column flex={1}>
-            <CurrencySelectModalHeader testID="currency-select-header" />
+            <CurrencySelectModalHeader
+              testID="currency-select-header"
+              manualTitle="Stake"
+            />
             <ExchangeSearch
               isFetching={loadingAllTokens}
               isSearching={isSearching}
