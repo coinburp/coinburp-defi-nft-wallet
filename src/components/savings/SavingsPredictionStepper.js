@@ -11,13 +11,14 @@ import {
 } from '../../helpers/utilities';
 import { magicMemo } from '../../utils';
 import { ButtonPressAnimation } from '../animations';
+import { Icon } from '../icons';
 import { Row, RowWithMargins } from '../layout';
-import { AnimatedNumber, Emoji, Text } from '../text';
+import { AnimatedNumber, Emoji, GradientText, Text } from '../text';
 import { useAccountSettings } from '@rainbow-me/hooks';
 import { padding } from '@rainbow-me/styles';
 
-const CrystalBallEmoji = styled(Emoji).attrs({
-  name: 'crystal_ball',
+const ChartIcon = styled(Icon).attrs({
+  name: 'chart',
   size: 'medium',
 })`
   margin-bottom: 0.5;
@@ -25,10 +26,10 @@ const CrystalBallEmoji = styled(Emoji).attrs({
 
 const PredictionNumber = styled(AnimatedNumber).attrs(
   ({ theme: { colors } }) => ({
-    color: colors.swapPurple,
+    color: colors.black,
     letterSpacing: 'roundedTight',
-    size: 'lmedium',
-    weight: 'semibold',
+    size: 14,
+    weight: 900,
   })
 )`
   flex-grow: 1;
@@ -96,10 +97,16 @@ const SavingsPredictionStepper = ({ asset, balance, interestRate }) => {
     >
       <Row align="center" css={padding(15, 19, 19)}>
         <RowWithMargins align="center" margin={5}>
-          <CrystalBallEmoji />
-          <Text color={colors.dark} size="lmedium">
-            {`Est. ${Object.keys(steps)[step]} Earnings`}
-          </Text>
+          <ChartIcon />
+          <GradientText
+            color={colors.dark}
+            colors={colors.gradients.savingsHighlight}
+            size={16}
+            steps={[0, 0.25, 0.75, 1]}
+            weight="bold"
+          >
+            {`  Estimated ${Object.keys(steps)[step]} Earnings`}
+          </GradientText>
         </RowWithMargins>
         <Row flex={1} justify="end">
           <PredictionNumber

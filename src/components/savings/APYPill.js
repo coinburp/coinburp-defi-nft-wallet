@@ -48,44 +48,25 @@ const radialGradientProps = {
 };
 
 const textProps = {
+  color: lightModeThemeColors.blueGrey,
   end: { x: 1, y: 1 },
   start: { x: 0, y: 0 },
   steps: [0, 1],
 };
 
-if (android) {
-  textProps.color = lightModeThemeColors.green;
-}
-
-const TextComponent = ios ? GradientText : Text;
-
 function APYPill({ small, value }) {
   return (
     <Centered style={small ? sx.containerSmall : sx.container}>
-      {IS_TESTING === 'true' ? null : small ? (
-        <RadialGradient
-          {...radialGradientProps}
-          borderRadius={21}
-          radius={81}
-        />
-      ) : (
-        <LinearGradient
-          {...linearGradientProps}
-          borderRadius={17}
-          colors={gradientColors}
-          opacity={0.1}
-        />
-      )}
-      <TextComponent
+      <Text
         {...textProps}
         align="center"
         angle={false}
         letterSpacing="roundedTight"
-        size={small ? 'smedium' : 'lmedium'}
-        weight="semibold"
+        size={14}
+        weight="bold"
       >
         {value}% APY
-      </TextComponent>
+      </Text>
     </Centered>
   );
 }

@@ -17,7 +17,7 @@ import RainbowLiquid from '../assets/rainbows/liquid.png';
 import RainbowNeon from '../assets/rainbows/neon.png';
 import RainbowPixel from '../assets/rainbows/pixel.png';
 import { ButtonPressAnimation } from '../components/animations';
-import RainbowText from '../components/icons/svg/RainbowText';
+import CoinBurpText from '../components/icons/svg/CoinBurpText';
 import { RowWithMargins } from '../components/layout';
 import { Emoji, Text } from '../components/text';
 
@@ -27,13 +27,12 @@ import {
 } from '../handlers/cloudBackup';
 import { cloudPlatform } from '../utils/platform';
 
-import {useDimensions, useHideSplashScreen} from '@rainbow-me/hooks';
+import { useDimensions, useHideSplashScreen } from '@rainbow-me/hooks';
 import { ImgixImage } from '@rainbow-me/images';
 import { useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
 import { shadow } from '@rainbow-me/styles';
 import logger from 'logger';
-import CoinBurpText from "../components/icons/svg/CoinBurpText";
 
 const {
   and,

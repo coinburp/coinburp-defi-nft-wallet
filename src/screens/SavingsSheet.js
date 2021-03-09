@@ -6,6 +6,7 @@ import { getSoftMenuBarHeight } from 'react-native-extra-dimensions-android';
 import { useSafeArea } from 'react-native-safe-area-context';
 import styled from 'styled-components';
 import Divider from '../components/Divider';
+import WalletActionButton from '../components/buttons/WalletActionButton';
 import { SavingsCoinRow } from '../components/coin-row';
 import {
   FloatingEmojis,
@@ -34,8 +35,8 @@ import { useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
 import { position } from '@rainbow-me/styles';
 
-export const SavingsSheetEmptyHeight = 313;
-export const SavingsSheetHeight = android ? 424 - getSoftMenuBarHeight() : 352;
+export const SavingsSheetEmptyHeight = 350;
+export const SavingsSheetHeight = android ? 580 - getSoftMenuBarHeight() : 352;
 
 const Container = styled(Centered).attrs({ direction: 'column' })`
   ${position.cover};
@@ -44,7 +45,7 @@ const Container = styled(Centered).attrs({ direction: 'column' })`
 `;
 
 const SavingsSheet = () => {
-  const { colors, isDarkMode } = useTheme();
+  const { colors } = useTheme();
   const { height: deviceHeight } = useDimensions();
   const { navigate } = useNavigation();
   const { params } = useRoute();
@@ -170,19 +171,15 @@ const SavingsSheet = () => {
               lifetimeAccruedInterest={lifetimeAccruedInterest}
             />
             <SheetActionButtonRow>
-              <SheetActionButton
-                color={isDarkMode ? colors.darkModeDark : colors.dark}
-                label="􀁏 Withdraw"
-                onPress={onWithdraw}
-                radiusAndroid={24}
-                weight="bold"
-              />
-              <SheetActionButton
-                color={colors.swapPurple}
-                label="􀁍 Deposit"
+              <WalletActionButton
                 onPress={onDeposit}
-                radiusAndroid={24}
-                weight="bold"
+                title="Stake"
+                type="stake"
+              />
+              <WalletActionButton
+                onPress={onWithdraw}
+                title="Unstake"
+                type="unstake"
               />
             </SheetActionButtonRow>
             <Divider color={colors.rowDividerLight} zIndex={0} />

@@ -4,21 +4,21 @@ import styled from 'styled-components';
 import { Column, Flex } from '../../components/layout';
 
 const FilledValue = styled(Column)`
-  width: 20;
-  height: 20;
-  border-radius: 20;
-  margin-left: 10;
-  margin-right: 10;
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
+  margin-left: 16px;
+  margin-right: 16px;
 `;
 
 const EmptyValue = styled(Column)`
-  border-width: 3;
-  width: 20;
-  height: 20;
-  border-color: ${({ theme: { colors } }) => colors.coinburp};
-  border-radius: 20;
-  margin-left: 10;
-  margin-right: 10;
+  border-width: 3px;
+  width: 28px;
+  height: 28px;
+  border-color: ${({ theme: { colors } }) => colors.white};
+  border-radius: 28px;
+  margin-left: 16px;
+  margin-right: 16px;
 `;
 
 const PinValue = ({ translateX, value, ...props }) => {
@@ -32,22 +32,22 @@ const PinValue = ({ translateX, value, ...props }) => {
         }}
       >
         {value && value.length ? (
-          <FilledValue backgroundColor={colors.coinburp} />
+          <FilledValue backgroundColor={colors.white} />
         ) : (
           <EmptyValue />
         )}
         {value && value.length > 1 ? (
-          <FilledValue backgroundColor={colors.coinburp} />
+          <FilledValue backgroundColor={colors.white} />
         ) : (
           <EmptyValue />
         )}
         {value && value.length > 2 ? (
-          <FilledValue backgroundColor={colors.coinburp} />
+          <FilledValue backgroundColor={colors.white} />
         ) : (
           <EmptyValue />
         )}
         {value && value.length > 3 ? (
-          <FilledValue backgroundColor={colors.coinburp} />
+          <FilledValue backgroundColor={colors.white} />
         ) : (
           <EmptyValue />
         )}

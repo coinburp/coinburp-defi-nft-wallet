@@ -69,10 +69,11 @@ export default function ProfileScreen({ navigation }) {
     navigate(Routes.CHANGE_WALLET_SHEET);
   }, [navigate]);
 
-  const addCashSupportedNetworks =
-    network === NetworkTypes.kovan || network === NetworkTypes.mainnet;
-  const addCashAvailable =
-    IS_TESTING === 'true' ? false : addCashSupportedNetworks;
+  // const addCashSupportedNetworks =
+  //   network === NetworkTypes.kovan || network === NetworkTypes.mainnet;
+  // const addCashAvailable =
+  //   IS_TESTING === 'true' ? false : addCashSupportedNetworks;
+  const addCashAvailable = false;
 
   return (
     <ProfileScreenPage testID="profile-screen">

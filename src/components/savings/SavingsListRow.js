@@ -65,6 +65,7 @@ const SavingsListRowShadowStack = styled(ShadowStack).attrs(
 
 const DaiText = styled(GradientText).attrs({
   angle: 318,
+  renderer: Text,
   colors: ['#ff2700', '#ffdb00'],
   size: 20,
   steps: [0, 0.42, 0.88, 1],
@@ -127,20 +128,32 @@ const SavingsListRow = ({
     : Math.floor(apy * 10) / 10;
 
   const onButtonPress = useCallback(() => {
-    navigate(Routes.SAVINGS_SHEET, {
-      cTokenBalance,
-      isEmpty: !supplyBalanceUnderlying,
-      lifetimeSupplyInterestAccrued,
-      lifetimeSupplyInterestAccruedNative,
-      longFormHeight: supplyBalanceUnderlying
-        ? SavingsSheetHeight
-        : SavingsSheetEmptyHeight,
-      supplyBalanceUnderlying,
-      supplyRate,
-      underlying,
-      underlyingBalanceNativeValue,
-      underlyingPrice,
-    });
+    if (!supplyBalanceUnderlying) {
+      navigate(Routes.SAVINGS_DEPOSIT_MODAL, {
+        params: {
+          params: {
+            defaultInputAsset: underlying,
+          },
+          screen: Routes.MAIN_EXCHANGE_SCREEN,
+        },
+        screen: Routes.MAIN_EXCHANGE_NAVIGATOR,
+      });
+    } else {
+      navigate(Routes.SAVINGS_SHEET, {
+        cTokenBalance,
+        isEmpty: !supplyBalanceUnderlying,
+        lifetimeSupplyInterestAccrued,
+        lifetimeSupplyInterestAccruedNative,
+        longFormHeight: supplyBalanceUnderlying
+          ? SavingsSheetHeight
+          : SavingsSheetEmptyHeight,
+        supplyBalanceUnderlying,
+        supplyRate,
+        underlying,
+        underlyingBalanceNativeValue,
+        underlyingPrice,
+      });
+    }
 
     analytics.track('Opened Savings Sheet', {
       category: 'savings',
@@ -267,12 +280,36 @@ const SavingsListRow = ({
           </Row>
           <Column align="center" css={padding(24)} justify="space-between">
             <SavingsIcon />
-            <Row css={padding(16, 48, 24, 48)}>
-              <Text align="center" color="#fff" size={20} weight={900}>
-                Stake <DaiText>Dai</DaiText> today and earn {apyTruncated}% APY!
-              </Text>
-            </Row>
-            <ShadowStack backgroundColor={colors.transparent} height={100} shadows={shadows} width={295}>
+            <Column css={padding(16, 48, 24, 48)}>
+              <Row>
+                <Text align="center" color="#fff" size={20} weight={900}>
+                  Stake{' '}
+                </Text>
+                <DaiText>Dai</DaiText>
+                <Text align="center" color="#fff" size={20} weight={900}>
+                  {' '}
+                  today and earn
+                </Text>
+              </Row>
+              <Row justify="center">
+                <Text
+                  align="center"
+                  color="#fff"
+                  css={{ top: -10 }}
+                  size={20}
+                  weight={900}
+                >
+                  {apyTruncated}% APY!
+                </Text>
+              </Row>
+            </Column>
+            <ShadowStack
+              backgroundColor={colors.transparent}
+              css={{ top: -21 }}
+              height={100}
+              shadows={shadows}
+              width={295}
+            >
               <StakeButton>
                 <ButtonText>Stake Dai</ButtonText>
               </StakeButton>

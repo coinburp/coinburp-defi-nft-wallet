@@ -9,25 +9,24 @@ const SavingsSheetHeader = ({ balance, lifetimeAccruedInterest }) => {
   return (
     <Centered css={padding(17, 0, 8)} direction="column">
       <Text
-        color={colors.alpha(colors.blueGreyDark, 0.5)}
-        letterSpacing="uppercase"
-        size="smedium"
-        uppercase
-        weight="semibold"
+        color={colors.black}
+        letterSpacing={1}
+        size={20}
+        weight={900}
       >
-        Savings
+        Staked
       </Text>
       <DollarFigure decimals={2} value={balance} />
       <RowWithMargins align="center" margin={4} marginTop={1}>
         <Text
           align="center"
-          color={colors.green}
+          color={colors.neonGreen}
           letterSpacing="roundedTight"
           lineHeight="loose"
-          size="large"
-          weight="semibold"
+          size={20}
+          weight={900}
         >
-          􀁍 {lifetimeAccruedInterest}
+          +{lifetimeAccruedInterest}
         </Text>
       </RowWithMargins>
     </Centered>

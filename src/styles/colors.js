@@ -85,6 +85,7 @@ const getColorsByTheme = darkMode => {
     orange: '#FF9900', // '255, 153, 0'
     orangeLight: '#FFD600', // '254, 190, 68'
     paleBlue: '#579DFF', // 87, 157, 255
+    paleGrey: '#c3d7ef',
     pink: '#FF54BB', // 255, 84, 187
     pinkLight: '#FF75E8', // '255, 117, 232'
     purple: '#735CFF', // '115, 92, 255'

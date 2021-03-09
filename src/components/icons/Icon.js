@@ -12,6 +12,7 @@ import CameraIcon from './svg/CameraIcon';
 import CaretIcon from './svg/CaretIcon';
 import CaretThickIcon from './svg/CaretThickIcon';
 import CaretThinIcon from './svg/CaretThinIcon';
+import ChartIcon from './svg/ChartIcon';
 import CheckmarkCircledIcon from './svg/CheckmarkCircledIcon';
 import CheckmarkIcon from './svg/CheckmarkIcon';
 import ClearInputIcon from './svg/ClearInputIcon';
@@ -97,6 +98,7 @@ const IconTypes = {
   caret: CaretIcon,
   caretThick: CaretThickIcon,
   caretThin: CaretThinIcon,
+  chart: ChartIcon,
   checkmark: CheckmarkIcon,
   checkmarkCircled: CheckmarkCircledIcon,
   clearInput: ClearInputIcon,

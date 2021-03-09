@@ -20,10 +20,9 @@ const DollarFigure = ({ value, decimals = 2 }) => {
   const { colors } = useTheme();
   return (
     <Row>
-      <Text color={colors.dark} letterSpacing="zero" size="h1" weight="heavy">
-        {dollars}
+      <Text color={colors.dark} letterSpacing="zero" size={48} weight={900}>
+        {`${dollars}.${formattedCents}`}
       </Text>
-      <Cents>{`.${formattedCents}`}</Cents>
     </Row>
   );
 };

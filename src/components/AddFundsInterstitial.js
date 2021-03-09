@@ -28,11 +28,11 @@ const ButtonContainer = styled(Centered).attrs({ direction: 'column' })`
 
 const InterstitialButton = styled(ButtonPressAnimation).attrs(
   ({ theme: { colors } }) => ({
-    backgroundColor: colors.alpha(colors.blueGreyDark, 0.06),
+    backgroundColor: colors.alpha(colors.blueGrey, 0.16),
     borderRadius: 23,
   })
 )`
-  ${padding(11, 15, 14)};
+  ${padding(3, 15, 3)};
 `;
 
 const InterstitialButtonRow = styled(Row)`
@@ -40,19 +40,17 @@ const InterstitialButtonRow = styled(Row)`
 `;
 
 const InterstitialDivider = styled(Divider).attrs(({ theme: { colors } }) => ({
-  color: colors.rowDividerExtraLight,
-  inset: [0, 0, 0, 0],
+  color: colors.alpha(colors.blueGrey, 0.16),
+  inset: [-100, 0, 0, 0],
 }))`
   border-radius: 1;
 `;
 
-const CopyAddressButton = styled(ButtonPressAnimation).attrs(
-  ({ theme: { colors } }) => ({
-    backgroundColor: colors.alpha(colors.appleBlue, 0.06),
-    borderRadius: 23,
-  })
-)`
-  ${padding(10.5, 15, 14.5)};
+const CopyAddressButton = styled(ButtonPressAnimation).attrs({
+  borderRadius: 24,
+})`
+  ${padding(19, 15, 21)};
+  width: ${({ width }) => width - 32};
 `;
 
 const AmountBPA = styled(ButtonPressAnimation)`
@@ -82,11 +80,9 @@ const Title = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'center',
   color: colors.dark,
   lineHeight: 32,
-  size: 'bigger',
-  weight: 'heavy',
-}))`
-  margin-horizontal: 27;
-`;
+  size: 32,
+  weight: 'bold',
+}))``;
 
 const Subtitle = styled(Title).attrs(({ theme: { colors } }) => ({
   color: colors.dark,
@@ -97,23 +93,19 @@ const Subtitle = styled(Title).attrs(({ theme: { colors } }) => ({
 const AmountText = styled(Text).attrs(({ children }) => ({
   align: 'center',
   children: android ? `  ${children.join('')}  ` : children,
-  letterSpacing: 'roundedTightest',
-  size: 'bigger',
-  weight: 'heavy',
+  letterSpacing: 1,
+  size: 24,
+  weight: 900,
 }))`
-  ${android ? padding(15, 4.5) : padding(24, 15, 25)};
   align-self: center;
-  text-shadow: 0px 0px 20px ${({ color }) => color};
   z-index: 1;
 `;
 
 const AmountButtonWrapper = styled(Row).attrs({
   justify: 'center',
-  marginLeft: 7.5,
-  marginRight: 7.5,
-})`
-  ${android ? 'width: 100' : ''};
-`;
+  marginLeft: 6,
+  marginRight: 6,
+})``;
 
 const buildInterstitialTransform = (isSmallPhone, offsetY) => ({
   transform: [
@@ -138,43 +130,23 @@ const Wrapper = android ? ScaleButtonZoomableAndroid : AmountBPA;
 
 const AmountButton = ({ amount, backgroundColor, color, onPress }) => {
   const handlePress = useCallback(() => onPress?.(amount), [amount, onPress]);
-  const { colors } = useTheme();
-  const shadows = {
-    [colors.swapPurple]: [
-      [0, 5, 15, colors.shadow, 0.2],
-      [0, 10, 30, colors.swapPurple, 0.4],
-    ],
-    [colors.purpleDark]: [
-      [0, 5, 15, colors.shadow, 0.2],
-      [0, 10, 30, colors.purpleDark, 0.4],
-    ],
-  };
 
   return (
     <AmountButtonWrapper>
       <Wrapper disabled={android} onPress={handlePress}>
-        <ShadowStack
-          {...position.coverAsObject}
-          backgroundColor={backgroundColor}
-          borderRadius={25}
-          shadows={shadows[backgroundColor]}
-          {...(android && {
-            height: 80,
-            width: 100,
-          })}
-        />
         <InnerBPA
           onPress={handlePress}
           reanimatedButton
           style={{ flex: 1 }}
           wrapperStyle={{
-            width: 100,
+            backgroundColor,
+            borderRadius: 24,
+            height: 61,
+            justifyContent: 'center',
             zIndex: 10,
           }}
         >
-          <AmountText color={color} textShadowColor={color}>
-            ${amount}
-          </AmountText>
+          <AmountText color={color}>${amount}</AmountText>
         </InnerBPA>
       </Wrapper>
     </AmountButtonWrapper>
@@ -182,7 +154,7 @@ const AmountButton = ({ amount, backgroundColor, color, onPress }) => {
 };
 
 const AddFundsInterstitial = ({ network, offsetY = 0 }) => {
-  const { isSmallPhone } = useDimensions();
+  const { isSmallPhone, width } = useDimensions();
   const { navigate } = useNavigation();
   const { isDamaged } = useWallets();
   const { accountAddress } = useAccountSettings();
@@ -226,26 +198,30 @@ const AddFundsInterstitial = ({ network, offsetY = 0 }) => {
       <ButtonContainer>
         {network === networkTypes.mainnet ? (
           <Fragment>
-            <Title>
-              To get started, buy some ETH{ios ? ` with Apple Pay` : ''}
-            </Title>
+            <Title>Buy some ETH</Title>
+            {ios ? (
+              <Row align="center">
+                <Title>with </Title>
+                <Icon color={colors.black} name="applePay" />
+              </Row>
+            ) : null}
             <Row justify="space-between" marginVertical={30}>
               <AmountButton
                 amount={50}
-                backgroundColor={colors.swapPurple}
-                color={colors.neonSkyblue}
+                backgroundColor={colors.coinburp}
+                color={colors.white}
                 onPress={handlePressAmount}
               />
               <AmountButton
                 amount={100}
-                backgroundColor={colors.swapPurple}
-                color={colors.neonSkyblue}
+                backgroundColor={colors.coinburp}
+                color={colors.white}
                 onPress={handlePressAmount}
               />
               <AmountButton
                 amount={250}
-                backgroundColor={colors.purpleDark}
-                color={colors.pinkLight}
+                backgroundColor={colors.coinburp}
+                color={colors.white}
                 onPress={handlePressAmount}
               />
             </Row>
@@ -256,23 +232,19 @@ const AddFundsInterstitial = ({ network, offsetY = 0 }) => {
               >
                 <Text
                   align="center"
-                  color={colors.alpha(colors.blueGreyDark, 0.6)}
+                  color={colors.blueGrey}
                   lineHeight="loose"
-                  size="large"
-                  weight="bold"
+                  size={16}
+                  weight={900}
                 >
-                  􀍡 Other amount
+                  Other amount
                 </Text>
               </InterstitialButton>
             </InterstitialButtonRow>
             {!isSmallPhone && <InterstitialDivider />}
             <Subtitle isSmallPhone={isSmallPhone}>
-              or send ETH to your wallet
+              Or deposit ETH to this wallet
             </Subtitle>
-
-            <Paragraph>
-              Send from Coinbase or another exchange—or ask a friend!
-            </Paragraph>
           </Fragment>
         ) : (
           <Fragment>
@@ -304,29 +276,38 @@ const AddFundsInterstitial = ({ network, offsetY = 0 }) => {
             </Paragraph>
           </Fragment>
         )}
-        <CopyAddressButton
-          onPress={handlePressCopyAddress}
-          radiusAndroid={23}
-          testID="copy-address-button"
-        >
-          <RowWithMargins margin={6}>
-            <Icon
-              color={colors.appleBlue}
-              marginTop={0.5}
-              name="copy"
-              size={19}
-            />
-            <Text
+        <Row justify="center" marginVertical={32} width={width}>
+          <CopyAddressButton
+            onPress={handlePressCopyAddress}
+            radiusAndroid={24}
+            testID="copy-address-button"
+            width={width}
+          >
+            <Row
               align="center"
-              color={colors.appleBlue}
-              lineHeight="loose"
-              size="large"
-              weight="bold"
+              backgroundColor={colors.coinburp}
+              borderRadius={24}
+              height={61}
+              justify="center"
             >
-              Copy address
-            </Text>
-          </RowWithMargins>
-        </CopyAddressButton>
+              <Icon
+                color={colors.white}
+                marginTop={0.5}
+                name="copySolid"
+                size={24}
+              />
+              <Text
+                align="center"
+                color={colors.white}
+                lineHeight="loose"
+                size={20}
+                weight={900}
+              >
+                {'  '}Copy Address
+              </Text>
+            </Row>
+          </CopyAddressButton>
+        </Row>
       </ButtonContainer>
     </Container>
   );

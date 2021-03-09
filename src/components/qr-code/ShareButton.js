@@ -6,6 +6,7 @@ import { ButtonPressAnimation } from '../animations';
 import { Centered, InnerBorder } from '../layout';
 import { Text } from '../text';
 import ShadowStack from 'react-native-shadow-stack';
+import {useDimensions} from "@rainbow-me/hooks";
 
 const Label = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'center',
@@ -25,6 +26,7 @@ export default function ShareButton({ accountAddress, ...props }) {
   }, [accountAddress]);
 
   const { isDarkMode, colors } = useTheme();
+  const { width } = useDimensions();
 
   const shadows = useMemo(
     () => [
@@ -42,14 +44,14 @@ export default function ShareButton({ accountAddress, ...props }) {
       {...props}
     >
       <ShadowStack
-        backgroundColor={isDarkMode ? colors.white : colors.dark}
-        borderRadius={28}
-        height={56}
+        backgroundColor={colors.coinburp}
+        borderRadius={24}
+        height={64}
         shadows={shadows}
-        width={123}
+        width={width - 32}
       >
         <Centered cover>
-          <Label>􀈂 Share</Label>
+          <Label>Share</Label>
         </Centered>
         <InnerBorder />
       </ShadowStack>

@@ -1,7 +1,7 @@
 import QRCodeUtil from 'qrcode';
 import React, { useMemo } from 'react';
 import Svg, { Circle, ClipPath, Defs, G, Image, Rect } from 'react-native-svg';
-import RainbowLogo from '../../assets/rainbow-og.png';
+import CoinBurpLogo from '../../assets/logo.png';
 import useSafeImageUri from '../../hooks/useSafeImageUri';
 import { magicMemo } from '../../utils';
 
@@ -22,15 +22,15 @@ const generateMatrix = (value, errorCorrectionLevel) => {
 
 const QRCode = ({
   ecl = 'M',
-  logo = RainbowLogo,
+  logo = CoinBurpLogo,
   logoBackgroundColor: givenLogoBackgroundColor,
-  logoMargin = -5,
-  logoSize = 84,
+  logoMargin = 2,
+  logoSize = 50,
   size = 150,
   value = 'QR Code',
 }) => {
   const { colors } = useTheme();
-  const logoBackgroundColor = givenLogoBackgroundColor || colors.transparent;
+  const logoBackgroundColor = givenLogoBackgroundColor || 'white';
   const href = useSafeImageUri(logo);
   const dots = useMemo(() => {
     const dots = [];

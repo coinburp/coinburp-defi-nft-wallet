@@ -26,15 +26,12 @@ const BottomRow = ({ lifetimeSupplyInterestAccrued, supplyRate, symbol }) => {
             align="right"
             color={colors.green}
             flex={1}
-            size="smedium"
-            weight="semibold"
+            size={14}
+            weight="bold"
           >
-            {'􀁍 '}
+            {'+$'}
             {convertAmountToBalanceDisplay(
               lifetimeSupplyInterestAccrued,
-              {
-                symbol,
-              },
               1
             )}
           </Text>
@@ -47,7 +44,7 @@ const BottomRow = ({ lifetimeSupplyInterestAccrued, supplyRate, symbol }) => {
 const TopRow = ({ name, supplyBalanceUnderlying, symbol }) => (
   <Row align="center" justify="space-between" marginBottom={2}>
     <FlexItem flex={1}>
-      <CoinName letterSpacing="roundedMedium" weight="semibold">
+      <CoinName letterSpacing={1} weight="bold">
         {name}
       </CoinName>
     </FlexItem>

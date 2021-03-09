@@ -23,14 +23,14 @@ const KeyboardRow = styled(Row).attrs({
 
 const KeyboardButton = ({ children, ...props }) => {
   const { isTinyPhone } = useDimensions();
-  const keyHeight = isTinyPhone ? 60 : 64;
+  const keyHeight = isTinyPhone ? 72 : 89;
 
   return (
     <ButtonPressAnimation
       {...props}
       duration={35}
       pressOutDuration={75}
-      scaleTo={1.6}
+      scaleTo={0.8}
       transformOrigin={[0.5, 0.5 + 8 / keyHeight]}
     >
       <KeyboardButtonContent height={keyHeight}>
@@ -51,7 +51,7 @@ const Numpad = ({ decimal = true, onPress, width, color }) => {
         onPress={() => onPress(symbol.toString())}
         testID={`numpad-button-${symbol}`}
       >
-        <Text align="center" color={keyColor} size={44} weight="bold">
+        <Text align="center" color={keyColor} size={56} weight={900}>
           {symbol}
         </Text>
       </KeyboardButton>
@@ -73,7 +73,13 @@ const Numpad = ({ decimal = true, onPress, width, color }) => {
         {decimal ? renderCell('.') : <Column width={80} />}
         {renderCell(0)}
         <KeyboardButton onPress={() => onPress('back')}>
-          <Icon align="center" color={keyColor} name="backspace" width={40} />
+          <Icon
+            align="center"
+            color={keyColor}
+            direction="left"
+            name="caretThick"
+            size={48}
+          />
         </KeyboardButton>
       </KeyboardRow>
     </Centered>

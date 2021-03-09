@@ -2,7 +2,7 @@ import { useRoute } from '@react-navigation/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert } from 'react-native';
 import styled from 'styled-components';
-import RainbowLogo from '../assets/rainbows/light.png';
+import CoinBurpLogo from '../assets/logo.png';
 import { Centered, Column, ColumnWithMargins } from '../components/layout';
 import { Numpad, PinValue } from '../components/numpad';
 import { SheetTitle } from '../components/sheet';
@@ -19,10 +19,11 @@ import { ImgixImage } from '@rainbow-me/images';
 import { padding } from '@rainbow-me/styles';
 
 const Logo = styled(ImgixImage).attrs({
-  source: RainbowLogo,
+  source: CoinBurpLogo,
+  tintColor: 'white',
 })`
-  width: 80;
-  height: 80;
+  width: 75px;
+  height: 74px;
 `;
 
 const MAX_ATTEMPTS = 10;
@@ -188,7 +189,7 @@ const PinAuthenticationScreen = () => {
 
   return (
     <Column
-      backgroundColor={colors.white}
+      backgroundColor={colors.coinburp}
       flex={1}
       testID="pin-authentication-screen"
     >
@@ -198,22 +199,25 @@ const PinAuthenticationScreen = () => {
           css={padding(0, 24, isNarrowPhone ? 12 : 24)}
           height="25%"
           justify="center"
-          margin={isSmallPhone ? 0 : 28}
+          margin={isSmallPhone ? 20 : 80}
         >
           <Logo />
-          <SheetTitle>
-            {actionType === 'authentication'
-              ? 'Type your PIN'
-              : actionType === 'creation'
-              ? 'Choose your PIN'
-              : 'Confirm your PIN'}
-          </SheetTitle>
-          <PinValue translateX={errorAnimation} value={value} />
+          <ColumnWithMargins>
+            <SheetTitle color={colors.white} size={20} weight={900}>
+              {actionType === 'authentication'
+                ? 'Type your PIN'
+                : actionType === 'creation'
+                ? 'Choose your PIN'
+                : 'Confirm your PIN'}
+            </SheetTitle>
+            <PinValue translateX={errorAnimation} value={value} />
+          </ColumnWithMargins>
         </ColumnWithMargins>
       </Centered>
       <ColumnWithMargins align="center" margin={isTallPhone ? 27 : 12}>
         <Centered maxWidth={313}>
           <Numpad
+            color={colors.white}
             decimal={false}
             onPress={handleNumpadPress}
             width={isNarrowPhone ? 275 : '100%'}

@@ -14,7 +14,7 @@ import { useAccountProfile } from '@rainbow-me/hooks';
 import { useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
 
-export default function WalletActionButton({ type, title, isReadOnlyWallet }) {
+export default function WalletActionButton({ type, title, isReadOnlyWallet, onPress }) {
   const { navigate } = useNavigation();
   const { colors } = useTheme();
   const { accountAddress } = useAccountProfile();
@@ -23,6 +23,8 @@ export default function WalletActionButton({ type, title, isReadOnlyWallet }) {
     add: <DepositIcon />,
     exchange: <SwapIcon />,
     send: <WithdrawIcon />,
+    stake: <DepositIcon />,
+    unstake: <WithdrawIcon />,
   };
 
   const handlePress = useCallback(() => {
@@ -55,7 +57,7 @@ export default function WalletActionButton({ type, title, isReadOnlyWallet }) {
   }, [navigate, isReadOnlyWallet]);
 
   return (
-    <ButtonPressAnimation onPress={handlePress}>
+    <ButtonPressAnimation onPress={onPress || handlePress}>
       <Column align="center">
         {icons[type]}
         <Text align="center" color={colors.coinburp} weight={900}>
