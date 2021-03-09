@@ -72,6 +72,7 @@ const getColorsByTheme = darkMode => {
     green: '#2CCC00', // '58, 166, 134'
     grey: '#A9ADB9', // '169, 173, 185'
     grey20: '#333333', // '51, 51, 51'
+    coinburpGrey: '#c3d7ef',
     heartPink: '#FD5194',
     lighterGrey: '#F7F7F8', // '247, 247, 248'
     lightestGrey: '#E9EBEF', // '238, 233, 232'

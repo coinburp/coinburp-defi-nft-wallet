@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 import { Alert } from 'react-native';
 import styled from 'styled-components';
 import { calculateAPY } from '../../helpers/savings';
@@ -66,6 +66,10 @@ const SavingsSheetEmptyState = ({
   }, [isReadOnlyWallet, navigate, underlying]);
 
   const { colors } = useTheme();
+
+  useEffect(() => {
+    onDeposit()
+  }, [])
 
   return (
     <Centered direction="column" paddingTop={9}>

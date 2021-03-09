@@ -62,7 +62,8 @@ const ListItem = ({
             flex={1}
             paddingRight={15}
             size="large"
-            style={{ fontWeight: 'bold' }}
+            style={{ fontWeight: 'bold',  }}
+            weight='bold'
           >
             {label}
           </TruncatedText>

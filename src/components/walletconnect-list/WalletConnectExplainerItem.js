@@ -2,7 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import { Column, FlexItem, Row } from '../layout';
 import { Emoji, Text, TruncatedText } from '../text';
-import { padding } from '@rainbow-me/styles';
+import { padding, fonts } from '@rainbow-me/styles';
+
 import { Icon } from '../icons';
 export default function WalletConnectExplainerItem({
   children,
@@ -27,7 +28,10 @@ export default function WalletConnectExplainerItem({
             lineHeight="normal" 
             size="bmedium" 
             weight="semibold"
-            style={{fontWeight: 'bold'}}
+            style={{
+              fontWeight: '900',
+            }}
+            weight='900'
           >
             {title}
           </TruncatedText>
@@ -45,8 +49,10 @@ export default function WalletConnectExplainerItem({
               minWidth:150,
               flex: 0.5,
               textAlign: 'center',
-              flexWrap: 'wrap'
+              flexWrap: 'wrap',
+              fontWeight: 'bold',
             }}
+            weight='bold'
           >
             {content}
           </Text>

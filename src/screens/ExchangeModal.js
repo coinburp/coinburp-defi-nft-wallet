@@ -535,8 +535,10 @@ export default function ExchangeModal({
           <FloatingPanel
             overflow="visible"
             paddingBottom={showOutputField ? 0 : 26}
-            radius={39}
+            radius={24}
             testID={testID}
+            width={`92%`}
+            marginLeft={15}
           >
             <ExchangeModalHeader
               onPressDetails={navigateToSwapDetailsModal}
@@ -587,7 +589,7 @@ export default function ExchangeModal({
               <Centered
                 flexShrink={0}
                 paddingHorizontal={15}
-                paddingTop={24}
+                paddingTop={42}
                 width="100%"
               >
                 <ConfirmExchangeButton
