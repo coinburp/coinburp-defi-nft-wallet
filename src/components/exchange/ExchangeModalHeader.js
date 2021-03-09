@@ -63,7 +63,6 @@ const ExchangeModalHeader = ({
 
   return (
     <Column align="center" css={padding(6, 0)} testID={testID}>
-      <SheetHandle marginBottom={SheetHandleMargin} />
       <Text
         align="center"
         color={colors.dark}

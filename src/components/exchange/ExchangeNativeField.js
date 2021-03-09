@@ -10,18 +10,18 @@ import { fonts } from '@rainbow-me/styles';
 
 const CurrencySymbol = styled(Text).attrs(({ height, color }) => ({
   color: color,
-  letterSpacing: 'roundedTight',
+  letterSpacing: 1,
   lineHeight: height,
-  size: 'larger',
-  weight: 'regular',
+  size: 16,
+  weight: 900,
 }))`
   ${android ? 'margin-bottom: 1.5;' : ''};
 `;
 
 const NativeInput = styled(ExchangeInput).attrs({
-  letterSpacing: fonts.letterSpacing.roundedTight,
-  size: fonts.size.larger,
-  weight: fonts.weight.regular,
+  letterSpacing: 1,
+  size: 16,
+  weight: 900
 })`
   height: ${({ height }) => height};
 `;
@@ -63,10 +63,9 @@ const ExchangeNativeField = (
     const nativeAmountExists =
       typeof nativeAmount === 'string' && nativeAmount.length > 0;
 
-    const color = isFocused ? colors.dark : colors.blueGreyDark;
-    const opacity = isFocused ? 1 : nativeAmountExists ? 0.5 : 0.3;
+    const color = isFocused || nativeAmountExists ? colors.dark : colors.blueGrey;
 
-    return colors.alpha(color, opacity);
+    return colors.alpha(color, 1);
   }, [colors, isFocused, nativeAmount]);
 
   return (

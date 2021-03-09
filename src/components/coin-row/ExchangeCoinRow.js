@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import styled, { css } from 'styled-components';
+import { useTheme } from '../../context/ThemeContext';
 import { ButtonPressAnimation } from '../animations';
 import { CoinIconSize } from '../coin-icon';
 import { FloatingEmojis } from '../floating-emojis';
@@ -13,8 +14,8 @@ import { useDimensions } from '@rainbow-me/hooks';
 import { padding } from '@rainbow-me/styles';
 import { haptics, neverRerender } from '@rainbow-me/utils';
 
-const CoinRowPaddingTop = 9.5;
-const CoinRowPaddingBottom = 9.5;
+const CoinRowPaddingTop = 8;
+const CoinRowPaddingBottom = 8;
 
 const FloatingFavoriteEmojis = styled(FloatingEmojis).attrs({
   centerVertically: true,
@@ -37,8 +38,13 @@ const FloatingFavoriteEmojis = styled(FloatingEmojis).attrs({
   z-index: 100;
 `;
 
-const BottomRow = ({ showBalance, symbol }) =>
-  showBalance ? null : <BottomRowText>{symbol}</BottomRowText>;
+const BottomRow = ({ showBalance, symbol }) => {
+  const { colors } = useTheme();
+
+  return showBalance ? null : (
+    <BottomRowText color={colors.blueGrey}>{symbol}</BottomRowText>
+  );
+};
 
 const TopRow = ({ name, showBalance }) => (
   <Centered height={showBalance ? CoinIconSize : null}>
@@ -57,6 +63,7 @@ const ExchangeCoinRow = ({
 }) => {
   const { width: deviceWidth } = useDimensions();
   const [localFavorite, setLocalFavorite] = useState(!!item.favorite);
+  const { colors } = useTheme();
 
   const handlePress = useCallback(() => {
     if (isVerified || showBalance) {
@@ -90,9 +97,11 @@ const ExchangeCoinRow = ({
           topRowRender={TopRow}
         >
           {showBalance && (
-            <ColumnWithMargins align="end" margin={4}>
+            <ColumnWithMargins align="end" margin={0}>
               <BalanceText>{item?.native?.balance?.display || '–'}</BalanceText>
-              <BottomRowText>{item?.balance?.display || ''}</BottomRowText>
+              <BottomRowText color={colors.blueGrey}>
+                {item?.balance?.display || ''}
+              </BottomRowText>
             </ColumnWithMargins>
           )}
         </CoinRow>

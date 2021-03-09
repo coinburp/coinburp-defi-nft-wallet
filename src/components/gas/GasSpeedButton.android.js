@@ -58,7 +58,7 @@ const GasInput = styled(Input).attrs(
     color:
       theme === 'dark'
         ? colors.whiteLabel
-        : colors.alpha(colors.blueGreyDark, 0.8),
+        : colors.paleGrey,
     height: 58,
     keyboardAppearance: 'dark',
     keyboardType: 'numeric',
@@ -94,9 +94,7 @@ const BottomRightLabel = ({ formatter, theme }) => {
     <Label
       align="right"
       color={
-        theme === 'dark'
-          ? colors.alpha(darkModeThemeColors.blueGreyDark, 0.6)
-          : colors.alpha(colors.blueGreyDark, 0.6)
+        colors.paleGrey
       }
     >
       {formatter()}
@@ -480,9 +478,7 @@ const GasSpeedButton = ({
           {!isCustom ? (
             <Label
               color={
-                theme === 'dark'
-                  ? colors.alpha(darkModeThemeColors.blueGreyDark, 0.6)
-                  : colors.alpha(colors.blueGreyDark, 0.6)
+                colors.paleGrey
               }
               height={10}
             >

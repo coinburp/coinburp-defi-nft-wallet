@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { ButtonPressAnimation } from '../animations';
+import { CoinIcon } from '../coin-icon';
+import { Icon } from '../icons';
 import { InnerBorder, RowWithMargins } from '../layout';
 import { Text } from '../text';
 import CaretImageSource from '@rainbow-me/assets/family-dropdown-arrow.png';
@@ -57,10 +59,7 @@ export default function TokenSelectionButton({
   return (
     <ButtonPressAnimation
       borderRadius={borderRadius}
-      contentContainerStyle={{
-        backgroundColor: colorForAsset,
-        borderRadius,
-      }}
+      contentContainerStyle={{}}
       onPress={onPress}
       radiusAndroid={borderRadius}
       testID={testID}
@@ -73,16 +72,19 @@ export default function TokenSelectionButton({
         shadows={shadowsForAsset}
       />
       <Content>
+        {symbol ? (
+          <CoinIcon address={address} size={32} symbol={symbol} />
+        ) : null}
         <Text
           align="center"
-          color={colors.whiteLabel}
-          size="large"
+          color={symbol ? colors.black : colors.coinburp}
+          size={32}
           testID={testID + '-text'}
-          weight="bold"
+          weight={900}
         >
-          {symbol || 'Choose Token'}
+          {symbol || 'Choose'}
         </Text>
-        <CaretIcon />
+        <Icon direction="down" marginLeft={12} name="caretThick" size={24} />
       </Content>
       <InnerBorder radius={borderRadius} />
     </ButtonPressAnimation>

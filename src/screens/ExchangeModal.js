@@ -13,6 +13,7 @@ import { Keyboard } from 'react-native';
 import Animated, { Extrapolate } from 'react-native-reanimated';
 import { useAndroidBackHandler } from 'react-navigation-backhandler';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { dismissingScreenListener } from '../../shim';
 import { interpolate } from '../components/animations';
 import {
@@ -26,7 +27,15 @@ import {
 import SwapInfo from '../components/exchange/SwapInfo';
 import { FloatingPanel, FloatingPanels } from '../components/floating-panels';
 import { GasSpeedButton } from '../components/gas';
-import { Centered, KeyboardFixedOpenLayout } from '../components/layout';
+import DotArrow from '../components/icons/svg/DotArrow';
+import {
+  Centered,
+  Column,
+  KeyboardFixedOpenLayout,
+  Row,
+} from '../components/layout';
+import { SheetHandle, SheetTitle } from '../components/sheet';
+import { Text } from '../components/text';
 import ExchangeModalTypes from '@rainbow-me/helpers/exchangeModalTypes';
 import isKeyboardOpen from '@rainbow-me/helpers/isKeyboardOpen';
 import {
@@ -56,6 +65,12 @@ import logger from 'logger';
 
 const AnimatedFloatingPanels = Animated.createAnimatedComponent(FloatingPanels);
 const Wrapper = ios ? KeyboardFixedOpenLayout : Fragment;
+
+const PanelTitle = styled(Text).attrs({
+  size: 16,
+  uppercase: true,
+  weight: 'bold',
+})``;
 
 export default function ExchangeModal({
   createRap,
@@ -495,10 +510,14 @@ export default function ExchangeModal({
       <Centered
         {...(ios
           ? position.sizeAsObject('100%')
-          : { style: { height: 500, top: 0 } })}
+          : { style: { height: 550, top: 0 } })}
         backgroundColor={colors.transparent}
         direction="column"
       >
+        <SheetHandle color="white" marginTop={150} />
+        <SheetTitle color="white" marginTop={16} size={32}>
+          {inputHeaderTitle}
+        </SheetTitle>
         <AnimatedFloatingPanels
           margin={0}
           paddingTop={24}
@@ -533,20 +552,32 @@ export default function ExchangeModal({
           }}
         >
           <FloatingPanel
+            marginLeft={15}
             overflow="visible"
             paddingBottom={showOutputField ? 0 : 26}
             radius={24}
             testID={testID}
-            width={`92%`}
-            marginLeft={15}
+            width="92%"
           >
-            <ExchangeModalHeader
-              onPressDetails={navigateToSwapDetailsModal}
-              showDetailsButton={showDetailsButton}
-              testID={testID + '-header'}
-              title={inputHeaderTitle}
-            />
-            {showOutputField && <ExchangeNotch />}
+            {/*<ExchangeModalHeader*/}
+            {/*  onPressDetails={navigateToSwapDetailsModal}*/}
+            {/*  showDetailsButton={showDetailsButton}*/}
+            {/*  testID={testID + '-header'}*/}
+            {/*  title={inputHeaderTitle}*/}
+            {/*/>*/}
+            {/*{showOutputField && <ExchangeNotch />}*/}
+            <Row justify="space-between" marginTop={16} paddingHorizontal={24}>
+              <PanelTitle>
+                {!(isDeposit || isWithdrawal) ? 'Send' : 'Amount'}
+              </PanelTitle>
+              {inputCurrency?.symbol ? (
+                <Text color={colors.blueGrey} size={16} weight="bold">{`Bal: ${
+                  (isWithdrawal ? supplyBalanceUnderlying : maxInputBalance)
+                    .toString()
+                    .substring(0, 6) || '0'
+                }... ${inputCurrency?.symbol}`}</Text>
+              ) : null}
+            </Row>
             <ExchangeInputField
               disableInputCurrencySelection={isWithdrawal}
               inputAmount={inputAmountDisplay}
@@ -563,19 +594,41 @@ export default function ExchangeModal({
               setNativeAmount={updateNativeAmount}
               testID={testID + '-input'}
             />
-            {showOutputField && (
-              <ExchangeOutputField
-                onFocus={handleFocus}
-                onPressSelectOutputCurrency={navigateToSelectOutputCurrency}
-                outputAmount={outputAmountDisplay}
-                outputCurrencyAddress={outputCurrency?.address}
-                outputCurrencySymbol={outputCurrency?.symbol}
-                outputFieldRef={outputFieldRef}
-                setOutputAmount={updateOutputAmount}
-                testID={testID + '-output'}
-              />
-            )}
           </FloatingPanel>
+          {showOutputField && (
+            <Fragment>
+              <Centered marginTop={16}>
+                <DotArrow />
+              </Centered>
+              <FloatingPanel
+                marginLeft={15}
+                marginTop={16}
+                overflow="visible"
+                paddingBottom={showOutputField ? 0 : 26}
+                radius={24}
+                testID={testID}
+                width="92%"
+              >
+                <Row
+                  justify="space-between"
+                  marginTop={16}
+                  paddingHorizontal={24}
+                >
+                  <PanelTitle>Receive</PanelTitle>
+                </Row>
+                <ExchangeOutputField
+                  onFocus={handleFocus}
+                  onPressSelectOutputCurrency={navigateToSelectOutputCurrency}
+                  outputAmount={outputAmountDisplay}
+                  outputCurrencyAddress={outputCurrency?.address}
+                  outputCurrencySymbol={outputCurrency?.symbol}
+                  outputFieldRef={outputFieldRef}
+                  setOutputAmount={updateOutputAmount}
+                  testID={testID + '-output'}
+                />
+              </FloatingPanel>
+            </Fragment>
+          )}
           {isDeposit && (
             <SwapInfo
               amount={(inputAmount > 0 && outputAmountDisplay) || null}

@@ -43,7 +43,7 @@ const BackgroundGradient = styled(RadialGradient).attrs(
 `;
 
 const SearchIcon = styled(Text).attrs(({ theme: { colors } }) => ({
-  color: colors.alpha(colors.blueGreyDark, 0.5),
+  color: colors.coinburp,
   size: 'large',
   weight: 'semibold',
 }))``;
@@ -56,12 +56,12 @@ const SearchInput = styled(Input).attrs(({ theme: { colors } }) => ({
   autoCapitalize: 'words',
   blurOnSubmit: false,
   clearTextOnFocus: true,
-  color: colors.alpha(colors.blueGreyDark, 0.8),
+  color: colors.black,
   enablesReturnKeyAutomatically: true,
   keyboardAppearance: 'dark',
   keyboardType: 'ascii-capable',
   lineHeight: 'loose',
-  placeholderTextColor: colors.alpha(colors.blueGreyDark, 0.5),
+  placeholderTextColor: colors.blueGrey,
   returnKeyType: 'search',
   selectionColor: colors.appleBlue,
   size: 'large',

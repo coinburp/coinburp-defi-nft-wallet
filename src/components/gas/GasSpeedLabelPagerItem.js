@@ -39,7 +39,7 @@ const TransitionContainer = styled(Transitioning.View)`
 
 const GasSpeedLabel = styled(Text).attrs({
   align: 'right',
-  size: 'lmedium',
+  size: 16,
   weight: 'bold',
 })``;
 
@@ -88,11 +88,7 @@ const GasSpeedLabelPagerItem = ({ label, selected, shouldAnimate, theme }) => {
           label={label}
         />
         <GasSpeedLabel
-          color={
-            theme !== 'light'
-              ? colors.whiteLabel
-              : colors.alpha(colors.blueGreyDark, 0.8)
-          }
+          color={colors.coinburp}
         >
           {upperFirst(label)}
         </GasSpeedLabel>

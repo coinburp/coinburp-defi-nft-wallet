@@ -7,22 +7,25 @@ import { useColorForAsset } from '@rainbow-me/hooks';
 import { padding } from '@rainbow-me/styles';
 
 const Container = styled(ButtonPressAnimation)`
-  margin-right: 4;
+  margin-right: 24px;
 `;
 
-const MaxButtonContent = styled(Row).attrs({
+const MaxButtonContent = styled(Row).attrs(({theme: {colors}}) => ({
   align: 'center',
-})`
-  ${padding(0, 19)};
-  height: 32;
+  backgroundColor: colors.coinburp,
+  borderRadius: 8,
+}))`
+  ${padding(0, 6, 3)};
+  height: 25px;
 `;
 
 const MaxButtonLabel = styled(Text).attrs({
   align: 'center',
-  size: 'lmedium',
-  weight: 'bold',
+  color: 'white',
+  size: 16,
+  weight: 900,
 })`
-  margin-top: 3;
+  margin-top: 3px;
 `;
 
 export default function ExchangeMaxButton({
@@ -37,7 +40,7 @@ export default function ExchangeMaxButton({
     <Container disabled={disabled} onPress={onPress} testID={testID}>
       <MaxButtonContent>
         <MaxButtonLabel color={colorForAsset || colors.appleBlue}>
-          􀜍 Max
+          Max
         </MaxButtonLabel>
       </MaxButtonContent>
     </Container>

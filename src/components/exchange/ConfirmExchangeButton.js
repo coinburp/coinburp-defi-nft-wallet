@@ -50,7 +50,7 @@ const ConfirmExchangeButton = ({
   return (
     <HoldToAuthorizeButton
       disabled={isDisabled}
-      disabledBackgroundColor={colors.alpha(colors.blueGreyDark, 0.04)}
+      disabledBackgroundColor={colors.alpha(colors.white, 0.12)}
       flex={1}
       hideInnerBorder
       isAuthorizing={isAuthorizing}

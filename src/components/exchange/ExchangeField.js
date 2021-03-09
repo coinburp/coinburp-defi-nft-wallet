@@ -38,6 +38,8 @@ const FieldRow = styled(RowWithMargins).attrs({
 
 const Input = styled(ExchangeInput).attrs({
   letterSpacing: 'roundedTightest',
+  size: 32,
+  weight: 900,
 })`
   margin-vertical: -10;
   height: ${ExchangeFieldHeight + (android ? 20 : 0)};
@@ -70,21 +72,19 @@ const ExchangeField = (
     <Container {...props}>
       <TouchableWithoutFeedback onPress={handleFocusField}>
         <FieldRow disableCurrencySelection={disableCurrencySelection}>
-          {symbol ? (
-            <CoinIcon address={address} symbol={symbol} />
-          ) : (
-            <CoinIconSkeleton />
-          )}
+          {/*{symbol ? (*/}
+          {/*  <CoinIcon address={address} symbol={symbol} />*/}
+          {/*) : (*/}
+          {/*  <CoinIconSkeleton />*/}
+          {/*)}*/}
           <Input
-            color={colorForAsset}
+            color={colors.black}
             editable={!!symbol}
             onBlur={onBlur}
             onChangeText={setAmount}
             onFocus={onFocus}
             placeholder={symbol ? '0' : EnDash.unicode}
-            placeholderTextColor={
-              symbol ? undefined : colors.alpha(colors.blueGreyDark, 0.1)
-            }
+            placeholderTextColor={colors.blueGrey}
             ref={ref}
             testID={amount ? `${testID}-${amount}` : testID}
             useCustomAndroidMask={useCustomAndroidMask}

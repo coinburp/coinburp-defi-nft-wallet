@@ -9,10 +9,10 @@ import { magicMemo } from '@rainbow-me/utils';
 const AndroidMaskWrapper = styled.View`
   background-color: ${({ theme: { colors } }) => colors.white};
   bottom: 0;
-  left: 68.7;
+  left: 18;
   position: absolute;
   right: 0;
-  top: 11.5;
+  top: 10;
 `;
 
 const Input = styled(TextInputMask).attrs({
@@ -26,7 +26,7 @@ const Input = styled(TextInputMask).attrs({
 
 const ExchangeInput = (
   {
-    androidMaskMaxLength = 8,
+    androidMaskMaxLength = 7,
     color: givenColor,
     editable,
     keyboardAppearance = 'dark',
@@ -51,7 +51,7 @@ const ExchangeInput = (
   const { colors } = useTheme();
   const color = givenColor || colors.dark;
   const placeholderTextColor =
-    givenPlaceholderTextColor || colors.alpha(colors.blueGreyDark, 0.3);
+    givenPlaceholderTextColor || colors.blueGrey;
   const selectionColor = givenSelectionColor || color;
   const [isFocused, setIsFocused] = useState(false);
   const [isTouched, setIsTouched] = useState(false);

@@ -15,7 +15,7 @@ const NativeFieldRow = styled(Row).attrs({
   align: 'center',
   justify: 'space-between',
 })`
-  height: ${android ? 16 : 32};
+  height: 57px;
   padding-left: 19;
 `;
 
