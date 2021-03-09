@@ -44,7 +44,7 @@ const BackgroundGradient = styled(RadialGradient).attrs(
 
 const SearchIcon = styled(Text).attrs(({ theme: { colors } }) => ({
   color: colors.coinburp,
-  size: 'large',
+  size: 'coinburpBig',
   weight: 'semibold',
 }))``;
 
@@ -56,15 +56,15 @@ const SearchInput = styled(Input).attrs(({ theme: { colors } }) => ({
   autoCapitalize: 'words',
   blurOnSubmit: false,
   clearTextOnFocus: true,
-  color: colors.black,
+  color: colors.alpha(colors.coinburp, 0.8),
   enablesReturnKeyAutomatically: true,
   keyboardAppearance: 'dark',
   keyboardType: 'ascii-capable',
   lineHeight: 'loose',
-  placeholderTextColor: colors.blueGrey,
+  placeholderTextColor: colors.skyBlue,
   returnKeyType: 'search',
   selectionColor: colors.appleBlue,
-  size: 'large',
+  size: 'lmedium',
   spellCheck: false,
   weight: 'semibold',
 }))`
@@ -80,7 +80,7 @@ const SearchInput = styled(Input).attrs(({ theme: { colors } }) => ({
 const SearchSpinner = styled(ImgixImage).attrs(({ theme: { colors } }) => ({
   resizeMode: ImgixImage.resizeMode.contain,
   source: Spinner,
-  tintColor: colors.alpha(colors.blueGreyDark, 0.6),
+  tintColor: colors.coinburp,
 }))`
   height: 20;
   width: 20;
@@ -141,6 +141,7 @@ const ExchangeSearch = (
       return {
         opacity: 1 - spinnerScale.value,
         transform: [{ scale: 1 - spinnerScale.value }],
+        marginTop: ios ? 6 : 0,
       };
     },
     undefined,

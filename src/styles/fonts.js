@@ -41,6 +41,7 @@ font.size = {
   large: '18px',
   larger: '20px',
   big: '23px',
+  coinburpBig: '24px',
   bigger: '26px',
   biggest: '36px',
   headline: '50px',
