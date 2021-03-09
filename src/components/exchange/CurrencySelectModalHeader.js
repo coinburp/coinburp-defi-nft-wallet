@@ -27,8 +27,9 @@ const HeaderContainer = styled(Centered)`
 const Title = styled(TruncatedText).attrs({
   align: 'center',
   lineHeight: 'loose',
-  size: 'larger',
+  size: 24,
   weight: 'heavy',
+  fontWeight: 900
 })`
   ${padding(1, 0, 0)};
   height: 21;
@@ -60,7 +61,7 @@ export default function CurrencySelectModalHeader({ testID, manualTitle = null }
           throttle
         />
       </BackButtonWrapper>
-      <Title weight="bold">{title}</Title>
+      <Title weight={900}>{title}</Title>
     </HeaderContainer>
   );
 }

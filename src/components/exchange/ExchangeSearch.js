@@ -141,7 +141,7 @@ const ExchangeSearch = (
       return {
         opacity: 1 - spinnerScale.value,
         transform: [{ scale: 1 - spinnerScale.value }],
-        marginTop: 6,
+        marginTop: ios ? 6 : 0,
       };
     },
     undefined,
