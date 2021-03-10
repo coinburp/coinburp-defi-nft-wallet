@@ -58,19 +58,10 @@ export default function TokenSelectionButton({
 
   return (
     <ButtonPressAnimation
-      borderRadius={borderRadius}
       contentContainerStyle={{}}
       onPress={onPress}
-      radiusAndroid={borderRadius}
       testID={testID}
     >
-      <ShadowStack
-        {...position.coverAsObject}
-        backgroundColor={colorForAsset}
-        borderRadius={borderRadius}
-        elevation={TokenSelectionButtonElevation}
-        shadows={shadowsForAsset}
-      />
       <Content>
         {symbol ? (
           <CoinIcon address={address} size={32} symbol={symbol} />
@@ -81,12 +72,12 @@ export default function TokenSelectionButton({
           size={32}
           testID={testID + '-text'}
           weight={900}
+          style={{height: ios ? 38 : 58}}
         >
           {symbol || 'Choose'}
         </Text>
         <Icon direction="down" marginLeft={12} name="caretThick" size={24} />
       </Content>
-      <InnerBorder radius={borderRadius} />
     </ButtonPressAnimation>
   );
 }
