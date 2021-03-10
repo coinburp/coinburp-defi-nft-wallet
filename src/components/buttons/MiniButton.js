@@ -71,7 +71,7 @@ export default function MiniButton({
       <View style={{ borderRadius }}>
         <ShadowStack
           {...position.coverAsObject}
-          backgroundColor={disabled ? colors.coinburp : colors.coinburp}
+          backgroundColor={disabled ? colors.skyBlue : colors.coinburp}
           borderRadius={borderRadius}
           height={height}
           shadows={
