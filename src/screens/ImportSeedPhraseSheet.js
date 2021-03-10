@@ -110,7 +110,7 @@ const KeyboardSizeView = styled(KeyboardArea)`
   justify-content: center;
 `;
 
-const SecretTextArea = styled(Input).attrs({
+const SecretTextArea = styled(Input).attrs(({ value }) => ({
   align: 'center',
   autoCapitalize: 'none',
   autoCorrect: false,
@@ -125,8 +125,8 @@ const SecretTextArea = styled(Input).attrs({
   returnKeyType: 'done',
   size: 'h2',
   spellCheck: false,
-  weight: 'bold',
-})`
+  weight: value ? 'heavy' : 'bold',
+}))`
   margin-bottom: ${android ? 55 : 0};
   min-height: ${android ? 100 : 186};
   width: 100%;
@@ -450,10 +450,7 @@ export default function ImportSeedPhraseSheet() {
                   {busy ? (
                     <LoadingSpinner />
                   ) : (
-                    <ImportIcon
-                      color={colors.white}
-                      name="import"
-                    />
+                    <ImportIcon color={colors.white} name="import" />
                   )}
                   <Text
                     align="center"
