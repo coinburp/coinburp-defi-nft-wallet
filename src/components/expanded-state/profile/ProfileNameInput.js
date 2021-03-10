@@ -5,17 +5,17 @@ import { PlaceholderText } from '../../text';
 import { useMagicAutofocus } from '@rainbow-me/hooks';
 import { fonts, fontWithWidth } from '@rainbow-me/styles';
 
-const NameInput = styled(Input).attrs({
+const NameInput = styled(Input).attrs(({ theme: { colors } }) => ({
   align: 'center',
-  autoCapitalize: 'words',
   autoFocus: true,
-  color: 'dark',
+  color: colors.black,
   letterSpacing: 'roundedTight',
   returnKeyType: 'done',
-  size: 'big',
+  size: '32px',
   spellCheck: false,
-})`
-  ${fontWithWidth(fonts.weight.bold)};
+  weight: 'heavy',
+}))`
+  ${fontWithWidth(fonts.weight.heavy)};
   ${android ? 'height: 70; margin-vertical: -8;' : ''}
   width: 100%;
 `;

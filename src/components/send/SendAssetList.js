@@ -12,17 +12,19 @@ import { buildCoinsList } from '../../helpers/assets';
 import networkTypes from '../../helpers/networkTypes';
 import { deviceUtils } from '../../utils';
 import Divider, { DividerSize } from '../Divider';
-import { FlyInAnimation } from '../animations';
 import { CoinDividerOpenButton } from '../coin-divider';
 import {
   CollectiblesSendRow,
   SendCoinRow,
   SendSavingsCoinRow,
 } from '../coin-row';
-import { Centered } from '../layout';
+import {Centered, Column, ColumnWithMargins, Row} from '../layout';
 import SavingsListHeader from '../savings/SavingsListHeader';
 import TokenFamilyHeader from '../token-family/TokenFamilyHeader';
 import { ImgixImage } from '@rainbow-me/images';
+import {useDimensions} from "@rainbow-me/hooks";
+import {Text} from "../text";
+import {Icon} from "../icons";
 
 const dividerMargin = 10;
 const dividerHeight = DividerSize + dividerMargin * 2;
@@ -41,6 +43,25 @@ const SendAssetRecyclerListView = styled(RecyclerListView)`
   min-height: 1;
 `;
 
+const footerMargin = 31;
+const FooterContainer = styled(ColumnWithMargins).attrs(({ deviceHeight }) => ({
+  justify: 'center',
+  alignltemes: 'stretch',
+  alignSelf: 'stretch',
+  margin: deviceHeight > 812 ? footerMargin : footerMargin / 2,
+}))`
+  // width: 100%;
+  z-index: 3;
+`;
+
+const ArrowSmall = styled(Icon).attrs({
+  name: 'arrowSmall',
+})`
+  margin-top: 12;
+  margin-left: 12;
+`;
+
+
 const SendAssetListDivider = () => {
   const { colors } = useTheme();
   return (
@@ -51,6 +72,7 @@ const SendAssetListDivider = () => {
 };
 
 export default class SendAssetList extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -418,20 +440,48 @@ export default class SendAssetList extends React.Component {
 
   render() {
     const { dataProvider, openShitcoins } = this.state;
+    const { width, txSpeedRenderer, deviceHeight, colors } = this.props;
 
     return (
-      <FlyInAnimation>
-        <SendAssetRecyclerListView
-          dataProvider={dataProvider}
-          disableRecycling
-          extendedState={{ openShitcoins }}
-          layoutProvider={this._layoutProvider}
-          onScroll={this.handleScroll}
-          ref={this.handleRef}
-          rowRenderer={this.renderRow}
-          testID="send-asset-list"
-        />
-      </FlyInAnimation>
+      <Column align="center">
+        <Column
+          backgroundColor="white"
+          borderRadius={24}
+          justify="center"
+          marginBottom={34}
+          marginTop={16}
+          paddingLeft={24}
+          paddingRight={24}
+          width={width - 32}
+        >
+          <Row align="center" height={51} justify="space-between">
+            <Text color={colors.black} size={16} weight="bold">
+              ASSET
+            </Text>
+          </Row>
+          <Row align="center" height={74} justify="space-between">
+            <Row flexDirection="row" flexWrap="wrap">
+              <Text color={colors.coinburp} size={32} weight="heavy">
+                Choose
+              </Text>
+              <ArrowSmall />
+            </Row>
+            <SendAssetRecyclerListView
+              dataProvider={dataProvider}
+              disableRecycling
+              extendedState={{ openShitcoins }}
+              layoutProvider={this._layoutProvider}
+              onScroll={this.handleScroll}
+              ref={this.handleRef}
+              rowRenderer={this.renderRow}
+              testID="send-asset-list"
+            />
+          </Row>
+        </Column>
+        <FooterContainer deviceHeight={deviceHeight}>
+          {txSpeedRenderer}
+        </FooterContainer>
+      </Column>
     );
   }
 }

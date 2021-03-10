@@ -4,11 +4,11 @@ import Text from './Text';
 
 const Placeholder = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'center',
-  color: colors.alpha(colors.blueGreyDark, 0.3),
-  size: 'big',
-  weight: 'semibold',
+  color: colors.skyBlue,
+  size: '32px',
+  weight: 'heavy',
 }))`
-  margin-bottom: ${android ? -48 : -27};
+  margin-bottom: ${android ? -58 : -37};
   width: 100%;
 `;
 

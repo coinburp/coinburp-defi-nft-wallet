@@ -6,6 +6,7 @@ import ApplePayIcon from './svg/ApplePayIcon';
 import ArrowBackIcon from './svg/ArrowBack';
 import ArrowCircledIcon from './svg/ArrowCircledIcon';
 import ArrowIcon from './svg/ArrowIcon';
+import { ArrowSmall } from './svg/ArrowSmall';
 import AvatarIcon from './svg/AvatarIcon';
 import BackspaceIcon from './svg/BackspaceIcon';
 import BackIcon from './svg/BackIcon'
@@ -68,14 +69,15 @@ import ShareIcon from './svg/ShareIcon';
 import SignatureIcon from './svg/SignatureIcon';
 import SpinnerIcon from './svg/SpinnerIcon';
 import StarIcon from './svg/StarIcon';
-import SwapIcon from './svg/SwapIcon';
 import SwapCircleIcon from './svg/SwapCircleIcon';
+import SwapIcon from './svg/SwapIcon';
 import ThreeDotsIcon from './svg/ThreeDotsIcon';
 import TouchIdIcon from './svg/TouchIdIcon';
 import WalletConnectIcon from './svg/WalletConnectIcon';
 import WarningCircledIcon from './svg/WarningCircledIcon';
 import WithdrawArrowIcon from './svg/WithdrawArrowIcon';
 import WithdrawIconSmall from './svg/WithdrawIconSmall';
+
 import {
   BackupIcon,
   CloudIcon,
@@ -89,6 +91,7 @@ import {
 } from './svg/seetings';
 
 const IconTypes = {
+  arrowSmall: ArrowSmall,
   applePay: ApplePayIcon,
   arrow: ArrowIcon,
   arrowBack: ArrowBackIcon,
