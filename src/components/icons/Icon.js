@@ -8,8 +8,8 @@ import ArrowCircledIcon from './svg/ArrowCircledIcon';
 import ArrowIcon from './svg/ArrowIcon';
 import { ArrowSmall } from './svg/ArrowSmall';
 import AvatarIcon from './svg/AvatarIcon';
+import BackIcon from './svg/BackIcon';
 import BackspaceIcon from './svg/BackspaceIcon';
-import BackIcon from './svg/BackIcon'
 import CameraIcon from './svg/CameraIcon';
 import CaretIcon from './svg/CaretIcon';
 import CaretThickIcon from './svg/CaretThickIcon';
@@ -38,7 +38,6 @@ import EmojiRecentIcon from './svg/EmojiRecentIcon';
 import EmojiSmileysIcon from './svg/EmojiSmileysIcon';
 import EmojiSymbolsIcon from './svg/EmojiSymbolsIcon';
 import EmojiTravelIcon from './svg/EmojiTravelIcon';
-import FaceIcon from './svg/FaceIcon';
 import FaceIdIcon from './svg/FaceIdIcon';
 import FatArrowIcon from './svg/FatArrowIcon';
 import GearIcon from './svg/GearIcon';
@@ -46,6 +45,7 @@ import GuideIcon from './svg/GuideIcon';
 import HandleIcon from './svg/HandleIcon';
 import Heart from './svg/Heart';
 import HiddenIcon from './svg/HiddenIcon';
+import ImportIcon from './svg/ImportIcon';
 import InboxIcon from './svg/InboxIcon';
 import InfoIcon from './svg/InfoIcon';
 import LinkIcon from './svg/LinkIcon';
@@ -91,15 +91,14 @@ import {
 } from './svg/seetings';
 
 const IconTypes = {
-  arrowSmall: ArrowSmall,
   applePay: ApplePayIcon,
   arrow: ArrowIcon,
   arrowBack: ArrowBackIcon,
   arrowCircled: ArrowCircledIcon,
+  arrowSmall: ArrowSmall,
   avatar: AvatarIcon,
   backspace: BackspaceIcon,
   backup: BackupIcon,
-  scanBack: BackIcon,
   camera: CameraIcon,
   caret: CaretIcon,
   caretThick: CaretThickIcon,
@@ -130,8 +129,7 @@ const IconTypes = {
   emojiSmileys: EmojiSmileysIcon,
   emojiSymbols: EmojiSymbolsIcon,
   emojiTravel: EmojiTravelIcon,
-  face: FaceIcon,
-  faceid: FaceIcon,
+  faceid: FaceIdIcon,
   fatArrow: FatArrowIcon,
   fingerprint: TouchIdIcon,
   gear: GearIcon,
@@ -139,6 +137,7 @@ const IconTypes = {
   handle: HandleIcon,
   heart: Heart,
   hidden: HiddenIcon,
+  import: ImportIcon,
   inbox: InboxIcon,
   info: InfoIcon,
   link: LinkIcon,
@@ -156,6 +155,7 @@ const IconTypes = {
   qrIcon: QRIcon,
   ring: RingIcon,
   scan: Scan,
+  scanBack: BackIcon,
   scanner: ScannerIcon,
   search: SearchIcon,
   send: SendIcon,

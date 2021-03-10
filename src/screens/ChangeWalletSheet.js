@@ -14,7 +14,7 @@ import styled from 'styled-components';
 import Divider from '../components/Divider';
 import { ButtonPressAnimation } from '../components/animations';
 import WalletList from '../components/change-wallet/WalletList';
-import { Column } from '../components/layout';
+import { Column, Row } from '../components/layout';
 import ModalHeaderButton from '../components/modal/ModalHeaderButton';
 import { Sheet, SheetTitle } from '../components/sheet';
 import { Text } from '../components/text';
@@ -64,21 +64,7 @@ const EditButton = styled(ButtonPressAnimation).attrs(({ editMode }) => ({
     marginRight: 7,
     width: editMode ? 70 : 58,
   },
-}))`
-  padding: 12px;
-  ${ios
-    ? `
-  position: absolute;
-  right: 7px;
-  top: 9px;
-  `
-    : `
-    position: relative;
-    right: 0px;
-    top: -10px;
-    z-index: 99999;
-  `}
-`;
+}))``;
 
 const EditButtonLabel = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'right',
@@ -461,18 +447,34 @@ export default function ChangeWalletSheet() {
   return (
     <Sheet borderRadius={30}>
       {android && <Whitespace />}
-      {/*<ModalHeaderButton onPress={goBack} side="left" />*/}
-      <Column height={headerHeight} justify="space-between">
-        <SheetTitle>Wallets</SheetTitle>
-        {showDividers && (
-          <Divider color={colors.rowDividerExtraLight} inset={[0, 15]} />
-        )}
-      </Column>
-      <EditButton editMode={editMode} onPress={() => setEditMode(e => !e)}>
-        <EditButtonLabel editMode={editMode}>
-          {editMode ? 'Done' : 'Edit'}
-        </EditButtonLabel>
-      </EditButton>
+      <Row>
+        <Column align="flex-start" flex="1" height={24} justify="space-between">
+          <ModalHeaderButton onPress={goBack} side="left" />
+        </Column>
+        <Column
+          align="center"
+          flex="4.5"
+          height={headerHeight}
+          justify="space-between"
+        >
+          <SheetTitle weight="heavy">Wallets</SheetTitle>
+          {showDividers && (
+            <Divider color={colors.rowDividerExtraLight} inset={[0, 15]} />
+          )}
+        </Column>
+        <Column
+          align="flex-start"
+          flex="1"
+          height={headerHeight}
+          justify="space-between"
+        >
+          <EditButton editMode={editMode} onPress={() => setEditMode(e => !e)}>
+            <EditButtonLabel editMode={editMode}>
+              {editMode ? 'Done' : 'Edit'}
+            </EditButtonLabel>
+          </EditButton>
+        </Column>
+      </Row>
       <WalletList
         accountAddress={currentAddress}
         allWallets={walletsWithBalancesAndNames}

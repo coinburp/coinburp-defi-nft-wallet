@@ -46,7 +46,8 @@ const Content = styled(RowWithMargins).attrs({
 export default function MiniButton({
   borderRadius = 8,
   children,
-  disabled, shadowsDisabled,
+  disabled,
+  shadowsDisabled,
   hasLeadingIcon,
   onPress,
   scaleTo = 0.82,
@@ -73,7 +74,9 @@ export default function MiniButton({
           backgroundColor={disabled ? colors.coinburp : colors.coinburp}
           borderRadius={borderRadius}
           height={height}
-          shadows={(shadowsDisabled || disabled) ? shadows.disabled : shadows.default}
+          shadows={
+            shadowsDisabled || disabled ? shadows.disabled : shadows.default
+          }
           width={width}
         />
         <Content hasLeadingIcon={hasLeadingIcon}>

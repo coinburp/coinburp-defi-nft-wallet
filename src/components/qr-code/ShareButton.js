@@ -5,8 +5,8 @@ import { useTheme } from '../../context/ThemeContext';
 import { ButtonPressAnimation } from '../animations';
 import { Centered, InnerBorder } from '../layout';
 import { Text } from '../text';
+import { useDimensions } from '@rainbow-me/hooks';
 import ShadowStack from 'react-native-shadow-stack';
-import {useDimensions} from "@rainbow-me/hooks";
 
 const Label = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'center',

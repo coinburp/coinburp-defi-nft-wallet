@@ -7,7 +7,9 @@ import { ButtonPressAnimation } from '../animations';
 import { BiometricButtonContent } from '../buttons';
 import ImageAvatar from '../contacts/ImageAvatar';
 import CopyTooltip from '../copy-tooltip';
-import { Centered, ColumnWithDividers } from '../layout';
+import { Centered, Column, ColumnWithDividers, Row } from '../layout';
+import ModalHeaderButton from '../modal/ModalHeaderButton';
+import { SheetTitle } from '../sheet';
 import { Text, TruncatedAddress } from '../text';
 import { ProfileAvatarButton, ProfileModal, ProfileNameInput } from './profile';
 import {
@@ -43,7 +45,8 @@ const WalletProfileButton = styled(ButtonPressAnimation)`
   ${padding(15, 0, 19)};
   ${position.centered};
   flex-direction: row;
-  height: 58;
+  height: 64;
+  margin-bottom: ${({ marginBottom }) => marginBottom};
   width: 100%;
 `;
 
@@ -53,7 +56,7 @@ const WalletProfileButtonText = styled(Text).attrs({
 })``;
 
 const ProfileImage = styled(ImageAvatar)`
-  margin-bottom: 15;
+  margin-bottom: 16;
 `;
 
 const WalletProfileDivider = styled(Divider).attrs(({ theme: { colors } }) => ({
@@ -119,9 +122,19 @@ export default function WalletProfileState({
 
   return (
     <WalletProfileModal>
+      <Row>
+        <Column align="flex-end" flex="1" height={24} justify="space-between">
+          <ModalHeaderButton onPress={goBack} side="left" />
+        </Column>
+        <Column align="center" flex="6" height={52} justify="space-between">
+          <SheetTitle weight="heavy">Create Wallet</SheetTitle>
+        </Column>
+        <Column align="flex-end" flex="1" height={24} />
+      </Row>
       <Centered
         direction="column"
         paddingBottom={30}
+        paddingTop={16}
         testID="wallet-info-modal"
         width="100%"
       >
@@ -142,7 +155,7 @@ export default function WalletProfileState({
         <ProfileNameInput
           onChange={setValue}
           onSubmitEditing={handleSubmit}
-          placeholder="Name your wallet"
+          placeholder="Wallet name"
           ref={inputRef}
           selectionColor={colors.avatarColor[color]}
           testID="wallet-info-input"
@@ -159,18 +172,19 @@ export default function WalletProfileState({
         )}
       </Centered>
       <ColumnWithDividers dividerRenderer={WalletProfileDivider} width="100%">
-        <WalletProfileButton onPress={handleSubmit}>
+        <WalletProfileButton marginBottom={0} onPress={handleSubmit}>
           <BiometricButtonContent
+            color="white"
             showIcon={actionType === 'Create'}
             testID="wallet-info-submit-button"
-            text={isNewProfile ? `${actionType} Wallet` : 'Done'}
+            text={isNewProfile ? actionType : 'Done'}
           />
         </WalletProfileButton>
-        <WalletProfileButton onPress={handleCancel}>
+        <WalletProfileButton marginBottom={24} onPress={handleCancel}>
           <WalletProfileButtonText
-            color={colors.alpha(colors.blueGreyDark, 0.6)}
+            color={colors.neonRed}
             letterSpacing="roundedMedium"
-            weight="medium"
+            weight="heavy"
           >
             Cancel
           </WalletProfileButtonText>

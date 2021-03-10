@@ -8,11 +8,11 @@ import { Text as UnstyledText } from '../text';
 
 const BackArrow = styled(Icon).attrs(({ theme: { colors } }) => ({
   color: colors.coinburp,
-  direction: 'left',
   name: 'caret',
 }))`
   height: 16;
   margin-top: ${android ? 6 : 0};
+  margin-left: 16px;
 `;
 
 const Container = styled(Row).attrs(({ side }) => ({

@@ -15,9 +15,11 @@ import styled from 'styled-components';
 import ActivityIndicator from '../components/ActivityIndicator';
 import Spinner from '../components/Spinner';
 import { MiniButton } from '../components/buttons';
+import { Icon } from '../components/icons';
 import { Input } from '../components/inputs';
 import { Centered, Column, Row } from '../components/layout';
-import { SheetHandle } from '../components/sheet';
+import ModalHeaderButton from '../components/modal/ModalHeaderButton';
+import { SheetHandle, SheetTitle } from '../components/sheet';
 import { Text } from '../components/text';
 import {
   InvalidPasteToast,
@@ -99,11 +101,13 @@ const LoadingSpinner = styled(android ? Spinner : ActivityIndicator).attrs({
 `;
 
 const FooterButton = styled(MiniButton).attrs({
+  height: 32,
   testID: 'import-sheet-button',
 })``;
 
 const KeyboardSizeView = styled(KeyboardArea)`
   background-color: ${({ theme: { colors } }) => colors.white};
+  justify-content: center;
 `;
 
 const SecretTextArea = styled(Input).attrs({
@@ -113,17 +117,18 @@ const SecretTextArea = styled(Input).attrs({
   autoFocus: true,
   enablesReturnKeyAutomatically: true,
   keyboardType: android ? 'visible-password' : 'default',
-  lineHeight: 'looser',
+  letterSpacing: '1',
+  lineHeight: '40',
   multiline: true,
-  numberOfLines: 3,
-  placeholder: 'Seed phrase, private key, Ethereum address, or ENS name',
+  numberOfLines: 4,
+  placeholder: 'Send phrase, private key, Ethereum address, or ENS name',
   returnKeyType: 'done',
-  size: 'large',
+  size: 'h2',
   spellCheck: false,
-  weight: 'semibold',
+  weight: 'bold',
 })`
   margin-bottom: ${android ? 55 : 0};
-  min-height: ${android ? 100 : 50};
+  min-height: ${android ? 100 : 186};
   width: 100%;
 `;
 
@@ -140,6 +145,12 @@ const Sheet = styled(Column).attrs({
   ${padding(0, 15, sheetBottomPadding)};
   background-color: ${({ theme: { colors } }) => colors.white};
   z-index: 1;
+`;
+
+const ImportIcon = styled(Icon).attrs({
+  name: 'import',
+})`
+  margin: 4px 8px 4px 4px;
 `;
 
 export default function ImportSeedPhraseSheet() {
@@ -401,68 +412,79 @@ export default function ImportSeedPhraseSheet() {
       <StatusBar barStyle="light-content" />
       <Sheet>
         <SheetHandle marginBottom={7} marginTop={6} />
-        <Text size="large" weight="bold">
-          Add Wallet
-        </Text>
-        <SecretTextAreaContainer>
-          <SecretTextArea
-            color={isSecretValid ? colors.appleBlue : colors.dark}
-            onChangeText={handleSetSeedPhrase}
-            onFocus={handleFocus}
-            onSubmitEditing={handlePressImportButton}
-            placeholder="Seed phrase, private key, Ethereum address or ENS name"
-            placeholderTextColor={colors.alpha(colors.blueGreyDark, 0.3)}
-            ref={inputRef}
-            returnKeyType="done"
-            size="large"
-            spellCheck={false}
-            testID="import-sheet-input"
-            value={seedPhrase}
-          />
-        </SecretTextAreaContainer>
-        <Footer isSmallPhone={isSmallPhone}>
-          {seedPhrase ? (
-            <FooterButton
-              disabled={!isSecretValid}
-              hasLeadingIcon
-              {...(android && { height: 30, overflowMargin: 15, width: 89 })}
-              onPress={handlePressImportButton}
-            >
-              <Row>
-                {busy ? (
-                  <LoadingSpinner />
-                ) : (
-                  <Text align="center" color="whiteLabel" weight="bold">
-                    􀂍{' '}
+        <Row>
+          <Column align="flex-end" flex="1" height={24} justify="space-between">
+            <ModalHeaderButton onPress={goBack} side="left" />
+          </Column>
+          <Column align="center" flex="6" height={52} justify="space-between">
+            <SheetTitle weight="heavy">Add Wallet</SheetTitle>
+          </Column>
+          <Column align="flex-end" flex="1" height={24} />
+        </Row>
+        <Column>
+          <SecretTextAreaContainer>
+            <SecretTextArea
+              color={isSecretValid ? colors.appleBlue : colors.dark}
+              onChangeText={handleSetSeedPhrase}
+              onFocus={handleFocus}
+              onSubmitEditing={handlePressImportButton}
+              placeholder="Send phrase, private key, Ethereum address, or ENS name"
+              placeholderTextColor={colors.skyBlue}
+              ref={inputRef}
+              returnKeyType="done"
+              spellCheck={false}
+              testID="import-sheet-input"
+              value={seedPhrase}
+            />
+          </SecretTextAreaContainer>
+          <Footer isSmallPhone={isSmallPhone}>
+            {seedPhrase ? (
+              <FooterButton
+                disabled={!isSecretValid}
+                hasLeadingIcon
+                marginLeft={38}
+                {...(android && { height: 30, overflowMargin: 15, width: 89 })}
+                onPress={handlePressImportButton}
+              >
+                <Row>
+                  {busy ? (
+                    <LoadingSpinner />
+                  ) : (
+                    <ImportIcon
+                      color={colors.white}
+                      name="import"
+                    />
+                  )}
+                  <Text
+                    align="center"
+                    color="whiteLabel"
+                    size="larger"
+                    testID="import-sheet-button-label"
+                    weight="heavy"
+                  >
+                    Import
                   </Text>
-                )}
+                </Row>
+              </FooterButton>
+            ) : (
+              <FooterButton
+                {...(android && { height: 30, overflowMargin: 15, width: 63 })}
+                disabled={!isClipboardValidSecret}
+                onPress={handlePressPasteButton}
+              >
                 <Text
                   align="center"
                   color="whiteLabel"
+                  size="larger"
                   testID="import-sheet-button-label"
-                  weight="bold"
+                  weight="heavy"
                 >
-                  Import
+                  Paste
                 </Text>
-              </Row>
-            </FooterButton>
-          ) : (
-            <FooterButton
-              {...(android && { height: 30, overflowMargin: 15, width: 63 })}
-              disabled={!isClipboardValidSecret}
-              onPress={handlePressPasteButton}
-            >
-              <Text
-                align="center"
-                color="whiteLabel"
-                testID="import-sheet-button-label"
-                weight="bold"
-              >
-                Paste
-              </Text>
-            </FooterButton>
-          )}
-        </Footer>
+              </FooterButton>
+            )}
+          </Footer>
+        </Column>
       </Sheet>
       <ToastPositionContainer bottom={keyboardHeight}>
         <InvalidPasteToast />

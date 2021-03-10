@@ -17,6 +17,7 @@ const NameInput = styled(Input).attrs(({ theme: { colors } }) => ({
 }))`
   ${fontWithWidth(fonts.weight.heavy)};
   ${android ? 'height: 70; margin-vertical: -8;' : ''}
+  margin-bottom: 16px;
   width: 100%;
 `;
 

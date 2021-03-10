@@ -12,7 +12,7 @@ const buildSmallShadows = (color, colors) => [
 
 const sizeConfigs = colors => ({
   large: {
-    dimensions: 65,
+    dimensions: 128,
     radius: 6,
     shadow: [
       [0, 6, 10, colors.shadow, 0.12],
