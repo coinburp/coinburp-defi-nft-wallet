@@ -21,19 +21,22 @@ const Content = styled(Row).attrs(({ isAbsolute }) => ({
 `;
 
 const CircleOutline = styled.View`
-  ${borders.buildCircle(22)}
+  ${borders.buildCircle(32)}
   border-color: ${({ theme: { colors } }) =>
-    colors.alpha(colors.blueGreyDark, 0.12)};
-  border-width: 1.5;
+    colors.alpha(colors.blueGrey, 1)};
+  border-width: 3;
+  background-color: white;
   position: absolute;
+  right: 7;
 `;
 
 const CheckmarkBackground = styled.View`
-  ${borders.buildCircle(22)}
-  ${padding(4.5)}
+  ${borders.buildCircle(32)}
+  ${padding(9.5)}
   ${({ theme: { isDarkMode, colors } }) =>
     shadow.build(0, 4, 12, isDarkMode ? colors.shadow : colors.coinburp, 0.4)}
   background-color: ${({ theme: { colors } }) => colors.coinburp};
+  right: 7;
 `;
 
 const CoinCheckButton = ({ isAbsolute, onPress, toggle, ...props }) => {
