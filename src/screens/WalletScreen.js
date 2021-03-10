@@ -120,7 +120,7 @@ export default function WalletScreen() {
           )}
         </Header>
         {isEmpty || !!params?.emptyWallet ? null : (
-          <Row css={padding(0, 50)} justify="space-between" marginTop={64}>
+          <Row css={padding(64, 52)} justify="space-between">
             <WalletActionButton
               isReadOnlyWallet={isReadOnlyWallet}
               title="Deposit"
