@@ -157,14 +157,19 @@ export default function CurrencySelectModal() {
       } else {
         filteredList = [
           {
-            color: colors.yellowFavorite,
+            colors: ['#f9d423', '#ff4e50'],
             data: favorites,
+            icon: 'star',
+            iconColor: colors.yellowFavorite,
             title: tokenSectionTypes.favoriteTokenSection,
+            useGradientText: true,
           },
           {
             data: curatedNotFavorited,
+            icon: 'check',
+            iconColor: '#fc00ff',
             title: tokenSectionTypes.verifiedTokenSection,
-            useGradientText: IS_TESTING === 'true' ? false : true,
+            useGradientText: true,
           },
         ];
       }

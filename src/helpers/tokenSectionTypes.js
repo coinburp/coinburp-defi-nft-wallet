@@ -1,6 +1,6 @@
 export default {
-  favoriteTokenSection: '􀋃 Favorites',
+  favoriteTokenSection: 'Favourites',
   lowLiquidityTokenSection: '􀇿 Low Liquidity',
   unverifiedTokenSection: '􀇿 Unverified',
-  verifiedTokenSection: '􀇻 Verified',
+  verifiedTokenSection: 'Verified',
 };
