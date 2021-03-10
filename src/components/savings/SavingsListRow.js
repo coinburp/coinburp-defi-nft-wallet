@@ -63,10 +63,21 @@ const SavingsListRowShadowStack = styled(ShadowStack).attrs(
   })
 )``;
 
+const SavingsListRowItem = styled(Row).attrs(
+  ({ deviceWidth, theme: { colors } }) => ({
+    align: 'center',
+    backgroundColor: colors.white,
+    borderRadius: 24,
+    height: 80,
+    paddingHorizontal: 24,
+    width: deviceWidth - 38,
+  })
+)``;
+
 const DaiText = styled(GradientText).attrs({
   angle: 318,
-  renderer: Text,
   colors: ['#ff2700', '#ffdb00'],
+  renderer: Text,
   size: 20,
   steps: [0, 0.42, 0.88, 1],
   weight: 900,
@@ -87,6 +98,17 @@ const APYText = styled(Text).attrs({
   weight: 900,
 })`
   color: white;
+`;
+
+const APYGradientText = styled(GradientText).attrs({
+  angle: 277,
+  colors: ['#ff2700', '#ffdb00'],
+  size: 16,
+  steps: [0, 0.99, 1],
+  weight: 'bold',
+})`
+  margin-left: 8px;
+  margin-top: 24px;
 `;
 
 const Pill = styled(LinearGradient)`
@@ -217,6 +239,30 @@ const SavingsListRow = ({
     [isDarkMode, colors]
   );
 
+  if (underlying.symbol && supplyBalanceUnderlying && !isNaN(displayValue)) {
+    return (
+      <ButtonPressAnimation
+        onPress={onButtonPress}
+        overflowMargin={10}
+        scaleTo={0.96}
+      >
+        <Centered direction="column" marginBottom={15}>
+          <SavingsListRowItem deviceWidth={deviceWidth}>
+            <CoinIcon address={underlying.address} symbol={underlying.symbol} />
+            <SavingsListRowAnimatedNumber
+              initialValue={initialValue}
+              interval={ANIMATE_NUMBER_INTERVAL}
+              steps={steps}
+              symbol={underlying.symbol}
+              value={displayValue}
+            />
+            <APYGradientText>{apyTruncated}% APY</APYGradientText>
+          </SavingsListRowItem>
+        </Centered>
+      </ButtonPressAnimation>
+    );
+  }
+
   return !underlying || !underlying.address ? null : (
     <ButtonPressAnimation
       onPress={onButtonPress}
@@ -236,28 +282,6 @@ const SavingsListRow = ({
             onPress={onButtonPress}
             scaleTo={0.96}
           >
-            {/*{underlying.symbol && supplyBalanceUnderlying ? (*/}
-            {/*  <Centered>*/}
-            {/*    <CoinIcon*/}
-            {/*      address={underlying.address}*/}
-            {/*      size={26}*/}
-            {/*      symbol={underlying.symbol}*/}
-            {/*    />*/}
-            {/*  </Centered>*/}
-            {/*) : null}*/}
-            {/*{supplyBalanceUnderlying &&*/}
-            {/*!isNaN(displayValue) &&*/}
-            {/*IS_TESTING !== 'true' ? (*/}
-            {/*  <SavingsListRowAnimatedNumber*/}
-            {/*    initialValue={initialValue}*/}
-            {/*    interval={ANIMATE_NUMBER_INTERVAL}*/}
-            {/*    steps={steps}*/}
-            {/*    symbol={underlying.symbol}*/}
-            {/*    value={displayValue}*/}
-            {/*  />*/}
-            {/*) : (*/}
-            {/*  <SavingsListRowEmptyState onPress={NOOP} />*/}
-            {/*)}*/}
             <Row align="center">
               <DAIIcon />
               <Column css={padding(0, 0, 0, 15)} justify="space-between">

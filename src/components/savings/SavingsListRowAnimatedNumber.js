@@ -12,15 +12,15 @@ const sx = StyleSheet.create({
     height: 30,
   },
   animatedNumberAndroid: {
-    left: 35,
+    left: 70,
     position: 'absolute',
-    top: 4,
+    top: 12,
   },
   text: {
     flex: 1,
     fontFamily: fonts.family.SFProRounded,
-    fontSize: parseFloat(fonts.size.lmedium),
-    fontWeight: fonts.weight.bold,
+    fontSize: parseFloat(fonts.size.large),
+    fontWeight: fonts.weight.black,
     letterSpacing: fonts.letterSpacing.roundedTightest,
     marginBottom: 0.5,
     marginLeft: 6,
@@ -50,7 +50,7 @@ const SavingsListRowAnimatedNumber = ({
   return (
     <TextComponent
       animationConfig={{
-        color: colors.green, // HEX
+        color: '#ECB12F', // HEX
         darkMode,
         decimals: 10,
         duration: 800, // in intervals
