@@ -27,8 +27,9 @@ const ProfileAvatarButton = ({
       <ContactAvatar
         color={color}
         marginBottom={marginBottom}
-        size="large"
+        size="xlarge"
         value={value}
+        disableBorder
       />
     </ButtonPressAnimation>
   );

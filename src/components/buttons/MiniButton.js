@@ -38,15 +38,15 @@ const Content = styled(RowWithMargins).attrs({
   margin: 5,
 })`
   ${({ hasLeadingIcon }) => padding(0, 10, 1, hasLeadingIcon ? 6 : 10)};
-  border-radius: 15px;
+  border-radius: 8px;
   height: 30;
   z-index: 1;
 `;
 
 export default function MiniButton({
-  borderRadius = 15,
+  borderRadius = 8,
   children,
-  disabled,
+  disabled, shadowsDisabled,
   hasLeadingIcon,
   onPress,
   scaleTo = 0.82,
@@ -70,10 +70,10 @@ export default function MiniButton({
       <View style={{ borderRadius }}>
         <ShadowStack
           {...position.coverAsObject}
-          backgroundColor={disabled ? colors.lightGrey : colors.appleBlue}
+          backgroundColor={disabled ? colors.coinburp : colors.coinburp}
           borderRadius={borderRadius}
           height={height}
-          shadows={disabled ? shadows.disabled : shadows.default}
+          shadows={(shadowsDisabled || disabled) ? shadows.disabled : shadows.default}
           width={width}
         />
         <Content hasLeadingIcon={hasLeadingIcon}>

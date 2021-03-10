@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { Transition, Transitioning } from 'react-native-reanimated';
 import { View } from 'react-primitives';
-import AddContactIcon from '../../assets/addContactIcon.png';
-import { useTheme } from '../../context/ThemeContext';
+import styled from 'styled-components';
 import { ButtonPressAnimation } from '../animations';
 import { Icon } from '../icons';
-import Button from './Button';
-import { ImgixImage } from '@rainbow-me/images';
+import { Text } from '../text';
+import MiniButton from './MiniButton';
 import { neverRerender } from '@rainbow-me/utils';
 
 const duration = 200;
@@ -40,41 +39,30 @@ const transition = (
   </Transition.Sequence>
 );
 
+const PlusIcon = styled(Icon).attrs({
+  name: 'plusCircled',
+  size: '32px',
+})``;
+
 const AddButton = neverRerender(({ onPress }) => {
-  const { colors } = useTheme();
   return (
-    <Button
-      backgroundColor={colors.appleBlue}
-      onPress={onPress}
-      size="small"
-      testID="add-contact-button"
-      type="pill"
-    >
-      <ImgixImage
-        source={AddContactIcon}
-        style={{
-          height: 14.7,
-          margin: 1.525,
-          width: 19,
-        }}
-      />
-    </Button>
+    <ButtonPressAnimation onPress={onPress} testID="add-contact-button">
+      <PlusIcon onPress={onPress} />
+    </ButtonPressAnimation>
   );
 });
 
 const EditButton = neverRerender(({ onPress }) => (
-  <ButtonPressAnimation
-    activeOpacity={0.2}
+  <MiniButton
     onPress={onPress}
-    style={{
-      height: 30,
-      justifyContent: 'center',
-      paddingRight: 4,
-    }}
+    shadowsDisabled
     testID="edit-contact-button"
+    {...(android && { height: 30, overflowMargin: 15, width: 60 })}
   >
-    <Icon name="threeDots" />
-  </ButtonPressAnimation>
+    <Text color="whiteLabel" size={16} weight="heavy">
+      Edit
+    </Text>
+  </MiniButton>
 ));
 
 const AddContactButton = ({ edit, onPress }) => {
@@ -88,15 +76,17 @@ const AddContactButton = ({ edit, onPress }) => {
 
   return (
     <View>
-      {edit ? (
-        <Transitioning.View ref={editButtonRef} transition={transition}>
-          <EditButton onPress={onPress} />
-        </Transitioning.View>
-      ) : (
-        <Transitioning.View ref={addButtonRef} transition={transition}>
-          <AddButton onPress={onPress} />
-        </Transitioning.View>
-      )}
+      <Transitioning.View ref={addButtonRef} transition={transition}>
+        {edit ? (
+          <Transitioning.View ref={editButtonRef} transition={transition}>
+            <EditButton onPress={onPress} />
+          </Transitioning.View>
+        ) : (
+          <Transitioning.View ref={addButtonRef} transition={transition}>
+            <AddButton onPress={onPress} />
+          </Transitioning.View>
+        )}
+      </Transitioning.View>
     </View>
   );
 };

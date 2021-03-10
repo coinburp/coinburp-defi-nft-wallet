@@ -5,24 +5,32 @@ import { useTheme } from '../../context/ThemeContext';
 import { useAccountSettings, useContacts } from '../../hooks';
 import { useNavigation } from '../../navigation/Navigation';
 import { abbreviations, magicMemo } from '../../utils';
-import Divider from '../Divider';
 import { ButtonPressAnimation } from '../animations';
 import { Button } from '../buttons';
 import { showDeleteContactActionSheet } from '../contacts';
 import CopyTooltip from '../copy-tooltip';
-import { Centered } from '../layout';
+import { Icon } from '../icons';
+import { Centered, ColumnWithMargins } from '../layout';
+import { SheetTitle } from '../sheet';
 import { Text, TruncatedAddress } from '../text';
 import { ProfileAvatarButton, ProfileModal, ProfileNameInput } from './profile';
 import { margin, padding } from '@rainbow-me/styles';
 
+const ArrowSmall = styled(Icon).attrs({
+  height: '34px',
+  name: 'arrowSmall',
+  rotateLeft: 'true',
+  width: '24px',
+})``;
+
 const AddressAbbreviation = styled(TruncatedAddress).attrs(
   ({ theme: { colors } }) => ({
     align: 'center',
-    color: colors.blueGreyDark,
+    color: colors.shadowBlack,
     firstSectionLength: abbreviations.defaultNumCharsPerSection,
-    size: 'lmedium',
+    size: '16px',
     truncationLength: 4,
-    weight: 'regular',
+    weight: 'heavy',
   })
 )`
   ${margin(9, 0, 5)};
@@ -31,23 +39,24 @@ const AddressAbbreviation = styled(TruncatedAddress).attrs(
 `;
 
 const Spacer = styled.View`
-  height: 19;
+  height: 48;
 `;
 
 const SubmitButton = styled(Button).attrs(({ theme: { colors }, value }) => ({
-  backgroundColor: value.length > 0 ? colors.appleBlue : undefined,
+  backgroundColor: colors.coinburp,
   disabled: !value.length > 0,
-  showShadow: true,
+  showShadow: false,
   size: 'small',
 }))`
-  height: 43;
-  width: 215;
+  height: 64;
+  width: 340;
+  border-radius: 24px;
 `;
 
 const SubmitButtonLabel = styled(Text).attrs(({ value }) => ({
   color: value.length > 0 ? 'whiteLabel' : 'white',
-  size: 'lmedium',
-  weight: 'bold',
+  size: '24px',
+  weight: 'heavy',
 }))`
   margin-bottom: 1.5;
 `;
@@ -95,20 +104,36 @@ const ContactProfileState = ({ address, color: colorProp, contact }) => {
 
   return (
     <ProfileModal onPressBackdrop={handleAddContact}>
-      <Centered css={padding(24, 25)} direction="column">
+      <Centered css={padding(16, 24, 25, 25)} direction="column">
+        <ButtonPressAnimation
+          style={{ left: 33, position: 'absolute', top: 7 }}
+          onPress={
+            contact
+              ? handleDeleteContact
+              : () => {
+                  goBack();
+                  android && Keyboard.dismiss();
+                }
+          }
+        >
+          <ArrowSmall />
+        </ButtonPressAnimation>
+        <SheetTitle color="black" size={20} weight="heavy">
+          Add to Contact
+        </SheetTitle>
+        <Spacer />
         <ProfileAvatarButton
           color={color}
-          marginBottom={0}
-          radiusAndroid={32}
+          marginBottom={16}
+          radiusAndroid={64}
           setColor={setColor}
           testID="contact-profile-avatar-button"
           value={value}
         />
-        <Spacer />
         <ProfileNameInput
           onChange={setValue}
           onSubmitEditing={handleAddContact}
-          placeholder="Name"
+          placeholder="Contact name"
           ref={inputRef}
           selectionColor={colors.avatarColor[color]}
           testID="contact-profile-name-input"
@@ -121,9 +146,7 @@ const ContactProfileState = ({ address, color: colorProp, contact }) => {
         >
           <AddressAbbreviation address={address} />
         </CopyTooltip>
-        <Centered paddingVertical={19} width={93}>
-          <Divider inset={false} />
-        </Centered>
+        <Centered paddingVertical={19} width={48} />
         <SubmitButton
           isDarkMode={isDarkMode}
           onPress={handleAddContact}
@@ -131,7 +154,7 @@ const ContactProfileState = ({ address, color: colorProp, contact }) => {
           value={value}
         >
           <SubmitButtonLabel value={value}>
-            {contact ? 'Done' : 'Add Contact'}
+            {contact ? 'Done' : 'Add'}
           </SubmitButtonLabel>
         </SubmitButton>
         <ButtonPressAnimation
@@ -147,15 +170,11 @@ const ContactProfileState = ({ address, color: colorProp, contact }) => {
         >
           <Centered
             backgroundColor={colors.white}
-            css={padding(8, 9)}
+            css={padding(15, 8, 48, 9)}
             testID="contact-profile-cancel-button"
           >
-            <Text
-              color={colors.alpha(colors.blueGreyDark, 0.4)}
-              size="lmedium"
-              weight="regular"
-            >
-              {contact ? 'Delete Contact' : 'Cancel'}
+            <Text color={colors.neonRed} size="20px" weight="heavy">
+              Delete
             </Text>
           </Centered>
         </ButtonPressAnimation>

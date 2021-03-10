@@ -6,7 +6,6 @@ import { getFirstGrapheme } from '../../utils';
 import { Centered, Flex, InnerBorder } from '../layout';
 import { Text } from '../text';
 import { borders } from '@rainbow-me/styles';
-import ShadowStack from 'react-native-shadow-stack';
 
 const buildShadows = (color, size, darkMode, colors) => {
   if (size === 'small' || size === 'smaller') {
@@ -66,9 +65,20 @@ const sizeConfigs = colors => ({
     dimensions: 36,
     textSize: 'large',
   },
+  xlarge: {
+    dimensions: 128,
+    shadow: [],
+    textSize: '80px',
+  },
 });
 
-const ContactAvatar = ({ color, size = 'medium', value, ...props }) => {
+const ContactAvatar = ({
+  color,
+  size = 'medium',
+  value,
+  disableBorder,
+  ...props
+}) => {
   const { colors } = useTheme();
   const { dimensions, textSize } = useMemo(() => sizeConfigs(colors)[size], [
     colors,
@@ -106,13 +116,15 @@ const ContactAvatar = ({ color, size = 'medium', value, ...props }) => {
             {value && getFirstGrapheme(toUpper(value))}
           </Text>
         </Flex>
-        <InnerBorder
-          color={colors.coinburp}
-          ignoreDarkMode
-          opacity={1}
-          radius={48}
-          width={4}
-        />
+        {!disableBorder ? (
+          <InnerBorder
+            color={colors.coinburp}
+            ignoreDarkMode
+            opacity={1}
+            radius={48}
+            width={4}
+          />
+        ) : null}
       </Centered>
     </Flex>
   );

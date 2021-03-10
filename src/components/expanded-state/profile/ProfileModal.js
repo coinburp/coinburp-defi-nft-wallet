@@ -17,7 +17,7 @@ export default function ProfileModal({ onPressBackdrop, ...props }) {
       }
     >
       <TouchableBackdrop onPress={onPressBackdrop} />
-      <FloatingPanels maxWidth={deviceWidth - 110}>
+      <FloatingPanels maxWidth={deviceWidth - 20}>
         <AssetPanel {...props} />
       </FloatingPanels>
     </KeyboardFixedOpenLayout>

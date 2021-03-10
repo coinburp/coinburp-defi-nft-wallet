@@ -44,10 +44,11 @@ export default function PasteAddressButton({ onPress }) {
     <MiniButton
       disabled={deviceUtils.isIOS14 ? !hasClipboardData : clipboard && !isValid}
       onPress={handlePress}
+      shadowsDisabled
       testID="paste-address-button"
       {...(android && { height: 30, overflowMargin: 15, width: 60 })}
     >
-      <Text color="whiteLabel" weight="bold">
+      <Text color="whiteLabel" size={16} weight="heavy">
         Paste
       </Text>
     </MiniButton>
