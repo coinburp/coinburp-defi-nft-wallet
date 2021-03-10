@@ -60,7 +60,7 @@ export default function WalletActionButton({ type, title, isReadOnlyWallet, onPr
     <ButtonPressAnimation onPress={onPress || handlePress}>
       <Column align="center">
         {icons[type]}
-        <Text align="center" color={colors.coinburp} weight={900}>
+        <Text align="center" color={colors.coinburp} weight={900} style={{marginTop: 8}}>
           {title}
         </Text>
       </Column>

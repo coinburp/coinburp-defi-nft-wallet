@@ -373,6 +373,7 @@ class RecyclerAssetList extends Component {
           return {
             height: ViewTypes.COIN_SAVINGS.calculateHeight({
               amountOfRows: sections[savingsIndex].data[0].assets?.length || 0,
+              asset: sections[savingsIndex].data[0].assets,
               isLast: poolsIndex < 0,
               isOpen: this.props.openSavings,
             }),

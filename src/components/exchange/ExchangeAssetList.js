@@ -5,6 +5,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components';
 import { usePrevious } from '../../hooks';
 import { CoinRowHeight, ExchangeCoinRow } from '../coin-row';
+import { Icon } from '../icons';
+import { Row } from '../layout';
 import { GradientText, Text } from '../text';
 import { padding } from '@rainbow-me/styles';
 import { deviceUtils, magicMemo } from '@rainbow-me/utils';
@@ -32,19 +34,21 @@ const HeaderBackground = styled(LinearGradient).attrs(
 const HeaderTitle = styled(Text).attrs(({ color, theme: { colors } }) => ({
   color: color || colors.blueGreyDark50,
   letterSpacing: 'roundedMedium',
-  size: 'smedium',
-  weight: 'heavy',
+  size: 20,
+  weight: 900,
 }))``;
 
-const HeaderTitleGradient = styled(GradientText).attrs({
-  colors: ['#6AA2E3', '#FF54BB', '#FFA230'],
+const HeaderTitleGradient = styled(GradientText).attrs(({ colors }) => ({
+  colors: colors || ['#fc00ff', '#00dbde'],
   letterSpacing: 'roundedMedium',
-  size: 'smedium',
-  steps: [0, 0.2867132868, 1],
-  weight: 'heavy',
-})``;
+  size: 20,
+  steps: [0, 1],
+  weight: 900,
+}))``;
 
-const HeaderTitleWrapper = styled.View`
+const HeaderTitleWrapper = styled(Row).attrs({
+  align: 'center',
+})`
   width: ${android ? '150' : '143'}px;
 `;
 
@@ -54,9 +58,17 @@ const ExchangeAssetSectionListHeader = ({ section }) => {
     : HeaderTitle;
   return section?.title ? (
     <Header>
-      <HeaderBackground />
       <HeaderTitleWrapper>
-        <TitleComponent color={section.color}>{section.title}</TitleComponent>
+        {section.icon ? (
+          <Icon
+            color={section.iconColor}
+            marginRight={12}
+            name={section.icon}
+          />
+        ) : null}
+        <TitleComponent color={section.color} colors={section.colors || null}>
+          {section.title}
+        </TitleComponent>
       </HeaderTitleWrapper>
     </Header>
   ) : null;

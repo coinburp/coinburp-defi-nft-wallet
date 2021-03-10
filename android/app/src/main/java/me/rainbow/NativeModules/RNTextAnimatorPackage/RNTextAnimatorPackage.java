@@ -59,7 +59,7 @@ class UIUpdater {
 }
 
 public class RNTextAnimatorPackage implements ReactPackage {
-    static int DECREASING = 150;
+    static int DECREASING = 300;
     static Field sEditListeners;
     static {
         sEditListeners = null;

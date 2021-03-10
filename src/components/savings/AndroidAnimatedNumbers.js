@@ -8,10 +8,10 @@ import { fonts, fontWithWidth } from '@rainbow-me/styles';
 const TextChunk = styled(TextInput).attrs({
   editable: false,
 })`
-  ${fontWithWidth(fonts.weight.bold)};
+  ${fontWithWidth(fonts.weight.heavy)};
   color: ${({ theme: { colors } }) => colors.dark};
   font-variant: tabular-nums;
-  font-size: ${parseFloat(fonts.size.lmedium)};
+  font-size: ${parseFloat(fonts.size.large)};
   text-align: left;
   height: 46;
 `;
@@ -28,9 +28,7 @@ function formatSavingsAmount(val) {
 }
 
 function formatter(symbol, val) {
-  return isSymbolStablecoin(symbol)
-    ? `$${formatSavingsAmount(val)}`
-    : `${formatSavingsAmount(val)} ${symbol}`;
+  return `${formatSavingsAmount(val)} ${symbol}`;
 }
 
 export default function AndroidText({ style, animationConfig }) {
@@ -43,7 +41,7 @@ export default function AndroidText({ style, animationConfig }) {
     NativeModules.RNTextAnimator.animate(screen, {
       ...animationConfig,
       darkMode: isDarkMode,
-      isStable,
+      isStable: false,
     });
     return () => NativeModules.RNTextAnimator.stop(screen);
   }, [animationConfig, isStable, isDarkMode]);
