@@ -424,7 +424,7 @@ export default function ImportSeedPhraseSheet() {
         <Column>
           <SecretTextAreaContainer>
             <SecretTextArea
-              color={isSecretValid ? colors.appleBlue : colors.dark}
+              color={isSecretValid ? colors.neonGreen : colors.dark}
               onChangeText={handleSetSeedPhrase}
               onFocus={handleFocus}
               onSubmitEditing={handlePressImportButton}
