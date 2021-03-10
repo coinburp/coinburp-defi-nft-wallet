@@ -20,8 +20,8 @@ const NOOP = () => undefined;
 const sx = StyleSheet.create({
   accountLabel: {
     fontFamily: fonts.family.SFProRounded,
-    fontSize: getFontSize(fonts.size.lmedium),
-    fontWeight: fonts.weight.medium,
+    fontSize: getFontSize(fonts.size.larger),
+    fontWeight: fonts.weight.bold,
     letterSpacing: fonts.letterSpacing.roundedMedium,
     maxWidth: maxAccountLabelWidth,
   },
@@ -31,23 +31,17 @@ const sx = StyleSheet.create({
     marginLeft: 19,
   },
   bottomRowText: {
-    fontWeight: fonts.weight.medium,
+    fontSize: getFontSize(fonts.size.smedium),
+    fontWeight: fonts.weight.bold,
     letterSpacing: fonts.letterSpacing.roundedMedium,
   },
   coinCheckIcon: {
-    width: 60,
-  },
-  editIcon: {
-    color: '#0E76FD',
-    fontFamily: fonts.family.SFProRounded,
-    fontSize: getFontSize(fonts.size.large),
-    fontWeight: fonts.weight.medium,
-    textAlign: 'center',
+    width: 68,
   },
   gradient: {
     alignSelf: 'center',
     borderRadius: 24,
-    height: 24,
+    height: 20,
     marginLeft: 19,
     textAlign: 'center',
   },
@@ -75,11 +69,11 @@ const OptionsIcon = ({ onPress }) => {
   const { colors } = useTheme();
   return (
     <ButtonPressAnimation onPress={onPress} scaleTo={0.9}>
-      <Centered height={40} width={60}>
+      <Centered height={40} width={68}>
         {android ? (
-          <Icon circle color={colors.appleBlue} name="threeDots" tightDots />
+          <Icon color={colors.coinburp} name="threeDots" />
         ) : (
-          <Text style={sx.editIcon}>􀍡</Text>
+          <Icon color={colors.coinburp} name="threeDots" />
         )}
       </Centered>
     </ButtonPressAnimation>
@@ -142,18 +136,18 @@ export default function AddressRow({ data, editMode, onPress, onEditWallet }) {
             {accountImage ? (
               <ImageAvatar
                 image={accountImage}
-                marginRight={10}
+                marginRight={12}
                 size="medium"
               />
             ) : (
               <ContactAvatar
                 color={accountColor}
-                marginRight={10}
+                marginRight={12}
                 size="medium"
                 value={label || ens || `${index + 1}`}
               />
             )}
-            <ColumnWithMargins margin={3}>
+            <ColumnWithMargins margin={6}>
               {cleanedUpLabel || ens ? (
                 <TruncatedText color={colors.dark} style={sx.accountLabel}>
                   {cleanedUpLabel || ens}
@@ -162,17 +156,12 @@ export default function AddressRow({ data, editMode, onPress, onEditWallet }) {
                 <TruncatedAddress
                   address={address}
                   color={colors.dark}
-                  firstSectionLength={6}
-                  size="smaller"
+                  firstSectionLength={4}
                   style={sx.accountLabel}
                   truncationLength={4}
-                  weight="medium"
                 />
               )}
-              <BottomRowText
-                color={colors.alpha(colors.blueGreyDark, 0.5)}
-                style={sx.bottomRowText}
-              >
+              <BottomRowText color={colors.blueGrey} style={sx.bottomRowText}>
                 {cleanedUpBalance || 0} ETH
               </BottomRowText>
             </ColumnWithMargins>
@@ -186,10 +175,14 @@ export default function AddressRow({ data, editMode, onPress, onEditWallet }) {
                 <Text
                   style={[
                     sx.readOnlyText,
-                    { color: colors.alpha(colors.blueGreyDark, 0.5) },
+                    {
+                      color: colors.blueGrey,
+                      fontSize: 12,
+                      fontWeight: 'bold',
+                    },
                   ]}
                 >
-                  Watching
+                  WATCHING
                 </Text>
               </LinearGradient>
             )}

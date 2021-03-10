@@ -15,6 +15,7 @@ import Divider from '../components/Divider';
 import { ButtonPressAnimation } from '../components/animations';
 import WalletList from '../components/change-wallet/WalletList';
 import { Column } from '../components/layout';
+import ModalHeaderButton from '../components/modal/ModalHeaderButton';
 import { Sheet, SheetTitle } from '../components/sheet';
 import { Text } from '../components/text';
 import { backupUserDataIntoCloud } from '../handlers/cloudBackup';
@@ -50,8 +51,8 @@ import logger from 'logger';
 
 const deviceHeight = deviceUtils.dimensions.height;
 const footerHeight = 111;
-const listPaddingBottom = 6;
-const walletRowHeight = 59;
+const listPaddingBottom = 32;
+const walletRowHeight = 68;
 const maxListHeight = deviceHeight - 220;
 
 const EditButton = styled(ButtonPressAnimation).attrs(({ editMode }) => ({
@@ -69,7 +70,7 @@ const EditButton = styled(ButtonPressAnimation).attrs(({ editMode }) => ({
     ? `
   position: absolute;
   right: 7px;
-  top: 6px;
+  top: 9px;
   `
     : `
     position: relative;
@@ -79,15 +80,14 @@ const EditButton = styled(ButtonPressAnimation).attrs(({ editMode }) => ({
   `}
 `;
 
-const EditButtonLabel = styled(Text).attrs(
-  ({ theme: { colors }, editMode }) => ({
-    align: 'right',
-    color: colors.appleBlue,
-    letterSpacing: 'roundedMedium',
-    size: 'large',
-    weight: editMode ? 'semibold' : 'medium',
-  })
-)``;
+const EditButtonLabel = styled(Text).attrs(({ theme: { colors } }) => ({
+  align: 'right',
+  color: colors.coinburp,
+  letterSpacing: 'roundedMedium',
+  size: 'larger',
+  weight: 'bold',
+}))``;
+
 const Whitespace = styled.View`
   background-color: ${({ theme: { colors } }) => colors.white};
   bottom: -400px;
@@ -131,7 +131,7 @@ export default function ChangeWalletSheet() {
 
   const walletRowCount = useMemo(() => getWalletRowCount(wallets), [wallets]);
 
-  let headerHeight = android ? 0 : 30;
+  let headerHeight = android ? 0 : 52;
   let listHeight =
     walletRowHeight * walletRowCount + footerHeight + listPaddingBottom;
   let scrollEnabled = false;
@@ -461,6 +461,7 @@ export default function ChangeWalletSheet() {
   return (
     <Sheet borderRadius={30}>
       {android && <Whitespace />}
+      {/*<ModalHeaderButton onPress={goBack} side="left" />*/}
       <Column height={headerHeight} justify="space-between">
         <SheetTitle>Wallets</SheetTitle>
         {showDividers && (

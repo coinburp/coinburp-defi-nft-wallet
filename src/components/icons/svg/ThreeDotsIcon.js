@@ -1,28 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Circle, G } from 'react-native-svg';
+import { Path } from 'react-native-svg';
 import Svg from '../Svg';
 
-const ThreeDotsIcon = ({ color, colors, tightDots, circle, ...props }) => (
-  <Svg
-    height={circle ? '25' : '5'}
-    viewBox={tightDots ? (circle ? '-7 0 35 5' : '0 0 21 5') : '0 0 23 5'}
-    width={tightDots ? 21 : 23}
-    {...props}
-  >
-    <G fill={color || colors.grey} fillRule="evenodd">
-      <Circle
-        cx="10"
-        cy="2"
-        fill="transparent"
-        r="15"
-        stroke={color || colors.grey}
-        strokeWidth="2.5"
-      />
-      <Circle cx="2.5" cy="2.5" r="2.5" />
-      <Circle cx={tightDots ? '10.5' : '11.5'} cy="2.5" r="2.5" />
-      <Circle cx={tightDots ? '18.5' : '20.5'} cy="2.5" r="2.5" />
-    </G>
+const ThreeDotsIcon = ({ color, colors, ...props }) => (
+  <Svg height="6" viewBox="0 0 28 6" width="28" {...props}>
+    <Path
+      d="M3 0c1.657 0 3 1.343 3 3S4.657 6 3 6 0 4.657 0 3s1.343-3 3-3zm11 0c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm11 0c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z"
+      fill={color || colors.grey}
+      fillRule="nonzero"
+      transform="translate(-321 -533) translate(0 424) translate(24 88) translate(297 21)"
+    />
   </Svg>
 );
 

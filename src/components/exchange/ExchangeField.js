@@ -6,7 +6,7 @@ import { CoinIcon, CoinIconSize } from '../coin-icon';
 import { Row, RowWithMargins } from '../layout';
 import { EnDash } from '../text';
 import ExchangeInput from './ExchangeInput';
-import { useColorForAsset } from '@rainbow-me/hooks';
+// import { useColorForAsset } from '@rainbow-me/hooks';
 import { borders } from '@rainbow-me/styles';
 
 const ExchangeFieldHeight = android ? 64 : 38;
@@ -62,7 +62,7 @@ const ExchangeField = (
   },
   ref
 ) => {
-  const colorForAsset = useColorForAsset({ address });
+  // const colorForAsset = useColorForAsset({ address });
   const handleFocusField = useCallback(() => ref?.current?.focus(), [ref]);
   const { colors } = useTheme();
   useEffect(() => {
