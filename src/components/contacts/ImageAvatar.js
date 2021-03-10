@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { Centered } from '../layout';
+import { Centered, Flex, InnerBorder } from '../layout';
 import { ImgixImage } from '@rainbow-me/images';
 import { borders } from '@rainbow-me/styles';
 import ShadowStack from 'react-native-shadow-stack';
@@ -13,6 +13,7 @@ const buildSmallShadows = (color, colors) => [
 const sizeConfigs = colors => ({
   large: {
     dimensions: 65,
+    radius: 6,
     shadow: [
       [0, 6, 10, colors.shadow, 0.12],
       [0, 2, 5, colors.shadow, 0.08],
@@ -20,7 +21,8 @@ const sizeConfigs = colors => ({
     textSize: 'bigger',
   },
   medium: {
-    dimensions: 40,
+    dimensions: 52,
+    radius: 3,
     shadow: [
       [0, 4, 6, colors.shadow, 0.04],
       [0, 1, 3, colors.shadow, 0.08],
@@ -28,22 +30,34 @@ const sizeConfigs = colors => ({
     textSize: 'larger',
   },
   small: {
-    dimensions: 34,
-    textSize: 'large',
+    dimensions: 48,
+    radius: 3,
+    shadow: [
+      [0, 4, 6, colors.shadow, 0.04],
+      [0, 1, 3, colors.shadow, 0.08],
+    ],
+    textSize: 'larger',
   },
 });
 
-const Avatar = styled(ImgixImage)`
+const Avatar = styled(ImgixImage)
+  .withConfig({
+    shouldForwardProp: prop => prop !== 'width',
+  })
+  .attrs({ pointerEvents: 'none' })`
+  border-color: ${({ color, theme: { colors } }) => color || colors.black};
+  border-radius: ${({ radius }) => radius || 0};
+  border-width: ${({ width }) => width || 0.5};
   height: ${({ dimensions }) => dimensions};
   width: ${({ dimensions }) => dimensions};
 `;
 
 const ImageAvatar = ({ image, size = 'medium', ...props }) => {
   const { colors } = useTheme();
-  const { dimensions, shadow } = useMemo(() => sizeConfigs(colors)[size], [
-    colors,
-    size,
-  ]);
+  const { dimensions, radius, shadow } = useMemo(
+    () => sizeConfigs(colors)[size],
+    [colors, size]
+  );
 
   const shadows = useMemo(
     () =>
@@ -59,12 +73,22 @@ const ImageAvatar = ({ image, size = 'medium', ...props }) => {
       shadows={shadows}
     >
       <Centered flex={1}>
-        <Avatar
-          dimensions={dimensions}
-          source={{
-            uri: image,
-          }}
-        />
+        <Flex
+          {...borders.buildCircleAsObject(dimensions - 6)}
+          align="center"
+          justify="center"
+        >
+          <Avatar
+            color={colors.gold}
+            dimensions={dimensions}
+            opacity={1}
+            radius={dimensions}
+            source={{
+              uri: image,
+            }}
+            width={radius}
+          />
+        </Flex>
       </Centered>
     </ShadowStack>
   );

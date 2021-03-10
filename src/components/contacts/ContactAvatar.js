@@ -118,11 +118,11 @@ const ContactAvatar = ({
         </Flex>
         {!disableBorder ? (
           <InnerBorder
-            color={colors.coinburp}
+            color={colors.gold}
             ignoreDarkMode
             opacity={1}
-            radius={48}
-            width={4}
+            radius={dimensions}
+            width={3}
           />
         ) : null}
       </Centered>

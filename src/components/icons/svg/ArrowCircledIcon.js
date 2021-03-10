@@ -4,11 +4,16 @@ import Svg from '../Svg';
 
 const ArrowCircledIcon = ({ color, colors, ...props }, ref) => {
   return (
-    <Svg height="15" ref={ref} viewBox="0 0 14 15" width="14" {...props}>
+    <Svg height="32" ref={ref} viewBox="0 0 32 32" width="32" {...props}>
       <Path
-        d="M6.222 1.633V8.75l-2.18-2.186a.778.778 0 0 0-1.1 1.102l3.501 3.508a.777.777 0 0 0 1.1 0l3.502-3.508a.778.778 0 0 0-1.1-1.102L7.778 8.738V1.633c0-.58.507-1.036 1.066-.883a7 7 0 1 1-3.687 0c.558-.153 1.065.303 1.065.883z"
-        fill={color || colors.black}
-        fillRule="nonzero"
+        d="M16 32c8.837 0 16-7.163 16-16S24.837 0 16 0 0 7.163 0 16s7.163 16 16 16z"
+        fill={color || colors.grey}
+        transform="translate(-24 -720) translate(0 424) translate(24 296)"
+      />
+      <Path
+        d="M17.5 22c1.105 0 2 .895 2 2s-.895 2-2 2h-3c-1.105 0-2-.895-2-2s.895-2 2-2h3zM16 6c1.105 0 2 .895 2 2v5.172l1.586-1.586c.78-.781 2.047-.781 2.828 0 .781.78.781 2.047 0 2.828l-5 5c-.78.781-2.047.781-2.828 0l-5-5c-.781-.78-.781-2.047 0-2.828.78-.781 2.047-.781 2.828 0L14 13.172V8c0-1.105.895-2 2-2z"
+        fill={colors.white}
+        transform="translate(-24 -720) translate(0 424) translate(24 296) rotate(-45 16 16)"
       />
     </Svg>
   );

@@ -21,7 +21,7 @@ import WalletOption from './WalletOption';
 import { position } from '@rainbow-me/styles';
 
 const listTopPadding = 7.5;
-const rowHeight = 59;
+const rowHeight = 68;
 
 const RowTypes = {
   ADDRESS: 1,
@@ -247,14 +247,14 @@ export default function WalletList({
           <WalletListFooter>
             <WalletOption
               editMode={editMode}
-              icon="arrowBack"
-              label="􀁍 Create a new wallet"
+              icon="plusCircled"
+              label="Create a new wallet"
               onPress={onPressAddAccount}
             />
             <WalletOption
               editMode={editMode}
-              icon="arrowBack"
-              label="􀂍 Add an existing wallet"
+              icon="arrowCircled"
+              label="Add an existing wallet"
               onPress={onPressImportSeedPhrase}
             />
           </WalletListFooter>
