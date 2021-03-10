@@ -17,7 +17,7 @@ const SwapModal = (props, ref) => {
       defaultInputAsset={inputAsset}
       defaultOutputAsset={outputAsset}
       estimateRap={estimateUnlockAndSwap}
-      inputHeaderTitle="Swap"
+      inputHeaderTitle="Send"
       ref={ref}
       showOutputField
       testID="exchange-modal"

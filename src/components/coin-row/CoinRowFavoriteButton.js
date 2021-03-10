@@ -3,9 +3,9 @@ import { BaseButton } from 'react-native-gesture-handler';
 import RadialGradient from 'react-native-radial-gradient';
 import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+import { CoinIconSize } from '../coin-icon';
 import { Centered } from '../layout';
 import { Text } from '../text';
-import { CoinRowHeight } from './CoinRow';
 import { padding } from '@rainbow-me/styles';
 import { magicMemo } from '@rainbow-me/utils';
 
@@ -15,7 +15,7 @@ const FavoriteButton = styled(Centered)`
   ${padding(0, FavoriteButtonPadding)};
   bottom: 0;
   flex: 0;
-  height: ${CoinRowHeight};
+  height: ${CoinIconSize};
   position: absolute;
   right: 0;
   top: 0;

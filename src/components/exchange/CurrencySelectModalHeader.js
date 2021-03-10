@@ -28,17 +28,16 @@ const Title = styled(TruncatedText).attrs({
   align: 'center',
   lineHeight: 'loose',
   size: 24,
-  weight: 'heavy',
-  fontWeight: 900
+  weight: 900,
 })`
   ${padding(1, 0, 0)};
-  height: 21;
+  height: 21px;
 `;
 
-export default function CurrencySelectModalHeader({ testID, manualTitle = null }) {
+export default function CurrencySelectModalHeader({ testID }) {
   const { navigate, dangerouslyGetState } = useNavigation();
   const { params } = useRoute();
-  const title =  manualTitle || params?.headerTitle;
+  const title = params?.headerTitle;
 
   const { setPointerEvents } = params;
 

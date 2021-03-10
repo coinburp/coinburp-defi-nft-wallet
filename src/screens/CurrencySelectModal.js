@@ -330,7 +330,6 @@ export default function CurrencySelectModal() {
           <Column flex={1}>
             <CurrencySelectModalHeader
               testID="currency-select-header"
-              manualTitle="Stake"
             />
             <ExchangeSearch
               isFetching={loadingAllTokens}

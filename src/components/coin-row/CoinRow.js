@@ -4,7 +4,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { CoinIcon, CoinIconGroup, CoinIconSize } from '../coin-icon';
 import { Column, Row } from '../layout';
 import { useAccountSettings, useDimensions } from '@rainbow-me/hooks';
-import { padding, margin } from '@rainbow-me/styles';
+import { margin, padding } from '@rainbow-me/styles';
 
 const CoinRowPaddingTop = 16;
 const CoinRowPaddingBottom = 16;
@@ -17,8 +17,9 @@ const Container = styled(Row).attrs({
   grow: 0,
   shrink: 1,
 })`
-  ${padding(CoinRowPaddingTop, 24, CoinRowPaddingBottom)};
-  ${margin(0, 16, CoinRowMarginBottom)};
+  ${({ thin }) =>
+    padding(thin ? 0 : CoinRowPaddingTop, 24, thin ? 0 : CoinRowPaddingBottom)};
+  ${({ thin }) => margin(0, 16, thin ? 16 : CoinRowMarginBottom)};
   width: ${({ width }) => width - 32};
 `;
 
@@ -43,6 +44,7 @@ export default function CoinRow({
   name,
   symbol,
   testID,
+  thin,
   topRowRender,
   tokens,
   ...props
@@ -56,6 +58,7 @@ export default function CoinRow({
       backgroundColor={colors.white}
       borderRadius={24}
       css={containerStyles}
+      thin={thin}
       width={editing ? width - 42 : width}
     >
       {isPool ? (

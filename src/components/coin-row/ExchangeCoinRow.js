@@ -38,16 +38,16 @@ const FloatingFavoriteEmojis = styled(FloatingEmojis).attrs({
   z-index: 100;
 `;
 
-const BottomRow = ({ showBalance, symbol }) => {
+const BottomRow = ({ showBalance, showFavoriteButton, symbol }) => {
   const { colors } = useTheme();
 
-  return showBalance ? null : (
+  return showBalance || showFavoriteButton ? null : (
     <BottomRowText color={colors.blueGrey}>{symbol}</BottomRowText>
   );
 };
 
-const TopRow = ({ name, showBalance }) => (
-  <Centered height={showBalance ? CoinIconSize : null}>
+const TopRow = ({ name, showBalance, showFavoriteButton }) => (
+  <Centered height={showBalance || showFavoriteButton ? CoinIconSize : null}>
     <CoinName>{name}</CoinName>
   </Centered>
 );
@@ -93,7 +93,9 @@ const ExchangeCoinRow = ({
             )
           )}
           showBalance={showBalance}
+          showFavoriteButton={showFavoriteButton}
           testID="exchange-coin-row"
+          thin
           topRowRender={TopRow}
         >
           {showBalance && (
