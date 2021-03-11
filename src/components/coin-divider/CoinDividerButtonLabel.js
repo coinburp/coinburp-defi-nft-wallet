@@ -5,10 +5,10 @@ import { OpacityToggler } from '../animations';
 import { Text } from '../text';
 
 const LabelText = styled(Text).attrs(({ theme: { colors } }) => ({
-  color: colors.alpha(colors.blueGreyDark, 0.6),
+  color: colors.skyBlue,
   letterSpacing: 'roundedTight',
   size: 'lmedium',
-  weight: 'bold',
+  weight: 'heavy',
 }))`
   position: absolute;
   top: ${android ? -15.25 : -10.25};

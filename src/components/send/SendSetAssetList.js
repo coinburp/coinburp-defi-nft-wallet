@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-primitives';
 import styled from 'styled-components';
+import { ButtonPressAnimation } from '../animations';
 import { TokenSelectionButton } from '../buttons';
 import { Icon } from '../icons';
 import { Column, ColumnWithMargins, Row } from '../layout';
@@ -25,7 +26,14 @@ const ArrowSmall = styled(Icon).attrs({
 
 export default class SendSetAssetList extends React.Component {
   render() {
-    const { width, txSpeedRenderer, deviceHeight, colors, selected, navigateToSelectOutputCurrency } = this.props;
+    const {
+      width,
+      txSpeedRenderer,
+      deviceHeight,
+      colors,
+      selected,
+      navigateToSelectOutputCurrency,
+    } = this.props;
 
     return (
       <Column align="center">
@@ -44,29 +52,34 @@ export default class SendSetAssetList extends React.Component {
               ASSET
             </Text>
           </Row>
-          <Row align="center" height={74} paddingLeft={5}>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-              }}
-            >
-              <View>
-                <TokenSelectionButton
-                  address={selected?.address}
-                  customPadding={0}
-                  hideIcon
-                  onPress={navigateToSelectOutputCurrency}
-                  symbol={selected?.symbol}
-                  testID="send-selection-button"
-                />
+          <ButtonPressAnimation
+            contentContainerStyle={{}}
+            onPress={navigateToSelectOutputCurrency}
+          >
+            <Row align="center" height={74} paddingLeft={5}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <View>
+                  <TokenSelectionButton
+                    address={selected?.address}
+                    customPadding={0}
+                    hideIcon
+                    onPress={navigateToSelectOutputCurrency}
+                    symbol={selected?.symbol}
+                    testID="send-selection-button"
+                  />
+                </View>
+                <View>
+                  <ArrowSmall />
+                </View>
               </View>
-              <View>
-                <ArrowSmall />
-              </View>
-            </View>
-          </Row>
+            </Row>
+          </ButtonPressAnimation>
         </Column>
         <FooterContainer deviceHeight={deviceHeight}>
           {txSpeedRenderer}

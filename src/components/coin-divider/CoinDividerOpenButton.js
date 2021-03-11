@@ -25,7 +25,7 @@ const CaretContainer = styled.View`
 
 const CaretIcon = styled(ImgixImage).attrs(({ theme: { colors } }) => ({
   source: Caret,
-  tintColor: colors.blueGreyDark,
+  tintColor: colors.skyBlue,
 }))`
   height: 18;
   width: 8;
@@ -96,7 +96,7 @@ const CoinDividerOpenButton = ({
               endingPosition={-90}
               isOpen={isSmallBalancesOpen}
             >
-              <CaretIcon />
+              <CaretIcon  />
             </RotationArrow>
           </CaretContainer>
         </Content>

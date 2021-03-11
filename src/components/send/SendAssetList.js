@@ -99,11 +99,13 @@ export default class SendAssetList extends React.Component {
     if (uniqueTokens && uniqueTokens.length > 0) {
       this.data = this.data.concat(uniqueTokens);
     }
+
     this.state = {
       dataProvider: new DataProvider((r1, r2) => {
         return r1 !== r2;
       }).cloneWithRows(this.data),
-      openCards: [],
+      openCards: [{ type: 'COLLECTIBLE_ROW'},
+        { type: 'COIN_ROW' }, { type: 'SHITCOINS_ROW' }, { type: 'SAVINGS_ROW' }],
       openSavings: true,
       openShitcoins: false,
       visibleAssetsLength: visibleAssetsLength,
@@ -344,13 +346,13 @@ export default class SendAssetList extends React.Component {
         rowHeight={rowHeight}
         testID="send-asset"
       />
-      <SendAssetListDivider />
     </Fragment>
   );
 
   collectiblesRenderItem = item => {
     return (
-      <View>
+      <View
+      >
         <TokenFamilyHeader
           backgroundColor="rgba(0, 0, 0, 0)"
           childrenAmount={item.data.length}
@@ -392,8 +394,8 @@ export default class SendAssetList extends React.Component {
           isSmallBalancesOpen={openShitcoins}
           onPress={this.changeOpenShitcoins}
         />
-        {openShitcoins && this.mapShitcoins(item.assets)}
-        {savings && savings.length > 0 ? null : <SendAssetListDivider />}
+        {/*{openShitcoins && this.mapShitcoins(item.assets)}*/}
+        {savings && savings.length > 0 ? null : null}
       </View>
     );
   };
