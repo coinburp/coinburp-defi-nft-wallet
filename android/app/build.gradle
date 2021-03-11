@@ -173,7 +173,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "me.rainbow"
+        applicationId "com.coinburp.wallet"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 24
@@ -217,12 +217,12 @@ android {
             keyPassword 'android'
         }
 
-        def pass = getPassword("rainbow","rainbow-android-key")
+        def pass = getPassword("coinburp","coinburp-android-key")
 
         release {
-            storeFile file('../keystores/rainbow-key.keystore')
+            storeFile file('../keystores/coinburp-key.keystore')
             storePassword pass
-            keyAlias 'rainbow-alias'
+            keyAlias 'coinburp-alias'
             keyPassword pass
         }
     }

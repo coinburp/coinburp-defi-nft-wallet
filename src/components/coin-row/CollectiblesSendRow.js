@@ -17,6 +17,12 @@ const dividerHeight = 22;
 const isTinyPhone = deviceUtils.dimensions.height <= 568;
 const selectedHeight = isTinyPhone ? 62 : 78;
 
+const containerStyles = css`
+  padding-bottom: 18;
+  padding-left: 0;
+  padding-top: 6;
+`;
+
 const selectedStyles = css`
   ${padding(17, 14, 19, 13)};
   height: ${selectedHeight};
@@ -26,8 +32,10 @@ const BottomRow = ({ subtitle }) => {
   const { colors } = useTheme();
   return (
     <TruncatedText
-      color={colors.alpha(colors.blueGreyDark, 0.5)}
-      size="smedium"
+      color={colors.blueGrey}
+      css={{ top: ios ? 0 : -12 }}
+      size={14}
+      weight="bold"
     >
       {subtitle}
     </TruncatedText>
@@ -106,7 +114,7 @@ const CollectiblesSendRow = React.memo(
             {...item}
             bottomRowRender={BottomRow}
             coinIconRender={UniqueTokenCoinIcon}
-            containerStyles={selected ? selectedStyles : null}
+            containerStyles={selected ? selectedStyles : containerStyles}
             selected={selected}
             subtitle={subtitle}
             testID={testID + item.name}

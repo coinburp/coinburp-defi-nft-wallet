@@ -15,8 +15,7 @@ const isTinyPhone = deviceUtils.dimensions.height <= 568;
 const selectedHeight = isTinyPhone ? 62 : 78;
 
 const containerStyles = `
-  padding-left: 15;
-  padding-top: 17;
+  padding-left: 0;
 `;
 
 const containerSelectedStyles = css`
@@ -30,7 +29,12 @@ const BottomRow = ({ balance, native, nativeCurrencySymbol }) => {
     get(native, 'balance.display') || `${nativeCurrencySymbol}0.00`;
 
   return (
-    <Text color={colors.alpha(colors.blueGreyDark, 0.5)} size="smedium">
+    <Text
+      color={colors.blueGrey}
+      css={{ top: ios ? 0 : -12 }}
+      size={14}
+      weight="bold"
+    >
       {get(balance, 'display')} ≈ {fiatValue}
     </Text>
   );
@@ -51,6 +55,7 @@ const SendCoinRow = magicMemo(
         isHidden={false}
         selected={selected}
         testID={testID}
+        thin
         topRowRender={TopRow}
       />
     </ButtonPressAnimation>

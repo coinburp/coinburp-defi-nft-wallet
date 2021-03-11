@@ -13,7 +13,7 @@ const selectedHeight = isTinyPhone ? 62 : 78;
 
 const containerStyles = css`
   padding-bottom: 18;
-  padding-left: 15;
+  padding-left: 0;
   padding-top: 6;
 `;
 
@@ -30,7 +30,12 @@ const BottomRow = ({
 }) => {
   const { colors } = useTheme();
   return (
-    <Text color={colors.alpha(colors.blueGreyDark, 0.5)} size="smedium">
+    <Text
+      color={colors.blueGrey}
+      css={{ top: ios ? 0 : -12 }}
+      size={14}
+      weight="bold"
+    >
       {balanceDisplay} ≈ {balanceNativeValue}
     </Text>
   );
