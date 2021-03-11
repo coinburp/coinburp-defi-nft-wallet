@@ -1,5 +1,5 @@
 import React, { Fragment, useRef } from 'react';
-import { Text } from 'react-native';
+import { Text } from '../text';
 import styled, { useTheme } from 'styled-components';
 import { ExchangeInputField } from '../exchange';
 import { FloatingPanel } from '../floating-panels';
@@ -50,7 +50,6 @@ export default function SendAssetFormTokenOrNft({
   const { colors } = useTheme();
   const isWithdrawal = false;
 
-  console.log('#######################');
   // const {
   //   mask: nativeMask,
   //   placeholder: nativePlaceholder,
@@ -77,7 +76,7 @@ export default function SendAssetFormTokenOrNft({
           >
             <PanelTitle>ASSET</PanelTitle>
             {!isNft && selected.symbol ? (
-              <Text size={16} weight="heavy">{`Bal: ${
+              <Text color={colors.skyBlue} size={16} weight="heavy">{`Bal: ${
                 maxInputBalance.toString().substring(0, 6) || '0'
               }... ${selected.symbol}`}</Text>
             ) : null}

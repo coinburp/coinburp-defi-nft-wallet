@@ -90,28 +90,6 @@ const Container = styled.View`
   width: 100%;
 `;
 
-// const navigateToSelectInputCurrency = useCallback(() => {
-//   InteractionManager.runAfterInteractions(() => {
-//     dangerouslyGetParent().dangerouslyGetState().index = 0;
-//     setParams({ focused: false });
-//     delayNext();
-//     navigate(Routes.CURRENCY_SELECT_SCREEN, {
-//       headerTitle: inputHeaderTitle,
-//       onSelectCurrency: updateInputCurrency,
-//       restoreFocusOnSwapModal: () => setParams({ focused: true }),
-//       type: CurrencySelectionTypes.input,
-//     });
-//     blockInteractions();
-//   });
-// }, [
-//   blockInteractions,
-//   dangerouslyGetParent,
-//   inputHeaderTitle,
-//   navigate,
-//   setParams,
-//   updateInputCurrency,
-// ]);
-
 const AddressFieldLabel = styled(Label)`
   color: ${({ theme: { colors } }) => colors.dark};
   margin-right: 6;
@@ -248,6 +226,7 @@ export default function SendSheet(props) {
   const showAssetList = !isValidAddress || isEmpty(selected);
   const showAssetForm = isValidAddress && !isEmpty(selected);
   const prevSelectedGasPrice = usePrevious(selectedGasPrice);
+  const { setParams, dangerouslyGetParent } = useNavigation();
 
   const { handleFocus, triggerFocus } = useMagicAutofocus(
     recipientFieldRef,
@@ -341,6 +320,24 @@ export default function SendSheet(props) {
       updateMaxInputBalance,
     ]
   );
+
+  const navigateToSelectOutputCurrency = useCallback(() => {
+    InteractionManager.runAfterInteractions(() => {
+      setParams({ focused: false });
+      delayNext();
+      navigate(Routes.MODAL_SCREEN, {
+        additionalPadding: false,
+        headerTitle: 'Withdraw',
+        restoreFocusOnSwapModal: () => setParams({ focused: true }),
+        onSelectCurrency: sendUpdateSelected,
+        type: CurrencySelectionTypes.withdraw,
+      });
+    });yes
+  }, [
+    navigate,
+    setParams,
+    sendUpdateSelected,
+  ]);
 
   const onChangeNativeAmount = useCallback(
     newNativeAmount => {
@@ -661,6 +658,7 @@ export default function SendSheet(props) {
                   onSelectAsset={sendUpdateSelected}
                   pinnedCoins={pinnedCoins}
                   savings={savings}
+                  navigateToSelectOutputCurrency={navigateToSelectOutputCurrency}
                   txSpeedRenderer={
                     <GasSpeedButtonContainer>
                       <GasSpeedButton

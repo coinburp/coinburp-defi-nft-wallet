@@ -8,6 +8,7 @@ import {
   SupportedCountriesExpandedState,
   SwapDetailsState,
   WalletProfileState,
+  CurrencySelectState
 } from '../components/expanded-state';
 import { Centered } from '../components/layout';
 import { useNavigation } from '../navigation/Navigation';
@@ -18,6 +19,7 @@ const ModalTypes = {
   supported_countries: SupportedCountriesExpandedState,
   swap_details: SwapDetailsState,
   wallet_profile: WalletProfileState,
+  withdraw: CurrencySelectState
 };
 
 const Container = styled(Centered).attrs({ direction: 'column' })`

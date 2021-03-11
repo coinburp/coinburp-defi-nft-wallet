@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text } from '../text';
 import styled from 'styled-components';
 import { ColumnWithMargins, Row, Column } from '../layout';
 import { UniqueTokenCard } from '../unique-token';
