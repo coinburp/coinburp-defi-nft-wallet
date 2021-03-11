@@ -51,7 +51,7 @@ const WhiteButtonGradient = React.memo(
 
 const SheetActionButton = ({
   androidWidth,
-  borderRadius = 56,
+  borderRadius = 24,
   color: givenColor,
   disabled,
   elevation = 24,
@@ -111,12 +111,11 @@ const SheetActionButton = ({
         wrapperStyle={{ alignItems: 'center' }}
         {...props}
       >
-        <ShadowStack
+        <View
           {...position.coverAsObject}
           backgroundColor={color}
           borderRadius={borderRadius}
           height={size === 'big' ? 56 : 46}
-          shadows={shadowsForButtonColor}
           {...((android || fullWidth) && { width: androidButtonWidth })}
         >
           {color === colors.white && <WhiteButtonGradient colors={colors} />}
@@ -128,7 +127,7 @@ const SheetActionButton = ({
               width={disabled ? 2 : null}
             />
           )}
-        </ShadowStack>
+        </View>
         <Content label={label} size={size}>
           {emoji && <Emoji lineHeight={23} name={emoji} size="medium" />}
           {icon && <Icon color="white" height={18} name={icon} size={18} />}
