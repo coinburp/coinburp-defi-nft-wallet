@@ -13,11 +13,10 @@ import { magicMemo } from '../utils';
 import Divider from './Divider';
 import { ButtonPressAnimation, ScaleButtonZoomableAndroid } from './animations';
 import { Icon } from './icons';
-import { Centered, Row, RowWithMargins } from './layout';
+import { Centered, Row } from './layout';
 import { Text } from './text';
 import Routes from '@rainbow-me/routes';
-import { padding, position } from '@rainbow-me/styles';
-import ShadowStack from 'react-native-shadow-stack';
+import { padding } from '@rainbow-me/styles';
 
 const ButtonContainerHeight = 400;
 const ButtonContainerWidth = 261;

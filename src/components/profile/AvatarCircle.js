@@ -6,8 +6,7 @@ import { ButtonPressAnimation } from '../animations';
 import ImageAvatar from '../contacts/ImageAvatar';
 import { Flex, InnerBorder } from '../layout';
 import { Text } from '../text';
-import { position, borders } from '@rainbow-me/styles';
-import {View} from "react-native";
+import { borders, position } from '@rainbow-me/styles';
 
 const AvatarCircleSize = 128;
 
