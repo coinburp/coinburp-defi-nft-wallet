@@ -311,7 +311,7 @@ export default function SendSheet(props) {
           }
         );
       }
-      goBack();
+      navigate(Routes.SEND_SHEET);
     },
     [
       accountAddress,
