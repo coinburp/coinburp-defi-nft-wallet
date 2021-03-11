@@ -10,9 +10,10 @@ import { position } from '@rainbow-me/styles';
 
 const AvatarCircleSize = 128;
 
-const AvatarCircleView = styled(Flex)`
+const AvatarCircleView = styled(Flex).attrs({
+  borderRadius: AvatarCircleSize,
+})`
   ${position.size(AvatarCircleSize)};
-  border-radius: ${AvatarCircleSize};
   justify-content: center;
   align-items: center;
 `;
@@ -83,7 +84,6 @@ export default function AvatarCircle({
         ) : (
           <AvatarCircleView
             backgroundColor={colors.avatarColor[accountColor]}
-            borderRadius={AvatarCircleSize}
           >
             <FirstLetter>{accountSymbol}</FirstLetter>
             {!overlayStyles && <InnerBorder opacity={0.02} radius={65} />}

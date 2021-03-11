@@ -41,7 +41,7 @@ const BottomRow = ({ balance, native, nativeCurrencySymbol }) => {
 };
 
 const TopRow = ({ name, selected }) => (
-  <CoinName weight={selected ? 'semibold' : 'regular'}>{name}</CoinName>
+  <CoinName weight={selected ? 'heavy' : 'bold'}>{name}</CoinName>
 );
 
 const SendCoinRow = magicMemo(

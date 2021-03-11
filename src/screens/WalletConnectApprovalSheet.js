@@ -25,6 +25,7 @@ import {
 } from '@rainbow-me/helpers/dappNameHandler';
 import { useNavigation } from '@rainbow-me/navigation';
 import { ethereumUtils } from '@rainbow-me/utils';
+import CoinCheckButton from '../components/coin-row/CoinCheckButton';
 
 const DappLogo = styled(RequestVendorLogoIcon).attrs(
   ({ theme: { colors } }) => ({
@@ -145,27 +146,38 @@ export default function WalletConnectApprovalSheet() {
           </Row>
         </Centered>
         <Row marginBottom={30} marginTop={15}>
-          <Text color="appleBlue" lineHeight={29} size="large" weight="bold">
-            {isAuthenticated ? `􀇻 ${formattedDappUrl}` : formattedDappUrl}
+          { isAuthenticated && 
+            <CoinCheckButton style={{
+              width: 24,
+              left: -5,
+              top: -10
+            }} toggle={true} />
+          }
+          <Text color="coinburp" lineHeight={29} size="large" weight="bold">
+            { formattedDappUrl }
           </Text>
         </Row>
         <Divider color={colors.rowDividerLight} inset={[0, 84]} />
       </Centered>
       <SheetActionButtonRow>
         <SheetActionButton
-          color={colors.white}
-          label="Cancel"
-          onPress={handleCancel}
-          size="big"
-          textColor={colors.alpha(colors.blueGreyDark, 0.8)}
-          weight="bold"
-        />
-        <SheetActionButton
-          color={colors.appleBlue}
+          color={colors.coinburp}
           label="Connect"
           onPress={handleConnect}
           size="big"
           weight="bold"
+          style={{marginTop: -30}}
+        />
+      </SheetActionButtonRow>
+      <SheetActionButtonRow>
+        <SheetActionButton
+          color={colors.white}
+          label="Cancel"
+          onPress={handleCancel}
+          size="big"
+          textColor={colors.red}
+          weight="bold"
+          style={{marginTop: -30}}
         />
       </SheetActionButtonRow>
     </Sheet>

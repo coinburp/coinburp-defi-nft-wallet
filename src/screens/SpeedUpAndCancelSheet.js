@@ -499,7 +499,7 @@ export default function SpeedUpAndCancelSheet() {
                     weight="bold"
                   />
                   <SheetActionButton
-                    color={colors.appleBlue}
+                    color={colors.coinburp}
                     label="􀎽 Confirm"
                     onPress={handleSpeedUp}
                     size="big"

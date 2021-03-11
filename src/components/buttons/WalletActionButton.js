@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo } from 'react';
 import { Alert } from 'react-native';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { ButtonPressAnimation } from '../animations';
-import { Icon } from '../icons';
+// import { Icon } from '../icons';
 import DepositIcon from '../icons/svg/DepositIcon';
 import SwapIcon from '../icons/svg/SwapArrowIcon';
 import WithdrawIcon from '../icons/svg/WithdrawIcon';
