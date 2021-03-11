@@ -23,7 +23,7 @@ const WithdrawModal = ({ route, navigation, ...props }) => {
       estimateRap={estimateWithdrawFromCompound}
       inputHeaderTitle={`Withdraw ${defaultInputAsset.symbol}`}
       navigation={navigation}
-      showOutputField
+      showOutputField={false}
       supplyBalanceUnderlying={supplyBalanceUnderlying}
       type={ExchangeModalTypes.withdrawal}
       underlyingPrice={underlyingPrice}
