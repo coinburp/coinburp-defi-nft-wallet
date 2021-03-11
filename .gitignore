@@ -11,6 +11,7 @@ ios/debug.xcconfig
 ios/release.xcconfig
 ios/localrelease.xcconfig
 ios/staging.xcconfig
+ios/Build Exports
 
 # Xcode
 #

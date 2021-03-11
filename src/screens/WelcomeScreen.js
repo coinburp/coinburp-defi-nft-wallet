@@ -1,4 +1,3 @@
-import MaskedView from '@react-native-community/masked-view';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet } from 'react-native';
 import { IS_TESTING } from 'react-native-dotenv';
@@ -11,11 +10,6 @@ import Reanimated, {
 import { useValue } from 'react-native-redash';
 import styled from 'styled-components';
 import { useMemoOne } from 'use-memo-one';
-import RainbowGreyNeon from '../assets/rainbows/greyneon.png';
-import RainbowLight from '../assets/rainbows/light.png';
-import RainbowLiquid from '../assets/rainbows/liquid.png';
-import RainbowNeon from '../assets/rainbows/neon.png';
-import RainbowPixel from '../assets/rainbows/pixel.png';
 import Coin1 from '../assets/coins/coin1.png';
 import Coin2 from '../assets/coins/coin2.png';
 import Coin3 from '../assets/coins/coin3.png';
@@ -106,11 +100,8 @@ const Shadow = styled(Reanimated.View)`
 `;
 
 const RainbowButton = ({
-  darkShadowStyle,
-  emoji,
   height,
   onPress,
-  shadowStyle,
   style,
   textColor,
   text,
@@ -123,8 +114,6 @@ const RainbowButton = ({
       scaleTo={0.9}
       {...props}
     >
-      {ios && <DarkShadow style={darkShadowStyle} />}
-      {ios && <Shadow style={shadowStyle} />}
       <ButtonContainer height={height} style={style}>
         <ButtonContent>
           <ButtonLabel textColor={textColor}>{text}</ButtonLabel>
