@@ -20,7 +20,8 @@ const Content = styled(Row).attrs({
   justify: 'space-between',
 })`
   ${({ isCoinRow }) => padding(0, isCoinRow ? 16 : 19)};
-  background-color: ${({ theme: { colors } }) => colors.background};
+  background-color: ${({ theme: { colors }, backgroundColor }) =>
+    backgroundColor || colors.background};
   height: ${TokenFamilyHeaderHeight};
   width: 100%;
 `;
@@ -61,6 +62,7 @@ const TitleText = styled(TruncatedText).attrs({
 `;
 
 const TokenFamilyHeader = ({
+  backgroundColor,
   childrenAmount,
   emoji,
   familyImage,
@@ -89,7 +91,7 @@ const TokenFamilyHeader = ({
       scaleTo={1.05}
       testID={testID}
     >
-      <Content isCoinRow={isCoinRow}>
+      <Content backgroundColor={backgroundColor} isCoinRow={isCoinRow}>
         <RowWithMargins align="center" margin={emoji ? 5 : 9}>
           {emoji ? (
             <Emoji name={emoji} size="lmedium" />
@@ -106,9 +108,7 @@ const TokenFamilyHeader = ({
           <Animated.View style={{ opacity: animation }}>
             <ChildrenAmountText>{childrenAmount}</ChildrenAmountText>
           </Animated.View>
-          <RotatingArrowIcon
-            style={{ transform: [{ rotate }] }}
-          />
+          <RotatingArrowIcon style={{ transform: [{ rotate }] }} />
         </RowWithMargins>
       </Content>
     </ButtonPressAnimation>

@@ -24,7 +24,9 @@ const FooterContainer = styled(ColumnWithMargins).attrs(({ deviceHeight }) => ({
   z-index: 3;
 `;
 
-const FormContainer = styled(Column)``;
+const FormContainer = styled(Column).attrs({
+  align: 'center'
+})``;
 
 export default function SendAssetFormTokenOrNft({
   assetAmount,

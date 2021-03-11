@@ -62,7 +62,7 @@ const EditButton = styled(ButtonPressAnimation).attrs(({ editMode }) => ({
     alignSelf: 'flex-end',
     height: 40,
     marginRight: 7,
-    width: editMode ? 70 : 58,
+    width: editMode ? (ios ? 70 : 76) : ios ? 58 : 64,
   },
 }))``;
 
