@@ -466,7 +466,7 @@ export default function ChangeWalletSheet() {
           align="flex-start"
           flex="1"
           height={headerHeight}
-          justify="space-between"
+          justify="flex-start"
         >
           <EditButton editMode={editMode} onPress={() => setEditMode(e => !e)}>
             <EditButtonLabel editMode={editMode}>

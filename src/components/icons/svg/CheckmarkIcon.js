@@ -1,15 +1,23 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Path } from 'react-native-svg';
+import { G, Path } from 'react-native-svg';
 import Svg from '../Svg';
 
 const CheckmarkIcon = ({ color, colors, ...props }) => (
-  <Svg height="19" viewBox="0 0 18 18" width="19" {...props}>
-    <Path
-      d="M3.4843 11.0134C3.80009 11.3816 4.14746 11.5815 4.57904 11.5815C5.00009 11.5815 5.37904 11.3711 5.6422 10.9818L10.979 2.75418C11.1369 2.50167 11.2633 2.21759 11.2633 1.96508C11.2633 1.35485 10.7159 0.944519 10.1369 0.944519C9.76851 0.944519 9.4422 1.14442 9.18957 1.55475L4.54746 8.94069L2.13693 5.95265C1.86325 5.62649 1.57904 5.47919 1.22115 5.47919C0.631672 5.47919 0.147461 5.95265 0.147461 6.56288C0.147461 6.84696 0.242198 7.12051 0.463251 7.37302L3.4843 11.0134Z"
-      fill={color || colors.black}
-      fillRule="nonzero"
-    />
+  <Svg height="32" viewBox="0 0 32 32" width="32" {...props}>
+    <G fill="none" fillRule="evenodd">
+      <Path
+        d="M16 32c8.837 0 16-7.163 16-16S24.837 0 16 0 0 7.163 0 16s7.163 16 16 16z"
+        fill={color || colors.coinburp}
+        fillRule="nonzero"
+        transform="translate(-319 -520) translate(0 424) translate(24 88) translate(295 8)"
+      />
+      <Path
+        d="M23.414 13.914c.781-.78.781-2.047 0-2.828-.78-.781-2.047-.781-2.828 0L14 17.672l-2.586-2.586c-.78-.781-2.047-.781-2.828 0-.781.78-.781 2.047 0 2.828l4 4c.78.781 2.047.781 2.828 0l8-8z"
+        fill="#FFF"
+        transform="translate(-319 -520) translate(0 424) translate(24 88) translate(295 8)"
+      />
+    </G>
   </Svg>
 );
 

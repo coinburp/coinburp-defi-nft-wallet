@@ -68,13 +68,9 @@ const gradientProps = {
 const OptionsIcon = ({ onPress }) => {
   const { colors } = useTheme();
   return (
-    <ButtonPressAnimation onPress={onPress} scaleTo={0.9}>
+    <ButtonPressAnimation onPress={onPress} scaleTo={0.9} style={{ marginRight: 7 }}>
       <Centered height={40} width={68}>
-        {android ? (
-          <Icon color={colors.coinburp} name="threeDots" />
-        ) : (
-          <Icon color={colors.coinburp} name="threeDots" />
-        )}
+        <Icon color={colors.coinburp} name="threeDots" />
       </Centered>
     </ButtonPressAnimation>
   );
@@ -170,7 +166,7 @@ export default function AddressRow({ data, editMode, onPress, onEditWallet }) {
             {isReadOnly && (
               <LinearGradient
                 {...linearGradientProps}
-                marginRight={editMode || isSelected ? -9 : 19}
+                marginRight={editMode ? -2 : isSelected ? 5 : 24}
               >
                 <Text
                   style={[
