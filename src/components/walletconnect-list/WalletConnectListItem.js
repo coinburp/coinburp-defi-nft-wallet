@@ -12,6 +12,7 @@ import {
 } from '@rainbow-me/helpers/dappNameHandler';
 import { useWalletConnectConnections } from '@rainbow-me/hooks';
 import { padding } from '@rainbow-me/styles';
+import CoinCheckButton from '../coin-row/CoinCheckButton';
 
 const ContainerPadding = 15;
 const VendorLogoIconSize = 50;
@@ -73,15 +74,12 @@ export default function WalletConnectListItem({ dappIcon, dappName, dappUrl }) {
               {overrideName || dappName || 'Unknown Application'}{' '}
             </TruncatedText>
             {isAuthenticated && (
-              <Text
-                align="center"
-                color={colors.appleBlue}
-                letterSpacing="roundedMedium"
-                size="lmedium"
-                weight="bold"
-              >
-                􀇻
-              </Text>
+              <CoinCheckButton style={{
+                width: 24,
+                position: 'absolute',
+                left: 86,
+                top: -14
+              }} toggle={true} />
             )}
           </Row>
 
