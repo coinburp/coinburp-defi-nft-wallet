@@ -27,7 +27,7 @@ const dividerMargin = 10;
 const dividerHeight = DividerSize + dividerMargin * 2;
 const familyRowHeight = 58;
 const familyHeaderHeight = 62;
-const rowHeight = 64;
+const rowHeight = ios ? 64 : 64;
 const smallBalancesHeader = 36;
 
 const SendAssetListCoinDividerOpenButton = styled(CoinDividerOpenButton).attrs({
@@ -352,6 +352,7 @@ export default class SendAssetList extends React.Component {
     return (
       <View>
         <TokenFamilyHeader
+          backgroundColor="rgba(0, 0, 0, 0)"
           childrenAmount={item.data.length}
           familyImage={item.familyImage}
           isCoinRow

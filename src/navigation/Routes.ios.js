@@ -101,11 +101,12 @@ function AddCashFlowNavigator() {
       <Stack.Screen
         component={ModalScreen}
         name={Routes.SUPPORTED_COUNTRIES_MODAL_SCREEN}
-        options={overlayExpandedPreset}
+        options={exchangePreset}
       />
       <Stack.Screen
         component={AddCashSheet}
         name={Routes.ADD_CASH_SCREEN_NAVIGATOR}
+        options={exchangePreset}
       />
     </Stack.Navigator>
   );
@@ -197,7 +198,7 @@ function NativeStackFallbackNavigator() {
       <Stack.Screen
         component={ModalScreen}
         name={Routes.SUPPORTED_COUNTRIES_MODAL_SCREEN}
-        options={overlayExpandedPreset}
+        options={exchangePreset}
       />
       <Stack.Screen
         component={ExchangeModalNavigator}

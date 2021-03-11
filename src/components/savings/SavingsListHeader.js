@@ -59,13 +59,12 @@ const SavingsListHeader = ({
         width="100%"
       >
         <RowWithMargins align="center" margin={emoji ? 5 : 9}>
-          <ListHeaderEmoji name={emoji} />
           <TruncatedText
             color={colors.dark}
             letterSpacing="roundedMedium"
             lineHeight="normal"
-            size="large"
-            weight="bold"
+            size={20}
+            weight={900}
           >
             {title}
           </TruncatedText>

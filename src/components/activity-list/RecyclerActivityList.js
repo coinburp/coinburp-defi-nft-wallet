@@ -94,18 +94,17 @@ export default class RecyclerActivityList extends PureComponent {
         // This values has been hardcoded for omitting imports' cycle
         dim.width = deviceUtils.dimensions.width;
         if (type === ViewTypes.ROW) {
-          dim.height = 70;
+          dim.height = 92;
         } else if (type === ViewTypes.SWAPPED_ROW) {
-          dim.height = 70;
+          dim.height = 88;
         } else if (type === ViewTypes.FOOTER) {
-          dim.height = 19;
+          dim.height = 0;
         } else if (type === ViewTypes.HEADER) {
-          dim.height = 39;
+          dim.height = 64;
         } else {
           dim.height = this.props.isLoading
             ? deviceUtils.dimensions.height
-            : (this.props.addCashAvailable ? 278 : 203) +
-              (this.props.isEmpty ? 297 : 0);
+            : 381 + (this.props.isEmpty ? 297 : 0);
         }
       }
     );

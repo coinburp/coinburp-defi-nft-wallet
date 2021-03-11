@@ -120,7 +120,7 @@ const SecretTextArea = styled(Input).attrs(({ value }) => ({
   letterSpacing: '1',
   lineHeight: '40',
   multiline: true,
-  numberOfLines: 4,
+  numberOfLines: android ? 5 : 4,
   placeholder: 'Send phrase, private key, Ethereum address, or ENS name',
   returnKeyType: 'done',
   size: 'h2',
@@ -128,7 +128,7 @@ const SecretTextArea = styled(Input).attrs(({ value }) => ({
   weight: value ? 'heavy' : 'bold',
 }))`
   margin-bottom: ${android ? 55 : 0};
-  min-height: ${android ? 100 : 186};
+  min-height: ${android ? 240 : 186};
   width: 100%;
 `;
 

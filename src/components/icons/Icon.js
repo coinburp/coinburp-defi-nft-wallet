@@ -18,7 +18,6 @@ import ChartIcon from './svg/ChartIcon';
 import CheckIcon from './svg/CheckIcon';
 import CheckmarkCircledIcon from './svg/CheckmarkCircledIcon';
 import CheckmarkIcon from './svg/CheckmarkIcon';
-import CheckmarkCoinburpIcon from './svg/CheckmarkCoinburp';
 import ClearInputIcon from './svg/ClearInputIcon';
 import ClockIcon from './svg/ClockIcon';
 import CloseCircledIcon from './svg/CloseCircledIcon';
@@ -108,7 +107,6 @@ const IconTypes = {
   chart: ChartIcon,
   check: CheckIcon,
   checkmark: CheckmarkIcon,
-  checkmarkCoinburp: CheckmarkCoinburpIcon,
   checkmarkCircled: CheckmarkCircledIcon,
   clearInput: ClearInputIcon,
   clock: ClockIcon,

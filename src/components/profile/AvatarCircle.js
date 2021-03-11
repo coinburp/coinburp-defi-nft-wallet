@@ -13,8 +13,8 @@ const AvatarCircleSize = 128;
 const AvatarCircleView = styled(Flex)`
   ${position.size(AvatarCircleSize)};
   border-radius: ${AvatarCircleSize};
-  justify-content: ${ios ? 'flex-start' : 'center'};
-  align-items: ${ios ? 'flex-start' : 'center'};
+  justify-content: center;
+  align-items: center;
 `;
 
 const FirstLetter = styled(Text).attrs(({ theme: { colors } }) => ({
@@ -23,7 +23,7 @@ const FirstLetter = styled(Text).attrs(({ theme: { colors } }) => ({
   letterSpacing: 2,
   lineHeight: android ? 68 : 66,
   size: ios ? 38 : 30,
-  weight: 'semibold',
+  weight: 900,
 }))`
   width: ${android ? 66 : 67};
 `;

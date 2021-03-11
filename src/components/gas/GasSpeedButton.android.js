@@ -35,7 +35,7 @@ const Container = styled(Row).attrs({
 })`
   ${padding(15, 19, 0)};
   height: 76;
-  width: 100%;
+  //width: 100%;
 `;
 
 const Label = styled(Text).attrs({

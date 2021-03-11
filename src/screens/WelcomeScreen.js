@@ -16,6 +16,13 @@ import RainbowLight from '../assets/rainbows/light.png';
 import RainbowLiquid from '../assets/rainbows/liquid.png';
 import RainbowNeon from '../assets/rainbows/neon.png';
 import RainbowPixel from '../assets/rainbows/pixel.png';
+import Coin1 from '../assets/coins/coin1.png';
+import Coin2 from '../assets/coins/coin2.png';
+import Coin3 from '../assets/coins/coin3.png';
+import Coin4 from '../assets/coins/coin4.png';
+import Coin5 from '../assets/coins/coin5.png';
+import Coin6 from '../assets/coins/coin6.png';
+import Coin7 from '../assets/coins/coin7.png';
 import { ButtonPressAnimation } from '../components/animations';
 import CoinBurpText from '../components/icons/svg/CoinBurpText';
 import { RowWithMargins } from '../components/layout';
@@ -65,7 +72,7 @@ const ButtonLabel = styled(Text).attrs(
     align: 'center',
     color: color || colors.dark,
     size: 'larger',
-    weight: 'bold',
+    weight: 900,
   })
 )``;
 
@@ -162,47 +169,65 @@ const rainbows = [
   {
     delay: 0,
     id: 'grey',
-    rotate: '150deg',
-    scale: 0.5066666667,
-    source: ios ? { uri: 'greyneon' } : RainbowGreyNeon,
-    x: -116,
-    y: -202,
+    rotate: '360deg',
+    scale: 0.76,
+    source: Coin1,
+    x: -160,
+    y: -420,
   },
   {
     delay: 20,
     id: 'neon',
-    rotate: '394.75deg',
-    scale: 0.3333333333,
-    source: ios ? { uri: 'neon' } : RainbowNeon,
-    x: 149,
-    y: 380,
+    rotate: '360deg',
+    scale: 0.282666667,
+    source: Coin2,
+    x: 190,
+    y: -262,
   },
   {
     delay: 40,
     id: 'pixel',
     rotate: '360deg',
-    scale: 0.6666666667,
-    source: ios ? { uri: 'pixel' } : RainbowPixel,
-    x: 173,
-    y: -263,
+    scale: 0.130666667,
+    source: Coin3,
+    x: -190,
+    y: -210,
   },
   {
     delay: 60,
     id: 'light',
-    rotate: '-33deg',
-    scale: 0.2826666667,
-    source: ios ? { uri: 'light' } : RainbowLight,
-    x: -172,
-    y: 180,
+    rotate: '360deg',
+    scale: 0.426666667,
+    source: Coin4,
+    x: -230,
+    y: 240,
   },
   {
     delay: 80,
     id: 'liquid',
-    rotate: '75deg',
-    scale: 0.42248,
-    source: ios ? { uri: 'liquid' } : RainbowLiquid,
-    x: 40,
-    y: 215,
+    rotate: '360deg',
+    scale: 0.162666667,
+    source: Coin5,
+    x: 190,
+    y: 235,
+  },
+  {
+    delay: 80,
+    id: 'liquid',
+    rotate: '360deg',
+    scale: 0.096,
+    source: Coin6,
+    x: -70,
+    y: 340,
+  },
+  {
+    delay: 80,
+    id: 'liquid',
+    rotate: '360deg',
+    scale: 0.76,
+    source: Coin7,
+    x: 150,
+    y: 440,
   },
 ];
 
@@ -261,7 +286,7 @@ const traversedRainbows = rainbows.map(
   }
 );
 
-const RainbowImage = styled(ImgixImage)`
+const RainbowImage = styled(ImgixImage).attrs({resizeMode: 'contain'})`
   height: ${INITIAL_SIZE};
   position: absolute;
   width: ${INITIAL_SIZE};
@@ -459,7 +484,7 @@ export default function WelcomeScreen() {
         backgroundColor: colors.dark,
         width: width - 32 + (ios ? 0 : 6),
       },
-      text: 'Get a new wallet',
+      text: 'Create a new wallet',
       textColor: colors.white,
     };
   }, [rValue]);
@@ -480,11 +505,10 @@ export default function WelcomeScreen() {
         opacity: 0,
       },
       style: {
-        backgroundColor: 'rgba(175, 210, 255, 0.16)',
         width: width - 32,
       },
       text: 'I already have one',
-      textColor: colors.blueGrey,
+      textColor: colors.coinburp,
     };
   }, [rValue]);
 

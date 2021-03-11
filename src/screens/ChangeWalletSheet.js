@@ -62,17 +62,20 @@ const EditButton = styled(ButtonPressAnimation).attrs(({ editMode }) => ({
     alignSelf: 'flex-end',
     height: 40,
     marginRight: 7,
-    width: editMode ? 70 : 58,
+    width: editMode ? (ios ? 70 : 76) : ios ? 58 : 64,
   },
 }))``;
 
 const EditButtonLabel = styled(Text).attrs(({ theme: { colors } }) => ({
-  align: 'right',
+  align: 'left',
   color: colors.coinburp,
   letterSpacing: 'roundedMedium',
   size: 'larger',
   weight: 'bold',
-}))``;
+}))`
+  margin-left: ${android ? '8' : '0'};
+  margin-right: ${android ? '0' : '24'};
+`;
 
 const Whitespace = styled.View`
   background-color: ${({ theme: { colors } }) => colors.white};
@@ -117,13 +120,13 @@ export default function ChangeWalletSheet() {
 
   const walletRowCount = useMemo(() => getWalletRowCount(wallets), [wallets]);
 
-  let headerHeight = android ? 0 : 52;
+  let headerHeight = 52;
   let listHeight =
     walletRowHeight * walletRowCount + footerHeight + listPaddingBottom;
   let scrollEnabled = false;
   let showDividers = false;
   if (listHeight > maxListHeight) {
-    headerHeight = android ? 0 : 40;
+    headerHeight = 40;
     listHeight = maxListHeight;
     scrollEnabled = true;
     showDividers = true;
@@ -453,7 +456,7 @@ export default function ChangeWalletSheet() {
         </Column>
         <Column
           align="center"
-          flex="4.5"
+          flex="3.5"
           height={headerHeight}
           justify="space-between"
         >
@@ -463,10 +466,10 @@ export default function ChangeWalletSheet() {
           )}
         </Column>
         <Column
-          align="flex-start"
+          align={android ? 'flex-start' : 'flex-end'}
           flex="1"
           height={headerHeight}
-          justify="space-between"
+          justify="flex-start"
         >
           <EditButton editMode={editMode} onPress={() => setEditMode(e => !e)}>
             <EditButtonLabel editMode={editMode}>
