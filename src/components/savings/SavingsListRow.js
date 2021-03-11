@@ -104,11 +104,10 @@ const APYGradientText = styled(GradientText).attrs({
   angle: 277,
   colors: ['#ff2700', '#ffdb00'],
   size: 16,
-  steps: [0, 0.99, 1],
+  steps: [0.3, 1],
   weight: 'bold',
 })`
   margin-left: 8px;
-  margin-top: 24px;
 `;
 
 const Pill = styled(LinearGradient)`
@@ -249,14 +248,16 @@ const SavingsListRow = ({
         <Centered direction="column" marginBottom={15}>
           <SavingsListRowItem deviceWidth={deviceWidth}>
             <CoinIcon address={underlying.address} symbol={underlying.symbol} />
-            <SavingsListRowAnimatedNumber
-              initialValue={initialValue}
-              interval={ANIMATE_NUMBER_INTERVAL}
-              steps={steps}
-              symbol={underlying.symbol}
-              value={displayValue}
-            />
-            <APYGradientText>{apyTruncated}% APY</APYGradientText>
+            <Column width="100%">
+              <SavingsListRowAnimatedNumber
+                initialValue={initialValue}
+                interval={ANIMATE_NUMBER_INTERVAL}
+                steps={steps}
+                symbol={underlying.symbol}
+                value={displayValue}
+              />
+              <APYGradientText>{apyTruncated}% APY</APYGradientText>
+            </Column>
           </SavingsListRowItem>
         </Centered>
       </ButtonPressAnimation>
@@ -319,7 +320,7 @@ const SavingsListRow = ({
                 <Text
                   align="center"
                   color="#fff"
-                  css={{ top: -10 }}
+                  css={{ top: ios ? -6 : -10 }}
                   size={20}
                   weight={900}
                 >
@@ -329,7 +330,7 @@ const SavingsListRow = ({
             </Column>
             <ShadowStack
               backgroundColor={colors.transparent}
-              css={{ top: -21 }}
+              css={{ top: ios ? -18 : -21 }}
               height={100}
               shadows={shadows}
               width={295}

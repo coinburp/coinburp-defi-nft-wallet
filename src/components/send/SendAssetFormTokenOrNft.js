@@ -1,5 +1,5 @@
 import React, { Fragment, useRef } from 'react';
-import { Text } from 'react-native';
+import { Text } from '../text';
 import styled, { useTheme } from 'styled-components';
 import { ExchangeInputField } from '../exchange';
 import { FloatingPanel } from '../floating-panels';

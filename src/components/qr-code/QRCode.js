@@ -24,7 +24,7 @@ const QRCode = ({
   ecl = 'M',
   logo = CoinBurpLogo,
   logoBackgroundColor: givenLogoBackgroundColor,
-  logoMargin = 2,
+  logoMargin = ios ? 4 : 2,
   logoSize = 50,
   size = 150,
   value = 'QR Code',

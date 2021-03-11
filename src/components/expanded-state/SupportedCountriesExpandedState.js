@@ -3,47 +3,63 @@ import React from 'react';
 import styled from 'styled-components';
 import { FloatingEmojisTapper } from '../floating-emojis';
 import { AssetPanel, FloatingPanels } from '../floating-panels';
-import { Centered } from '../layout';
-import { Text } from '../text';
+import { Centered, Column, Row } from '../layout';
+import { Emoji, Text } from '../text';
 import isNativeStackAvailable from '@rainbow-me/helpers/isNativeStackAvailable';
 import { useDimensions } from '@rainbow-me/hooks';
 import { supportedCountries } from '@rainbow-me/references/wyre';
 import { padding } from '@rainbow-me/styles';
 import { neverRerender } from '@rainbow-me/utils';
 
-const Panel = styled(FloatingPanels)`
+const Panel = styled(Column)`
   margin-bottom: ${({ deviceDimensions: { isTallPhone } }) =>
     (isTallPhone ? 90 : 45) + (isNativeStackAvailable ? 10 : 0)};
-  max-width: ${({ deviceDimensions: { width } }) => Math.min(270, width - 100)};
+  max-width: ${({ deviceDimensions: { width } }) => width - 32};
 `;
 
 const FooterText = styled(Text).attrs({
-  align: 'center',
-  size: 'smedium',
+  size: 16,
+  weight: 900,
 })`
-  margin-top: 12;
+  margin-top: 16px;
+  margin-left: 24px;
 `;
+
+const CountryText = styled(Text).attrs({
+  lineHeight: 19,
+  size: 14,
+  weight: 'bold',
+})``;
 
 const TitleText = styled(Text).attrs({
   align: 'center',
-  size: 'large',
-  weight: 'bold',
+  size: 20,
+  weight: 900,
 })`
-  margin-bottom: 10;
+  margin-bottom: 32px;
 `;
 
-const countries = values(supportedCountries).map(c =>
-  c.name === 'United States'
-    ? 'United\xa0States (except CT, HI, NC, NH, NY, VA, VT)'
-    : c.name.replace(/ /g, '\xa0')
-);
-const countriesList = `${countries.join(', ')}`;
+const countries = values(supportedCountries).map(c => ({
+  emojiName: c.emojiName,
+  name:
+    c.name === 'United States'
+      ? 'United\xa0States (except CT, HI, NC, NH, NY, VA, VT)'
+      : c.name.replace(/ /g, '\xa0'),
+}));
+// const countriesList = `${countries.join(', ')}`;
 const emojiArray = values(supportedCountries).map(c => c.emojiName);
 
 const SupportCountriesExpandedState = () => {
   const deviceDimensions = useDimensions();
 
   const { colors } = useTheme();
+
+  const countriesList = countries.map(country => (
+    <Row paddingVertical={1}>
+      <Emoji name={country.emojiName} size={14} />
+      <CountryText>{country.name}</CountryText>
+    </Row>
+  ));
 
   return (
     <Panel deviceDimensions={deviceDimensions}>
@@ -58,18 +74,11 @@ const SupportCountriesExpandedState = () => {
         wiggleFactor={0}
       >
         <AssetPanel>
-          <Centered css={padding(19, 30, 24)} direction="column">
+          <Column css={padding(19, 30, 24)}>
             <TitleText>Supported Countries</TitleText>
-            <Text
-              align="center"
-              color={colors.alpha(colors.blueGreyDark, 0.6)}
-              lineHeight={22}
-              size="smedium"
-            >
-              {countriesList}
-            </Text>
-            <FooterText>🔜 🌍🌎🌏</FooterText>
-          </Centered>
+            {countriesList}
+            <FooterText>More coming soon...</FooterText>
+          </Column>
         </AssetPanel>
       </FloatingEmojisTapper>
     </Panel>
