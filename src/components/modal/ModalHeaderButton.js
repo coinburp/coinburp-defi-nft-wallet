@@ -8,7 +8,8 @@ import { Text as UnstyledText } from '../text';
 
 const BackArrow = styled(Icon).attrs(({ theme: { colors } }) => ({
   color: colors.coinburp,
-  name: 'caret',
+  direction: 'left',
+  name: 'caretThick',
 }))`
   height: 16;
   margin-top: ${android ? 6 : 0};

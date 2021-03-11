@@ -133,8 +133,8 @@ const SecretTextArea = styled(Input).attrs(({ value }) => ({
 `;
 
 const SecretTextAreaContainer = styled(Centered)`
-  ${padding(0, 42)};
-  flex: 1;
+  ${padding(0, ios ? 42 : 24)};
+  margin-top: 50%;
 `;
 
 const Sheet = styled(Column).attrs({
@@ -151,6 +151,7 @@ const ImportIcon = styled(Icon).attrs({
   name: 'import',
 })`
   margin: 4px 8px 4px 4px;
+  top: ${ios ? 0 : 8};
 `;
 
 export default function ImportSeedPhraseSheet() {
@@ -443,7 +444,7 @@ export default function ImportSeedPhraseSheet() {
                 disabled={!isSecretValid}
                 hasLeadingIcon
                 marginLeft={38}
-                {...(android && { height: 30, overflowMargin: 15, width: 89 })}
+                {...(android && { height: 30, overflowMargin: 15, width: 120 })}
                 onPress={handlePressImportButton}
               >
                 <Row>
@@ -465,7 +466,7 @@ export default function ImportSeedPhraseSheet() {
               </FooterButton>
             ) : (
               <FooterButton
-                {...(android && { height: 30, overflowMargin: 15, width: 63 })}
+                {...(android && { height: 30, overflowMargin: 15, width: 80 })}
                 disabled={!isClipboardValidSecret}
                 onPress={handlePressPasteButton}
               >
