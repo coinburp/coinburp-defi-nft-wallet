@@ -91,17 +91,17 @@ const CurrencySelectState = params => {
         <SheetTitle color="black" size={20} weight="heavy">
           Withdraw
         </SheetTitle>
-        <Spacer />
-        <ExchangeSearch
-          customPlaceHolder="Search"
-          isFetching
-          isSearching
-          onChangeText={null}
-          onFocus={null}
-          ref={null}
-          searchQuery={null}
-          testID="currency-select-search"
-        />
+        {/*<Spacer />*/}
+        {/*<ExchangeSearch*/}
+        {/*  customPlaceHolder="Search"*/}
+        {/*  isFetching*/}
+        {/*  isSearching*/}
+        {/*  onChangeText={null}*/}
+        {/*  onFocus={null}*/}
+        {/*  ref={null}*/}
+        {/*  searchQuery={null}*/}
+        {/*  testID="currency-select-search"*/}
+        {/*/>*/}
         <Spacer />
         <SendAssetList
           allAssets={allAssets}

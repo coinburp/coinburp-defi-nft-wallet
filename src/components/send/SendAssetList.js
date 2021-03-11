@@ -25,7 +25,7 @@ import { ImgixImage } from '@rainbow-me/images';
 
 const dividerMargin = 10;
 const dividerHeight = DividerSize + dividerMargin * 2;
-const familyRowHeight = 58;
+const familyRowHeight = 82;
 const familyHeaderHeight = 62;
 const rowHeight = ios ? 64 : 64;
 const smallBalancesHeader = 36;
@@ -423,7 +423,7 @@ export default class SendAssetList extends React.Component {
 
     return (
       <Column align="center">
-        <Row height={deviceHeight - 450} justify="space-between">
+        <Row height={deviceHeight - 350} justify="space-between">
           <SendAssetRecyclerListView
             dataProvider={dataProvider}
             disableRecycling
