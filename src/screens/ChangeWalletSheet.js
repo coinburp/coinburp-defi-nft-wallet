@@ -64,18 +64,17 @@ const EditButton = styled(ButtonPressAnimation).attrs(({ editMode }) => ({
     marginRight: 7,
     width: editMode ? (ios ? 70 : 76) : ios ? 58 : 64,
   },
-}))`
-  // margin-right: 20;
-`;
+}))``;
 
 const EditButtonLabel = styled(Text).attrs(({ theme: { colors } }) => ({
-  align: 'right',
+  align: 'left',
   color: colors.coinburp,
   letterSpacing: 'roundedMedium',
   size: 'larger',
   weight: 'bold',
 }))`
-  margin-right: 24;
+  margin-left: ${android ? '8' : '0'};
+  margin-right: ${android ? '0' : '24'};
 `;
 
 const Whitespace = styled.View`
@@ -121,13 +120,13 @@ export default function ChangeWalletSheet() {
 
   const walletRowCount = useMemo(() => getWalletRowCount(wallets), [wallets]);
 
-  let headerHeight = android ? 0 : 52;
+  let headerHeight = 52;
   let listHeight =
     walletRowHeight * walletRowCount + footerHeight + listPaddingBottom;
   let scrollEnabled = false;
   let showDividers = false;
   if (listHeight > maxListHeight) {
-    headerHeight = android ? 0 : 40;
+    headerHeight = 40;
     listHeight = maxListHeight;
     scrollEnabled = true;
     showDividers = true;
@@ -467,7 +466,7 @@ export default function ChangeWalletSheet() {
           )}
         </Column>
         <Column
-          align="flex-end"
+          align={android ? 'flex-start' : 'flex-end'}
           flex="1"
           height={headerHeight}
           justify="flex-start"
