@@ -145,19 +145,10 @@ const AmountButton = ({ amount, backgroundColor, color, onPress }) => {
   return (
     <AmountButtonWrapper>
       <Wrapper disabled={android} onPress={handlePress}>
-        <InnerBPA
-          onPress={handlePress}
-          reanimatedButton
-          style={{ flex: 1 }}
-          wrapperStyle={{
-            backgroundColor,
-            borderRadius: 24,
-            height: 61,
-            justifyContent: 'center',
-            zIndex: 10,
-          }}
-        >
-          <AmountText color={color}>${amount}</AmountText>
+        <InnerBPA onPress={handlePress} reanimatedButton style={{ flex: 1 }}>
+          <Row backgroundColor={backgroundColor} borderRadius={24} height={61}>
+            <AmountText color={color}>${amount}</AmountText>
+          </Row>
         </InnerBPA>
       </Wrapper>
     </AmountButtonWrapper>

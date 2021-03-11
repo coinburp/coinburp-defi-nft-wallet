@@ -6,14 +6,14 @@ import { ButtonPressAnimation } from '../animations';
 import ImageAvatar from '../contacts/ImageAvatar';
 import { Flex, InnerBorder } from '../layout';
 import { Text } from '../text';
-import { position } from '@rainbow-me/styles';
+import { position, borders } from '@rainbow-me/styles';
+import {View} from "react-native";
 
 const AvatarCircleSize = 128;
 
-const AvatarCircleView = styled(Flex).attrs({
-  borderRadius: AvatarCircleSize,
-})`
+const AvatarCircleView = styled(Flex)`
   ${position.size(AvatarCircleSize)};
+  border-radius: ${AvatarCircleSize};
   justify-content: center;
   align-items: center;
 `;
@@ -69,13 +69,14 @@ export default function AvatarCircle({
       scaleTo={isAvatarPickerAvailable ? 0.9 : 1}
     >
       <Flex
-        {...position.sizeAsObject(AvatarCircleSize)}
+        {...borders.buildCircleAsObject(AvatarCircleSize)}
         backgroundColor={overlayStyles ? 'rgb(51, 54, 59)' : colors.white}
         borderRadius={AvatarCircleSize}
         marginBottom={12}
         shadows={shadows[overlayStyles ? 'overlay' : 'default']}
         {...(android && {
           height: AvatarCircleSize,
+          overflow: 'hidden',
           width: AvatarCircleSize,
         })}
       >
@@ -84,6 +85,7 @@ export default function AvatarCircle({
         ) : (
           <AvatarCircleView
             backgroundColor={colors.avatarColor[accountColor]}
+            borderRadius={AvatarCircleSize}
           >
             <FirstLetter>{accountSymbol}</FirstLetter>
             {!overlayStyles && <InnerBorder opacity={0.02} radius={65} />}
