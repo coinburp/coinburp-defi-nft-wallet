@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import Animated from 'react-native-reanimated';
 import ShadowStack from 'react-native-shadow-stack';
+import {Row} from "../../layout";
 
-const AnimatedShadowStack = Animated.createAnimatedComponent(ShadowStack);
+const AnimatedShadowStack = Animated.createAnimatedComponent(Row);
 
 export default function JellySelectorShadowIndicator({
   height,

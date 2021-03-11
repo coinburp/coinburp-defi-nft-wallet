@@ -53,7 +53,18 @@ const CopyAddressButton = styled(ButtonPressAnimation).attrs({
   width: ${({ width }) => width - 32};
 `;
 
-const AmountBPA = styled(ButtonPressAnimation)`
+const AmountBPA = styled(ButtonPressAnimation).attrs(({ theme: { colors } }) =>
+  ios
+    ? {
+        backgroundColor: colors.coinburp,
+        borderRadius: 24,
+        height: 61,
+        justifyContent: 'center',
+        paddingHorizontal: 12,
+        zIndex: 10,
+      }
+    : {}
+)`
   border-radius: 25px;
   overflow: visible;
 `;

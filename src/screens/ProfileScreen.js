@@ -99,34 +99,22 @@ export default function ProfileScreen({ navigation }) {
           onPress={onPressBackButton}
         />
       </Header>
-      {network === NetworkTypes.mainnet && nativeTransactionListAvailable ? (
-        <TransactionList
-          addCashAvailable={addCashAvailable}
-          contacts={contacts}
-          initialized={activityListInitialized}
-          isLoading={isLoading}
-          network={network}
-          requests={requests}
-          transactions={transactions}
-        />
-      ) : (
-        <ActivityList
-          addCashAvailable={addCashAvailable}
-          header={
-            <ProfileMasthead
-              addCashAvailable={addCashAvailable}
-              onChangeWallet={onChangeWallet}
-            />
-          }
-          isEmpty={isEmpty}
-          isLoading={isLoading}
-          navigation={navigation}
-          network={network}
-          recyclerListView={ios}
-          sections={sections}
-          {...accountTransactions}
-        />
-      )}
+      <ActivityList
+        addCashAvailable={addCashAvailable}
+        header={
+          <ProfileMasthead
+            addCashAvailable={addCashAvailable}
+            onChangeWallet={onChangeWallet}
+          />
+        }
+        isEmpty={isEmpty}
+        isLoading={isLoading}
+        navigation={navigation}
+        network={network}
+        recyclerListView={ios}
+        sections={sections}
+        {...accountTransactions}
+      />
     </ProfileScreenPage>
   );
 }
