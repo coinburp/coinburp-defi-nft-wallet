@@ -27,7 +27,6 @@ export default class SendSetAssetList extends React.Component {
   render() {
     const { width, txSpeedRenderer, deviceHeight, colors, selected, navigateToSelectOutputCurrency } = this.props;
 
-
     return (
       <Column align="center">
         <Column

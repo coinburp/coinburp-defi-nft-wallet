@@ -30,12 +30,12 @@ import DotArrow from '../components/icons/svg/DotArrow';
 import { Column, Row } from '../components/layout';
 import {
   SendAssetForm,
-  SendSetAssetList,
+  SendAssetList,
   SendButton,
   SendContactList,
   SendHeader,
   SendInput,
-  SendAssetList,
+  SendSetAssetList,
   SendTransactionSpeed,
 } from '../components/send';
 import {
@@ -54,8 +54,10 @@ import {
   formatInputDecimals,
 } from '../helpers/utilities';
 import { checkIsValidAddressOrDomain } from '../helpers/validators';
+import { delayNext } from '../hooks/useMagicAutofocus';
 import { sendTransaction } from '../model/wallet';
 import { useNavigation } from '../navigation/Navigation';
+import CurrencySelectionTypes from '@rainbow-me/helpers/currencySelectionTypes';
 import {
   useAccountAssets,
   useAccountSettings,
@@ -77,8 +79,6 @@ import Routes from '@rainbow-me/routes';
 import { borders, buildTextStyles, fonts, padding } from '@rainbow-me/styles';
 import { deviceUtils, gasUtils } from '@rainbow-me/utils';
 import logger from 'logger';
-import {delayNext} from "../hooks/useMagicAutofocus";
-import CurrencySelectionTypes from "@rainbow-me/helpers/currencySelectionTypes";
 
 const sheetHeight = deviceUtils.dimensions.height - (android ? 30 : 10);
 const statusBarHeight = getStatusBarHeight(true);
@@ -149,7 +149,6 @@ export default function SendSheet(props) {
   const {
     isTinyPhone,
     isNarrowPhone,
-    isSmallPhone,
     width,
     height: deviceHeight,
   } = useDimensions();
@@ -226,7 +225,7 @@ export default function SendSheet(props) {
   const showAssetList = !isValidAddress || isEmpty(selected);
   const showAssetForm = isValidAddress && !isEmpty(selected);
   const prevSelectedGasPrice = usePrevious(selectedGasPrice);
-  const { setParams, dangerouslyGetParent } = useNavigation();
+  const { setParams, goBack } = useNavigation();
 
   const { handleFocus, triggerFocus } = useMagicAutofocus(
     recipientFieldRef,
@@ -312,6 +311,7 @@ export default function SendSheet(props) {
           }
         );
       }
+      goBack();
     },
     [
       accountAddress,
@@ -320,24 +320,6 @@ export default function SendSheet(props) {
       updateMaxInputBalance,
     ]
   );
-
-  const navigateToSelectOutputCurrency = useCallback(() => {
-    InteractionManager.runAfterInteractions(() => {
-      setParams({ focused: false });
-      delayNext();
-      navigate(Routes.MODAL_SCREEN, {
-        additionalPadding: false,
-        headerTitle: 'Withdraw',
-        restoreFocusOnSwapModal: () => setParams({ focused: true }),
-        onSelectCurrency: sendUpdateSelected,
-        type: CurrencySelectionTypes.withdraw,
-      });
-    });
-  }, [
-    navigate,
-    setParams,
-    sendUpdateSelected,
-  ]);
 
   const onChangeNativeAmount = useCallback(
     newNativeAmount => {
@@ -544,8 +526,7 @@ export default function SendSheet(props) {
 
   const recipientOverride = params?.address;
 
-  const handleCustomGasBlur = useCallback(() => {
-  }, );
+  const handleCustomGasBlur = useCallback(() => {});
 
   useEffect(() => {
     if (recipientOverride && !recipient) {
@@ -581,6 +562,40 @@ export default function SendSheet(props) {
     recipient,
     selected,
     updateTxFee,
+  ]);
+
+  const navigateToSelectOutputCurrency = useCallback(() => {
+    InteractionManager.runAfterInteractions(() => {
+      setParams({ focused: false });
+      delayNext();
+      navigate(Routes.MODAL_SCREEN, {
+        additionalPadding: false,
+        headerTitle: 'Withdraw',
+        restoreFocusOnSwapModal: () => setParams({ focused: true }),
+        onSelectCurrency: sendUpdateSelected,
+        type: CurrencySelectionTypes.withdraw,
+        fetchData: fetchData,
+        hiddenCoins: hiddenCoins,
+        nativeCurrency: nativeCurrency,
+        network: network,
+        selected: selected,
+        sendUpdateSelected: sendUpdateSelected,
+        pinnedCoins: pinnedCoins,
+        savings: savings,
+        sendableUniqueTokens: sendableUniqueTokens,
+      });
+    });
+  }, [
+    navigate,
+    setParams,
+    sendUpdateSelected,
+    fetchData,
+    hiddenCoins,
+    nativeCurrency,
+    network,
+    sendUpdateSelected,
+    savings,
+    sendableUniqueTokens,
   ]);
 
   return (
@@ -620,45 +635,13 @@ export default function SendSheet(props) {
             </Column>
             <Column justify="center" style={{ marginTop: 0 }}>
               {showAssetList && (
-                <SendAssetList
-                  allAssets={allAssets}
-                  colors={colors}
-                  deviceHeight={deviceHeight}
-                  fetchData={fetchData}
-                  hiddenCoins={hiddenCoins}
-                  nativeCurrency={nativeCurrency}
-                  network={network}
-                  selected={selected}
-                  onSelectAsset={sendUpdateSelected}
-                  pinnedCoins={pinnedCoins}
-                  savings={savings}
-                  txSpeedRenderer={
-                    <GasSpeedButtonContainer>
-                      <GasSpeedButton
-                        onCustomGasBlur={handleCustomGasBlur}
-                        onCustomGasFocus={handleCustomGasBlur}
-                        type="transaction"
-                      />
-                    </GasSpeedButtonContainer>
-                  }
-                  uniqueTokens={sendableUniqueTokens}
-                  width={width}
-                />
-              )}
-              {showAssetList && (
                 <SendSetAssetList
-                  allAssets={allAssets}
                   colors={colors}
                   deviceHeight={deviceHeight}
-                  fetchData={fetchData}
-                  hiddenCoins={hiddenCoins}
-                  nativeCurrency={nativeCurrency}
-                  network={network}
+                  navigateToSelectOutputCurrency={
+                    navigateToSelectOutputCurrency
+                  }
                   selected={selected}
-                  onSelectAsset={sendUpdateSelected}
-                  pinnedCoins={pinnedCoins}
-                  savings={savings}
-                  navigateToSelectOutputCurrency={navigateToSelectOutputCurrency}
                   txSpeedRenderer={
                     <GasSpeedButtonContainer>
                       <GasSpeedButton
@@ -668,7 +651,6 @@ export default function SendSheet(props) {
                       />
                     </GasSpeedButtonContainer>
                   }
-                  uniqueTokens={sendableUniqueTokens}
                   width={width}
                 />
               )}
@@ -689,15 +671,19 @@ export default function SendSheet(props) {
                       testID="send-sheet-confirm"
                     />
                   }
+                  maxInputBalance={maxInputBalance}
                   nativeAmount={amountDetails.nativeAmount}
                   nativeCurrency={nativeCurrency}
+                  nativeCurrencySymbol={nativeCurrencySymbol}
                   onChangeAssetAmount={onChangeAssetAmount}
                   onChangeNativeAmount={onChangeNativeAmount}
                   onFocus={handleFocus}
+                  navigateToSelectOutputCurrency={
+                    navigateToSelectOutputCurrency
+                  }
                   onResetAssetSelection={onResetAssetSelection}
                   selected={selected}
                   sendMaxBalance={sendMaxBalance}
-                  maxInputBalance={maxInputBalance}
                   txSpeedRenderer={
                     <GasSpeedButtonContainer>
                       <GasSpeedButton
@@ -712,55 +698,6 @@ export default function SendSheet(props) {
             </Column>
           </Column>
         </Column>
-        {/*{showAssetList && (*/}
-        {/*  <SendAssetList*/}
-        {/*    allAssets={allAssets}*/}
-        {/*    fetchData={fetchData}*/}
-        {/*    hiddenCoins={hiddenCoins}*/}
-        {/*    nativeCurrency={nativeCurrency}*/}
-        {/*    network={network}*/}
-        {/*    onSelectAsset={sendUpdateSelected}*/}
-        {/*    pinnedCoins={pinnedCoins}*/}
-        {/*    savings={savings}*/}
-        {/*    uniqueTokens={sendableUniqueTokens}*/}
-        {/*  />*/}
-        {/*)}*/}
-        {/*{showAssetForm && (*/}
-        {/*  <SendAssetForm*/}
-        {/*    {...props}*/}
-        {/*    allAssets={allAssets}*/}
-        {/*    assetAmount={amountDetails.assetAmount}*/}
-        {/*    buttonRenderer={*/}
-        {/*      <SendButton*/}
-        {/*        {...props}*/}
-        {/*        assetAmount={amountDetails.assetAmount}*/}
-        {/*        isAuthorizing={isAuthorizing}*/}
-        {/*        isSufficientBalance={amountDetails.isSufficientBalance}*/}
-        {/*        isSufficientGas={isSufficientGas}*/}
-        {/*        onLongPress={onLongPressSend}*/}
-        {/*        smallButton={isTinyPhone}*/}
-        {/*        testID="send-sheet-confirm"*/}
-        {/*      />*/}
-        {/*    }*/}
-        {/*    nativeAmount={amountDetails.nativeAmount}*/}
-        {/*    nativeCurrency={nativeCurrency}*/}
-        {/*    onChangeAssetAmount={onChangeAssetAmount}*/}
-        {/*    onChangeNativeAmount={onChangeNativeAmount}*/}
-        {/*    onFocus={handleFocus}*/}
-        {/*    onResetAssetSelection={onResetAssetSelection}*/}
-        {/*    selected={selected}*/}
-        {/*    sendMaxBalance={sendMaxBalance}*/}
-        {/*    txSpeedRenderer={*/}
-        {/*      isIphoneX() && (*/}
-        {/*        <SendTransactionSpeed*/}
-        {/*          gasPrice={selectedGasPrice}*/}
-        {/*          nativeCurrencySymbol={nativeCurrencySymbol}*/}
-        {/*          onPressTransactionSpeed={onPressTransactionSpeed}*/}
-        {/*        />*/}
-        {/*      )*/}
-        {/*    }*/}
-        {/*  />*/}
-        {/*)}*/}
         {android && showAssetForm ? (
           <KeyboardSizeView showAssetForm={showAssetForm} />
         ) : null}

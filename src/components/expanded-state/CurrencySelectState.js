@@ -6,7 +6,12 @@ import styled from 'styled-components';
 import { Modal } from '../../components/modal';
 import { useTheme } from '../../context/ThemeContext';
 import { AssetPanel, FloatingPanels } from '../../floating-panels';
-import { useAccountSettings, useContacts } from '../../hooks';
+import {
+  useAccountAssets,
+  useAccountSettings,
+  useContacts,
+  useDimensions,
+} from '../../hooks';
 import { useNavigation } from '../../navigation/Navigation';
 import { abbreviations, magicMemo } from '../../utils';
 import TouchableBackdrop from '../TouchableBackdrop';
@@ -14,12 +19,16 @@ import { ButtonPressAnimation, interpolate } from '../animations';
 import { Button } from '../buttons';
 import { showDeleteContactActionSheet } from '../contacts';
 import CopyTooltip from '../copy-tooltip';
+import { ExchangeSearch } from '../exchange';
+import { GasSpeedButton } from '../gas';
 import { Icon } from '../icons';
 import {
-  Centered, Column,
+  Centered,
+  Column,
   ColumnWithMargins,
   KeyboardFixedOpenLayout,
 } from '../layout';
+import { SendAssetList } from '../send';
 import { SheetTitle } from '../sheet';
 import { Text, TruncatedAddress } from '../text';
 import { ProfileModal } from './profile';
@@ -38,17 +47,32 @@ const ArrowSmall = styled(Icon).attrs({
   width: '24px',
 })``;
 
+const Spacer = styled.View`
+  height: 24;
+`;
+
 const CurrencySelectState = params => {
   const { goBack } = useNavigation();
-  const { isDarkMode, colors } = useTheme();
+  const { colors } = useTheme();
   const {
-    params: { tabTransitionPosition },
+    params: {
+      fetchData,
+      hiddenCoins,
+      nativeCurrency,
+      network,
+      selected,
+      sendUpdateSelected,
+      pinnedCoins,
+      savings,
+      sendableUniqueTokens,
+    },
   } = useRoute();
+  const { allAssets } = useAccountAssets();
+  const { width, height: deviceHeight } = useDimensions();
 
   return (
     <ProfileModal
       containerPadding={0}
-      fullScreenOnAndroid
       height="100%"
       overflow="hidden"
       radius={30}
@@ -63,9 +87,37 @@ const CurrencySelectState = params => {
         >
           <ArrowSmall />
         </ButtonPressAnimation>
+
         <SheetTitle color="black" size={20} weight="heavy">
           Withdraw
         </SheetTitle>
+        <Spacer />
+        <ExchangeSearch
+          customPlaceHolder="Search"
+          isFetching
+          isSearching
+          onChangeText={null}
+          onFocus={null}
+          ref={null}
+          searchQuery={null}
+          testID="currency-select-search"
+        />
+        <Spacer />
+        <SendAssetList
+          allAssets={allAssets}
+          colors={colors}
+          deviceHeight={deviceHeight}
+          fetchData={fetchData}
+          hiddenCoins={hiddenCoins}
+          nativeCurrency={nativeCurrency}
+          network={network}
+          onSelectAsset={sendUpdateSelected}
+          pinnedCoins={pinnedCoins}
+          savings={savings}
+          selected={selected}
+          uniqueTokens={sendableUniqueTokens}
+          width={width}
+        />
       </Centered>
     </ProfileModal>
   );

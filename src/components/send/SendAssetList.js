@@ -18,13 +18,13 @@ import {
   SendCoinRow,
   SendSavingsCoinRow,
 } from '../coin-row';
-import {Centered, Column, ColumnWithMargins, Row} from '../layout';
+import { Icon } from '../icons';
+import { Centered, Column, ColumnWithMargins, Row } from '../layout';
 import SavingsListHeader from '../savings/SavingsListHeader';
+import { Text } from '../text';
 import TokenFamilyHeader from '../token-family/TokenFamilyHeader';
+import { useDimensions } from '@rainbow-me/hooks';
 import { ImgixImage } from '@rainbow-me/images';
-import {useDimensions} from "@rainbow-me/hooks";
-import {Text} from "../text";
-import {Icon} from "../icons";
 
 const dividerMargin = 10;
 const dividerHeight = DividerSize + dividerMargin * 2;
@@ -61,7 +61,6 @@ const ArrowSmall = styled(Icon).attrs({
   margin-left: 12;
 `;
 
-
 const SendAssetListDivider = () => {
   const { colors } = useTheme();
   return (
@@ -72,7 +71,6 @@ const SendAssetListDivider = () => {
 };
 
 export default class SendAssetList extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -80,7 +78,6 @@ export default class SendAssetList extends React.Component {
       allAssets,
       hiddenCoins,
       nativeCurrency,
-      network,
       pinnedCoins,
       savings,
       uniqueTokens,
@@ -153,7 +150,7 @@ export default class SendAssetList extends React.Component {
           return 'COIN_ROW';
         } else if (i === visibleAssetsLength - 1) {
           return (savings && savings.length !== 0) ||
-          (shitcoins && shitcoins.length !== 0)
+            (shitcoins && shitcoins.length !== 0)
             ? 'COIN_ROW'
             : 'COIN_ROW_LAST';
         } else if (
@@ -181,21 +178,21 @@ export default class SendAssetList extends React.Component {
           if (
             this.state.openCards[
               uniqueTokens[
-              i -
-              visibleAssetsLength -
-              (savings && savings.length > 0 ? 1 : 0) -
-              (shitcoins && shitcoins.length > 0 ? 1 : 0)
-                ].familyId
-              ]
+                i -
+                  visibleAssetsLength -
+                  (savings && savings.length > 0 ? 1 : 0) -
+                  (shitcoins && shitcoins.length > 0 ? 1 : 0)
+              ].familyId
+            ]
           ) {
             return {
               size:
                 uniqueTokens[
-                i -
-                visibleAssetsLength -
-                (savings && savings.length > 0 ? 1 : 0) -
-                (shitcoins && shitcoins.length > 0 ? 1 : 0)
-                  ].data.length + 1,
+                  i -
+                    visibleAssetsLength -
+                    (savings && savings.length > 0 ? 1 : 0) -
+                    (shitcoins && shitcoins.length > 0 ? 1 : 0)
+                ].data.length + 1,
               type: 'COLLECTIBLE_ROW',
             };
           } else {
@@ -266,9 +263,9 @@ export default class SendAssetList extends React.Component {
         allAssets.length === visibleAssetsLength
           ? 0
           : smallBalancesHeader +
-          (openShitcoins
-            ? (allAssets.length - visibleAssetsLength) * rowHeight
-            : 0);
+            (openShitcoins
+              ? (allAssets.length - visibleAssetsLength) * rowHeight
+              : 0);
       const savingsHeight =
         savings?.length > 0
           ? familyHeaderHeight + (openSavings ? savings.length * rowHeight : 0)
@@ -288,7 +285,7 @@ export default class SendAssetList extends React.Component {
             this.rlv.scrollToOffset(
               0,
               this.position +
-              (heightBelow + renderSize - screenHeight + familyHeaderHeight),
+                (heightBelow + renderSize - screenHeight + familyHeaderHeight),
               true
             );
           }, 10);
@@ -440,47 +437,22 @@ export default class SendAssetList extends React.Component {
 
   render() {
     const { dataProvider, openShitcoins } = this.state;
-    const { width, txSpeedRenderer, deviceHeight, colors } = this.props;
+    const { deviceHeight } = this.props;
 
     return (
       <Column align="center">
-        <Column
-          backgroundColor="white"
-          borderRadius={24}
-          justify="center"
-          marginBottom={34}
-          marginTop={16}
-          paddingLeft={24}
-          paddingRight={24}
-          width={width - 32}
-        >
-          <Row align="center" height={51} justify="space-between">
-            <Text color={colors.black} size={16} weight="bold">
-              ASSET
-            </Text>
-          </Row>
-          <Row align="center" height={74} justify="space-between">
-            <Row flexDirection="row" flexWrap="wrap">
-              <Text color={colors.coinburp} size={32} weight="heavy">
-                Choose
-              </Text>
-              <ArrowSmall />
-            </Row>
-            <SendAssetRecyclerListView
-              dataProvider={dataProvider}
-              disableRecycling
-              extendedState={{ openShitcoins }}
-              layoutProvider={this._layoutProvider}
-              onScroll={this.handleScroll}
-              ref={this.handleRef}
-              rowRenderer={this.renderRow}
-              testID="send-asset-list"
-            />
-          </Row>
-        </Column>
-        <FooterContainer deviceHeight={deviceHeight}>
-          {txSpeedRenderer}
-        </FooterContainer>
+        <Row height={deviceHeight - 450} justify="space-between">
+          <SendAssetRecyclerListView
+            dataProvider={dataProvider}
+            disableRecycling
+            extendedState={{ openShitcoins }}
+            layoutProvider={this._layoutProvider}
+            onScroll={this.handleScroll}
+            ref={this.handleRef}
+            rowRenderer={this.renderRow}
+            testID="send-asset-list"
+          />
+        </Row>
       </Column>
     );
   }
