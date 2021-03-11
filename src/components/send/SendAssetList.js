@@ -80,6 +80,7 @@ export default class SendAssetList extends React.Component {
       nativeCurrency,
       pinnedCoins,
       savings,
+      network,
       uniqueTokens,
     } = props;
 
