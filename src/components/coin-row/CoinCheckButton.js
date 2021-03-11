@@ -26,7 +26,8 @@ const CheckmarkIcon = styled(Icon).attrs({
   right: 7;
 `;
 
-const CoinCheckButton = ({ isAbsolute, onPress, ...props }) => {
+const CoinCheckButton = ({ isAbsolute, onPress, toggle, ...props }) => {
+  const { colors } = useTheme();
   return (
     <Container {...props} isAbsolute={isAbsolute}>
       <Content
@@ -35,7 +36,7 @@ const CoinCheckButton = ({ isAbsolute, onPress, ...props }) => {
         onPress={onPress}
         opacityTouchable
       >
-        <CheckmarkIcon name="checkmark" />
+        <CheckmarkIcon color={toggle ? null : colors.white} name="checkmark" />
       </Content>
     </Container>
   );
