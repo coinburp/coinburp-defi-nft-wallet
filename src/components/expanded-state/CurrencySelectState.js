@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/native';
 import React, { Fragment, useCallback, useRef, useState } from 'react';
-import { Keyboard } from 'react-native';
+import { Keyboard, View } from 'react-native';
 import Animated, { Extrapolate } from 'react-native-reanimated';
 import styled from 'styled-components';
 import { Modal } from '../../components/modal';
@@ -27,6 +27,7 @@ import {
   Column,
   ColumnWithMargins,
   KeyboardFixedOpenLayout,
+  Row,
 } from '../layout';
 import { SendAssetList } from '../send';
 import { SheetTitle } from '../sheet';
@@ -42,8 +43,8 @@ const TabTransitionAnimation = styled(Animated.View)`
 
 const ArrowSmall = styled(Icon).attrs({
   height: '34px',
-  name: 'arrowSmall',
-  rotateLeft: 'true',
+  name: 'caretThick',
+  direction: 'left',
   width: '24px',
 })``;
 
@@ -78,19 +79,26 @@ const CurrencySelectState = params => {
       radius={30}
     >
       <Centered css={padding(16, 24, 25, 25)} direction="column">
-        <ButtonPressAnimation
-          onPress={() => {
-            goBack();
-            android && Keyboard.dismiss();
-          }}
-          style={{ left: 33, position: 'absolute', top: 7 }}
-        >
-          <ArrowSmall />
-        </ButtonPressAnimation>
+        <Row align="center" justify="space-between" width="100%">
+          <ButtonPressAnimation
+            onPress={() => {
+              goBack();
+              android && Keyboard.dismiss();
+            }}
+          >
+            <ArrowSmall />
+          </ButtonPressAnimation>
 
-        <SheetTitle color="black" size={20} weight="heavy">
-          Withdraw
-        </SheetTitle>
+          <SheetTitle
+            color="black"
+            css={{ left: -12 }}
+            size={20}
+            weight="heavy"
+          >
+            Withdraw
+          </SheetTitle>
+          <View />
+        </Row>
         {/*<Spacer />*/}
         {/*<ExchangeSearch*/}
         {/*  customPlaceHolder="Search"*/}
