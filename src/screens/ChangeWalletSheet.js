@@ -73,6 +73,7 @@ const EditButtonLabel = styled(Text).attrs(({ theme: { colors } }) => ({
   size: 'larger',
   weight: 'bold',
 }))`
+  margin-left: ${android ? '8' : '0'};
   margin-right: ${android ? '0' : '24'};
 `;
 
