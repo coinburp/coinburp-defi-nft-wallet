@@ -64,7 +64,9 @@ const EditButton = styled(ButtonPressAnimation).attrs(({ editMode }) => ({
     marginRight: 7,
     width: editMode ? 70 : 58,
   },
-}))``;
+}))`
+  // margin-right: 20;
+`;
 
 const EditButtonLabel = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'right',
@@ -72,7 +74,9 @@ const EditButtonLabel = styled(Text).attrs(({ theme: { colors } }) => ({
   letterSpacing: 'roundedMedium',
   size: 'larger',
   weight: 'bold',
-}))``;
+}))`
+  margin-right: 24;
+`;
 
 const Whitespace = styled.View`
   background-color: ${({ theme: { colors } }) => colors.white};
@@ -453,7 +457,7 @@ export default function ChangeWalletSheet() {
         </Column>
         <Column
           align="center"
-          flex="4.5"
+          flex="3.5"
           height={headerHeight}
           justify="space-between"
         >
@@ -463,7 +467,7 @@ export default function ChangeWalletSheet() {
           )}
         </Column>
         <Column
-          align="flex-start"
+          align="flex-end"
           flex="1"
           height={headerHeight}
           justify="flex-start"
