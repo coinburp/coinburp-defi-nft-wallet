@@ -374,7 +374,7 @@ export default class SendAssetList extends React.Component {
     return (
       <View>
         <TokenFamilyHeader
-          backgroundColor={'rgba(0, 0, 0, 0)'}
+          backgroundColor="rgba(0, 0, 0, 0)"
           childrenAmount={item.data.length}
           familyImage={item.familyImage}
           isCoinRow
