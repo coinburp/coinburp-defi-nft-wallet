@@ -40,6 +40,7 @@ export default function TokenSelectionButton({
   onPress,
   symbol,
   testID,
+  hideIcon,
 }) {
   const { isDarkMode, colors } = useTheme();
 
@@ -70,13 +71,15 @@ export default function TokenSelectionButton({
           align="center"
           color={symbol ? colors.black : colors.coinburp}
           size={32}
+          style={{ height: ios ? 38 : 58 }}
           testID={testID + '-text'}
           weight={900}
-          style={{height: ios ? 38 : 58}}
         >
           {symbol || 'Choose'}
         </Text>
-        <Icon direction="down" marginLeft={12} name="caretThick" size={24} />
+        {hideIcon ? null : (
+          <Icon direction="down" marginLeft={12} name="caretThick" size={24} />
+        )}
       </Content>
     </ButtonPressAnimation>
   );

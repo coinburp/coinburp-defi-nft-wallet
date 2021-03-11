@@ -25,15 +25,17 @@ import styled from 'styled-components';
 import { dismissingScreenListener } from '../../shim';
 import { AddContactButton, PasteAddressButton } from '../components/buttons';
 import { AddressField } from '../components/fields';
+import { GasSpeedButton } from '../components/gas';
 import DotArrow from '../components/icons/svg/DotArrow';
 import { Column, Row } from '../components/layout';
 import {
   SendAssetForm,
-  SendAssetList,
+  SendSetAssetList,
   SendButton,
   SendContactList,
   SendHeader,
   SendInput,
+  SendAssetList,
   SendTransactionSpeed,
 } from '../components/send';
 import {
@@ -75,6 +77,8 @@ import Routes from '@rainbow-me/routes';
 import { borders, buildTextStyles, fonts, padding } from '@rainbow-me/styles';
 import { deviceUtils, gasUtils } from '@rainbow-me/utils';
 import logger from 'logger';
+import {delayNext} from "../hooks/useMagicAutofocus";
+import CurrencySelectionTypes from "@rainbow-me/helpers/currencySelectionTypes";
 
 const sheetHeight = deviceUtils.dimensions.height - (android ? 30 : 10);
 const statusBarHeight = getStatusBarHeight(true);
@@ -85,6 +89,28 @@ const Container = styled.View`
   padding-top: ${isNativeStackAvailable ? 0 : statusBarHeight};
   width: 100%;
 `;
+
+// const navigateToSelectInputCurrency = useCallback(() => {
+//   InteractionManager.runAfterInteractions(() => {
+//     dangerouslyGetParent().dangerouslyGetState().index = 0;
+//     setParams({ focused: false });
+//     delayNext();
+//     navigate(Routes.CURRENCY_SELECT_SCREEN, {
+//       headerTitle: inputHeaderTitle,
+//       onSelectCurrency: updateInputCurrency,
+//       restoreFocusOnSwapModal: () => setParams({ focused: true }),
+//       type: CurrencySelectionTypes.input,
+//     });
+//     blockInteractions();
+//   });
+// }, [
+//   blockInteractions,
+//   dangerouslyGetParent,
+//   inputHeaderTitle,
+//   navigate,
+//   setParams,
+//   updateInputCurrency,
+// ]);
 
 const AddressFieldLabel = styled(Label)`
   color: ${({ theme: { colors } }) => colors.dark};
@@ -102,6 +128,11 @@ const AddressInputContainer = styled(Row).attrs({ align: 'center' })`
   background-color: ${({ theme: { colors } }) => colors.white};
   overflow: hidden;
   width: 100%;
+`;
+
+const GasSpeedButtonContainer = styled(Column)`
+  justify-content: flex-start;
+  margin-bottom: 19px;
 `;
 
 const SheetContainer = styled(Column).attrs({
@@ -321,7 +352,7 @@ export default function SendSheet(props) {
         const convertedAssetAmount = convertAmountFromNativeValue(
           _nativeAmount,
           priceUnit,
-          selected.decimals
+          selected.decimalssendMaxBalance
         );
         _assetAmount = formatInputDecimals(convertedAssetAmount, _nativeAmount);
       }
@@ -516,6 +547,9 @@ export default function SendSheet(props) {
 
   const recipientOverride = params?.address;
 
+  const handleCustomGasBlur = useCallback(() => {
+  }, );
+
   useEffect(() => {
     if (recipientOverride && !recipient) {
       setRecipient(recipientOverride);
@@ -574,16 +608,15 @@ export default function SendSheet(props) {
               recipientFieldRef={recipientFieldRef}
               removeContact={onRemoveContact}
               sendContactList={
-                showEmptyState && (
-                  <SendContactList
-                    contacts={filteredContacts}
-                    currentInput={currentInput}
-                    onPressContact={setRecipient}
-                    removeContact={onRemoveContact}
-                  />
-                )
+                <SendContactList
+                  contacts={filteredContacts}
+                  currentInput={currentInput}
+                  onPressContact={setRecipient}
+                  removeContact={onRemoveContact}
+                />
               }
               showAssetList={showAssetList}
+              showEmptyState={showEmptyState}
             />
             <Column justify="center" style={{ marginBottom: 0, marginTop: 18 }}>
               <ToArrow />
@@ -598,17 +631,44 @@ export default function SendSheet(props) {
                   hiddenCoins={hiddenCoins}
                   nativeCurrency={nativeCurrency}
                   network={network}
+                  selected={selected}
                   onSelectAsset={sendUpdateSelected}
                   pinnedCoins={pinnedCoins}
                   savings={savings}
                   txSpeedRenderer={
-                    isIphoneX() && (
-                      <SendTransactionSpeed
-                        gasPrice={selectedGasPrice}
-                        nativeCurrencySymbol={nativeCurrencySymbol}
-                        onPressTransactionSpeed={onPressTransactionSpeed}
+                    <GasSpeedButtonContainer>
+                      <GasSpeedButton
+                        onCustomGasBlur={handleCustomGasBlur}
+                        onCustomGasFocus={handleCustomGasBlur}
+                        type="transaction"
                       />
-                    )
+                    </GasSpeedButtonContainer>
+                  }
+                  uniqueTokens={sendableUniqueTokens}
+                  width={width}
+                />
+              )}
+              {showAssetList && (
+                <SendSetAssetList
+                  allAssets={allAssets}
+                  colors={colors}
+                  deviceHeight={deviceHeight}
+                  fetchData={fetchData}
+                  hiddenCoins={hiddenCoins}
+                  nativeCurrency={nativeCurrency}
+                  network={network}
+                  selected={selected}
+                  onSelectAsset={sendUpdateSelected}
+                  pinnedCoins={pinnedCoins}
+                  savings={savings}
+                  txSpeedRenderer={
+                    <GasSpeedButtonContainer>
+                      <GasSpeedButton
+                        onCustomGasBlur={handleCustomGasBlur}
+                        onCustomGasFocus={handleCustomGasBlur}
+                        type="transaction"
+                      />
+                    </GasSpeedButtonContainer>
                   }
                   uniqueTokens={sendableUniqueTokens}
                   width={width}
@@ -639,14 +699,15 @@ export default function SendSheet(props) {
                   onResetAssetSelection={onResetAssetSelection}
                   selected={selected}
                   sendMaxBalance={sendMaxBalance}
+                  maxInputBalance={maxInputBalance}
                   txSpeedRenderer={
-                    isIphoneX() && (
-                      <SendTransactionSpeed
-                        gasPrice={selectedGasPrice}
-                        nativeCurrencySymbol={nativeCurrencySymbol}
-                        onPressTransactionSpeed={onPressTransactionSpeed}
+                    <GasSpeedButtonContainer>
+                      <GasSpeedButton
+                        onCustomGasBlur={handleCustomGasBlur}
+                        onCustomGasFocus={handleCustomGasBlur}
+                        type="transaction"
                       />
-                    )
+                    </GasSpeedButtonContainer>
                   }
                 />
               )}

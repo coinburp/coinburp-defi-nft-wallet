@@ -153,7 +153,7 @@ export default class SendAssetList extends React.Component {
           return 'COIN_ROW';
         } else if (i === visibleAssetsLength - 1) {
           return (savings && savings.length !== 0) ||
-            (shitcoins && shitcoins.length !== 0)
+          (shitcoins && shitcoins.length !== 0)
             ? 'COIN_ROW'
             : 'COIN_ROW_LAST';
         } else if (
@@ -181,21 +181,21 @@ export default class SendAssetList extends React.Component {
           if (
             this.state.openCards[
               uniqueTokens[
-                i -
-                  visibleAssetsLength -
-                  (savings && savings.length > 0 ? 1 : 0) -
-                  (shitcoins && shitcoins.length > 0 ? 1 : 0)
-              ].familyId
-            ]
+              i -
+              visibleAssetsLength -
+              (savings && savings.length > 0 ? 1 : 0) -
+              (shitcoins && shitcoins.length > 0 ? 1 : 0)
+                ].familyId
+              ]
           ) {
             return {
               size:
                 uniqueTokens[
-                  i -
-                    visibleAssetsLength -
-                    (savings && savings.length > 0 ? 1 : 0) -
-                    (shitcoins && shitcoins.length > 0 ? 1 : 0)
-                ].data.length + 1,
+                i -
+                visibleAssetsLength -
+                (savings && savings.length > 0 ? 1 : 0) -
+                (shitcoins && shitcoins.length > 0 ? 1 : 0)
+                  ].data.length + 1,
               type: 'COLLECTIBLE_ROW',
             };
           } else {
@@ -266,9 +266,9 @@ export default class SendAssetList extends React.Component {
         allAssets.length === visibleAssetsLength
           ? 0
           : smallBalancesHeader +
-            (openShitcoins
-              ? (allAssets.length - visibleAssetsLength) * rowHeight
-              : 0);
+          (openShitcoins
+            ? (allAssets.length - visibleAssetsLength) * rowHeight
+            : 0);
       const savingsHeight =
         savings?.length > 0
           ? familyHeaderHeight + (openSavings ? savings.length * rowHeight : 0)
@@ -288,7 +288,7 @@ export default class SendAssetList extends React.Component {
             this.rlv.scrollToOffset(
               0,
               this.position +
-                (heightBelow + renderSize - screenHeight + familyHeaderHeight),
+              (heightBelow + renderSize - screenHeight + familyHeaderHeight),
               true
             );
           }, 10);

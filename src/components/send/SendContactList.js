@@ -1,10 +1,11 @@
 import { toLower } from 'lodash';
 import React, { useCallback, useMemo, useRef } from 'react';
 import { View } from 'react-native';
-import { SwipeableContactRow } from '../contacts';
+import SendContactRows from './SendContactRows';
 import { useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
 import { filterList } from '@rainbow-me/utils';
+import { Row } from '../layout';
 
 export default function SendContactList({
   contacts,
@@ -23,9 +24,9 @@ export default function SendContactList({
   );
 
   const handleCloseAllDifferentContacts = useCallback(address => {
-    if (touchedContact.current && contactRefs.current[touchedContact.current]) {
-      contactRefs.current[touchedContact.current].close();
-    }
+    // if (touchedContact.current && contactRefs.current[touchedContact.current]) {
+      // contactRefs.current[touchedContact.current].close();
+    // }
     touchedContact.current = toLower(address);
   }, []);
 
@@ -44,7 +45,8 @@ export default function SendContactList({
 
   const contactItems = filteredContacts.map(item => {
     return (
-      <SwipeableContactRow
+      <SendContactRows
+        key={item.address}
         onPress={onPressContact}
         onSelectEdit={handleEditContact}
         onTouch={handleCloseAllDifferentContacts}
@@ -57,5 +59,5 @@ export default function SendContactList({
     );
   });
 
-  return <View>{contactItems}</View>;
+  return <View style={{ flexDirection: 'row' }}>{contactItems}</View>;
 }

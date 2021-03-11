@@ -1,7 +1,7 @@
 export { default as SendAssetForm } from './SendAssetForm';
 export { default as SendAssetFormCollectible } from './SendAssetFormCollectible';
 export { default as SendAssetFormField } from './SendAssetFormField';
-export { default as SendAssetFormToken } from './SendAssetFormToken';
+export { default as SendAssetFormTokenOrNft } from './SendAssetFormTokenOrNft';
 export { default as SendAssetList } from './SendAssetList';
 export { default as SendButton } from './SendButton';
 export { default as SendContactList } from './SendContactList';
@@ -9,3 +9,4 @@ export { default as SendEmptyState } from './SendEmptyState';
 export { default as SendHeader } from './SendHeader';
 export { default as SendTransactionSpeed } from './SendTransactionSpeed';
 export { default as SendInput } from './SendInput';
+export { default as SendSetAssetList } from './SendSetAssetList';

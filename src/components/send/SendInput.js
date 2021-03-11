@@ -1,10 +1,12 @@
 import { get, isEmpty, isNumber, toLower } from 'lodash';
 import React, { Fragment, useCallback, useMemo } from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
+import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { useNavigation } from '../../navigation/Navigation';
 import { AddContactButton, PasteAddressButton } from '../buttons';
 import { AddressField } from '../fields';
-import { Column, Row } from '../layout';
+import { Column, ColumnWithMargins, Row } from '../layout';
 import { Text } from '../text';
 import { useClipboard, useDimensions } from '@rainbow-me/hooks';
 import Routes from '@rainbow-me/routes';
@@ -15,6 +17,14 @@ const DefaultContactItem = {
   color: '#afd2ff',
   nickname: '',
 };
+
+const footerMargin = 31;
+const FooterContainer = styled(ColumnWithMargins).attrs(({ deviceHeight }) => ({
+  alignltemes: 'stretch',
+  alignSelf: 'stretch',
+  justify: 'center',
+  margin: deviceHeight > 812 ? footerMargin : footerMargin / 2,
+}))``;
 
 export default function SendInput({
   contacts,
@@ -27,6 +37,9 @@ export default function SendInput({
   recipientFieldRef,
   removeContact,
   showAssetList,
+  sendContactList,
+  deviceHeight,
+  showEmptyState,
 }) {
   const { setClipboard } = useClipboard();
   const { navigate } = useNavigation();
@@ -98,6 +111,10 @@ export default function SendInput({
     setClipboard,
   ]);
 
+  const defaultRadius = 24;
+  const borderRadiusTop = defaultRadius;
+  const borderRadiusBottom = showEmptyState ? 0 : defaultRadius;
+
   const isPreExistingContact = (contact?.nickname?.length || 0) > 0;
 
   return (
@@ -105,7 +122,10 @@ export default function SendInput({
       <Column align="center">
         <Column
           backgroundColor="white"
-          borderRadius={24}
+          borderBottomLeftRadius={borderRadiusBottom}
+          borderBottomRightRadius={borderRadiusBottom}
+          borderTopLeftRadius={borderRadiusTop}
+          borderTopRightRadius={borderRadiusTop}
           justify="center"
           paddingLeft={24}
           paddingRight={24}
@@ -143,18 +163,21 @@ export default function SendInput({
           </Row>
         </Column>
         <Column
-          backgroundColor="white"
-          borderRadius={24}
+          backgroundColor={colors.background}
+          borderBottomLeftRadius={defaultRadius}
+          borderBottomRightRadius={defaultRadius}
           justify="center"
-          paddingLeft={24}
+          paddingLeft={5}
           paddingRight={24}
           width={width - 32}
         >
-          {/*<Row height={50}>*/}
-          {/*  <FooterContainer deviceHeight={deviceHeight}>*/}
-          {/*    {sendContactList}*/}
-          {/*  </FooterContainer>*/}
-          {/*</Row>*/}
+          {showEmptyState ? (
+            <Row height={75}>
+              <FooterContainer deviceHeight={deviceHeight}>
+                <ScrollView horizontal>{sendContactList}</ScrollView>
+              </FooterContainer>
+            </Row>
+          ) : null}
         </Column>
       </Column>
     </Fragment>

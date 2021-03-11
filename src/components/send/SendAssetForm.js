@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react';
+import React, {Fragment, useCallback, useMemo} from 'react';
 import { KeyboardArea } from 'react-native-keyboard-area';
 import styled from 'styled-components';
 import AssetTypes from '../../helpers/assetTypes';
@@ -9,7 +9,7 @@ import SendSavingsCoinRow from '../coin-row/SendSavingsCoinRow';
 import { Icon } from '../icons';
 import { Column, Row } from '../layout';
 import SendAssetFormCollectible from './SendAssetFormCollectible';
-import SendAssetFormToken from './SendAssetFormToken';
+import SendAssetFormTokenOrNft from './SendAssetFormTokenOrNft';
 import { padding, position } from '@rainbow-me/styles';
 import ShadowStack from 'react-native-shadow-stack';
 
@@ -63,18 +63,17 @@ export default function SendAssetForm({
   const { isTinyPhone, width: deviceWidth } = useDimensions();
 
   const selectedAsset = useAsset(selected);
-
   const isNft = selectedAsset.type === AssetTypes.nft;
-  const isSavings = selectedAsset.type === AssetTypes.compound;
+  // const isSavings = selectedAsset.type === AssetTypes.compound;
 
-  const AssetRowElement = isNft
-    ? CollectiblesSendRow
-    : isSavings
-    ? SendSavingsCoinRow
-    : SendCoinRow;
+  // const AssetRowElement = isNft
+  //   ? CollectiblesSendRow
+  //   : isSavings
+  //   ? SendSavingsCoinRow
+  //   : SendCoinRow;
 
   const { colors } = useTheme();
-  const shadows = useMemo(() => AssetRowShadow(colors), [colors]);
+  // const shadows = useMemo(() => AssetRowShadow(colors), [colors]);
 
   return (
     <Container>
@@ -94,31 +93,25 @@ export default function SendAssetForm({
       {/*    <Icon name="doubleCaret" />*/}
       {/*  </AssetRowElement>*/}
       {/*</ShadowStack>*/}
-      <FormContainer isNft={isNft} isTinyPhoqne={isTinyPhone}>
-        {isNft ? (
-          <SendAssetFormCollectible
-            asset={selectedAsset}
+      <FormContainer isNft={isNft} isTinyPhone={isTinyPhone}>
+        <Fragment>
+          <SendAssetFormTokenOrNft
+            {...props}
+            assetAmount={assetAmount}
             buttonRenderer={buttonRenderer}
+            nativeAmount={nativeAmount}
+            isNft={isNft}
+            nativeCurrency={nativeCurrency}
+            onChangeAssetAmount={onChangeAssetAmount}
+            onChangeNativeAmount={onChangeNativeAmount}
+            onFocus={onFocus}
+            onResetAssetSelection={onResetAssetSelection}
+            selected={selectedAsset}
+            sendMaxBalance={sendMaxBalance}
             txSpeedRenderer={txSpeedRenderer}
           />
-        ) : (
-          <Fragment>
-            <SendAssetFormToken
-              {...props}
-              assetAmount={assetAmount}
-              buttonRenderer={buttonRenderer}
-              nativeAmount={nativeAmount}
-              nativeCurrency={nativeCurrency}
-              onChangeAssetAmount={onChangeAssetAmount}
-              onChangeNativeAmount={onChangeNativeAmount}
-              onFocus={onFocus}
-              selected={selectedAsset}
-              sendMaxBalance={sendMaxBalance}
-              txSpeedRenderer={txSpeedRenderer}
-            />
-            {ios ? <KeyboardSizeView isOpen /> : null}
-          </Fragment>
-        )}
+          {ios ? <KeyboardSizeView isOpen /> : null}
+        </Fragment>
       </FormContainer>
     </Container>
   );

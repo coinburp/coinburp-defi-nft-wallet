@@ -27,19 +27,12 @@ const ContactName = styled(TruncatedText).attrs(({ theme: { colors } }) => ({
   size: 'lmedium',
   weight: 'heavy',
 }))`
-  width: ${({ deviceWidth }) => deviceWidth - defaultMinusWidth};
+  width: ${({ deviceWidth }) => deviceWidth - 500};
   height: 22;
 `;
 
-const ContactRow = (
-  { address, color, nickname, defaultMinusWidth, ...props },
-  ref
-) => {
+const ContactRow = ({ address, color, nickname, ...props }, ref) => {
   const { width: deviceWidth } = useDimensions();
-
-  if (!defaultMinusWidth) {
-    defaultMinusWidth = 90;
-  }
 
   return (
     <ButtonPressAnimation
@@ -57,10 +50,7 @@ const ContactRow = (
           value={nickname}
         />
         <Column justify={ios ? 'space-between' : 'center'} marginTop={5}>
-          <ContactName
-            defaultMinusWidth={defaultMinusWidth}
-            deviceWidth={deviceWidth}
-          >
+          <ContactName deviceWidth={deviceWidth}>
             {removeFirstEmojiFromString(nickname)}
           </ContactName>
           <ContactAddress address={address} />
