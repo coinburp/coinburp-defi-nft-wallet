@@ -18,12 +18,9 @@ import {
   SendCoinRow,
   SendSavingsCoinRow,
 } from '../coin-row';
-import { Icon } from '../icons';
-import { Centered, Column, ColumnWithMargins, Row } from '../layout';
+import { Centered, Column, Row } from '../layout';
 import SavingsListHeader from '../savings/SavingsListHeader';
-import { Text } from '../text';
 import TokenFamilyHeader from '../token-family/TokenFamilyHeader';
-import { useDimensions } from '@rainbow-me/hooks';
 import { ImgixImage } from '@rainbow-me/images';
 
 const dividerMargin = 10;
@@ -42,25 +39,6 @@ const SendAssetListCoinDividerOpenButton = styled(CoinDividerOpenButton).attrs({
 const SendAssetRecyclerListView = styled(RecyclerListView)`
   min-height: 1;
 `;
-
-const footerMargin = 31;
-const FooterContainer = styled(ColumnWithMargins).attrs(({ deviceHeight }) => ({
-  justify: 'center',
-  alignltemes: 'stretch',
-  alignSelf: 'stretch',
-  margin: deviceHeight > 812 ? footerMargin : footerMargin / 2,
-}))`
-  // width: 100%;
-  z-index: 3;
-`;
-
-const ArrowSmall = styled(Icon).attrs({
-  name: 'arrowSmall',
-})`
-  margin-top: 12;
-  margin-left: 12;
-`;
-
 const SendAssetListDivider = () => {
   const { colors } = useTheme();
   return (
