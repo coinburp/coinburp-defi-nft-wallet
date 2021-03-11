@@ -64,7 +64,7 @@ const EmptyWalletList = styled(EmptyAssetList).attrs({
 const WalletFlatList = styled(FlatList).attrs(({ showDividers }) => ({
   contentContainerStyle: {
     paddingBottom: showDividers ? 9.5 : 0,
-    paddingTop: listTopPadding,
+    paddingTop: 0,
   },
   getItemLayout,
   keyExtractor,
