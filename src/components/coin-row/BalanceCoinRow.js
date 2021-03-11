@@ -190,7 +190,7 @@ const BalanceCoinRow = ({
           onPress={handleEditModePress}
           pointerEvents={isCoinListEdited ? 'auto' : 'none'}
           toggle={toggle}
-          top={isFirstCoinRow ? -53 : 9}
+          top={isFirstCoinRow ? -73 : 18}
         />
       </Animated.View>
     </Column>

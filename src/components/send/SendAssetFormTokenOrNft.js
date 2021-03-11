@@ -1,15 +1,11 @@
 import React, { Fragment, useRef } from 'react';
-import { Text } from '../text';
 import styled, { useTheme } from 'styled-components';
 import { ExchangeInputField } from '../exchange';
 import { FloatingPanel } from '../floating-panels';
 import { Column, ColumnWithMargins, Row } from '../layout';
-import { UniqueTokenCard } from '../unique-token';
+import { Text } from '../text';
 import SendNftField from './SendNftField';
-import { SendAssetList } from './index';
 import { useDimensions } from '@rainbow-me/hooks';
-import { supportedNativeCurrencies } from '@rainbow-me/references';
-import { removeLeadingZeros } from '@rainbow-me/utils';
 
 const PanelTitle = styled(Text).attrs({
   size: 16,
@@ -35,6 +31,7 @@ export default function SendAssetFormTokenOrNft({
   buttonRenderer,
   nativeAmount,
   nativeCurrency,
+  navigateToSelectOutputCurrency,
   onChangeAssetAmount,
   onChangeNativeAmount,
   onFocus,
@@ -42,7 +39,6 @@ export default function SendAssetFormTokenOrNft({
   sendMaxBalance,
   maxInputBalance,
   txSpeedRenderer,
-  onResetAssetSelection,
   isNft,
   ...props
 }) {
@@ -50,7 +46,6 @@ export default function SendAssetFormTokenOrNft({
   const { colors } = useTheme();
   const isWithdrawal = false;
 
-  console.log('#######################');
   // const {
   //   mask: nativeMask,
   //   placeholder: nativePlaceholder,
@@ -77,7 +72,7 @@ export default function SendAssetFormTokenOrNft({
           >
             <PanelTitle>ASSET</PanelTitle>
             {!isNft && selected.symbol ? (
-              <Text size={16} weight="heavy">{`Bal: ${
+              <Text color={colors.skyBlue} size={16} weight="heavy">{`Bal: ${
                 maxInputBalance.toString().substring(0, 6) || '0'
               }... ${selected.symbol}`}</Text>
             ) : null}
@@ -88,7 +83,7 @@ export default function SendAssetFormTokenOrNft({
                 {...props}
                 colors={colors}
                 item={selected}
-                onPressSelectInputCurrency={null}
+                onPressSelectInputCurrency={navigateToSelectOutputCurrency}
               />
             </Row>
           ) : (
@@ -101,7 +96,7 @@ export default function SendAssetFormTokenOrNft({
               nativeCurrency={nativeCurrency}
               onFocus={onFocus}
               onPressMaxBalance={sendMaxBalance}
-              onPressSelectInputCurrency={null}
+              onPressSelectInputCurrency={navigateToSelectOutputCurrency}
               setInputAmount={onChangeAssetAmount}
               setNativeAmount={onChangeNativeAmount}
               testID="selected-asset-quantity-field"

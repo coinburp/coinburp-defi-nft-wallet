@@ -57,42 +57,15 @@ export default function SendAssetForm({
   onResetAssetSelection,
   selected,
   sendMaxBalance,
-  txSpeedRenderer,
+  txSpeedRenderer, navigateToSelectOutputCurrency,
   ...props
 }) {
-  const { isTinyPhone, width: deviceWidth } = useDimensions();
+  const { isTinyPhone } = useDimensions();
 
   const selectedAsset = useAsset(selected);
   const isNft = selectedAsset.type === AssetTypes.nft;
-  // const isSavings = selectedAsset.type === AssetTypes.compound;
-
-  // const AssetRowElement = isNft
-  //   ? CollectiblesSendRow
-  //   : isSavings
-  //   ? SendSavingsCoinRow
-  //   : SendCoinRow;
-
-  const { colors } = useTheme();
-  // const shadows = useMemo(() => AssetRowShadow(colors), [colors]);
-
   return (
     <Container>
-      {/*<ShadowStack*/}
-      {/*  backgroundColor={colors.white}*/}
-      {/*  borderRadius={0}*/}
-      {/*  height={SendCoinRow.selectedHeight}*/}
-      {/*  shadows={shadows}*/}
-      {/*  width={deviceWidth}*/}
-      {/*>*/}
-      {/*  <AssetRowElement*/}
-      {/*    item={selectedAsset}*/}
-      {/*    onPress={onResetAssetSelection}*/}
-      {/*    selected*/}
-      {/*    testID="send-asset-form"*/}
-      {/*  >*/}
-      {/*    <Icon name="doubleCaret" />*/}
-      {/*  </AssetRowElement>*/}
-      {/*</ShadowStack>*/}
       <FormContainer isNft={isNft} isTinyPhone={isTinyPhone}>
         <Fragment>
           <SendAssetFormTokenOrNft
@@ -100,8 +73,9 @@ export default function SendAssetForm({
             assetAmount={assetAmount}
             buttonRenderer={buttonRenderer}
             nativeAmount={nativeAmount}
-            isNft={isNft}
             nativeCurrency={nativeCurrency}
+            navigateToSelectOutputCurrency={navigateToSelectOutputCurrency}
+            isNft={isNft}
             onChangeAssetAmount={onChangeAssetAmount}
             onChangeNativeAmount={onChangeNativeAmount}
             onFocus={onFocus}

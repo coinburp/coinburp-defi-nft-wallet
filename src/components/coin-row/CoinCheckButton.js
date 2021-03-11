@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text} from 'react-native';
 import styled from 'styled-components';
 import { magicMemo } from '../../utils';
 import { ButtonPressAnimation, OpacityToggler } from '../animations';
@@ -51,7 +52,7 @@ const CoinCheckButton = ({ isAbsolute, onPress, toggle, ...props }) => {
         <CircleOutline />
         <OpacityToggler friction={20} isVisible={!toggle} tension={1000}>
           <CheckmarkBackground>
-            <Icon color="white" name="checkmark" />
+            <Icon color="white" name="checkmarkCoinburp" />
           </CheckmarkBackground>
         </OpacityToggler>
       </Content>

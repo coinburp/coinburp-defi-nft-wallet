@@ -34,19 +34,25 @@ const Title = styled(TruncatedText).attrs({
   height: 21px;
 `;
 
-export default function CurrencySelectModalHeader({ testID }) {
+export default function CurrencySelectModalHeader({ testID, ...props }) {
   const { navigate, dangerouslyGetState } = useNavigation();
   const { params } = useRoute();
   const title = params?.headerTitle;
 
   const { setPointerEvents } = params;
+  const { onGoBack } = props;
+  let handlePressBack;
 
-  const handlePressBack = useCallback(() => {
-    dangerouslyGetState().index = 1;
-    setPointerEvents(false);
-    delayNext();
-    navigate(Routes.MAIN_EXCHANGE_SCREEN);
-  }, [dangerouslyGetState, navigate, setPointerEvents]);
+  if (onGoBack) {
+    handlePressBack = onGoBack;
+  } else {
+    handlePressBack = useCallback(() => {
+      dangerouslyGetState().index = 1;
+      setPointerEvents(false);
+      delayNext();
+      navigate(Routes.MAIN_EXCHANGE_SCREEN);
+    }, [dangerouslyGetState, navigate, setPointerEvents]);
+  }
 
   return (
     <HeaderContainer>

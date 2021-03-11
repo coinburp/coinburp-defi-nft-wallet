@@ -25,9 +25,7 @@ const ArrowSmall = styled(Icon).attrs({
 
 export default class SendSetAssetList extends React.Component {
   render() {
-    const { width, txSpeedRenderer, deviceHeight, colors, selected } = this.props;
-
-    console.log(selected)
+    const { width, txSpeedRenderer, deviceHeight, colors, selected, navigateToSelectOutputCurrency } = this.props;
 
     return (
       <Column align="center">
@@ -59,7 +57,7 @@ export default class SendSetAssetList extends React.Component {
                   address={selected?.address}
                   customPadding={0}
                   hideIcon
-                  onPress={null}
+                  onPress={navigateToSelectOutputCurrency}
                   symbol={selected?.symbol}
                   testID="send-selection-button"
                 />
