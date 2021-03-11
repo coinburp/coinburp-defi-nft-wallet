@@ -332,7 +332,7 @@ export default function SendSheet(props) {
         onSelectCurrency: sendUpdateSelected,
         type: CurrencySelectionTypes.withdraw,
       });
-    });yes
+    });
   }, [
     navigate,
     setParams,
