@@ -1,4 +1,4 @@
-package me.rainbow.NativeModules.RNBackHandler;
+package com.coinburp.wallet.NativeModules.RNBackHandler;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

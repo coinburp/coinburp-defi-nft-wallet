@@ -1,4 +1,4 @@
-package me.rainbow.NativeModules.RNReview;
+package com.coinburp.wallet.NativeModules.RNReview;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

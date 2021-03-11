@@ -72,15 +72,15 @@ if (__DEV__) {
     dsn: SENTRY_ENDPOINT,
     enableAutoSessionTracking: true,
     environment: SENTRY_ENVIRONMENT,
-    release: `me.rainbow-${VersionNumber.appVersion}`,
+    release: `com.coinburp.wallet-${VersionNumber.appVersion}`,
   };
 
   if (android) {
     const dist = VersionNumber.buildVersion;
     // In order for sourcemaps to work on android,
     // the release needs to be named with the following format
-    // me.rainbow@1.0+4
-    const releaseName = `me.rainbow@${VersionNumber.appVersion}+${dist}`;
+    // com.coinburp.wallet@1.0+4
+    const releaseName = `com.coinburp.wallet@${VersionNumber.appVersion}+${dist}`;
     sentryOptions.release = releaseName;
     // and we also need to manually set the dist to the versionCode value
     sentryOptions.dist = dist.toString();
@@ -92,7 +92,7 @@ CodePush.getUpdateMetadata(CodePush.UpdateState.RUNNING).then(update => {
   if (update) {
     // eslint-disable-next-line import/no-deprecated
     Sentry.setRelease(
-      `me.rainbow-${VersionNumber.appVersion}-codepush:${update.label}`
+      `com.coinburp.wallet-${VersionNumber.appVersion}-codepush:${update.label}`
     );
   }
 });

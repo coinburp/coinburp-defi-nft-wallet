@@ -1,4 +1,4 @@
-package me.rainbow.NativeModules.RNBip39;
+package com.coinburp.wallet.NativeModules.RNBip39;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;

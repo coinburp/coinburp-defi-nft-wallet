@@ -24,7 +24,7 @@ platform :ios do
 
     version_from_plist = get_version_number(target: "Rainbow")
 
-    release_version = "me.rainbow-#{version_from_plist}"
+    release_version = "com.coinburp.wallet-#{version_from_plist}"
 
     dist = (latest_testflight_build_number(version: get_version_number(target: "Rainbow")) + 1).to_s
 
@@ -58,14 +58,14 @@ platform :ios do
       display_name: "Rainbow"
     )
     update_app_identifier(
-      app_identifier: "me.rainbow",
+      app_identifier: "com.coinburp.wallet",
       xcodeproj: "Rainbow.xcodeproj",
       plist_path: "Rainbow/Info.plist",
     )
     match(
       force: true,
       type: "appstore",
-      app_identifier: "me.rainbow",
+      app_identifier: "com.coinburp.wallet",
       git_url: "git@github.com:rainbow-me/rainbow-code-signing.git"
     )
     automatic_code_signing(
@@ -88,7 +88,7 @@ platform :ios do
     # )
 
     pilot(
-      app_identifier: "me.rainbow",
+      app_identifier: "com.coinburp.wallet",
       skip_waiting_for_build_processing: true,
       # api_key: api_key
     )

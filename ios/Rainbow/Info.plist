@@ -26,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>me.rainbow</string>
+			<string>com.coinburp.wallet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>rainbow</string>
@@ -88,12 +88,12 @@
 	<string>Rainbow</string>
 	<key>NSUbiquitousContainers</key>
 	<dict>
-		<key>iCloud.me.rainbow</key>
+		<key>iCloud.com.coinburp.wallet</key>
 		<dict>
 			<key>NSUbiquitousContainerIsDocumentScopePublic</key>
 			<true/>
 			<key>NSUbiquitousContainerName</key>
-			<string>me.rainbow</string>
+			<string>com.coinburp.wallet</string>
 			<key>NSUbiquitousContainerSupportedFolderLevels</key>
 			<string>One</string>
 		</dict>
