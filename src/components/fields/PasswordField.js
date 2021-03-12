@@ -4,25 +4,20 @@ import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { Icon } from '../icons';
 import { Input } from '../inputs';
+import { Flex, Row } from '../layout';
 import { cloudBackupPasswordMinLength } from '@rainbow-me/handlers/cloudBackup';
 import { useDimensions } from '@rainbow-me/hooks';
 import { padding, position } from '@rainbow-me/styles';
 import ShadowStack from 'react-native-shadow-stack';
 
 const FieldAccessoryBadgeSize = 22;
-const FieldAccessoryBadgeWrapper = styled(ShadowStack).attrs(
-  ({ theme: { colors, isDarkMode }, color }) => ({
-    ...position.sizeAsObject(FieldAccessoryBadgeSize),
-    borderRadius: FieldAccessoryBadgeSize,
-    shadows: [
-      [0, 4, 12, isDarkMode ? colors.shadow : color, isDarkMode ? 0.1 : 0.4],
-    ],
-  })
-)`
-  margin-bottom: 12;
+const FieldAccessoryBadgeWrapper = styled(Flex).attrs({
+  ...position.sizeAsObject(FieldAccessoryBadgeSize),
+  borderRadius: FieldAccessoryBadgeSize,
+})`
   position: absolute;
-  right: 12;
-  top: 12;
+  right: 16;
+  top: 16;
 `;
 
 const StyledTouchable = styled(TouchableWithoutFeedback)`
@@ -37,36 +32,35 @@ const PasswordInput = styled(Input).attrs(({ theme: { colors } }) => ({
   autoCompleteType: 'password',
   blurOnSubmit: false,
   passwordRules: `minlength: ${cloudBackupPasswordMinLength};`,
-  placeholderTextColor: colors.alpha(colors.blueGreyDark, 0.4),
+  placeholderTextColor: colors.blueGrey,
   secureTextEntry: true,
   selectTextOnFocus: true,
-  size: 'large',
+  size: 16,
   type: 'password',
-  weight: 'semibold',
+  weight: 'bold',
 }))`
-  ${padding(0, 40, 2.5, 19)};
+  ${padding(0, 40, 2.5, 24)};
   height: 100%;
 `;
 
-const ShadowContainer = styled(ShadowStack).attrs(
+const ShadowContainer = styled(Row).attrs(
   ({ deviceWidth, theme: { colors, isDarkMode } }) => ({
-    backgroundColor: isDarkMode ? colors.offWhite : colors.white,
-    borderRadius: 23,
-    height: 46,
-    shadows: [
-      [0, 5, 15, colors.shadow, 0.06],
-      [0, 10, 30, colors.shadow, 0.12],
-    ],
-    width: Math.max(deviceWidth - 130, 245),
+    backgroundColor: colors.alpha(colors.blueGrey, 0.16),
+    borderRadius: 24,
+    height: 56,
+    width: deviceWidth - 48,
   })
-)`
-  elevation: 15;
-`;
+)``;
 
 function FieldAccessoryBadge({ color, name }) {
   return (
     <FieldAccessoryBadgeWrapper color={color}>
-      <Icon color={color} name={name} size={FieldAccessoryBadgeSize} />
+      <Icon
+        color={color}
+        height={FieldAccessoryBadgeSize}
+        name={name}
+        width={FieldAccessoryBadgeSize}
+      />
     </FieldAccessoryBadgeWrapper>
   );
 }
@@ -102,12 +96,12 @@ const PasswordField = (
           {...props}
         />
         {isValid && (
-          <FieldAccessoryBadge color={colors.green} name="checkmarkCircled" />
+          <FieldAccessoryBadge color={colors.coinburp} name="checkmark" />
         )}
         {isInvalid && (
           <FieldAccessoryBadge
-            color={colors.orangeLight}
-            name="warningCircled"
+            color={colors.gold}
+            name="warning"
           />
         )}
       </ShadowContainer>

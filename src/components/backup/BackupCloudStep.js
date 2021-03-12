@@ -11,7 +11,10 @@ import { saveBackupPassword } from '../../model/backup';
 import { cloudPlatform } from '../../utils/platform';
 import { DelayedAlert } from '../alerts';
 import { PasswordField } from '../fields';
-import { Centered, ColumnWithMargins } from '../layout';
+import { BackButton } from '../header';
+import { Icon } from '../icons';
+import { Centered, ColumnWithMargins, Row } from '../layout';
+import { SheetTitle } from '../sheet';
 import { GradientText, Text } from '../text';
 import BackupSheetKeyboardLayout from './BackupSheetKeyboardLayout';
 import {
@@ -34,16 +37,8 @@ import logger from 'logger';
 const DescriptionText = styled(Text).attrs(
   ({ isTinyPhone, theme: { colors } }) => ({
     align: 'center',
-    color: colors.blueGreyDark50,
-    lineHeight: 'looser',
-    size: isTinyPhone ? 'lmedium' : 'large',
-  })
-)``;
-
-const ImportantText = styled(DescriptionText).attrs(
-  ({ theme: { colors } }) => ({
-    color: colors.blueGreyDark60,
-    weight: 'medium',
+    size: 16,
+    weight: 'bold',
   })
 )``;
 
@@ -66,10 +61,11 @@ const MastheadIcon = styled(GradientText).attrs(({ theme: { colors } }) => ({
   weight: 'medium',
 }))``;
 
-const Title = styled(Text).attrs(({ isTinyPhone }) => ({
-  size: isTinyPhone ? 'large' : 'big',
-  weight: 'bold',
-}))`
+const Title = styled(Text).attrs({
+  align: 'center',
+  size: 32,
+  weight: 900,
+})`
   ${({ isTinyPhone }) => (isTinyPhone ? padding(0) : padding(15, 0, 12))};
 `;
 
@@ -81,6 +77,7 @@ export default function BackupCloudStep() {
   const { goBack } = useNavigation();
   const { params } = useRoute();
   const walletCloudBackup = useWalletCloudBackup();
+  const { width } = useDimensions();
   const { selectedWallet, setIsWalletLoading, isDamaged } = useWallets();
   const [validPassword, setValidPassword] = useState(false);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
@@ -166,7 +163,7 @@ export default function BackupCloudStep() {
 
     let newLabel = '';
     if (passwordIsValid) {
-      newLabel = '􀎽 Confirm Backup';
+      newLabel = 'Confirm';
     } else if (password.length < cloudBackupPasswordMinLength) {
       newLabel = `Minimum ${cloudBackupPasswordMinLength} characters`;
     } else if (
@@ -195,16 +192,16 @@ export default function BackupCloudStep() {
       switch (passInfo.score) {
         case 0:
         case 1:
-          newLabel = '💩 Weak password';
+          newLabel = 'Weak password';
           break;
         case 2:
-          newLabel = '👌 Good password';
+          newLabel = 'Good password';
           break;
         case 3:
-          newLabel = '💪 Great password';
+          newLabel = 'Great password';
           break;
         case 4:
-          newLabel = '🏰️ Strong password';
+          newLabel = 'Strong password';
           break;
         default:
       }
@@ -269,18 +266,29 @@ export default function BackupCloudStep() {
     <BackupSheetKeyboardLayout
       footerButtonDisabled={!validPassword}
       footerButtonLabel={label}
+      footerIcon={validPassword ? 'faceid' : null}
       onSubmit={onConfirmBackup}
     >
       <Masthead isTallPhone={isTallPhone} isTinyPhone={isTinyPhone}>
+        <Row
+          align="center"
+          justify="space-between"
+          marginBottom={48}
+          width={width}
+        >
+          <BackButton size={24} />
+          <SheetTitle css={{ left: -12 }} weight={900}>
+            Back up to {cloudPlatform}
+          </SheetTitle>
+          <Row />
+        </Row>
         {(isTinyPhone || samsungGalaxy) && isKeyboardOpen ? null : (
-          <MastheadIcon>􀌍</MastheadIcon>
+          <Icon height={72} name="pinkCloud" width={64} />
         )}
         <Title isTinyPhone={isTinyPhone}>Choose a password</Title>
         <DescriptionText isTinyPhone={isTinyPhone}>
-          Please use a password you&apos;ll remember.&nbsp;
-          <ImportantText isTinyPhone={isTinyPhone}>
-            It can&apos;t be recovered!
-          </ImportantText>
+          Please use a password you&apos;ll remember.&nbsp;It can&apos;t be
+          recovered!
         </DescriptionText>
       </Masthead>
       <ColumnWithMargins align="center" flex={1} margin={android ? 0 : 19}>
