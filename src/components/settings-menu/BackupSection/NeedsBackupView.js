@@ -3,10 +3,12 @@ import analytics from '@segment/analytics-react-native';
 import React, { Fragment, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { cloudPlatform } from '../../../utils/platform';
+import { ButtonPressAnimation } from '../../animations';
 import { RainbowButton } from '../../buttons';
-import { Centered, Column } from '../../layout';
+import { Icon } from '../../icons';
+import { Centered, Column, Flex, Row } from '../../layout';
 import { SheetActionButton } from '../../sheet';
-import { Text } from '../../text';
+import { GradientText, Text } from '../../text';
 import BackupIcon from '@rainbow-me/assets/backupIcon.png';
 import BackupIconDark from '@rainbow-me/assets/backupIconDark.png';
 import WalletBackupStepTypes from '@rainbow-me/helpers/walletBackupStepTypes';
@@ -23,21 +25,22 @@ const BackupButton = styled(RainbowButton).attrs({
   margin-bottom: 19;
 `;
 
-const Content = styled(Centered).attrs({
-  direction: 'column',
+const Content = styled(Column).attrs({
+  align: 'center',
+  justify: 'space-between',
 })`
   ${padding(0, 19, 42)};
   flex: 1;
 `;
 
-const DescriptionText = styled(Text).attrs(({ theme: { colors } }) => ({
+const DescriptionText = styled(Text).attrs({
   align: 'center',
-  color: colors.alpha(colors.blueGreyDark, 0.5),
-  lineHeight: 'loosest',
-  size: 'large',
-}))`
-  margin-bottom: 42;
-  padding-horizontal: 23;
+  lineHeight: 24,
+  size: 16,
+  weight: 'bold',
+})`
+  margin-bottom: 33px;
+  padding-horizontal: 18px;
 `;
 
 const Subtitle = styled(Text).attrs(({ theme: { colors } }) => ({
@@ -51,8 +54,8 @@ const Subtitle = styled(Text).attrs(({ theme: { colors } }) => ({
 
 const Title = styled(Text).attrs({
   align: 'center',
-  size: 'larger',
-  weight: 'bold',
+  size: 24,
+  weight: 900,
 })`
   margin-bottom: 8;
   padding-horizontal: 11;
@@ -105,33 +108,53 @@ export default function NeedsBackupView() {
     });
   }, [navigate, walletId]);
 
-  const { colors, isDarkMode } = useTheme();
+  const { colors } = useTheme();
 
   return (
     <Fragment>
       <Subtitle>Not backed up</Subtitle>
       <Content>
-        <Column align="center">
-          <TopIcon source={isDarkMode ? BackupIconDark : BackupIcon} />
-          <Title>Back up your wallet </Title>
-          <DescriptionText>
-            Don&apos;t risk your money! Back up your wallet so you can recover
-            it if you lose this device.
-          </DescriptionText>
+        <Column />
+        <Column>
+          <Column align="center">
+            <Icon
+              color={colors.gold}
+              height={68}
+              marginBottom={32}
+              name="warning"
+              width={70}
+            />
+            <Title>Back up your wallet </Title>
+            <DescriptionText>
+              Don&apos;t risk your money! Back up your wallet so you can recover
+              it if you lose this device.
+            </DescriptionText>
+          </Column>
+          <Column align="center">
+            <ButtonPressAnimation onPress={onIcloudBackup} scaleTo={0.9}>
+              <Row align="center">
+                <Icon marginRight={12} name="pinkCloud" />
+                <GradientText
+                  angle={360}
+                  colors={['#fa71cd', '#c471f5']}
+                  size={20}
+                  steps={[0, 0.9]}
+                  weight={900}
+                >
+                  {`Back up to ${cloudPlatform}`}
+                </GradientText>
+              </Row>
+            </ButtonPressAnimation>
+          </Column>
         </Column>
-        <Column align="center">
-          <BackupButton
-            label={`􀙶 Back up to ${cloudPlatform}`}
-            onPress={onIcloudBackup}
-          />
-          <SheetActionButton
-            androidWidth={220}
-            color={colors.white}
-            label="🤓 Back up manually"
-            onPress={onManualBackup}
-            textColor={colors.alpha(colors.blueGreyDark, 0.8)}
-          />
-        </Column>
+        <SheetActionButton
+          androidWidth={220}
+          color={colors.white}
+          label="Back up manually"
+          onPress={onManualBackup}
+          textColor={colors.coinburp}
+          weight={900}
+        />
       </Content>
     </Fragment>
   );

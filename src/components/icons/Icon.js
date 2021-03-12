@@ -55,6 +55,7 @@ import MinusCircledIcon from './svg/MinusCircledIcon';
 import OfflineIcon from './svg/OfflineIcon';
 import PasscodeIcon from './svg/PasscodeIcon';
 import PinIcon from './svg/PinIcon';
+import PinkCloudIcon from './svg/PinkCloudIcon';
 import PlusCircledIcon from './svg/PlusCircledIcon';
 import PlusIcon from './svg/PlusIcon';
 import ProgressIcon from './svg/ProgressIcon';
@@ -150,6 +151,7 @@ const IconTypes = {
   passcode: PasscodeIcon,
   pencil: PencilIcon,
   pin: PinIcon,
+  pinkCloud: PinkCloudIcon,
   plus: PlusIcon,
   plusCircled: PlusCircledIcon,
   progress: ProgressIcon,

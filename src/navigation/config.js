@@ -301,7 +301,7 @@ export const settingsOptions = colors => ({
   },
   ...(android && {
     // eslint-disable-next-line react/display-name
-    headerLeft: props => <BackButton {...props} textChevron />,
+    headerLeft: props => <BackButton {...props} size={24} />,
     // eslint-disable-next-line react/display-name
     headerRight: () => <EmptyButtonPlaceholder />,
     // eslint-disable-next-line react/display-name
