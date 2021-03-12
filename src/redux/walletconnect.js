@@ -61,11 +61,11 @@ const getNativeOptions = async () => {
 
   const nativeOptions = {
     clientMeta: {
-      description: 'Coinburp makes exploring Ethereum fun and accessible',
+      description: 'CoinBurp makes exploring Ethereum fun and accessible',
       icons: ['https://avatars2.githubusercontent.com/u/48327834?s=200&v=4'],
-      name: 'Coinburp',
+      name: 'CoinBurp',
       ssl: true,
-      url: 'https://rainbow.me',
+      url: 'https://coinburp.com',
     },
     push: token
       ? {

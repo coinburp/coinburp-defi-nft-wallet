@@ -35,7 +35,7 @@ const handleMailError = debounce(
 function feedbackEmailOptions(appVersion) {
   return {
     recipients: [FeedbackEmailAddress],
-    subject: `Coinburp Feedback - ${ios ? 'iOS' : 'Android'} ${appVersion}`,
+    subject: `CoinBurp Feedback - ${ios ? 'iOS' : 'Android'} ${appVersion}`,
   };
 }
 

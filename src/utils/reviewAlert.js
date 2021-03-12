@@ -29,8 +29,8 @@ export default async function maybeReviewAlert() {
   AsyncStorage.setItem(REVIEW_ASKED_KEY, Date.now().toString());
 
   Alert.alert(
-    `Are you loving Coinburp NFT Wallet?`,
-    'Leave a review on the App Store!',
+    `Are you loving CoinBurp NFT Wallet?`,
+    'Please leave a review!',
     [
       {
         onPress: () => {

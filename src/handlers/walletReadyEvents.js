@@ -41,14 +41,14 @@ export const runWalletBackupStatusChecks = () => {
 
   if (!rainbowWalletsNotBackedUp.length) return;
 
-  logger.log('there is a rainbow wallet not backed up');
+  logger.log('there is a CoinBurp wallet not backed up');
   const hasSelectedWallet = find(
     rainbowWalletsNotBackedUp,
     notBackedUpWallet => notBackedUpWallet.id === selected.id
   );
 
   logger.log(
-    'rainbow wallet not backed up that is selected?',
+    'CoinBurp wallet not backed up that is selected?',
     hasSelectedWallet
   );
 

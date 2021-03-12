@@ -158,7 +158,7 @@ export default function SettingsSection({
 
   const onPressShare = useCallback(() => {
     Share.share({
-      message: `👋️ Hey friend! You should download Coinburp, it's my favorite Ethereum wallet ${SettingsExternalURLs.coinburpHomepage}`,
+      message: `👋️ Hey friend! You should download CoinBurp, it's my favorite Ethereum wallet ${SettingsExternalURLs.coinburpHomepage}`,
     });
   }, []);
 
@@ -258,7 +258,7 @@ export default function SettingsSection({
       <Column>
         <ListItem
           icon={<icons.Share />}
-          label="Share Coinburp"
+          label="Share CoinBurp"
           onPress={onPressShare}
           testID="share-section"
           value={SettingsExternalURLs.coinburpHomepage}
