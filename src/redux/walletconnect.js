@@ -61,9 +61,9 @@ const getNativeOptions = async () => {
 
   const nativeOptions = {
     clientMeta: {
-      description: 'Rainbow makes exploring Ethereum fun and accessible 🌈',
+      description: 'Coinburp makes exploring Ethereum fun and accessible',
       icons: ['https://avatars2.githubusercontent.com/u/48327834?s=200&v=4'],
-      name: '🌈 Rainbow',
+      name: 'Coinburp',
       ssl: true,
       url: 'https://rainbow.me',
     },

@@ -18,6 +18,7 @@ import ChartIcon from './svg/ChartIcon';
 import CheckIcon from './svg/CheckIcon';
 import CheckmarkCircledIcon from './svg/CheckmarkCircledIcon';
 import CheckmarkIcon from './svg/CheckmarkIcon';
+import CheckmarkLargeIcon from './svg/CheckmarkLargeIcon';
 import ClearInputIcon from './svg/ClearInputIcon';
 import ClockIcon from './svg/ClockIcon';
 import CloseCircledIcon from './svg/CloseCircledIcon';
@@ -49,6 +50,7 @@ import HiddenIcon from './svg/HiddenIcon';
 import ImportIcon from './svg/ImportIcon';
 import InboxIcon from './svg/InboxIcon';
 import InfoIcon from './svg/InfoIcon';
+import KeyIcon from './svg/KeyIcon';
 import LinkIcon from './svg/LinkIcon';
 import LockIcon from './svg/LockIcon';
 import MinusCircledIcon from './svg/MinusCircledIcon';
@@ -109,6 +111,7 @@ const IconTypes = {
   check: CheckIcon,
   checkmark: CheckmarkIcon,
   checkmarkCircled: CheckmarkCircledIcon,
+  checkmarkLarge: CheckmarkLargeIcon,
   clearInput: ClearInputIcon,
   clock: ClockIcon,
   close: CloseIcon,
@@ -143,6 +146,7 @@ const IconTypes = {
   import: ImportIcon,
   inbox: InboxIcon,
   info: InfoIcon,
+  key: KeyIcon,
   link: LinkIcon,
   lock: LockIcon,
   minusCircled: MinusCircledIcon,

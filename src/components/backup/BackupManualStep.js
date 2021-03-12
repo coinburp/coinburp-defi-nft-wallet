@@ -16,6 +16,7 @@ import {
 } from '@rainbow-me/hooks';
 import { useNavigation } from '@rainbow-me/navigation';
 import { padding } from '@rainbow-me/styles';
+import {Icon} from "../icons";
 
 const Content = styled(Column).attrs({
   align: 'center',
@@ -96,7 +97,10 @@ export default function BackupManualStep() {
   return (
     <Fragment>
       <Masthead>
-        <MastheadIcon>􀉆</MastheadIcon>
+        <MastheadIcon>
+          􀉆
+          {/*<Icon name="checkmark" />*/}
+        </MastheadIcon>
         <MastheadTitle>Back up manually</MastheadTitle>
         <MastheadDescription>
           <MastheadDescription weight="semibold">
@@ -118,15 +122,15 @@ export default function BackupManualStep() {
       </Content>
       <Footer>
         {secretLoaded && (
-          <View marginTop={30}>
+          <View marginTop={32}>
             <SheetActionButton
-              color={colors.appleBlue}
+              color={colors.coinburp}
               fullWidth
               label={`􀁣 I’ve saved ${
                 type === WalletTypes.privateKey ? 'my key' : 'these words'
               }`}
               onPress={onComplete}
-              size="big"
+              size="larger"
               weight="bold"
             />
           </View>

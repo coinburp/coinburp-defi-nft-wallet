@@ -10,7 +10,8 @@ import { walletsUpdate } from '../../../redux/wallets';
 import { cloudPlatform } from '../../../utils/platform';
 import { DelayedAlert } from '../../alerts';
 import { ButtonPressAnimation } from '../../animations';
-import { Centered, Column } from '../../layout';
+import { Icon } from '../../icons';
+import {Centered, Column, Row} from '../../layout';
 import { SheetActionButton } from '../../sheet';
 import { Text } from '../../text';
 import WalletBackupStepTypes from '@rainbow-me/helpers/walletBackupStepTypes';
@@ -28,28 +29,11 @@ const WalletBackupStatus = {
   MANUAL_BACKUP: 2,
 };
 
-const CheckmarkIconContainer = styled(View)`
-  ${({ color, isDarkMode, theme: { colors } }) =>
-    shadow.build(0, 4, 6, isDarkMode ? colors.shadow : color, 0.4)};
-  ${position.size(50)};
-  background-color: ${({ color }) => color};
-  border-radius: 25;
-  margin-bottom: 19;
-  padding-top: ${ios ? 13 : 7};
+const CheckmarkIcon = styled(Icon).attrs({
+  name: 'checkmarkLarge',
+})`
+  margin-top: -64px;
 `;
-
-const CheckmarkIconText = styled(Text).attrs(({ theme: { colors } }) => ({
-  align: 'center',
-  color: colors.whiteLabel,
-  size: 'larger',
-  weight: 'bold',
-}))``;
-
-const CheckmarkIcon = ({ color, isDarkMode }) => (
-  <CheckmarkIconContainer color={color} isDarkMode={isDarkMode}>
-    <CheckmarkIconText>􀆅</CheckmarkIconText>
-  </CheckmarkIconContainer>
-);
 
 const Content = styled(Centered).attrs({
   direction: 'column',
@@ -60,12 +44,15 @@ const Content = styled(Centered).attrs({
 
 const DescriptionText = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'center',
-  color: colors.alpha(colors.blueGreyDark, 0.5),
+  color: colors.dark,
   lineHeight: 'loosest',
-  size: 'large',
+  size: 'lmedium',
+  weight: 'bold',
 }))`
   margin-bottom: 42;
+  margin-top: 32
   padding-horizontal: 23;
+  max-width: 295px;
 `;
 
 const Footer = styled(Centered)`
@@ -74,7 +61,7 @@ const Footer = styled(Centered)`
 
 const Subtitle = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'center',
-  color: colors.alpha(colors.blueGreyDark, 0.5),
+  color: colors.skyBlue,
   size: fonts.size.smedium,
   weight: fonts.weight.medium,
 }))`
@@ -83,11 +70,13 @@ const Subtitle = styled(Text).attrs(({ theme: { colors } }) => ({
 
 const Title = styled(Text).attrs({
   align: 'center',
-  size: 'larger',
-  weight: 'bold',
+  size: 'coinburpBig',
+  weight: 'heavy',
 })`
   margin-bottom: 8;
+  margin-top: 16px;
   padding-horizontal: 11;
+  max-width: 240px;
 `;
 
 const onError = error => DelayedAlert({ title: error }, 500);
@@ -225,10 +214,7 @@ export default function AlreadyBackedUpView() {
 
   const { colors } = useTheme();
 
-  const checkmarkColor =
-    walletStatus === WalletBackupStatus.CLOUD_BACKUP
-      ? colors.green
-      : colors.alpha(colors.blueGreyDark, 0.5);
+  const checkmarkColor = colors.coinburp;
 
   const hasMultipleWallets =
     Object.keys(wallets).filter(
@@ -242,7 +228,7 @@ export default function AlreadyBackedUpView() {
       <Subtitle>
         {(walletStatus === WalletBackupStatus.CLOUD_BACKUP && `Backed up`) ||
           (walletStatus === WalletBackupStatus.MANUAL_BACKUP &&
-            `Backed up manually`) ||
+            `Backed up`) ||
           (walletStatus === WalletBackupStatus.IMPORTED && `Imported`)}
       </Subtitle>
       <Content>
@@ -265,10 +251,13 @@ export default function AlreadyBackedUpView() {
         <Column>
           <SheetActionButton
             androidWidth={225}
-            color={colors.white}
-            label="🗝 View recovery key"
+            color={colors.dark}
+            icon="key"
+            label="View recovery key"
             onPress={handleViewRecoveryPhrase}
-            textColor={colors.alpha(colors.blueGreyDark, 0.8)}
+            size={fonts.smedium}
+            textColor={colors.white}
+            weight="heavy"
           />
         </Column>
       </Content>
@@ -277,12 +266,12 @@ export default function AlreadyBackedUpView() {
           <ButtonPressAnimation onPress={handleIcloudBackup}>
             <Text
               align="center"
-              color={colors.appleBlue}
+              color={colors.coinburp}
               letterSpacing="roundedMedium"
-              size="large"
-              weight="semibold"
+              size="larger"
+              weight="heavy"
             >
-              􀙶 Back up to {cloudPlatform}
+              {cloudPlatform} Backups
             </Text>
           </ButtonPressAnimation>
         </Footer>

@@ -1,40 +1,11 @@
 import { times } from 'lodash';
 import React, { useMemo } from 'react';
-import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components';
 import CopyTooltip from '../copy-tooltip';
 import { Centered, ColumnWithMargins, Row, RowWithMargins } from '../layout';
 import { Text } from '../text';
 import WalletTypes from '@rainbow-me/helpers/walletTypes';
-import { fonts, padding, position } from '@rainbow-me/styles';
-import ShadowStack from 'react-native-shadow-stack';
-
-const CardBorderRadius = 25;
-
-const BackgroundGradient = styled(LinearGradient).attrs(
-  ({ theme: { colors } }) => ({
-    colors: colors.gradients.offWhite,
-    end: { x: 0.5, y: 1 },
-    start: { x: 0.5, y: 0 },
-  })
-)`
-  ${position.cover};
-  border-radius: ${CardBorderRadius};
-`;
-
-const CardShadow = styled(ShadowStack).attrs(
-  ({ theme: { colors, isDarkMode } }) => ({
-    ...position.coverAsObject,
-    backgroundColor: isDarkMode ? colors.offWhite80 : colors.white,
-    borderRadius: CardBorderRadius,
-    shadows: [
-      [0, 10, 30, colors.shadow, 0.1],
-      [0, 5, 15, colors.shadow, 0.04],
-    ],
-  })
-)`
-  elevation: 15;
-`;
+import { fonts, padding } from '@rainbow-me/styles';
 
 const Content = styled(Centered)`
   ${padding(19, 30, 24)};
@@ -74,7 +45,8 @@ function SeedWordGrid({ seed }) {
                 <GridItem justify="end" key={`grid_number_${number}`}>
                   <GridText
                     align="right"
-                    color={colors.alpha(colors.appleBlue, 0.6)}
+                    color={colors.coinburp}
+                    weight="heavy"
                   >
                     {number}
                   </GridText>
@@ -85,7 +57,7 @@ function SeedWordGrid({ seed }) {
           <ColumnWithMargins margin={9}>
             {wordColumn.map((word, index) => (
               <GridItem key={`${word}${index}`}>
-                <GridText weight="bold">{word}</GridText>
+                <GridText weight="heavy">{word}</GridText>
               </GridItem>
             ))}
           </ColumnWithMargins>
@@ -98,12 +70,6 @@ function SeedWordGrid({ seed }) {
 export default function SecretDisplayCard({ seed, type }) {
   return (
     <Centered>
-      {ios && (
-        <>
-          <CardShadow />
-          <BackgroundGradient />
-        </>
-      )}
       <Content>
         <CopyTooltip textToCopy={seed} tooltipText="Copy to clipboard">
           {seed && type === WalletTypes.mnemonic && (
