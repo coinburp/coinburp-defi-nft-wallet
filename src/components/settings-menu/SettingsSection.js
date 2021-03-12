@@ -187,7 +187,7 @@ export default function SettingsSection({
 
   return (
     <Container backgroundColor={colors.white} scrollEnabled={isTinyPhone}>
-      <Column marginTop={7}>
+      <Column marginTop={30}>
         {canBeBackedUp && (
           <ListItem
             icon={<icons.Backup />}
