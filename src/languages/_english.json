@@ -284,7 +284,7 @@
         "please_seed_phrase": "Please authenticate to view private key"
       },
       "push_notifications": {
-        "please_enable_title": "Rainbow would like to send you push notifications",
+        "please_enable_title": "CoinBurp would like to send you push notifications",
         "please_enable_body": "It looks like you are using WalletConnect. Please enable push notifications to be notified of transaction requests from WalletConnect."
       },
       "assets": {

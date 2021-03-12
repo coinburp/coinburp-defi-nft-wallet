@@ -227,7 +227,7 @@ export default function SettingsSection({
             {networkInfo?.[network]?.name}
           </ListItemArrowGroup>
         </ListItem>
-        <ListItem
+        {/*<ListItem
           icon={<icons.DarkMode />}
           label="Dark Mode"
           onPress={toggleTheme}
@@ -242,7 +242,7 @@ export default function SettingsSection({
             />
           </Column>
         </ListItem>
-        {/*<ListItem
+        <ListItem
         {/*  icon={*/}
         {/*    <SettingIcon source={darkMode ? LanguageIconDark : LanguageIcon} />*/}
         {/*  }*/}
