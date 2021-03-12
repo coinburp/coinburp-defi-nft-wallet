@@ -17,7 +17,7 @@ const addChartsStyling = isCharts =>
 const Button = styled(Centered).attrs({
   scaleTo: 0.9,
 })`
-  height: ${({ size }) => size};
+  height: ${({ size }) => (size === 'big' ? 56 : size === 'larger' ? 64 : 48)};
   ${({ isCharts }) => addChartsStyling(isCharts)}
 `;
 
@@ -34,7 +34,7 @@ const Content = styled(RowWithMargins).attrs({
   align: 'center',
   margin: 4,
 })`
-  height: ${({ size }) => size};
+  height: ${({ size }) => (size === 'big' ? 56 : size === 'larger' ? 64 : 48)};
   padding-bottom: ${({ label }) => (containsEmoji(label) ? 5.5 : 4)};
   padding-horizontal: 19;
   z-index: 1;
@@ -76,7 +76,6 @@ const SheetActionButton = ({
   ...props
 }) => {
   const { isDarkMode, colors } = useTheme();
-  const buttonHeight = size === 'big' ? 56 : size === 'larger' ? 64 : 46;
   const color = givenColor || colors.appleBlue;
   const textColor = givenTextColor || colors.whiteLabel;
   const { width: deviceWidth } = useDimensions();
@@ -108,14 +107,14 @@ const SheetActionButton = ({
       <Button
         as={ButtonPressAnimation}
         contentContainerStyle={{
-          height: buttonHeight,
+          height: size === 'big' ? 56 : size === 'larger' ? 64 : 48,
           ...((android || fullWidth) && { width: androidButtonWidth }),
         }}
         elevation={android ? elevation : null}
         isCharts={isCharts}
         overflowMargin={30}
         radiusAndroid={borderRadius}
-        size={buttonHeight}
+        size={size}
         testID={`${testID}-action-button`}
         wrapperStyle={{ alignItems: 'center' }}
         {...props}
@@ -124,7 +123,7 @@ const SheetActionButton = ({
           {...position.coverAsObject}
           backgroundColor={color}
           borderRadius={borderRadius}
-          height={buttonHeight}
+          height={size === 'big' ? 56 : size === 'larger' ? 64 : 48}
           {...((android || fullWidth) && { width: androidButtonWidth })}
         >
           {color === colors.white && <WhiteButtonGradient colors={colors} />}
