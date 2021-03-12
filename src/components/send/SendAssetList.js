@@ -121,9 +121,11 @@ export default class SendAssetList extends React.Component {
     }
 
     this.setState({
-      dataProvider: new DataProvider((r1, r2) => {
-        return r1 !== r2;
-      }).cloneWithRows(this.data),
+      dataProvider: this.data.length
+        ? new DataProvider((r1, r2) => {
+            return r1 !== r2;
+          }).cloneWithRows(this.data)
+        : null,
       visibleAssetsLength: visibleAssetsLength,
     });
 
@@ -226,7 +228,11 @@ export default class SendAssetList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.allAssets !== prevProps.allAssets) {
+    if (
+      this.props.allAssets !== prevProps.allAssets ||
+      this.props.savings !== prevProps.savings ||
+      this.props.uniqueTokens !== prevProps.uniqueTokens
+    ) {
       this.handleData();
     }
   }

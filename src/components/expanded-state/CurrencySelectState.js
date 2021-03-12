@@ -1,59 +1,32 @@
 import { useRoute } from '@react-navigation/native';
-import React, { Fragment, useCallback, useRef, useState } from 'react';
+import { filter } from 'lodash';
+import React, { useState } from 'react';
 import { Keyboard, View } from 'react-native';
-import Animated, { Extrapolate } from 'react-native-reanimated';
 import styled from 'styled-components';
-import { Modal } from '../../components/modal';
 import { useTheme } from '../../context/ThemeContext';
-import { AssetPanel, FloatingPanels } from '../../floating-panels';
-import {
-  useAccountAssets,
-  useAccountSettings,
-  useContacts,
-  useDimensions,
-} from '../../hooks';
+import { useAccountAssets, useDimensions } from '../../hooks';
 import { useNavigation } from '../../navigation/Navigation';
-import { abbreviations, magicMemo } from '../../utils';
-import TouchableBackdrop from '../TouchableBackdrop';
-import { ButtonPressAnimation, interpolate } from '../animations';
-import { Button } from '../buttons';
-import { showDeleteContactActionSheet } from '../contacts';
-import CopyTooltip from '../copy-tooltip';
-import { ExchangeSearch } from '../exchange';
-import { GasSpeedButton } from '../gas';
+import { magicMemo } from '../../utils';
+import { ButtonPressAnimation } from '../animations';
 import { Icon } from '../icons';
-import {
-  Centered,
-  Column,
-  ColumnWithMargins,
-  KeyboardFixedOpenLayout,
-  Row,
-} from '../layout';
+import { Centered, Row } from '../layout';
 import { SendAssetList } from '../send';
 import { SheetTitle } from '../sheet';
-import { Text, TruncatedAddress } from '../text';
 import { ProfileModal } from './profile';
-import { margin, padding, position } from '@rainbow-me/styles';
-import {filter} from "lodash";
-
-const Wrapper = ios ? KeyboardFixedOpenLayout : Fragment;
-
-const TabTransitionAnimation = styled(Animated.View)`
-  ${position.size('100%')};
-`;
+import { padding } from '@rainbow-me/styles';
 
 const ArrowSmall = styled(Icon).attrs({
+  direction: 'left',
   height: '34px',
   name: 'caretThick',
-  direction: 'left',
   width: '24px',
 })``;
 
 const Spacer = styled.View`
-  height: 24;
+  height: 24px;
 `;
 
-const CurrencySelectState = params => {
+const CurrencySelectState = () => {
   const { goBack } = useNavigation();
   const { colors } = useTheme();
   let delayTimer;
@@ -73,28 +46,39 @@ const CurrencySelectState = params => {
   const { allAssets } = useAccountAssets();
   const { width, height: deviceHeight } = useDimensions();
   const [assetsFilter, setFilterAssets] = useState(allAssets);
+  const [savingsFilter, setFilterSavings] = useState(savings);
+  const [uniquesFilter, setFilterUniques] = useState(sendableUniqueTokens);
 
   const handleUpdateState = async value => {
     clearTimeout(delayTimer);
     delayTimer = await setTimeout(() => {
       let data;
+      let savingsData;
+      let uniquesData;
       if (!value) {
         setFilterAssets(allAssets);
         data = allAssets;
+        setFilterSavings(savings);
+        savingsData = savings;
+        setFilterUniques(sendableUniqueTokens);
+        uniquesData = sendableUniqueTokens;
       } else {
         data = filter(allAssets, ob => {
           if (ob.assets) {
-            ob.assets.map((asset, index) => {
-              if(!asset.name) {
+            ob.assets.map(asset => {
+              if (!asset.name) {
                 return false;
               }
 
-              const s = asset.name.toString().toLowerCase().indexOf(value.toLowerCase()) !==
-              -1;
-              if(!s) {
+              const s =
+                asset.name
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(value.toLowerCase()) !== -1;
+              if (!s) {
                 ob.assets.pop();
               }
-            })
+            });
 
             return ob.assets;
           }
@@ -108,10 +92,43 @@ const CurrencySelectState = params => {
 
           return false;
         });
+        savingsData = filter(savings, ob => {
+          if (ob.name) {
+            return (
+              ob.name.toString().toLowerCase().indexOf(value.toLowerCase()) !==
+              -1
+            );
+          }
+
+          return false;
+        });
+
+        uniquesData = sendableUniqueTokens
+          .map(family => {
+            const filteredFamilyData = filter(family.data, ob => {
+              if (ob.name) {
+                return (
+                  ob.name
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(value.toLowerCase()) !== -1
+                );
+              }
+
+              return false;
+            });
+
+            if (filteredFamilyData.length) return family;
+          })
+          .filter(i => i);
       }
 
-      setFilterAssets( []);
+      setFilterAssets([]);
+      setFilterSavings([]);
+      setFilterUniques([]);
       setFilterAssets(data || []);
+      setFilterSavings(savingsData || []);
+      setFilterUniques(uniquesData || []);
     }, 100);
   };
 
@@ -149,15 +166,15 @@ const CurrencySelectState = params => {
           colors={colors}
           deviceHeight={deviceHeight}
           fetchData={fetchData}
+          handleUpdateStateSearch={handleUpdateState}
           hiddenCoins={hiddenCoins}
           nativeCurrency={nativeCurrency}
           network={network}
           onSelectAsset={sendUpdateSelected}
           pinnedCoins={pinnedCoins}
-          savings={savings}
+          savings={savingsFilter}
           selected={selected}
-          uniqueTokens={sendableUniqueTokens}
-          handleUpdateStateSearch={handleUpdateState}
+          uniqueTokens={uniquesFilter}
           width={width}
         />
       </Centered>
