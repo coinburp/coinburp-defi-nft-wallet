@@ -37,7 +37,7 @@ export default function CameraHeaderButton() {
       <Flex
         {...borders.buildCircleAsObject(34)}
       >
-        <Centered cover>
+        <Centered cover style={{paddingBottom: 18}}>
           <CameraIcon />
         </Centered>
       </Flex>
