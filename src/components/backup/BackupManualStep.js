@@ -16,7 +16,6 @@ import {
 } from '@rainbow-me/hooks';
 import { useNavigation } from '@rainbow-me/navigation';
 import { padding } from '@rainbow-me/styles';
-import {Icon} from "../icons";
 
 const Content = styled(Column).attrs({
   align: 'center',
@@ -24,7 +23,7 @@ const Content = styled(Column).attrs({
 })`
   flex-grow: 1;
   flex-shrink: 0;
-  padding-top: ${({ isTallPhone }) => (android ? 30 : isTallPhone ? 65 : 15)};
+  padding-top: ${({ isTallPhone }) => (android ? 30 : isTallPhone ? 64 : 15)};
 `;
 
 const Footer = styled(Column).attrs({
@@ -44,26 +43,19 @@ const Masthead = styled(Column).attrs({
 
 const MastheadDescription = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'center',
-  color: colors.alpha(colors.blueGreyDark, 0.6),
+  color: colors.dark,
   lineHeight: 'looser',
-  size: 'large',
+  size: 'lmedium',
 }))`
   max-width: 291;
 `;
 
-const MastheadIcon = styled(Text).attrs({
-  align: 'center',
-  color: 'appleBlue',
-  size: 43,
-  weight: 'semibold',
-})``;
-
 const MastheadTitle = styled(Text).attrs({
   align: 'center',
-  size: 'big',
-  weight: 'bold',
+  size: 'coinburpBig',
+  weight: 'heavy',
 })`
-  ${padding(15, 0, 12)};
+  ${padding(15, 0, 16)};
 `;
 
 export default function BackupManualStep() {
@@ -97,13 +89,9 @@ export default function BackupManualStep() {
   return (
     <Fragment>
       <Masthead>
-        <MastheadIcon>
-          􀉆
-          {/*<Icon name="checkmark" />*/}
-        </MastheadIcon>
         <MastheadTitle>Back up manually</MastheadTitle>
-        <MastheadDescription>
-          <MastheadDescription weight="semibold">
+        <MastheadDescription weight="bold">
+          <MastheadDescription weight="bold">
             {type === WalletTypes.privateKey
               ? `This is the key to your wallet!`
               : `These words are the keys to your wallet!`}
@@ -122,16 +110,16 @@ export default function BackupManualStep() {
       </Content>
       <Footer>
         {secretLoaded && (
-          <View marginTop={32}>
+          <View marginTop={64}>
             <SheetActionButton
               color={colors.coinburp}
               fullWidth
-              label={`􀁣 I’ve saved ${
+              label={`I’ve saved ${
                 type === WalletTypes.privateKey ? 'my key' : 'these words'
               }`}
               onPress={onComplete}
               size="larger"
-              weight="bold"
+              weight="heavy"
             />
           </View>
         )}
