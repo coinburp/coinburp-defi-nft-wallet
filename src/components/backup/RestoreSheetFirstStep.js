@@ -15,12 +15,11 @@ import { deviceUtils } from '@rainbow-me/utils';
 
 const deviceWidth = deviceUtils.dimensions.width;
 
-const Container = styled(Column)`
-  margin-top: -8;
-`;
+const Container = styled(Column)``;
 
 const CaretIcon = styled(Icon).attrs({
-  name: 'caret',
+  name: 'caretThick',
+  size: 24,
 })`
   margin-bottom: 5.25;
 `;
@@ -39,22 +38,9 @@ const TitleRow = styled(RowWithMargins)`
   width: ${deviceWidth - 60};
 `;
 
-const RainbowText =
-  android && IS_TESTING === 'true'
-    ? Text
-    : styled(GradientText).attrs(({ theme: { colors } }) => ({
-        angle: false,
-        colors: colors.gradients.rainbow,
-        end: { x: 0, y: 0.5 },
-        start: { x: 1, y: 0.5 },
-        steps: [0, 0.774321, 1],
-      }))``;
+const RainbowText = Text;
 
-const TextIcon = styled(Text).attrs({
-  size: 29,
-  weight: 'medium',
-})`
-  height: ${android ? 45 : 35};
+const TextIcon = styled(Icon)`
   margin-bottom: 7;
   margin-top: 8;
 `;
@@ -62,19 +48,18 @@ const TextIcon = styled(Text).attrs({
 const Title = styled(Text).attrs({
   letterSpacing: 'roundedMedium',
   lineHeight: 27,
-  size: 'larger',
-  weight: 'bold',
+  size: 20,
+  weight: 900,
 })`
-  margin-bottom: 6;
+  margin-bottom: 8;
   max-width: 276;
 `;
 
 const DescriptionText = styled(Text).attrs(({ theme: { colors } }) => ({
   align: 'left',
-  color: colors.alpha(colors.blueGreyDark, 0.4),
   lineHeight: 22,
-  size: 'smedium',
-  weight: 'medium',
+  size: 14,
+  weight: 'bold',
 }))`
   max-width: 276;
   padding-bottom: 24;
@@ -110,11 +95,12 @@ export default function RestoreSheetFirstStep({
         <React.Fragment>
           <SheetRow as={ButtonPressAnimation} onPress={onCloudRestore}>
             <Column>
-              <Row>
-                <RainbowText colors={colors}>
-                  <TextIcon>􀌍</TextIcon>
-                </RainbowText>
-              </Row>
+              <TextIcon
+                color={colors.coinburp}
+                height={32}
+                name="pinkCloud"
+                width={32}
+              />
               <TitleRow>
                 <RainbowText colors={colors}>
                   <Title>Restore from {cloudPlatform}</Title>
@@ -140,7 +126,7 @@ export default function RestoreSheetFirstStep({
         testID="restore-with-key-button"
       >
         <Column>
-          <TextIcon color={colors.purple}>􀑚</TextIcon>
+          <TextIcon color={colors.coinburp} name="refresh" />
           <TitleRow justify="space-between" width="100%">
             <Title>Restore with a recovery phrase or private key</Title>
             <CaretIcon />
@@ -159,7 +145,7 @@ export default function RestoreSheetFirstStep({
         testID="watch-address-button"
       >
         <Column>
-          <TextIcon color={colors.mintDark}>􀒒</TextIcon>
+          <TextIcon color={colors.coinburp} name="search" />
           <TitleRow justify="space-between" width="100%">
             <Title>Watch an Ethereum address </Title>
             <CaretIcon />

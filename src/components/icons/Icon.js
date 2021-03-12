@@ -93,6 +93,7 @@ import {
   UserIcon,
   WarningIcon,
 } from './svg/seetings';
+import RefreshIcon from "./svg/RefreshIcon";
 
 const IconTypes = {
   applePay: ApplePayIcon,
@@ -161,6 +162,7 @@ const IconTypes = {
   progress: ProgressIcon,
   qrCode: QRCodeIcon,
   qrIcon: QRIcon,
+  refresh: RefreshIcon,
   ring: RingIcon,
   scan: Scan,
   scanBack: BackIcon,
