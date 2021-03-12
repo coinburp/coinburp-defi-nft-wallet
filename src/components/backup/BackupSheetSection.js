@@ -2,21 +2,18 @@ import analytics from '@segment/analytics-react-native';
 import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
-import Divider from '../Divider';
-import { RainbowButton } from '../buttons';
-import { Column, ColumnWithMargins } from '../layout';
+import { ButtonPressAnimation } from '../animations';
+import { BackButton } from '../header';
+import { Icon } from '../icons';
+import { Column, ColumnWithMargins, Row } from '../layout';
 import { SheetActionButton } from '../sheet';
-import { Text } from '../text';
-import BackupIcon from '@rainbow-me/assets/backupIcon.png';
-import BackupIconDark from '@rainbow-me/assets/backupIconDark.png';
-import { ImgixImage } from '@rainbow-me/images';
+import { GradientText, Text } from '../text';
 import { padding } from '@rainbow-me/styles';
 import { deviceUtils } from '@rainbow-me/utils';
 
 const Footer = styled(ColumnWithMargins).attrs({
   margin: 19,
 })`
-  ${padding(19, 15, 21)};
   width: 100%;
 `;
 
@@ -25,24 +22,15 @@ const Masthead = styled(Column).attrs({
   justify: 'start',
 })`
   flex: 1;
-  padding-top: 8;
+  padding-top: 8px;
 `;
 
-const MastheadDescription = styled(Text).attrs(({ theme: { colors } }) => ({
+const MastheadDescription = styled(Text).attrs({
   align: 'center',
-  color: colors.blueGreyDark50,
-  lineHeight: 'looser',
-  size: 'large',
-}))`
-  ${padding(12, 42, 30)};
-`;
-
-const MastheadIcon = styled(ImgixImage).attrs({
-  resizeMode: ImgixImage.resizeMode.contain,
+  size: 16,
+  weight: 'bold',
 })`
-  height: 74;
-  margin-bottom: -1;
-  width: 75;
+  ${padding(12, 42, 30)};
 `;
 
 export default function BackupSheetSection({
@@ -56,7 +44,7 @@ export default function BackupSheetSection({
   titleText,
   type,
 }) {
-  const { colors, isDarkMode } = useTheme();
+  const { colors } = useTheme();
   useEffect(() => {
     analytics.track('BackupSheet shown', {
       category: 'backup',
@@ -69,27 +57,49 @@ export default function BackupSheetSection({
   return (
     <Fragment>
       <Masthead>
-        <MastheadIcon source={isDarkMode ? BackupIconDark : BackupIcon} />
-        <Text align="center" color={colors.dark} size="big" weight="bold">
+        <Row align="start" width="100%">
+          <BackButton />
+        </Row>
+        <Icon
+          color={colors.gold}
+          height={68}
+          marginBottom={32}
+          name="warning"
+          width={70}
+        />
+        <Text align="center" color={colors.dark} size={24} weight={900}>
           {titleText}
         </Text>
         <MastheadDescription>{descriptionText}</MastheadDescription>
       </Masthead>
-      <Divider color={colors.rowDividerLight} inset={[0, 42]} />
-      <Footer>
-        <RainbowButton
-          label={primaryLabel}
+      <Footer align="center">
+        <ButtonPressAnimation
           onPress={onPrimaryAction}
+          scaleTo={0.9}
           testID={primaryButtonTestId}
-        />
+        >
+          <Row align="center">
+            <Icon marginRight={12} name="pinkCloud" />
+            <GradientText
+              angle={360}
+              colors={['#fa71cd', '#c471f5']}
+              size={20}
+              steps={[0, 0.9]}
+              weight={900}
+            >
+              {primaryLabel}
+            </GradientText>
+          </Row>
+        </ButtonPressAnimation>
         <SheetActionButton
           androidWidth={maxButtonWidth}
           color={colors.white}
           label={secondaryLabel}
           onPress={onSecondaryAction}
-          size="big"
+          size={20}
           testID={secondaryButtonTestId}
-          textColor={colors.alpha(colors.blueGreyDark, 0.8)}
+          textColor={colors.coinburp}
+          weight={900}
         />
       </Footer>
     </Fragment>

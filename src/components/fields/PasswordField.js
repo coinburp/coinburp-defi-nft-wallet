@@ -99,10 +99,7 @@ const PasswordField = (
           <FieldAccessoryBadge color={colors.coinburp} name="checkmark" />
         )}
         {isInvalid && (
-          <FieldAccessoryBadge
-            color={colors.gold}
-            name="warning"
-          />
+          <FieldAccessoryBadge color={colors.gold} name="warning" />
         )}
       </ShadowContainer>
     </StyledTouchable>
