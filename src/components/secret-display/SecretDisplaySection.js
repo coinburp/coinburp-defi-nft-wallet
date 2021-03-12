@@ -44,7 +44,7 @@ const CopyButtonRow = styled(RowWithMargins).attrs({
 })`
   background-color: ${({ theme: { colors } }) => colors.transparent};
   height: 34;
-  margin-top: 70;
+  margin-top: 16;
 `;
 
 const CopyButtonText = styled(Text).attrs(({ theme: { colors } }) => ({
@@ -60,7 +60,7 @@ const CopyButtonText = styled(Text).attrs(({ theme: { colors } }) => ({
 const ToggleSecretButton = styled(Button)`
   ${margin(0, 20)};
   ${({ theme: { colors } }) => shadow.build(0, 5, 15, colors.purple, 0.3)}
-  background-color: ${({ theme: { colors } }) => colors.appleBlue};
+  background-color: ${({ theme: { colors } }) => colors.coinburp};
 `;
 
 const LoadingSpinner = android ? Spinner : ActivityIndicator;
