@@ -4,7 +4,7 @@ import Icon from '../icons/Icon';
 import { ListItem } from '../list';
 
 const CheckmarkIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
-  color: colors.appleBlue,
+  color: colors.coinburp,
   name: 'checkmarkCircled',
 }))`
   box-shadow: 0px 4px 6px
