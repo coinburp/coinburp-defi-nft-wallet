@@ -1,9 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Image } from 'react-native';
-import Caret from '../../assets/family-dropdown-arrow.png';
+import styled from 'styled-components';
 import { RowWithMargins } from '../layout';
 import { Text } from '../text';
+import { Icon } from '../icons';
+import colors from '../../styles/colors';
+
+const ArrowIcon = styled(Icon).attrs({
+  height: '34px',
+  name: 'arrowSmall',
+  direction: 'up',
+  width: '24px',
+  color: colors.black
+})`margin-left: 5px`;
 
 const ListItemArrowGroup = ({ children }) => {
   const { colors } = useTheme();
@@ -20,15 +29,7 @@ const ListItemArrowGroup = ({ children }) => {
       ) : (
         children
       )}
-      <Image
-        source={Caret}
-        style={{
-          height: 18,
-          marginTop: 0.5,
-          tintColor: colors.alpha(colors.blueGreyDark, 0.6),
-          width: 8,
-        }}
-      />
+      <ArrowIcon />
     </RowWithMargins>
   );
 };
