@@ -1,7 +1,7 @@
 import { useRoute } from '@react-navigation/native';
 import analytics from '@segment/analytics-react-native';
 import React, { Fragment, useCallback, useEffect, useMemo } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useTheme } from '../../../context/ThemeContext';
@@ -11,16 +11,16 @@ import { cloudPlatform } from '../../../utils/platform';
 import { DelayedAlert } from '../../alerts';
 import { ButtonPressAnimation } from '../../animations';
 import { Icon } from '../../icons';
-import {Centered, Column, Row} from '../../layout';
+import { Centered, Column, Row } from '../../layout';
 import { SheetActionButton } from '../../sheet';
-import { Text } from '../../text';
+import { GradientText, Text } from '../../text';
 import WalletBackupStepTypes from '@rainbow-me/helpers/walletBackupStepTypes';
 import WalletBackupTypes from '@rainbow-me/helpers/walletBackupTypes';
 import WalletTypes from '@rainbow-me/helpers/walletTypes';
 import { useWalletCloudBackup, useWallets } from '@rainbow-me/hooks';
 import { Navigation, useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
-import { fonts, padding, position, shadow } from '@rainbow-me/styles';
+import { fonts, padding } from '@rainbow-me/styles';
 import { showActionSheetWithOptions } from '@rainbow-me/utils';
 
 const WalletBackupStatus = {
@@ -227,8 +227,7 @@ export default function AlreadyBackedUpView() {
     <Fragment>
       <Subtitle>
         {(walletStatus === WalletBackupStatus.CLOUD_BACKUP && `Backed up`) ||
-          (walletStatus === WalletBackupStatus.MANUAL_BACKUP &&
-            `Backed up`) ||
+          (walletStatus === WalletBackupStatus.MANUAL_BACKUP && `Backed up`) ||
           (walletStatus === WalletBackupStatus.IMPORTED && `Imported`)}
       </Subtitle>
       <Content>
@@ -264,6 +263,23 @@ export default function AlreadyBackedUpView() {
       {walletStatus !== WalletBackupStatus.CLOUD_BACKUP ? (
         <Footer>
           <ButtonPressAnimation onPress={handleIcloudBackup}>
+            <Row align="center">
+              <Icon marginRight={12} name="pinkCloud" />
+              <GradientText
+                angle={360}
+                colors={['#fa71cd', '#c471f5']}
+                size={20}
+                steps={[0, 0.9]}
+                weight={900}
+              >
+                {`Back up to ${cloudPlatform}`}
+              </GradientText>
+            </Row>
+          </ButtonPressAnimation>
+        </Footer>
+      ) : !hasMultipleWallets ? (
+        <Footer>
+          <ButtonPressAnimation onPress={manageCloudBackups}>
             <Text
               align="center"
               color={colors.coinburp}
@@ -272,20 +288,6 @@ export default function AlreadyBackedUpView() {
               weight="heavy"
             >
               {cloudPlatform} Backups
-            </Text>
-          </ButtonPressAnimation>
-        </Footer>
-      ) : !hasMultipleWallets ? (
-        <Footer>
-          <ButtonPressAnimation onPress={manageCloudBackups}>
-            <Text
-              align="center"
-              color={colors.alpha(colors.blueGreyDark, 0.6)}
-              letterSpacing="roundedMedium"
-              size="lmedium"
-              weight="semibold"
-            >
-              􀍢 Manage {cloudPlatform} Backups
             </Text>
           </ButtonPressAnimation>
         </Footer>

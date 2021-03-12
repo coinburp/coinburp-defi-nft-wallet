@@ -14,10 +14,10 @@ const Container = styled(Centered)`
 const TimespanItemLabel = styled(Text).attrs(
   ({ color, isSelected, theme: { colors } }) => ({
     align: 'center',
-    color: isSelected ? color : colors.alpha(colors.blueGreyDark, 0.4),
+    color: isSelected ? color : colors.skyBlue,
     letterSpacing: 'roundedTighter',
     size: 'smedium',
-    weight: 'bold',
+    weight: 'heavy',
   })
 )`
   ${padding(0, 9)};

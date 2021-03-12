@@ -28,7 +28,7 @@ import Routes from '@rainbow-me/routes';
 
 const onError = error => DelayedAlert({ title: error }, 500);
 
-const AndroidHeight = 400;
+const AndroidHeight = 500;
 
 export default function BackupSheet() {
   const { selectedWallet, isDamaged } = useWallets();
@@ -154,13 +154,13 @@ export default function BackupSheet() {
       case WalletBackupStepTypes.imported:
         return (
           <BackupSheetSection
-            descriptionText={`Don't lose your wallet! Save an encrypted copy to ${cloudPlatform}.`}
+            descriptionText="Don’t risk your money! Back up your wallet so you can recover it if you lose this device."
             onPrimaryAction={onIcloudBackup}
             onSecondaryAction={goBack}
-            primaryLabel={`􀙶 Back up to ${cloudPlatform}`}
+            primaryLabel={`Back up to ${cloudPlatform}`}
             secondaryButtonTestId="backup-sheet-imported-cancel-button"
-            secondaryLabel="No thanks"
-            titleText="Would you like to back up?"
+            secondaryLabel="Back up manually"
+            titleText="Back up your wallet"
             type="Imported Wallet"
           />
         );
@@ -175,11 +175,11 @@ export default function BackupSheet() {
       default:
         return (
           <BackupSheetSection
-            descriptionText={`Don't lose your wallet! Save an encrypted copy to ${cloudPlatform}.`}
+            descriptionText="Don’t risk your money! Back up your wallet so you can recover it if you lose this device."
             onPrimaryAction={onIcloudBackup}
             onSecondaryAction={onManualBackup}
-            primaryLabel={`􀙶 Back up to ${cloudPlatform}`}
-            secondaryLabel="🤓 Back up manually"
+            primaryLabel={`Back up to ${cloudPlatform}`}
+            secondaryLabel="Back up manually"
             titleText="Back up your wallet"
             type="Default"
           />
