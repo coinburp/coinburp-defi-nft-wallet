@@ -36,6 +36,7 @@ const darkModeColors = {
   shadow: '#000000',
   shadowBlack: '#000000',
   shadowGrey: '#000000',
+  specialGrey: '#003d54',
   shimmer: '#1F2229',
   showcaseBackground: 'rgba(255, 214, 0, 0.08)',
   skeleton: '#191B21',
@@ -65,6 +66,7 @@ const getColorsByTheme = darkMode => {
     chartGreen: '#66D28F', // '102, 210, 143'
     coinburp: '#00dc68',
     coldGrey: '#8794a9',
+    specialGrey: '#003d54',
     dark: '#000000', // '0, 0, 0'
     darkGrey: '#71778A', // '113, 119, 138'
     flamingo: '#E540F1', // '229, 64, 241'

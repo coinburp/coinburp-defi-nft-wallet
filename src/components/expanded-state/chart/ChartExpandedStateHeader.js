@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo } from 'react';
+import { Keyboard } from 'react-native';
 import Animated, { useSharedValue } from 'react-native-reanimated';
 import styled from 'styled-components';
 import { useCallbackOne } from 'use-memo-one';
+import { ButtonPressAnimation } from '../../animations';
 import { CoinIconGroup } from '../../coin-icon';
+import { Icon } from '../../icons';
 import { Column, ColumnWithMargins, Row, RowWithMargins } from '../../layout';
 import ChartContextButton from './ChartContextButton';
 import {
@@ -12,7 +15,8 @@ import {
   ChartPriceLabel,
 } from './chart-data-labels';
 import { convertAmountToNativeDisplay } from '@rainbow-me/helpers/utilities';
-import { useAccountSettings, useBooleanState } from '@rainbow-me/hooks';
+import {useAccountSettings, useBooleanState, useDimensions} from '@rainbow-me/hooks';
+import { useNavigation } from '@rainbow-me/navigation';
 import { padding } from '@rainbow-me/styles';
 
 const { call, cond, onChange, useCode } = Animated;
@@ -24,6 +28,12 @@ const Container = styled(ColumnWithMargins).attrs({
   marginTop: android ? -10 : 0,
 })`
   ${({ showChart }) => padding(0, 19, showChart ? (android ? 15 : 30) : 0)};
+`;
+
+const CaretIcon = styled(Icon).attrs({
+  name: 'caret',
+})`
+  margin-bottom: 5.25;
 `;
 
 function useTabularNumsWhileScrubbing(isScrubbing) {
@@ -87,6 +97,8 @@ export default function ChartExpandedStateHeader({
   const titleOrNoPriceData = isNoPriceData ? noPriceData : title;
 
   const showPriceChange = !isNoPriceData && showChart && !isNaN(latestChange);
+  const { goBack } = useNavigation();
+  const { width } = useDimensions();
 
   return (
     <Container showChart={showChart}>
@@ -95,7 +107,14 @@ export default function ChartExpandedStateHeader({
         justify="space-between"
         testID="expanded-state-header"
       >
-        <CoinIconGroup tokens={tokens} />
+        <ButtonPressAnimation
+          onPress={() => {
+            goBack();
+            android && Keyboard.dismiss();
+          }}
+        >
+          <CaretIcon color={colors.coinburp} />
+        </ButtonPressAnimation>
         <ChartContextButton asset={asset} color={color} />
       </Row>
       <Column>
@@ -104,15 +123,18 @@ export default function ChartExpandedStateHeader({
           justify="space-between"
           marginHorizontal={1}
         >
-          <ChartPriceLabel
-            defaultValue={isNoPriceData ? title : price}
-            isNoPriceData={isNoPriceData}
-            isPool={isPool}
-            isScrubbing={isScrubbing}
-            priceRef={priceRef}
-            priceSharedValue={priceSharedValue}
-            tabularNums={tabularNums}
-          />
+          <Row>
+            <CoinIconGroup tokens={tokens} />
+            <ChartPriceLabel
+              defaultValue={isNoPriceData ? title : price}
+              isNoPriceData={isNoPriceData}
+              isPool={isPool}
+              isScrubbing={isScrubbing}
+              priceRef={priceRef}
+              priceSharedValue={priceSharedValue}
+              tabularNums={tabularNums}
+            />
+          </Row>
           {showPriceChange && (
             <ChartPercentChangeLabel
               changeDirection={changeDirection}
@@ -132,6 +154,7 @@ export default function ChartExpandedStateHeader({
           justify="space-between"
           marginHorizontal={android ? (isNoPriceData ? -7 : 0) : 1}
           marginVertical={android ? 4 : 1}
+          paddingLeft={android ? (width - 330) : (width - 340)}
         >
           <ChartHeaderSubtitle
             color={

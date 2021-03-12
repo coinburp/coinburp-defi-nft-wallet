@@ -2,6 +2,9 @@ import React, { useCallback } from 'react';
 import { useExpandedStateNavigation } from '../../../hooks';
 import SheetActionButton from './SheetActionButton';
 import Routes from '@rainbow-me/routes';
+import {padding} from "@rainbow-me/styles";
+import WalletActionButton from "../../buttons/WalletActionButton";
+import {Row} from "../../layout";
 
 export default function SwapActionButton({
   color: givenColor,
@@ -24,13 +27,12 @@ export default function SwapActionButton({
   );
 
   return (
-    <SheetActionButton
-      {...props}
+    <WalletActionButton
       color={color}
-      label="􀖅 Swap"
+      isReadOnlyWallet={false}
       onPress={handlePress}
-      testID="swap"
-      weight="bold"
+      title="Swap"
+      type="exchange"
     />
   );
 }
