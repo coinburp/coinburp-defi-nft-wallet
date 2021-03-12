@@ -175,7 +175,7 @@ export default function SettingsSection({
     [wallets]
   );
 
-  const backupStatusColor = colors.skyBlue;
+  const backupStatusColor = colors.coinburp;
 
   const toggleTheme = useCallback(() => {
     if (colorScheme === THEMES.DARK) {
@@ -235,9 +235,9 @@ export default function SettingsSection({
         >
           <Column align="end" flex="1" justify="end">
             <Switch
-              ios_backgroundColor="#3e3e3e"
+              ios_backgroundColor={colors.skyBlue}
               onValueChange={toggleTheme}
-              trackColor={{ false: colors.skyBlue, true: colors.skyBlue }}
+              trackColor={{ false: colors.coinburp, true: colors.coinburp }}
               value={colorScheme === THEMES.DARK}
             />
           </Column>
