@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Text } from '../text';
 
+
 const TokenInfoHeading = styled(Text).attrs(({ theme: { colors } }) => ({
-  color: colors.alpha(colors.blueGreyDark, 0.5),
+  color: colors.skyBlue,
   letterSpacing: 'roundedMedium',
-  size: 'smedium',
-  weight: 'semibold',
+  size: 'large',
+  weight: 'heavy',
 }))``;
 
 export default TokenInfoHeading;

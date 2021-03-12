@@ -6,6 +6,7 @@ import showWalletErrorAlert from '@rainbow-me/helpers/support';
 import { useExpandedStateNavigation, useWallets } from '@rainbow-me/hooks';
 
 import Routes from '@rainbow-me/routes';
+import WalletActionButton from "../../buttons/WalletActionButton";
 
 export default function BuyActionButton({ color: givenColor, ...props }) {
   const { colors } = useTheme();
@@ -31,12 +32,12 @@ export default function BuyActionButton({ color: givenColor, ...props }) {
   }, [navigate, isDamaged]);
 
   return (
-    <SheetActionButton
-      {...props}
+    <WalletActionButton
       color={color}
-      label="􀍰 Buy more ETH"
+      isReadOnlyWallet={false}
       onPress={handlePress}
-      weight="bold"
+      title="Deposit"
+      type="add"
     />
   );
 }

@@ -236,7 +236,7 @@ export default function ChartWrapper({
       </ChartContainer>
       {showChart ? (
         <TimespanSelector
-          color={color}
+          color={colors.specialGrey}
           defaultIndex={timespanIndex}
           // fixme temporary to fix animation
           key={`ts_${showMonth}_${showYear}`}

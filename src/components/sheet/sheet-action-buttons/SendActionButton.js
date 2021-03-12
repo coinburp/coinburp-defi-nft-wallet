@@ -3,6 +3,7 @@ import isNativeStackAvailable from '../../../helpers/isNativeStackAvailable';
 import { useExpandedStateNavigation } from '../../../hooks';
 import SheetActionButton from './SheetActionButton';
 import Routes from '@rainbow-me/routes';
+import WalletActionButton from "../../buttons/WalletActionButton";
 
 export default function SendActionButton({ color: givenColor, ...props }) {
   const { colors } = useTheme();
@@ -22,13 +23,12 @@ export default function SendActionButton({ color: givenColor, ...props }) {
   );
 
   return (
-    <SheetActionButton
-      {...props}
+    <WalletActionButton
       color={color}
-      label="􀈠 Send"
+      isReadOnlyWallet={false}
       onPress={handlePress}
-      testID="send"
-      weight="bold"
+      title="Withdraw"
+      type="send"
     />
   );
 }

@@ -23,10 +23,10 @@ export default function WalletConnectExplainerItem({
           <View style={{ marginLeft: 10, marginBottom: 30}}>
             { isWithdraw ? <Icon name="withdrawIcon" /> : <Icon name="connectWave" /> }
           </View>
-          <TruncatedText 
-            color={colors.white} 
-            lineHeight="normal" 
-            size="bmedium" 
+          <TruncatedText
+            color={colors.white}
+            lineHeight="normal"
+            size="bmedium"
             weight="semibold"
             style={{
               fontWeight: '900',
@@ -36,7 +36,7 @@ export default function WalletConnectExplainerItem({
             {title}
           </TruncatedText>
         </FlexItem>
-        <FlexItem 
+        <FlexItem
           marginTop={10}
         >
           <Text

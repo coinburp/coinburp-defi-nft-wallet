@@ -222,7 +222,7 @@ export default function SendSheet(props) {
   const { maxInputBalance, updateMaxInputBalance } = useMaxInputBalance();
 
   const showEmptyState = !isValidAddress;
-  const showAssetList = !isValidAddress || isEmpty(selected);
+  const showAssetList = isEmpty(selected);
   const showAssetForm = isValidAddress && !isEmpty(selected);
   const prevSelectedGasPrice = usePrevious(selectedGasPrice);
   const { setParams } = useNavigation();
@@ -654,7 +654,7 @@ export default function SendSheet(props) {
                   width={width}
                 />
               )}
-              {showAssetForm && (
+              {!showAssetList && (
                 <SendAssetForm
                   {...props}
                   allAssets={allAssets}
