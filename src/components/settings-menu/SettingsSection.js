@@ -91,7 +91,9 @@ const iconList = Object.freeze({
 const icons = Object.keys(iconList).reduce((list, key) => {
   list[key] = styled(Icon).attrs({
     name: iconList[key],
-  })``;
+  })`
+  margin-right: 12px;
+  `;
   return list;
 }, {});
 
