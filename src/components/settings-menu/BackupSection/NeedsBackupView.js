@@ -152,6 +152,7 @@ export default function NeedsBackupView() {
           color={colors.white}
           label="Back up manually"
           onPress={onManualBackup}
+          size={20}
           textColor={colors.coinburp}
           weight={900}
         />
