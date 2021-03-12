@@ -12,9 +12,9 @@ const sx = StyleSheet.create({
     height: 30,
   },
   animatedNumberAndroid: {
-    left: 70,
+    left: 0,
     position: 'absolute',
-    top: 12,
+    top: -12,
   },
   text: {
     flex: 1,
