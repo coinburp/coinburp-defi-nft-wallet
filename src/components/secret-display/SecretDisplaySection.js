@@ -30,8 +30,8 @@ const AuthenticationText = styled(Text).attrs({
 `;
 
 const CopyButtonIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
-  color: colors.appleBlue,
-  name: 'copy',
+  color: colors.coinburp,
+  name: 'copySolid',
 }))`
   ${position.size(16)};
   margin-top: 0.5;
@@ -44,15 +44,18 @@ const CopyButtonRow = styled(RowWithMargins).attrs({
 })`
   background-color: ${({ theme: { colors } }) => colors.transparent};
   height: 34;
+  margin-top: 70;
 `;
 
 const CopyButtonText = styled(Text).attrs(({ theme: { colors } }) => ({
-  color: colors.appleBlue,
+  color: colors.coinburp,
   letterSpacing: 'roundedMedium',
   lineHeight: 19,
-  size: 'large',
-  weight: 'bold',
-}))``;
+  size: 'larger',
+  weight: 'heavy',
+}))`
+  margin-left: 12;
+`;
 
 const ToggleSecretButton = styled(Button)`
   ${margin(0, 20)};
@@ -118,13 +121,13 @@ export default function SecretDisplaySection({
         <Fragment>
           {seed ? (
             <Fragment>
+              <SecretDisplayCard seed={seed} type={type} />
               <CopyFloatingEmojis textToCopy={seed}>
                 <CopyButtonRow>
                   <CopyButtonIcon />
                   <CopyButtonText>Copy to clipboard</CopyButtonText>
                 </CopyButtonRow>
               </CopyFloatingEmojis>
-              <SecretDisplayCard seed={seed} type={type} />
             </Fragment>
           ) : (
             <LoadingSpinner color={colors.blueGreyDark50} />

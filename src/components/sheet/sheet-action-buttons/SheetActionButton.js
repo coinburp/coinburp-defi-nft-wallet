@@ -10,7 +10,6 @@ import { Emoji, Text } from '../../text';
 import { containsEmoji } from '@rainbow-me/helpers/strings';
 import { useDimensions } from '@rainbow-me/hooks';
 import { position } from '@rainbow-me/styles';
-import ShadowStack from 'react-native-shadow-stack';
 
 const addChartsStyling = isCharts =>
   isCharts ? 'position: absolute; width: 100%;' : '';
@@ -18,15 +17,24 @@ const addChartsStyling = isCharts =>
 const Button = styled(Centered).attrs({
   scaleTo: 0.9,
 })`
-  height: ${({ size }) => (size === 'big' ? 56 : 46)};
+  height: ${({ size }) => (size === 'big' || size === 'larger' ? 56 : 48)};
   ${({ isCharts }) => addChartsStyling(isCharts)}
+`;
+
+const TextIcon = styled(Text).attrs(({ size, color, weight }) => ({
+  align: 'center',
+  color,
+  size,
+  weight,
+}))`
+  margin-left: 4px;
 `;
 
 const Content = styled(RowWithMargins).attrs({
   align: 'center',
   margin: 4,
 })`
-  height: ${({ size }) => (size === 'big' ? 56 : 46)};
+  height: ${({ size }) => (size === 'big' || size === 'larger' ? 56 : 46)};
   padding-bottom: ${({ label }) => (containsEmoji(label) ? 5.5 : 4)};
   padding-horizontal: 19;
   z-index: 1;
@@ -99,7 +107,7 @@ const SheetActionButton = ({
       <Button
         as={ButtonPressAnimation}
         contentContainerStyle={{
-          height: size === 'big' ? 56 : 46,
+          height: size === 'big' || size === 'larger' ? 56 : 46,
           ...((android || fullWidth) && { width: androidButtonWidth }),
         }}
         elevation={android ? elevation : null}
@@ -115,7 +123,7 @@ const SheetActionButton = ({
           {...position.coverAsObject}
           backgroundColor={color}
           borderRadius={borderRadius}
-          height={size === 'big' ? 56 : 46}
+          height={size === 'big' || size === 'larger' ? 56 : 46}
           {...((android || fullWidth) && { width: androidButtonWidth })}
         >
           {color === colors.white && <WhiteButtonGradient colors={colors} />}
@@ -131,14 +139,9 @@ const SheetActionButton = ({
         <Content label={label} size={size}>
           {emoji && <Emoji lineHeight={23} name={emoji} size="medium" />}
           {icon && <Icon color="white" height={18} name={icon} size={18} />}
-          <Text
-            align="center"
-            color={textColor}
-            size={size === 'big' ? 'larger' : 'large'}
-            weight={weight}
-          >
+          <TextIcon color={textColor} size={size === 'big' ? 'larger' : size} weight={weight}>
             {label}
-          </Text>
+          </TextIcon>
         </Content>
       </Button>
     </View>

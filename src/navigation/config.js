@@ -198,12 +198,10 @@ const transitionConfig = {
 };
 
 const BackArrow = styled(Icon).attrs({
-  color: colors.themedColors.appleBlue,
-  direction: 'left',
+  color: colors.themedColors.coinburp,
   name: 'caret',
 })`
-  margin-left: 15;
-  margin-right: 5;
+  margin-left: 19;
   margin-top: ${android ? 2 : 0.5};
 `;
 const BackImage = () => <BackArrow />;
@@ -277,7 +275,7 @@ export const settingsOptions = colors => ({
   gestureEnabled: true,
   gestureResponseDistance: { horizontal: deviceUtils.dimensions.width },
   ...(ios && { headerBackImage: BackImage }),
-  headerBackTitle: 'Back',
+  headerBackTitle: ' ',
   headerStatusBarHeight: 0,
   headerStyle: {
     backgroundColor: 'transparent',
