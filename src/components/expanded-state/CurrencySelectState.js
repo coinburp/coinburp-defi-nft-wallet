@@ -1,4 +1,5 @@
 import { useRoute } from '@react-navigation/native';
+import { filter } from 'lodash';
 import React, { Fragment, useCallback, useRef, useState } from 'react';
 import { Keyboard, View } from 'react-native';
 import Animated, { Extrapolate } from 'react-native-reanimated';
@@ -34,7 +35,6 @@ import { SheetTitle } from '../sheet';
 import { Text, TruncatedAddress } from '../text';
 import { ProfileModal } from './profile';
 import { margin, padding, position } from '@rainbow-me/styles';
-import {filter} from "lodash";
 
 const Wrapper = ios ? KeyboardFixedOpenLayout : Fragment;
 
@@ -85,16 +85,19 @@ const CurrencySelectState = params => {
         data = filter(allAssets, ob => {
           if (ob.assets) {
             ob.assets.map((asset, index) => {
-              if(!asset.name) {
+              if (!asset.name) {
                 return false;
               }
 
-              const s = asset.name.toString().toLowerCase().indexOf(value.toLowerCase()) !==
-              -1;
-              if(!s) {
-                ob.assets.pop();
+              const s =
+                asset.name
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(value.toLowerCase()) !== -1;
+              if (!s) {
+                ob.assets[index] && ob.assets[index].pop();
               }
-            })
+            });
 
             return ob.assets;
           }
@@ -110,7 +113,7 @@ const CurrencySelectState = params => {
         });
       }
 
-      setFilterAssets( []);
+      setFilterAssets([]);
       setFilterAssets(data || []);
     }, 100);
   };
@@ -149,6 +152,7 @@ const CurrencySelectState = params => {
           colors={colors}
           deviceHeight={deviceHeight}
           fetchData={fetchData}
+          handleUpdateStateSearch={handleUpdateState}
           hiddenCoins={hiddenCoins}
           nativeCurrency={nativeCurrency}
           network={network}
@@ -157,7 +161,6 @@ const CurrencySelectState = params => {
           savings={savings}
           selected={selected}
           uniqueTokens={sendableUniqueTokens}
-          handleUpdateStateSearch={handleUpdateState}
           width={width}
         />
       </Centered>
