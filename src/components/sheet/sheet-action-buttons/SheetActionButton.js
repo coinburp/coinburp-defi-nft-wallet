@@ -17,7 +17,7 @@ const addChartsStyling = isCharts =>
 const Button = styled(Centered).attrs({
   scaleTo: 0.9,
 })`
-  height: ${({ size }) => (size === 'big' || size === 'larger' ? 56 : 48)};
+  height: ${({ size }) => (size === 'big' ? 56 : size === 'larger' ? 64 : 48)};
   ${({ isCharts }) => addChartsStyling(isCharts)}
 `;
 
@@ -34,7 +34,7 @@ const Content = styled(RowWithMargins).attrs({
   align: 'center',
   margin: 4,
 })`
-  height: ${({ size }) => (size === 'big' || size === 'larger' ? 56 : 46)};
+  height: ${({ size }) => (size === 'big' ? 56 : size === 'larger' ? 64 : 48)};
   padding-bottom: ${({ label }) => (containsEmoji(label) ? 5.5 : 4)};
   padding-horizontal: 19;
   z-index: 1;
@@ -107,7 +107,7 @@ const SheetActionButton = ({
       <Button
         as={ButtonPressAnimation}
         contentContainerStyle={{
-          height: size === 'big' || size === 'larger' ? 56 : 46,
+          height: size === 'big' ? 56 : size === 'larger' ? 64 : 48,
           ...((android || fullWidth) && { width: androidButtonWidth }),
         }}
         elevation={android ? elevation : null}
@@ -123,7 +123,7 @@ const SheetActionButton = ({
           {...position.coverAsObject}
           backgroundColor={color}
           borderRadius={borderRadius}
-          height={size === 'big' || size === 'larger' ? 56 : 46}
+          height={size === 'big' ? 56 : size === 'larger' ? 64 : 48}
           {...((android || fullWidth) && { width: androidButtonWidth })}
         >
           {color === colors.white && <WhiteButtonGradient colors={colors} />}
@@ -139,7 +139,11 @@ const SheetActionButton = ({
         <Content label={label} size={size}>
           {emoji && <Emoji lineHeight={23} name={emoji} size="medium" />}
           {icon && <Icon color="white" height={18} name={icon} size={18} />}
-          <TextIcon color={textColor} size={size === 'big' ? 'larger' : size} weight={weight}>
+          <TextIcon
+            color={textColor}
+            size={size === 'big' ? 'larger' : size}
+            weight={weight}
+          >
             {label}
           </TextIcon>
         </Content>

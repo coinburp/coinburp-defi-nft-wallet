@@ -192,16 +192,16 @@ export default function BackupCloudStep() {
       switch (passInfo.score) {
         case 0:
         case 1:
-          newLabel = 'Weak password';
+          newLabel = 'Password is Weak';
           break;
         case 2:
-          newLabel = 'Good password';
+          newLabel = 'Password is Good';
           break;
         case 3:
-          newLabel = 'Great password';
+          newLabel = 'Password is Great';
           break;
         case 4:
-          newLabel = 'Strong password';
+          newLabel = 'Password is Strong';
           break;
         default:
       }

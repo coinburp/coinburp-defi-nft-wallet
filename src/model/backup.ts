@@ -222,7 +222,7 @@ export async function saveBackupPassword(
 ): Promise<void> {
   try {
     if (ios) {
-      await setSharedWebCredentials('rainbow.me', 'Backup Password', password);
+      await setSharedWebCredentials('coinburp.com', 'Backup Password', password);
     }
   } catch (e) {
     logger.sentry('Error while backing up password');

@@ -286,6 +286,8 @@ export const settingsOptions = colors => ({
   headerTitleStyle: {
     ...headerConfigOptions.headerTitleStyle,
     color: colors.dark,
+    fontSize: 20,
+    fontWeight: '900'
   },
   transitionSpec: {
     close: {
