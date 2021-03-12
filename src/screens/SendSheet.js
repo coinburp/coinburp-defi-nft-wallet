@@ -225,7 +225,7 @@ export default function SendSheet(props) {
   const showAssetList = !isValidAddress || isEmpty(selected);
   const showAssetForm = isValidAddress && !isEmpty(selected);
   const prevSelectedGasPrice = usePrevious(selectedGasPrice);
-  const { setParams, goBack } = useNavigation();
+  const { setParams } = useNavigation();
 
   const { handleFocus, triggerFocus } = useMagicAutofocus(
     recipientFieldRef,

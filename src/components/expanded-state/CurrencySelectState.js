@@ -34,6 +34,7 @@ import { SheetTitle } from '../sheet';
 import { Text, TruncatedAddress } from '../text';
 import { ProfileModal } from './profile';
 import { margin, padding, position } from '@rainbow-me/styles';
+import {filter} from "lodash";
 
 const Wrapper = ios ? KeyboardFixedOpenLayout : Fragment;
 
@@ -55,6 +56,7 @@ const Spacer = styled.View`
 const CurrencySelectState = params => {
   const { goBack } = useNavigation();
   const { colors } = useTheme();
+  let delayTimer;
   const {
     params: {
       fetchData,
@@ -70,6 +72,48 @@ const CurrencySelectState = params => {
   } = useRoute();
   const { allAssets } = useAccountAssets();
   const { width, height: deviceHeight } = useDimensions();
+  const [assetsFilter, setFilterAssets] = useState(allAssets);
+
+  const handleUpdateState = async value => {
+    clearTimeout(delayTimer);
+    delayTimer = await setTimeout(() => {
+      let data;
+      if (!value) {
+        setFilterAssets(allAssets);
+        data = allAssets;
+      } else {
+        data = filter(allAssets, ob => {
+          if (ob.assets) {
+            ob.assets.map((asset, index) => {
+              if(!asset.name) {
+                return false;
+              }
+
+              const s = asset.name.toString().toLowerCase().indexOf(value.toLowerCase()) !==
+              -1;
+              if(!s) {
+                ob.assets.pop();
+              }
+            })
+
+            return ob.assets;
+          }
+
+          if (ob.isCoin || ob.name) {
+            return (
+              ob.name.toString().toLowerCase().indexOf(value.toLowerCase()) !==
+              -1
+            );
+          }
+
+          return false;
+        });
+      }
+
+      setFilterAssets( []);
+      setFilterAssets(data || []);
+    }, 100);
+  };
 
   return (
     <ProfileModal
@@ -99,20 +143,9 @@ const CurrencySelectState = params => {
           </SheetTitle>
           <View />
         </Row>
-        {/*<Spacer />*/}
-        {/*<ExchangeSearch*/}
-        {/*  customPlaceHolder="Search"*/}
-        {/*  isFetching*/}
-        {/*  isSearching*/}
-        {/*  onChangeText={null}*/}
-        {/*  onFocus={null}*/}
-        {/*  ref={null}*/}
-        {/*  searchQuery={null}*/}
-        {/*  testID="currency-select-search"*/}
-        {/*/>*/}
         <Spacer />
         <SendAssetList
-          allAssets={allAssets}
+          allAssets={assetsFilter}
           colors={colors}
           deviceHeight={deviceHeight}
           fetchData={fetchData}
@@ -124,6 +157,7 @@ const CurrencySelectState = params => {
           savings={savings}
           selected={selected}
           uniqueTokens={sendableUniqueTokens}
+          handleUpdateStateSearch={handleUpdateState}
           width={width}
         />
       </Centered>

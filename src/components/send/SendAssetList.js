@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { LayoutAnimation } from 'react-native';
 import { View } from 'react-primitives';
 import {
@@ -18,6 +18,7 @@ import {
   SendCoinRow,
   SendSavingsCoinRow,
 } from '../coin-row';
+import { ExchangeSearch } from '../exchange';
 import { Centered, Column, Row } from '../layout';
 import SavingsListHeader from '../savings/SavingsListHeader';
 import TokenFamilyHeader from '../token-family/TokenFamilyHeader';
@@ -48,10 +49,29 @@ const SendAssetListDivider = () => {
   );
 };
 
+const Spacer = styled.View`
+  height: 24;
+`;
+
 export default class SendAssetList extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      dataProvider: null,
+      openCards: [
+        { type: 'COLLECTIBLE_ROW' },
+        { type: 'COIN_ROW' },
+        { type: 'SHITCOINS_ROW' },
+        { type: 'SAVINGS_ROW' },
+      ],
+      openSavings: true,
+      openShitcoins: false,
+      visibleAssetsLength: null,
+    };
+  }
+
+  handleData = () => {
     const {
       allAssets,
       hiddenCoins,
@@ -60,7 +80,7 @@ export default class SendAssetList extends React.Component {
       savings,
       network,
       uniqueTokens,
-    } = props;
+    } = this.props;
 
     const { assets } = buildCoinsList(
       allAssets,
@@ -100,16 +120,12 @@ export default class SendAssetList extends React.Component {
       this.data = this.data.concat(uniqueTokens);
     }
 
-    this.state = {
+    this.setState({
       dataProvider: new DataProvider((r1, r2) => {
         return r1 !== r2;
       }).cloneWithRows(this.data),
-      openCards: [{ type: 'COLLECTIBLE_ROW'},
-        { type: 'COIN_ROW' }, { type: 'SHITCOINS_ROW' }, { type: 'SAVINGS_ROW' }],
-      openSavings: true,
-      openShitcoins: false,
       visibleAssetsLength: visibleAssetsLength,
-    };
+    });
 
     const imageTokens = [];
     uniqueTokens.forEach(family => {
@@ -203,6 +219,16 @@ export default class SendAssetList extends React.Component {
         }
       }
     );
+  };
+
+  componentDidMount() {
+    this.handleData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.allAssets !== prevProps.allAssets) {
+      this.handleData();
+    }
   }
 
   rlv = React.createRef();
@@ -351,8 +377,7 @@ export default class SendAssetList extends React.Component {
 
   collectiblesRenderItem = item => {
     return (
-      <View
-      >
+      <View>
         <TokenFamilyHeader
           backgroundColor="rgba(0, 0, 0, 0)"
           childrenAmount={item.data.length}
@@ -394,14 +419,17 @@ export default class SendAssetList extends React.Component {
           isSmallBalancesOpen={openShitcoins}
           onPress={this.changeOpenShitcoins}
         />
-        {/*{openShitcoins && this.mapShitcoins(item.assets)}*/}
+        <Spacer />
+        {openShitcoins && this.mapShitcoins(item.assets)}
         {savings && savings.length > 0 ? null : null}
       </View>
     );
   };
 
   renderRow = (type, data) => {
-    if (type === 'COIN_ROW') {
+    if (type === 'COIN_ROW_FIRST') {
+      return this.balancesRenderItem(data);
+    } else if (type === 'COIN_ROW') {
       return this.balancesRenderItem(data);
     } else if (type === 'COIN_ROW_LAST') {
       return this.balancesRenderLastItem(data);
@@ -419,21 +447,30 @@ export default class SendAssetList extends React.Component {
 
   render() {
     const { dataProvider, openShitcoins } = this.state;
-    const { deviceHeight } = this.props;
+    const { deviceHeight, handleUpdateStateSearch } = this.props;
 
     return (
       <Column align="center">
+        <ExchangeSearch
+          customPlaceHolder="Search"
+          isFetching
+          isSearching
+          onChangeText={handleUpdateStateSearch}
+          testID="currency-select-search"
+        />
         <Row height={deviceHeight - 350} justify="space-between">
-          <SendAssetRecyclerListView
-            dataProvider={dataProvider}
-            disableRecycling
-            extendedState={{ openShitcoins }}
-            layoutProvider={this._layoutProvider}
-            onScroll={this.handleScroll}
-            ref={this.handleRef}
-            rowRenderer={this.renderRow}
-            testID="send-asset-list"
-          />
+          {dataProvider ? (
+            <SendAssetRecyclerListView
+              dataProvider={dataProvider}
+              disableRecycling
+              extendedState={{ openShitcoins }}
+              layoutProvider={this._layoutProvider}
+              onScroll={this.handleScroll}
+              ref={this.handleRef}
+              rowRenderer={this.renderRow}
+              testID="send-asset-list"
+            />
+          ) : null}
         </Row>
       </Column>
     );
