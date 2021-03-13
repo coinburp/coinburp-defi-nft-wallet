@@ -4,7 +4,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { useAccountProfile } from '../../hooks';
 import { ButtonPressAnimation } from '../animations';
 import ImageAvatar from '../contacts/ImageAvatar';
-import { Flex, InnerBorder } from '../layout';
+import { Flex } from '../layout';
 import { Text } from '../text';
 import { borders, position } from '@rainbow-me/styles';
 
@@ -70,7 +70,6 @@ export default function AvatarCircle({
         {...borders.buildCircleAsObject(AvatarCircleSize)}
         backgroundColor={overlayStyles ? 'rgb(51, 54, 59)' : colors.white}
         borderRadius={AvatarCircleSize}
-        marginBottom={12}
         shadows={shadows[overlayStyles ? 'overlay' : 'default']}
         {...(android && {
           height: AvatarCircleSize,
