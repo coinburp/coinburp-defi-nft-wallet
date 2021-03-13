@@ -266,7 +266,7 @@ export default function BackupCloudStep() {
     <BackupSheetKeyboardLayout
       footerButtonDisabled={!validPassword}
       footerButtonLabel={label}
-      footerIcon={validPassword ? 'faceid' : null}
+      footerIcon={ios && validPassword ? 'faceid' : null}
       onSubmit={onConfirmBackup}
     >
       <Masthead isTallPhone={isTallPhone} isTinyPhone={isTinyPhone}>
@@ -291,7 +291,7 @@ export default function BackupCloudStep() {
           recovered!
         </DescriptionText>
       </Masthead>
-      <ColumnWithMargins align="center" flex={1} margin={android ? 0 : 19}>
+      <ColumnWithMargins align="center" flex={1} margin={android ? 0 : 0}>
         <PasswordField
           isInvalid={
             password !== '' &&

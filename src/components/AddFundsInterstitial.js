@@ -140,13 +140,14 @@ const Wrapper = android ? ScaleButtonZoomableAndroid : AmountBPA;
 
 const AmountButton = ({ amount, backgroundColor, color, onPress }) => {
   const handlePress = useCallback(() => onPress?.(amount), [amount, onPress]);
+  const { nativeCurrencySymbol } = useAccountSettings();
 
   return (
     <AmountButtonWrapper>
       <Wrapper disabled={android} onPress={handlePress}>
         <InnerBPA onPress={handlePress} reanimatedButton style={{ flex: 1 }}>
           <Row backgroundColor={backgroundColor} borderRadius={24} height={61}>
-            <AmountText color={color}>${amount}</AmountText>
+            <AmountText color={color}>{nativeCurrencySymbol}{amount}</AmountText>
           </Row>
         </InnerBPA>
       </Wrapper>

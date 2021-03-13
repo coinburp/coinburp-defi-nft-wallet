@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import colors from '../../styles/colors';
+import { Icon } from '../icons';
 import { RowWithMargins } from '../layout';
 import { Text } from '../text';
-import { Icon } from '../icons';
-import colors from '../../styles/colors';
 
 const ArrowIcon = styled(Icon).attrs({
-  height: '34px',
+  height: '28px',
   name: 'arrowSmall',
   direction: 'up',
-  width: '24px',
+  width: '20px',
   color: colors.black
 })`margin-left: 5px`;
 
@@ -19,11 +19,7 @@ const ListItemArrowGroup = ({ children }) => {
   return (
     <RowWithMargins align="center" flex={1} justify="end" margin={7}>
       {typeof children === 'string' ? (
-        <Text
-          color={colors.skyBlue}
-          size="large"
-          weight="bold"
-        >
+        <Text color={colors.skyBlue} size="large" weight="bold">
           {children}
         </Text>
       ) : (
