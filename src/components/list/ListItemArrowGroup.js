@@ -1,29 +1,26 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import colors from '../../styles/colors';
+import { Icon } from '../icons';
 import { RowWithMargins } from '../layout';
 import { Text } from '../text';
-import { Icon } from '../icons';
-import colors from '../../styles/colors';
 
 const ArrowIcon = styled(Icon).attrs({
-  height: '34px',
-  name: 'arrowSmall',
-  direction: 'up',
-  width: '24px',
-  color: colors.black
-})`margin-left: 5px`;
+  color: colors.black,
+  direction: 'right',
+  name: 'caretThick',
+  size: 19,
+})`
+  margin-left: 5px;
+`;
 
 const ListItemArrowGroup = ({ children }) => {
   const { colors } = useTheme();
   return (
     <RowWithMargins align="center" flex={1} justify="end" margin={7}>
       {typeof children === 'string' ? (
-        <Text
-          color={colors.skyBlue}
-          size="large"
-          weight="bold"
-        >
+        <Text color={colors.skyBlue} size="large" weight="bold">
           {children}
         </Text>
       ) : (

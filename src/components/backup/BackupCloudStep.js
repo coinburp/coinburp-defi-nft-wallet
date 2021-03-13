@@ -266,7 +266,7 @@ export default function BackupCloudStep() {
     <BackupSheetKeyboardLayout
       footerButtonDisabled={!validPassword}
       footerButtonLabel={label}
-      footerIcon={validPassword ? 'faceid' : null}
+      footerIcon={ios && validPassword ? 'faceid' : null}
       onSubmit={onConfirmBackup}
     >
       <Masthead isTallPhone={isTallPhone} isTinyPhone={isTinyPhone}>
