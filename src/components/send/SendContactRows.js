@@ -1,17 +1,16 @@
 import React, { useCallback, useImperativeHandle, useRef } from 'react';
-import ContactOnly from '../contacts/ContactOnly';
 import { View } from 'react-native';
+import ContactOnly from '../contacts/ContactOnly';
 
 const SendContactRows = (
-  { address, color, nickname, onPress, onTouch },
+  { address, color, nickname, onPress, onTouch, onSelectEdit },
   Ref
 ) => {
   const swipeableRef = useRef();
 
-  const handleLongPress = useCallback(
-    () => swipeableRef.current?.click?.(),
-    []
-  );
+  const handleLongPress = useCallback(() => {
+    onSelectEdit({ address, color, nickname });
+  }, [address, onPress, color, nickname]);
 
   useImperativeHandle(Ref, () => ({
     close: swipeableRef.current?.close,
