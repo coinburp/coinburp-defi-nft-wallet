@@ -7,13 +7,12 @@ import { RowWithMargins } from '../layout';
 import { Text } from '../text';
 
 const ArrowIcon = styled(Icon).attrs({
-  color: colors.black,
-  direction: 'right',
-  name: 'caretThick',
-  size: 19,
-})`
-  margin-left: 5px;
-`;
+  height: '28px',
+  name: 'arrowSmall',
+  direction: 'up',
+  width: '20px',
+  color: colors.black
+})`margin-left: 5px`;
 
 const ListItemArrowGroup = ({ children }) => {
   const { colors } = useTheme();
