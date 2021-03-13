@@ -26,7 +26,7 @@ const Container = styled(Row).attrs({
 const Content = styled(Column).attrs({ justify: 'space-between' })`
   flex: 1;
   height: ${CoinIconSize};
-  margin-left: 10;
+  margin-left: 12;
   opacity: ${({ isHidden }) => (isHidden ? 0.4 : 1)};
 `;
 
@@ -74,7 +74,7 @@ export default function CoinRow({
         })
       )}
       <Content isHidden={isHidden} justify="center" style={contentStyles}>
-        <Row align="center" testID={`${testID}-${symbol || ''}`}>
+        <Row align="center" marginBottom={6} testID={`${testID}-${symbol || ''}`}>
           {topRowRender({ name, symbol, ...accountSettings, ...props })}
         </Row>
         <Row align="center" marginBottom={0.5}>

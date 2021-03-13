@@ -32,7 +32,8 @@ import {
 } from '@rainbow-me/utils';
 
 const containerStyles = css`
-  padding-left: 19;
+  padding-left: 24;
+  padding-right: 24;
 `;
 
 const BottomRow = ({ description, native, status, type }) => {
