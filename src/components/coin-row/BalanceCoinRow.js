@@ -55,12 +55,7 @@ const TopRowContainer = ios
       marginTop: 0,
     })``;
 
-const PriceContainer = ios
-  ? View
-  : styled(View)`
-      margin-top: -3;
-      margin-bottom: 3;
-    `;
+const PriceContainer = View;
 
 const BottomRow = ({ balance, native }) => {
   const { colors } = useTheme();

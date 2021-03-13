@@ -11,7 +11,7 @@ import { position } from '@rainbow-me/styles';
 export const FabWrapperBottomPosition = 12 + safeAreaInsetValues.bottom;
 export const FabWrapperTopPadding = 48;
 
-const FabWrapperRow = styled(RowWithMargins).attrs({ margin: 0 })`
+const FabWrapperRow = styled(RowWithMargins).attrs({ margin: 24 })`
   bottom: ${({ isEditMode }) => (isEditMode ? -240 : 0)};
   justify-content: space-evenly;
   padding-bottom: ${FabWrapperBottomPosition};

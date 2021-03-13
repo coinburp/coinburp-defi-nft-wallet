@@ -70,6 +70,7 @@ export default function WalletActionButton({
         <Text
           align="center"
           color={colors.coinburp}
+          size={16}
           style={{ marginTop: 8 }}
           weight={900}
         >
