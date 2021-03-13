@@ -40,6 +40,9 @@ export default function SendInput({
   sendContactList,
   deviceHeight,
   showEmptyState,
+  buttonRenderer,
+  txSpeedRenderer,
+                                    filteredContacts,
 }) {
   const { setClipboard } = useClipboard();
   const { navigate } = useNavigation();
@@ -113,7 +116,7 @@ export default function SendInput({
 
   const defaultRadius = 24;
   const borderRadiusTop = defaultRadius;
-  const borderRadiusBottom = showEmptyState ? 0 : defaultRadius;
+  const borderRadiusBottom = showEmptyState && filteredContacts.length ? 0 : defaultRadius;
 
   const isPreExistingContact = (contact?.nickname?.length || 0) > 0;
 
@@ -127,6 +130,7 @@ export default function SendInput({
           borderTopLeftRadius={borderRadiusTop}
           borderTopRightRadius={borderRadiusTop}
           justify="center"
+          marginTop={16}
           paddingLeft={24}
           paddingRight={24}
           width={width - 32}
@@ -136,7 +140,8 @@ export default function SendInput({
               ADDRESS
             </Text>
           </Row>
-          <Row align="center" height={74} justify="space-between">
+          <Row align="center" height={(android && showEmptyState && filteredContacts.length)
+            ? 55 : 75} justify="space-between">
             <AddressField
               address={recipient}
               autoFocus={!showAssetList}
@@ -167,18 +172,23 @@ export default function SendInput({
           borderBottomLeftRadius={defaultRadius}
           borderBottomRightRadius={defaultRadius}
           justify="center"
+          marginBottom={24}
           paddingLeft={5}
           paddingRight={24}
           width={width - 32}
         >
-          {showEmptyState ? (
-            <Row height={75}>
+          {showEmptyState && filteredContacts.length ? (
+            <Row height={android ? 55 : 75}>
               <FooterContainer deviceHeight={deviceHeight}>
                 <ScrollView horizontal>{sendContactList}</ScrollView>
               </FooterContainer>
             </Row>
           ) : null}
         </Column>
+        <FooterContainer deviceHeight={deviceHeight}>
+          {buttonRenderer ? buttonRenderer : null}
+          {txSpeedRenderer ? txSpeedRenderer : null}
+        </FooterContainer>
       </Column>
     </Fragment>
   );

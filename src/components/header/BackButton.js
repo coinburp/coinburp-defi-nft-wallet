@@ -1,14 +1,15 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { useNavigation } from '../../navigation/Navigation';
 import Icon from '../icons/Icon';
 import { Row } from '../layout';
 import Text from '../text/Text';
 import HeaderButton from './HeaderButton';
+import { useNavigation } from '@rainbow-me/navigation';
 import { fonts, fontWithWidth } from '@rainbow-me/styles';
 
 const Container = styled(Row).attrs({ align: 'center' })`
   height: 44;
+  margin-right: ${({ marginRight }) => marginRight};
   width: ${({ textChevron }) => (textChevron ? 20 : 10)};
 `;
 
@@ -58,7 +59,11 @@ export default function BackButton({
       throttle={throttle}
       transformOrigin={direction}
     >
-      <Container {...props} textChevron={textChevron}>
+      <Container
+        {...props}
+        marginRight={direction === 'right' ? 6 : 0}
+        textChevron={textChevron}
+      >
         {textChevron ? (
           <IconText color={color}>←</IconText>
         ) : (

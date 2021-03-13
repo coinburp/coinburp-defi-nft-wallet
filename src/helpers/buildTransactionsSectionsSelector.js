@@ -28,7 +28,7 @@ const groupTransactionByDate = ({ pending, minedAt }) => {
 
   if (ts > todayTimestamp) return 'Today';
   if (ts > yesterdayTimestamp) return 'Yesterday';
-  if (ts > thisMonthTimestamp) return 'This Month';
+  if (ts > thisMonthTimestamp) return 'This month';
 
   return format(ts, `MMMM${ts > thisYearTimestamp ? '' : ' yyyy'}`);
 };
