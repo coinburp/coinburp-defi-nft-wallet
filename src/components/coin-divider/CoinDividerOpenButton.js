@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components';
-import Caret from '../../assets/family-dropdown-arrow.png';
 import { useTheme } from '../../context/ThemeContext';
 import {
   ButtonPressAnimation,
@@ -10,25 +9,28 @@ import {
   RoundButtonCapSize,
   RoundButtonSizeToggler,
 } from '../animations';
+import Caret from '../../assets/arrow.png';
 import { Row } from '../layout';
 import CoinDividerButtonLabel from './CoinDividerButtonLabel';
-import { ImgixImage } from '@rainbow-me/images';
 import { padding } from '@rainbow-me/styles';
 import { magicMemo } from '@rainbow-me/utils';
+import {ImgixImage} from "@rainbow-me/images";
 
-const closedWidth = 52.5;
+const closedWidth = 62;
 
 const CaretContainer = styled.View`
   opacity: 0.6;
   padding-bottom: 1;
 `;
 
+
 const CaretIcon = styled(ImgixImage).attrs(({ theme: { colors } }) => ({
   source: Caret,
   tintColor: colors.skyBlue,
 }))`
-  height: 18;
-  width: 8;
+  transform: rotate(90deg);
+  height: 11;
+  width: 18;
 `;
 
 const ContainerButton = styled(ButtonPressAnimation).attrs(
@@ -74,11 +76,11 @@ const CoinDividerOpenButton = ({
       <OpacityToggler isVisible={isVisible}>
         <Content height={coinDividerHeight}>
           <RoundButtonSizeToggler
-            color={colors.blueGreyDarkLight}
+            color="#E9F2FD"
             endingWidth={28}
             isDarkMode={isDarkMode}
             isOpen={isSmallBalancesOpen}
-            startingWidth={3}
+            startingWidth={10}
           />
           <View>
             <CoinDividerButtonLabel
@@ -96,7 +98,7 @@ const CoinDividerOpenButton = ({
               endingPosition={-90}
               isOpen={isSmallBalancesOpen}
             >
-              <CaretIcon  />
+              <CaretIcon />
             </RotationArrow>
           </CaretContainer>
         </Content>

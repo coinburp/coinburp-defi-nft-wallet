@@ -74,7 +74,11 @@ export default function CoinRow({
         })
       )}
       <Content isHidden={isHidden} justify="center" style={contentStyles}>
-        <Row align="center" marginBottom={android ? 0 : 10} testID={`${testID}-${symbol || ''}`}>
+        <Row
+          align="center"
+          marginBottom={android ? 0 : 6}
+          testID={`${testID}-${symbol || ''}`}
+        >
           {topRowRender({ name, symbol, ...accountSettings, ...props })}
         </Row>
         <Row align="center" marginBottom={0.5}>

@@ -23,7 +23,7 @@ const ButtonContent = styled(Row).attrs({
         )
       : ''};
   background-color: ${({ isActive, theme: { colors } }) =>
-    isActive ? colors.coinburp : colors.alpha(colors.blueGreyDark, 0.06)};
+    isActive ? colors.coinburp : colors.alpha(colors.blueGrey, 0.16)};
   border-radius: 15;
   height: 30;
 `;
@@ -61,7 +61,7 @@ const CoinDividerEditButton = ({
             color={
               isActive
                 ? colors.whiteLabel
-                : colors.alpha(colors.blueGreyDark, 0.6)
+                : colors.blueGrey
             }
             letterSpacing="roundedTight"
             opacity={textOpacityAlwaysOn || isActive ? 1 : 0.3333333333}

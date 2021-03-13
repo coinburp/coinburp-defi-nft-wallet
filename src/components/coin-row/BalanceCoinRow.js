@@ -20,8 +20,8 @@ import {
   pushSelectedCoin,
   removeSelectedCoin,
 } from '@rainbow-me/redux/editOptions';
-import { isNewValueForObjectPaths, isNewValueForPath } from '@rainbow-me/utils';
 import { margin, padding } from '@rainbow-me/styles';
+import { isNewValueForObjectPaths, isNewValueForPath } from '@rainbow-me/utils';
 
 const editTranslateOffsetInner = android ? -8 : 0;
 const editTranslateOffset = 32 - (android ? editTranslateOffsetInner : 0);
@@ -43,17 +43,16 @@ const PercentageText = styled(BottomRowText).attrs({
     isPositive ? colors.green : colors.neonRed};
 `;
 
-const BottomRowContainer = ios
-  ? Fragment
-  : styled(Row).attrs({ marginBottom: 10, marginTop: -10 })``;
+const BottomRowContainer = styled(Row).attrs({
+  // marginBottom: 10,
+  // marginTop: -10,
+})``;
 
-const TopRowContainer = ios
-  ? Fragment
-  : styled(Row).attrs({
-      align: 'flex-start',
-      justify: 'flex-start',
-      marginTop: 0,
-    })``;
+const TopRowContainer = styled(Row).attrs({
+  align: 'flex-start',
+  justify: 'flex-start',
+  marginTop: 0,
+})``;
 
 const PriceContainer = View;
 
@@ -86,8 +85,16 @@ const TopRow = ({ name, native, nativeCurrencySymbol }) => {
 
   return (
     <TopRowContainer>
-      <FlexItem flex={1}>
-        <CoinName color={colors.dark}>{name}</CoinName>
+      <FlexItem
+        flex={1}
+        style={{ justifyContent: 'center' }}
+      >
+        <CoinName
+          color={colors.dark}
+          style={{ top: 0 }}
+        >
+          {name}
+        </CoinName>
       </FlexItem>
       <PriceContainer>
         <BalanceText
@@ -169,6 +176,10 @@ const BalanceCoinRow = ({
             <CoinRow
               bottomRowRender={BottomRow}
               containerStyles={containerStyles}
+              contentStyles={{
+                height: 48,
+                justifyContent: 'center',
+              }}
               editing={isCoinListEdited}
               onPress={handlePress}
               topRowRender={TopRow}
