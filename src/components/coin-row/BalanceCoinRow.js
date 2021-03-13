@@ -85,12 +85,10 @@ const TopRow = ({ name, native, nativeCurrencySymbol }) => {
 
   return (
     <TopRowContainer>
-      <FlexItem
-        flex={1}
-        style={{ justifyContent: 'center' }}
-      >
+      <FlexItem flex={1} style={{ justifyContent: 'center' }}>
         <CoinName
           color={colors.dark}
+          lineHeight={android ? 20 : null}
           style={{ top: 0 }}
         >
           {name}
@@ -99,6 +97,7 @@ const TopRow = ({ name, native, nativeCurrencySymbol }) => {
       <PriceContainer>
         <BalanceText
           color={nativeDisplay ? colors.dark : colors.blueGreyLight}
+          lineHeight={android ? 20 : null}
           numberOfLines={1}
         >
           {nativeDisplay || `${nativeCurrencySymbol}0.00`}
