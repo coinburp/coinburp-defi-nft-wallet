@@ -87,10 +87,29 @@ export default function WalletScreen() {
   // Show the exchange fab only for supported networks
   // (mainnet & rinkeby)
   const fabs = useMemo(
-    () =>
-      get(networkInfo[network], 'exchange_enabled')
-        ? [ExchangeFab, SendFab]
-        : [SendFab],
+    () => [
+      () => (
+        <WalletActionButton
+          isReadOnlyWallet={isReadOnlyWallet}
+          title="Deposit"
+          type="add"
+        />
+      ),
+      () => (
+        <WalletActionButton
+          isReadOnlyWallet={isReadOnlyWallet}
+          title="Withdraw"
+          type="send"
+        />
+      ),
+      () => (
+        <WalletActionButton
+          isReadOnlyWallet={isReadOnlyWallet}
+          title="Swap"
+          type="exchange"
+        />
+      ),
+    ],
     [network]
   );
 
@@ -104,50 +123,31 @@ export default function WalletScreen() {
       reattaching of react subviews */}
       <Animated.View style={{ opacity: isCoinListEditedValue }} />
       <Animated.Code exec={scrollViewTracker} />
-      {/*<FabWrapper*/}
-      {/*  disabled={isEmpty || !!params?.emptyWallet}*/}
-      {/*  fabs={fabs}*/}
-      {/*  isCoinListEdited={isCoinListEdited}*/}
-      {/*  isReadOnlyWallet={isReadOnlyWallet}*/}
-      {/*>*/}
-      <HeaderOpacityToggler isVisible={isCoinListEdited}>
-        <Header justify="space-between">
-          <ProfileHeaderButton />
-          {discoverSheetAvailable ? (
-            <DiscoverHeaderButton />
-          ) : (
-            <CameraHeaderButton />
-          )}
-        </Header>
-        {isEmpty || !!params?.emptyWallet ? null : (
-          <Row css={padding(16, 32, 32, 32)} justify="space-between">
-            <WalletActionButton
-              isReadOnlyWallet={isReadOnlyWallet}
-              title="Deposit"
-              type="add"
-            />
-            <WalletActionButton
-              isReadOnlyWallet={isReadOnlyWallet}
-              title="Withdraw"
-              type="send"
-            />
-            <WalletActionButton
-              isReadOnlyWallet={isReadOnlyWallet}
-              title="Swap"
-              type="exchange"
-            />
-          </Row>
-        )}
-      </HeaderOpacityToggler>
-      <AssetList
-        fetchData={refreshAccountData}
-        isEmpty={isEmpty || !!params?.emptyWallet}
-        isWalletEthZero={isWalletEthZero}
-        network={network}
-        scrollViewTracker={scrollViewTracker}
-        sections={sections}
-      />
-      {/*</FabWrapper>*/}
+      <FabWrapper
+        disabled={isEmpty || !!params?.emptyWallet}
+        fabs={fabs}
+        isCoinListEdited={isCoinListEdited}
+        isReadOnlyWallet={isReadOnlyWallet}
+      >
+        <HeaderOpacityToggler isVisible={isCoinListEdited}>
+          <Header justify="space-between">
+            <ProfileHeaderButton />
+            {discoverSheetAvailable ? (
+              <DiscoverHeaderButton />
+            ) : (
+              <CameraHeaderButton />
+            )}
+          </Header>
+        </HeaderOpacityToggler>
+        <AssetList
+          fetchData={refreshAccountData}
+          isEmpty={isEmpty || !!params?.emptyWallet}
+          isWalletEthZero={isWalletEthZero}
+          network={network}
+          scrollViewTracker={scrollViewTracker}
+          sections={sections}
+        />
+      </FabWrapper>
     </WalletPage>
   );
 }
