@@ -16,12 +16,12 @@ const BiometryIcon = styled(Icon).attrs(({ biometryType, color }) => ({
     biometryType === BiometryTypes.passcode ? 1.5 : 0};
 `;
 
-const Container = styled(Row).attrs({
+const Container = styled(Row).attrs(({ color }) => ({
   align: 'center',
-  color: '00dc68',
+  color: color || '#00dc68',
   scaleTo: 0.97,
-})`
-  background-color: #00dc68;
+}))`
+  background-color: ${({ color }) => `${color}` || '#00dc68'};
   border-radius: 24px;
   justify-content: center;
   height: 64px;
@@ -45,6 +45,7 @@ const FaceIdIcon = styled(Icon).attrs({
 `;
 
 export default function BiometricButtonContent({
+  buttonColor,
   color,
   showIcon,
   text,
@@ -68,7 +69,7 @@ export default function BiometricButtonContent({
       {!android && showBiometryIcon && (
         <BiometryIcon biometryType={biometryType} color={color} />
       )}
-      <Container>
+      <Container color={buttonColor}>
         {showFaceIDCharacter && <FaceIdIcon color="white" />}
         <ButtonLabel color={color || colors.appleBlue} testID={testID}>
           {text}

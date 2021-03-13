@@ -7,8 +7,7 @@ import { Input } from '../inputs';
 import { Flex, Row } from '../layout';
 import { cloudBackupPasswordMinLength } from '@rainbow-me/handlers/cloudBackup';
 import { useDimensions } from '@rainbow-me/hooks';
-import { padding, position } from '@rainbow-me/styles';
-import ShadowStack from 'react-native-shadow-stack';
+import { fonts, padding, position } from '@rainbow-me/styles';
 
 const FieldAccessoryBadgeSize = 22;
 const FieldAccessoryBadgeWrapper = styled(Flex).attrs({
@@ -21,16 +20,13 @@ const FieldAccessoryBadgeWrapper = styled(Flex).attrs({
 `;
 
 const StyledTouchable = styled(TouchableWithoutFeedback)`
-  ${android ? 'padding-left: 30;' : ''}
-  ${android ? 'padding-right: 30;' : ''}
-  ${android ? 'padding-top: 30;' : ''}
-  ${android ? 'padding-bottom: 30;' : ''}
-  ${android ? 'margin-top: -30;' : ''}
+  margin-bottom: 12;
 `;
 
 const PasswordInput = styled(Input).attrs(({ theme: { colors } }) => ({
   autoCompleteType: 'password',
   blurOnSubmit: false,
+  fontFamily: fonts.family.SFProRounded,
   passwordRules: `minlength: ${cloudBackupPasswordMinLength};`,
   placeholderTextColor: colors.blueGrey,
   secureTextEntry: true,
@@ -41,10 +37,11 @@ const PasswordInput = styled(Input).attrs(({ theme: { colors } }) => ({
 }))`
   ${padding(0, 40, 2.5, 24)};
   height: 100%;
+  width: 95%;
 `;
 
 const ShadowContainer = styled(Row).attrs(
-  ({ deviceWidth, theme: { colors, isDarkMode } }) => ({
+  ({ deviceWidth, theme: { colors } }) => ({
     backgroundColor: colors.alpha(colors.blueGrey, 0.16),
     borderRadius: 24,
     height: 56,

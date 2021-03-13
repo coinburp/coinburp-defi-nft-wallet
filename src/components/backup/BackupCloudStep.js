@@ -15,7 +15,7 @@ import { BackButton } from '../header';
 import { Icon } from '../icons';
 import { Centered, ColumnWithMargins, Row } from '../layout';
 import { SheetTitle } from '../sheet';
-import { GradientText, Text } from '../text';
+import { Text } from '../text';
 import BackupSheetKeyboardLayout from './BackupSheetKeyboardLayout';
 import {
   cloudBackupPasswordMinLength,
@@ -34,13 +34,13 @@ import Routes from '@rainbow-me/routes';
 import { padding } from '@rainbow-me/styles';
 import logger from 'logger';
 
-const DescriptionText = styled(Text).attrs(
-  ({ isTinyPhone, theme: { colors } }) => ({
-    align: 'center',
-    size: 16,
-    weight: 'bold',
-  })
-)``;
+const DescriptionText = styled(Text).attrs({
+  align: 'center',
+  size: 16,
+  weight: 'bold',
+})`
+  margin-bottom: ${ios ? -4 : 8};
+`;
 
 const Masthead = styled(Centered).attrs({
   direction: 'column',
@@ -50,23 +50,14 @@ const Masthead = styled(Centered).attrs({
   flex-shrink: 0;
 `;
 
-const MastheadIcon = styled(GradientText).attrs(({ theme: { colors } }) => ({
-  align: 'center',
-  angle: false,
-  colors: colors.gradients.rainbow,
-  end: { x: 0, y: 0.5 },
-  size: 43,
-  start: { x: 1, y: 0.5 },
-  steps: [0, 0.774321, 1],
-  weight: 'medium',
-}))``;
-
 const Title = styled(Text).attrs({
   align: 'center',
   size: 32,
   weight: 900,
 })`
-  ${({ isTinyPhone }) => (isTinyPhone ? padding(0) : padding(15, 0, 12))};
+  max-width: 90%;
+  margin-bottom: ${ios ? 32 : 16};
+  margin-top: ${ios ? 16 : 0};
 `;
 
 const samsungGalaxy = (android && isSamsungGalaxy()) || false;
@@ -266,7 +257,7 @@ export default function BackupCloudStep() {
     <BackupSheetKeyboardLayout
       footerButtonDisabled={!validPassword}
       footerButtonLabel={label}
-      footerIcon={ios && validPassword ? 'faceid' : null}
+      footerIcon={validPassword}
       onSubmit={onConfirmBackup}
     >
       <Masthead isTallPhone={isTallPhone} isTinyPhone={isTinyPhone}>
@@ -277,7 +268,7 @@ export default function BackupCloudStep() {
           width={width}
         >
           <BackButton size={24} />
-          <SheetTitle css={{ left: -12 }} weight={900}>
+          <SheetTitle css={{ left: -16 }} weight={900}>
             Back up to {cloudPlatform}
           </SheetTitle>
           <Row />
@@ -285,13 +276,13 @@ export default function BackupCloudStep() {
         {(isTinyPhone || samsungGalaxy) && isKeyboardOpen ? null : (
           <Icon height={72} name="pinkCloud" width={64} />
         )}
-        <Title isTinyPhone={isTinyPhone}>Choose a password</Title>
+        <Title>Choose a password</Title>
         <DescriptionText isTinyPhone={isTinyPhone}>
           Please use a password you&apos;ll remember.&nbsp;It can&apos;t be
           recovered!
         </DescriptionText>
       </Masthead>
-      <ColumnWithMargins align="center" flex={1} margin={android ? 0 : 0}>
+      <ColumnWithMargins align="center" flex={1} margin={0}>
         <PasswordField
           isInvalid={
             password !== '' &&

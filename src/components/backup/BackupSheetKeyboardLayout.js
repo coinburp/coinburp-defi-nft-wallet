@@ -3,11 +3,11 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { KeyboardArea } from 'react-native-keyboard-area';
 import styled from 'styled-components';
+import { useTheme } from '../../context/ThemeContext';
 import { ButtonPressAnimation } from '../animations';
-import { Icon } from '../icons';
-import { Centered, Column } from '../layout';
+import { BiometricButtonContent } from '../buttons';
+import { Column } from '../layout';
 import { SheetHandleFixedToTopHeight } from '../sheet';
-import { Text } from '../text';
 import KeyboardTypes from '@rainbow-me/helpers/keyboardTypes';
 import { useDimensions, useKeyboardHeight } from '@rainbow-me/hooks';
 import { sharedCoolModalTopOffset } from '@rainbow-me/navigation/config';
@@ -21,26 +21,10 @@ const Footer = styled(Column)`
 
 const FooterButton = styled(ButtonPressAnimation).attrs({
   scaleTo: 0.9,
-})``;
-
-const FooterButtonContainer = styled(Centered).attrs(
-  ({ theme: { colors }, disabled }) => ({
-    backgroundColor: disabled ? colors.blueGrey : colors.coinburp,
-    borderRadius: 24,
-    height: 64,
-  })
-)``;
-
-const ButtonIcon = styled(Icon)`
-  left: 24px;
-  position: absolute;
+})`
+  margin-top: 12px;
+  padding: 0 8px;
 `;
-
-const FooterButtonText = styled(Text).attrs(({ theme: { colors } }) => ({
-  color: colors.white,
-  size: 20,
-  weight: 900,
-}))``;
 
 const KeyboardSizeView = styled(KeyboardArea)`
   background-color: ${({ theme: { colors } }) => colors.transparent};
@@ -64,7 +48,7 @@ export default function BackupSheetKeyboardLayout({
     ? type === 'restore'
       ? -10
       : -30
-    : keyboardHeight;
+    : keyboardHeight - 108;
 
   const sheetRegionAboveKeyboardHeight =
     deviceHeight -
@@ -72,16 +56,23 @@ export default function BackupSheetKeyboardLayout({
     sharedCoolModalTopOffset -
     SheetHandleFixedToTopHeight;
 
+  const { colors } = useTheme();
+
   return (
     <Column height={nativeScreen ? undefined : sheetRegionAboveKeyboardHeight}>
       <StatusBar barStyle="light-content" />
       {children}
       <Footer isTallPhone={isTallPhone}>
         <FooterButton disabled={footerButtonDisabled} onPress={onSubmit}>
-          <FooterButtonContainer disabled={footerButtonDisabled}>
-            {footerIcon ? <ButtonIcon name={footerIcon} /> : null}
-            <FooterButtonText>{footerButtonLabel}</FooterButtonText>
-          </FooterButtonContainer>
+          <BiometricButtonContent
+            buttonColor={
+              footerButtonDisabled ? colors.blueGrey : colors.coinburp
+            }
+            color="white"
+            showIcon={footerIcon}
+            testID="wallet-info-submit-button"
+            text={footerButtonLabel}
+          />
         </FooterButton>
       </Footer>
       {android ? <KeyboardSizeView /> : null}
