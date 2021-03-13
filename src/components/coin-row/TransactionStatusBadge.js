@@ -11,8 +11,8 @@ import { magicMemo } from '@rainbow-me/utils';
 
 const StatusProps = {
   [TransactionStatusTypes.approved]: {
-    marginRight: 4,
-    name: 'dot',
+    marginRight: 2,
+    name: 'checkmark',
   },
   [TransactionStatusTypes.cancelled]: {
     marginRight: 4,
@@ -21,7 +21,7 @@ const StatusProps = {
     marginRight: 4,
   },
   [TransactionStatusTypes.deposited]: {
-    name: 'sunflower',
+    name: 'depositIconSmall',
     style: { fontSize: 11, left: -1.3, marginBottom: 1.5, marginRight: 1 },
   },
   [TransactionStatusTypes.depositing]: {
@@ -37,13 +37,13 @@ const StatusProps = {
     marginRight: 4,
   },
   [TransactionStatusTypes.failed]: {
-    marginRight: 4,
+    marginRight: 2,
     name: 'closeCircled',
     style: position.maxSizeAsObject(16),
   },
   [TransactionStatusTypes.purchased]: {
     marginRight: 2,
-    name: 'arrow',
+    name: 'bag',
   },
   [TransactionStatusTypes.purchasing]: {
     marginRight: 4,
@@ -53,8 +53,8 @@ const StatusProps = {
     name: 'depositIconSmall',
   },
   [TransactionStatusTypes.self]: {
-    marginRight: 4,
-    name: 'dot',
+    marginRight: 2,
+    name: 'userCircle',
   },
   [TransactionStatusTypes.sending]: {
     marginRight: 4,
@@ -74,7 +74,7 @@ const StatusProps = {
     marginRight: 4,
   },
   [TransactionStatusTypes.withdrew]: {
-    name: 'sunflower',
+    name: 'withdrawIconSmall',
     style: { fontSize: 11, left: -1.3, marginBottom: 1.5, marginRight: 1 },
   },
 };
@@ -86,10 +86,16 @@ const TransactionStatusBadge = ({ pending, status, style, title, type }) => {
   let statusColor = colors.coldGrey;
   if (
     status === TransactionStatusTypes.swapped ||
-    status === TransactionStatusTypes.sent
+    status === TransactionStatusTypes.sent ||
+    status === TransactionStatusTypes.withdrew
   ) {
     statusColor = colors.neonRed;
-  } else if (status === TransactionStatusTypes.received) {
+  } else if (
+      status === TransactionStatusTypes.received ||
+      status === TransactionStatusTypes.deposited ||
+      status === TransactionStatusTypes.approved ||
+      status === TransactionStatusTypes.purchased
+  ) {
     statusColor = colors.neonGreen;
   }
 
@@ -100,9 +106,11 @@ const TransactionStatusBadge = ({ pending, status, style, title, type }) => {
   if (status !== TransactionStatusTypes.failed) {
     if (type === TransactionTypes.receive) title = 'Deposit';
     if (type === TransactionTypes.send) title = 'Withdrawal';
-    if (type === TransactionTypes.trade) title = 'Swap Out';
+    if (type === TransactionTypes.trade) title = 'Swapped Out';
+    if (status === TransactionStatusTypes.deposited) title = 'Staked';
+    if (status === TransactionStatusTypes.withdrew) title = 'Unstaked';
 
-    if (isSwapReceived) title = 'Swap In';
+    if (isSwapReceived) title = 'Swapped In';
   }
 
   return (
@@ -116,13 +124,14 @@ const TransactionStatusBadge = ({ pending, status, style, title, type }) => {
       {status && includes(Object.keys(StatusProps), status) && (
         <Icon
           color={statusColor}
-          style={position.maxSizeAsObject(10)}
+          height={16}
+          width={16}
           {...StatusProps[
             isSwapReceived ? TransactionStatusTypes.swapped : status
           ]}
         />
       )}
-      <Text color={statusColor} size={14} uppercase weight="bold">
+      <Text color={statusColor} size={14} weight="bold">
         {' '}
         {title}
       </Text>
