@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { useNavigation } from '../../navigation/Navigation';
+import { useNavigation } from '@rainbow-me/navigation';
 import Icon from '../icons/Icon';
 import { Row } from '../layout';
 import Text from '../text/Text';
@@ -9,6 +9,7 @@ import { fonts, fontWithWidth } from '@rainbow-me/styles';
 
 const Container = styled(Row).attrs({ align: 'center' })`
   height: 44;
+  margin-right: 6;
   width: ${({ textChevron }) => (textChevron ? 20 : 10)};
 `;
 
