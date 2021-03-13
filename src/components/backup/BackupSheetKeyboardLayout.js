@@ -4,7 +4,7 @@ import { StatusBar } from 'react-native';
 import { KeyboardArea } from 'react-native-keyboard-area';
 import styled from 'styled-components';
 import { ButtonPressAnimation } from '../animations';
-import { RainbowButton } from '../buttons';
+import { Icon } from '../icons';
 import { Centered, Column } from '../layout';
 import { SheetHandleFixedToTopHeight } from '../sheet';
 import { Text } from '../text';
@@ -12,7 +12,6 @@ import KeyboardTypes from '@rainbow-me/helpers/keyboardTypes';
 import { useDimensions, useKeyboardHeight } from '@rainbow-me/hooks';
 import { sharedCoolModalTopOffset } from '@rainbow-me/navigation/config';
 import { padding } from '@rainbow-me/styles';
-import {Icon} from "../icons";
 
 const Footer = styled(Column)`
   ${({ isTallPhone }) => padding(0, 15, isTallPhone ? 30 : 15)};
@@ -34,7 +33,7 @@ const FooterButtonContainer = styled(Centered).attrs(
 
 const ButtonIcon = styled(Icon)`
   left: 24px;
-  position: absolute; 
+  position: absolute;
 `;
 
 const FooterButtonText = styled(Text).attrs(({ theme: { colors } }) => ({
