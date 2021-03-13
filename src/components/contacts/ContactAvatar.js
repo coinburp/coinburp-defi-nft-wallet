@@ -116,15 +116,6 @@ const ContactAvatar = ({
             {value && getFirstGrapheme(toUpper(value))}
           </Text>
         </Flex>
-        {!disableBorder ? (
-          <InnerBorder
-            color={colors.gold}
-            ignoreDarkMode
-            opacity={1}
-            radius={dimensions}
-            width={3}
-          />
-        ) : null}
       </Centered>
     </Flex>
   );

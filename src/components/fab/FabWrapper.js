@@ -38,8 +38,8 @@ export default function FabWrapper({
       {!disabled && (
         <FabWrapperRow isEditMode={isCoinListEdited}>
           <LinearGradient
-            colors={[colors.transparent, colors.background]}
-            end={{ x: 0.5, y: 0.3 }}
+            colors={[colors.alpha(colors.background, 0), colors.background]}
+            end={{ x: 0.5, y: ios ? 0.2 : 0.3 }}
             start={{ x: 0.5, y: 0 }}
             style={position.coverAsObject}
           />

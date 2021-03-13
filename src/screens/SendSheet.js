@@ -13,7 +13,6 @@ import {
   InteractionManager,
   Keyboard,
   StatusBar,
-  Text,
   TextInput,
 } from 'react-native';
 import { getStatusBarHeight, isIphoneX } from 'react-native-iphone-x-helper';
@@ -79,6 +78,11 @@ import Routes from '@rainbow-me/routes';
 import { borders, buildTextStyles, fonts, padding } from '@rainbow-me/styles';
 import { deviceUtils, gasUtils } from '@rainbow-me/utils';
 import logger from 'logger';
+import {ButtonPressAnimation} from "../components/animations";
+
+const Spacer = styled.View`
+  height: 6;
+`;
 
 const sheetHeight = deviceUtils.dimensions.height - (android ? 30 : 10);
 const statusBarHeight = getStatusBarHeight(true);
@@ -604,11 +608,58 @@ export default function SendSheet(props) {
       <SheetContainer>
         <Column
           align="center"
-          paddingBottom={isNarrowPhone ? 15 : insets.bottom + 11}
+          flex={1}
+          scaleTo={0.1}
         >
           <SendHeader />
-          <Column align="center" flex={1}>
+          {!showAssetList && (
+            <SendAssetForm
+              {...props}
+              allAssets={allAssets}
+              assetAmount={amountDetails.assetAmount}
+              maxInputBalance={maxInputBalance}
+              nativeAmount={amountDetails.nativeAmount}
+              nativeCurrency={nativeCurrency}
+              nativeCurrencySymbol={nativeCurrencySymbol}
+              navigateToSelectOutputCurrency={navigateToSelectOutputCurrency}
+              onChangeAssetAmount={onChangeAssetAmount}
+              onChangeNativeAmount={onChangeNativeAmount}
+              onFocus={handleFocus}
+              onResetAssetSelection={onResetAssetSelection}
+              selected={selected}
+              sendMaxBalance={sendMaxBalance}
+            />
+          )}
+          <Column align="center">
+            {showAssetList ? (
+              <Column justify="center" style={{ marginTop: 0 }}>
+                <SendSetAssetList
+                  colors={colors}
+                  deviceHeight={deviceHeight}
+                  navigateToSelectOutputCurrency={
+                    navigateToSelectOutputCurrency
+                  }
+                  selected={selected}
+                  width={width}
+                />
+              </Column>
+            ) : null}
+            <Column justify="center" style={{ marginBottom: 0, marginTop: 18 }}>
+              <ToArrow />
+            </Column>
             <SendInput
+              buttonRenderer={
+                <SendButton
+                  {...props}
+                  assetAmount={amountDetails.assetAmount}
+                  isAuthorizing={isAuthorizing}
+                  isSufficientBalance={amountDetails.isSufficientBalance}
+                  isSufficientGas={isSufficientGas}
+                  onLongPress={onLongPressSend}
+                  smallButton={isTinyPhone}
+                  testID="send-sheet-confirm"
+                />
+              }
               contacts={contacts}
               deviceHeight={deviceHeight}
               isValidAddress={isValidAddress}
@@ -619,6 +670,7 @@ export default function SendSheet(props) {
               recipient={recipient}
               recipientFieldRef={recipientFieldRef}
               removeContact={onRemoveContact}
+              filteredContacts={filteredContacts}
               sendContactList={
                 <SendContactList
                   contacts={filteredContacts}
@@ -629,73 +681,16 @@ export default function SendSheet(props) {
               }
               showAssetList={showAssetList}
               showEmptyState={showEmptyState}
+              txSpeedRenderer={
+                <GasSpeedButtonContainer>
+                  <GasSpeedButton
+                    onCustomGasBlur={handleCustomGasBlur}
+                    onCustomGasFocus={handleCustomGasBlur}
+                    type="transaction"
+                  />
+                </GasSpeedButtonContainer>
+              }
             />
-            <Column justify="center" style={{ marginBottom: 0, marginTop: 18 }}>
-              <ToArrow />
-            </Column>
-            <Column justify="center" style={{ marginTop: 0 }}>
-              {showAssetList && (
-                <SendSetAssetList
-                  colors={colors}
-                  deviceHeight={deviceHeight}
-                  navigateToSelectOutputCurrency={
-                    navigateToSelectOutputCurrency
-                  }
-                  selected={selected}
-                  txSpeedRenderer={
-                    <GasSpeedButtonContainer>
-                      <GasSpeedButton
-                        onCustomGasBlur={handleCustomGasBlur}
-                        onCustomGasFocus={handleCustomGasBlur}
-                        type="transaction"
-                      />
-                    </GasSpeedButtonContainer>
-                  }
-                  width={width}
-                />
-              )}
-              {!showAssetList && (
-                <SendAssetForm
-                  {...props}
-                  allAssets={allAssets}
-                  assetAmount={amountDetails.assetAmount}
-                  buttonRenderer={
-                    <SendButton
-                      {...props}
-                      assetAmount={amountDetails.assetAmount}
-                      isAuthorizing={isAuthorizing}
-                      isSufficientBalance={amountDetails.isSufficientBalance}
-                      isSufficientGas={isSufficientGas}
-                      onLongPress={onLongPressSend}
-                      smallButton={isTinyPhone}
-                      testID="send-sheet-confirm"
-                    />
-                  }
-                  maxInputBalance={maxInputBalance}
-                  nativeAmount={amountDetails.nativeAmount}
-                  nativeCurrency={nativeCurrency}
-                  nativeCurrencySymbol={nativeCurrencySymbol}
-                  onChangeAssetAmount={onChangeAssetAmount}
-                  onChangeNativeAmount={onChangeNativeAmount}
-                  onFocus={handleFocus}
-                  navigateToSelectOutputCurrency={
-                    navigateToSelectOutputCurrency
-                  }
-                  onResetAssetSelection={onResetAssetSelection}
-                  selected={selected}
-                  sendMaxBalance={sendMaxBalance}
-                  txSpeedRenderer={
-                    <GasSpeedButtonContainer>
-                      <GasSpeedButton
-                        onCustomGasBlur={handleCustomGasBlur}
-                        onCustomGasFocus={handleCustomGasBlur}
-                        type="transaction"
-                      />
-                    </GasSpeedButtonContainer>
-                  }
-                />
-              )}
-            </Column>
           </Column>
         </Column>
         {android && showAssetForm ? (

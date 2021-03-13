@@ -49,15 +49,14 @@ const AccountName = styled(TruncatedText).attrs({
   align: 'left',
   firstSectionLength: abbreviations.defaultNumCharsPerSection,
   letterSpacing: 'roundedMedium',
-  size: 'bigger',
+  size: 'h2',
   truncationLength: 4,
-  weight: 'bold',
+  weight: 'heavy',
 })`
-  font-size: 32px;
-  margin-top: ${android ? '-10' : '-1'};
+  margin-top: ${android ? '-11' : '0'};
   margin-bottom: ${android ? '10' : '1'};
   max-width: ${({ deviceWidth }) => deviceWidth - dropdownArrowWidth - 60};
-  padding-right: 6;
+  padding-right: 16;
 `;
 
 const AddCashButton = styled(RainbowButton).attrs({
@@ -263,13 +262,12 @@ export default function ProfileMasthead({
       <AvatarCircle
         accountColor={accountColor}
         accountSymbol={accountSymbol}
-        borderColor={colors.gold}
         image={accountImage}
         isAvatarPickerAvailable={isAvatarPickerAvailable}
         onPress={handlePressAvatar}
       />
       <ButtonPressAnimation onPress={handlePressChangeWallet}>
-        <Row>
+        <Row marginTop={24}>
           <AccountName deviceWidth={deviceWidth}>{accountName}</AccountName>
           <DropdownArrow>
             <Icon
@@ -281,7 +279,7 @@ export default function ProfileMasthead({
           </DropdownArrow>
         </Row>
       </ButtonPressAnimation>
-      <RowWithMargins align="center" margin={19}>
+      <RowWithMargins align="center" margin={19} marginTop={ios ? 12 : -8}>
         <ProfileAction
           icon="copySolid"
           onPress={handlePressCopyAddress}
@@ -315,7 +313,6 @@ export default function ProfileMasthead({
         />
       </RowWithMargins>
       {addCashAvailable && <AddCashButton onPress={handlePressAddCash} />}
-      {showBottomDivider && <ProfileMastheadDivider />}
     </Column>
   );
 }

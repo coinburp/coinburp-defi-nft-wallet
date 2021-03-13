@@ -10,6 +10,7 @@ import { ArrowSmall } from './svg/ArrowSmall';
 import AvatarIcon from './svg/AvatarIcon';
 import BackIcon from './svg/BackIcon';
 import BackspaceIcon from './svg/BackspaceIcon';
+import BagIcon  from './svg/BagIcon';
 import CameraIcon from './svg/CameraIcon';
 import CaretIcon from './svg/CaretIcon';
 import CaretThickIcon from './svg/CaretThickIcon';
@@ -63,6 +64,7 @@ import PlusIcon from './svg/PlusIcon';
 import ProgressIcon from './svg/ProgressIcon';
 import QRCodeIcon from './svg/QRCodeIcon';
 import QRIcon from './svg/QRIcon';
+import RefreshIcon from './svg/RefreshIcon';
 import Scan from './svg/Scan';
 import ScannerIcon from './svg/ScannerIcon';
 import SearchIcon from './svg/SearchIcon';
@@ -77,6 +79,7 @@ import SwapCircleIcon from './svg/SwapCircleIcon';
 import SwapIcon from './svg/SwapIcon';
 import ThreeDotsIcon from './svg/ThreeDotsIcon';
 import TouchIdIcon from './svg/TouchIdIcon';
+import UserCircleIcon from './svg/UserIcon';
 import WalletConnectIcon from './svg/WalletConnectIcon';
 import WarningCircledIcon from './svg/WarningCircledIcon';
 import WithdrawArrowIcon from './svg/WithdrawArrowIcon';
@@ -93,7 +96,6 @@ import {
   UserIcon,
   WarningIcon,
 } from './svg/seetings';
-import RefreshIcon from "./svg/RefreshIcon";
 
 const IconTypes = {
   applePay: ApplePayIcon,
@@ -104,6 +106,7 @@ const IconTypes = {
   avatar: AvatarIcon,
   backspace: BackspaceIcon,
   backup: BackupIcon,
+  bag: BagIcon,
   camera: CameraIcon,
   caret: CaretIcon,
   caretThick: CaretThickIcon,
@@ -182,6 +185,7 @@ const IconTypes = {
   threeDots: ThreeDotsIcon,
   touchid: TouchIdIcon,
   user: UserIcon,
+  userCircle: UserCircleIcon,
   walletConnect: WalletConnectIcon,
   warning: WarningIcon,
   warningCircled: WarningCircledIcon,

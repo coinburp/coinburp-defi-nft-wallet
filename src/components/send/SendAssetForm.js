@@ -1,44 +1,18 @@
-import React, {Fragment, useCallback, useMemo} from 'react';
+import React, { Fragment } from 'react';
 import { KeyboardArea } from 'react-native-keyboard-area';
 import styled from 'styled-components';
 import AssetTypes from '../../helpers/assetTypes';
 import { useAsset, useDimensions } from '../../hooks';
-import { SendCoinRow } from '../coin-row';
-import CollectiblesSendRow from '../coin-row/CollectiblesSendRow';
-import SendSavingsCoinRow from '../coin-row/SendSavingsCoinRow';
-import { Icon } from '../icons';
 import { Column, Row } from '../layout';
-import SendAssetFormCollectible from './SendAssetFormCollectible';
 import SendAssetFormTokenOrNft from './SendAssetFormTokenOrNft';
 import { padding, position } from '@rainbow-me/styles';
-import ShadowStack from 'react-native-shadow-stack';
-
-const AssetRowShadow = colors => [
-  [0, 1, 0, colors.shadow, 0.01],
-  [0, 4, 12, colors.shadow, 0.04],
-  [0, 8, 23, colors.shadow, 0.05],
-];
-
-const Container = styled(Column)`
-  ${position.size('100%')};
-  background-color: ${({ theme: { colors } }) => colors.white};
-  flex: 1;
-  overflow: hidden;
-`;
 
 const FormContainer = styled(Column).attrs({
-  align: 'end',
-  justify: 'space-between',
+  align: 'center',
+  height: 200,
 })`
-  ${({ isNft, isTinyPhone }) =>
-    isNft
-      ? padding(22, 0, 0)
-      : isTinyPhone
-      ? padding(6, 15, 0)
-      : padding(19, 15)};
   background-color: ${({ theme: { colors } }) => colors.black};
-  flex: 1;
-  margin-bottom: ${android ? 0 : ({ isTinyPhone }) => (isTinyPhone ? -19 : 0)};
+  margin-bottom: ${android ? -25 : ({ isTinyPhone }) => (isTinyPhone ? -19 : -50)};
   width: 100%;
 `;
 
@@ -57,7 +31,8 @@ export default function SendAssetForm({
   onResetAssetSelection,
   selected,
   sendMaxBalance,
-  txSpeedRenderer, navigateToSelectOutputCurrency,
+  txSpeedRenderer,
+  navigateToSelectOutputCurrency,
   ...props
 }) {
   const { isTinyPhone } = useDimensions();
@@ -65,28 +40,26 @@ export default function SendAssetForm({
   const selectedAsset = useAsset(selected);
   const isNft = selectedAsset.type === AssetTypes.nft;
   return (
-    <Container>
-      <FormContainer isNft={isNft} isTinyPhone={isTinyPhone}>
-        <Fragment>
-          <SendAssetFormTokenOrNft
-            {...props}
-            assetAmount={assetAmount}
-            buttonRenderer={buttonRenderer}
-            nativeAmount={nativeAmount}
-            nativeCurrency={nativeCurrency}
-            navigateToSelectOutputCurrency={navigateToSelectOutputCurrency}
-            isNft={isNft}
-            onChangeAssetAmount={onChangeAssetAmount}
-            onChangeNativeAmount={onChangeNativeAmount}
-            onFocus={onFocus}
-            onResetAssetSelection={onResetAssetSelection}
-            selected={selectedAsset}
-            sendMaxBalance={sendMaxBalance}
-            txSpeedRenderer={txSpeedRenderer}
-          />
-          {ios ? <KeyboardSizeView isOpen /> : null}
-        </Fragment>
-      </FormContainer>
-    </Container>
+    <FormContainer align="center" isTinyPhone={isTinyPhone}>
+      <Fragment>
+        <SendAssetFormTokenOrNft
+          {...props}
+          assetAmount={assetAmount}
+          buttonRenderer={buttonRenderer}
+          nativeAmount={nativeAmount}
+          nativeCurrency={nativeCurrency}
+          navigateToSelectOutputCurrency={navigateToSelectOutputCurrency}
+          isNft={isNft}
+          onChangeAssetAmount={onChangeAssetAmount}
+          onChangeNativeAmount={onChangeNativeAmount}
+          onFocus={onFocus}
+          onResetAssetSelection={onResetAssetSelection}
+          selected={selectedAsset}
+          sendMaxBalance={sendMaxBalance}
+          txSpeedRenderer={txSpeedRenderer}
+        />
+        {ios ? <KeyboardSizeView isOpen /> : null}
+      </Fragment>
+    </FormContainer>
   );
 }

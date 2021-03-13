@@ -4,7 +4,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { useAccountProfile } from '../../hooks';
 import { ButtonPressAnimation } from '../animations';
 import ImageAvatar from '../contacts/ImageAvatar';
-import { Flex, InnerBorder } from '../layout';
+import { Flex } from '../layout';
 import { Text } from '../text';
 import { borders, position } from '@rainbow-me/styles';
 
@@ -29,7 +29,6 @@ const FirstLetter = styled(Text).attrs(({ theme: { colors } }) => ({
 `;
 
 export default function AvatarCircle({
-  borderColor,
   isAvatarPickerAvailable,
   onPress,
   overlayStyles,
@@ -71,7 +70,6 @@ export default function AvatarCircle({
         {...borders.buildCircleAsObject(AvatarCircleSize)}
         backgroundColor={overlayStyles ? 'rgb(51, 54, 59)' : colors.white}
         borderRadius={AvatarCircleSize}
-        marginBottom={12}
         shadows={shadows[overlayStyles ? 'overlay' : 'default']}
         {...(android && {
           height: AvatarCircleSize,
@@ -87,14 +85,6 @@ export default function AvatarCircle({
             borderRadius={AvatarCircleSize}
           >
             <FirstLetter>{accountSymbol}</FirstLetter>
-            {!overlayStyles && <InnerBorder opacity={0.02} radius={65} />}
-            <InnerBorder
-              color={borderColor || colors.coinburp}
-              ignoreDarkMode
-              opacity={1}
-              radius={AvatarCircleSize}
-              width={6}
-            />
           </AvatarCircleView>
         )}
       </Flex>

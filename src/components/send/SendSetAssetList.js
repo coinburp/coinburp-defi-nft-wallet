@@ -41,8 +41,9 @@ export default class SendSetAssetList extends React.Component {
           backgroundColor="white"
           borderRadius={24}
           justify="center"
-          marginBottom={34}
+          marginBottom={0}
           marginTop={16}
+          paddingBottom={0}
           paddingLeft={0}
           paddingRight={24}
           width={width - 32}

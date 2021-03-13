@@ -45,9 +45,6 @@ const Avatar = styled(ImgixImage)
     shouldForwardProp: prop => prop !== 'width',
   })
   .attrs({ pointerEvents: 'none' })`
-  border-color: ${({ color, theme: { colors } }) => color || colors.black};
-  border-radius: ${({ radius }) => radius || 0};
-  border-width: ${({ width }) => width || 0.5};
   height: ${({ dimensions }) => dimensions};
   width: ${({ dimensions }) => dimensions};
 `;
