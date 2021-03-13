@@ -1,12 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet } from 'react-native';
 import { IS_TESTING } from 'react-native-dotenv';
-import Reanimated, {
-  Clock,
-  Easing as REasing,
-  Value as RValue,
-  timing,
-} from 'react-native-reanimated';
+import Reanimated from 'react-native-reanimated';
 import { useValue } from 'react-native-redash';
 import styled from 'styled-components';
 import { useMemoOne } from 'use-memo-one';
@@ -20,7 +15,7 @@ import Coin7 from '../assets/coins/coin7.png';
 import { ButtonPressAnimation } from '../components/animations';
 import CoinBurpText from '../components/icons/svg/CoinBurpText';
 import { RowWithMargins } from '../components/layout';
-import { Emoji, Text } from '../components/text';
+import { Text } from '../components/text';
 
 import {
   fetchUserDataFromCloud,
@@ -32,21 +27,7 @@ import { useDimensions, useHideSplashScreen } from '@rainbow-me/hooks';
 import { ImgixImage } from '@rainbow-me/images';
 import { useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
-import { shadow } from '@rainbow-me/styles';
 import logger from 'logger';
-
-const {
-  and,
-  block,
-  clockRunning,
-  color,
-  not,
-  set,
-  cond,
-  interpolate,
-  round,
-  startClock,
-} = Reanimated;
 
 const ButtonContainer = styled(Reanimated.View)`
   border-radius: ${({ height }) => height / 2.6667};
@@ -69,35 +50,6 @@ const ButtonLabel = styled(Text).attrs(
     weight: 900,
   })
 )``;
-
-const ButtonEmoji = styled(Emoji).attrs({
-  align: 'center',
-  size: 16.25,
-})`
-  padding-bottom: 1.5px;
-`;
-
-const DarkShadow = styled(Reanimated.View)`
-  ${({ theme: { colors } }) => shadow.build(0, 10, 30, colors.dark, 1)};
-  background-color: ${({ theme: { colors } }) => colors.white};
-  border-radius: 30;
-  height: 60;
-  left: -3;
-  opacity: 0.2;
-  position: absolute;
-  top: -3;
-  width: 236;
-`;
-
-const Shadow = styled(Reanimated.View)`
-  ${({ theme: { colors } }) => shadow.build(0, 10, 30, colors.dark, 0.4)};
-  border-radius: 30;
-  height: 60;
-  left: -3;
-  position: absolute;
-  top: -3;
-  width: 236;
-`;
 
 const RainbowButton = ({
   height,
@@ -275,60 +227,11 @@ const traversedRainbows = rainbows.map(
   }
 );
 
-const RainbowImage = styled(ImgixImage).attrs({resizeMode: 'contain'})`
+const RainbowImage = styled(ImgixImage).attrs({ resizeMode: 'contain' })`
   height: ${INITIAL_SIZE};
   position: absolute;
   width: ${INITIAL_SIZE};
 `;
-
-const RAINBOW_TEXT_HEIGHT = 32;
-const RAINBOW_TEXT_WIDTH = 125;
-
-const RainbowTextMask = styled(Reanimated.View)`
-  height: ${RAINBOW_TEXT_HEIGHT};
-  width: ${RAINBOW_TEXT_WIDTH};
-`;
-
-function runTiming(value) {
-  const clock = new Clock();
-  const state = {
-    finished: new RValue(0),
-    frameTime: new RValue(0),
-    position: new RValue(0),
-    time: new RValue(0),
-  };
-
-  const config = {
-    duration: 2500,
-    easing: REasing.linear,
-    toValue: new RValue(1),
-  };
-
-  return block([
-    cond(and(not(state.finished), clockRunning(clock)), 0, [
-      set(state.finished, 0),
-      set(state.time, 0),
-      set(state.position, value),
-      set(state.frameTime, 0),
-      set(config.toValue, 5),
-      startClock(clock),
-    ]),
-    timing(clock, state, config),
-    state.position,
-  ]);
-}
-
-/* eslint-disable sort-keys */
-const colorsRGB = [
-  { r: 255, g: 73, b: 74 },
-  { r: 255, g: 170, b: 0 },
-  { r: 0, g: 222, b: 111 },
-  { r: 0, g: 163, b: 217 },
-  { r: 115, g: 92, b: 255 },
-];
-/* eslint-enable sort-keys */
-
-const colorRGB = (r, g, b) => color(round(r), round(g), round(b));
 
 const springConfig = {
   bounciness: 7.30332,
@@ -336,25 +239,6 @@ const springConfig = {
   toValue: 1,
   useNativeDriver: true,
 };
-
-function colorAnimation(rValue, fromShadow) {
-  const animation = runTiming(rValue.current);
-  const r = interpolate(animation, {
-    inputRange: [0, 1, 2, 3, 4, 5],
-    outputRange: [...colorsRGB.map(({ r }) => r), colorsRGB[0].r],
-  });
-
-  const g = interpolate(animation, {
-    inputRange: [0, 1, 2, 3, 4, 5],
-    outputRange: [...colorsRGB.map(({ g }) => g), colorsRGB[0].g],
-  });
-
-  const b = interpolate(animation, {
-    inputRange: [0, 1, 2, 3, 4, 5],
-    outputRange: [...colorsRGB.map(({ b }) => b), colorsRGB[0].b],
-  });
-  return colorRGB(r, g, b, fromShadow);
-}
 
 export default function WelcomeScreen() {
   const { colors } = useTheme();
@@ -454,8 +338,6 @@ export default function WelcomeScreen() {
 
   const rValue = useValue(0);
 
-  const backgroundColor = useMemoOne(() => colorAnimation(rValue, false), []);
-
   const onCreateWallet = useCallback(async () => {
     replace(Routes.SWIPE_LAYOUT, {
       params: { emptyWallet: true },
@@ -465,13 +347,13 @@ export default function WelcomeScreen() {
 
   const createWalletButtonProps = useMemoOne(() => {
     return {
-      height: 54 + (ios ? 0 : 6),
+      height: 64,
       shadowStyle: {
         opacity: 0,
       },
       style: {
         backgroundColor: colors.dark,
-        width: width - 32 + (ios ? 0 : 6),
+        width: width - 32,
       },
       text: 'Create a new wallet',
       textColor: colors.white,
@@ -511,10 +393,8 @@ export default function WelcomeScreen() {
           style={style}
         />
       ))}
-
       <ContentWrapper style={contentStyle}>
         <CoinBurpText />
-
         <ButtonWrapper style={buttonStyle}>
           <RainbowButton
             onPress={onCreateWallet}
