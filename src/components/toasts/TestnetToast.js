@@ -3,9 +3,11 @@ import { web3Provider } from '../../handlers/web3';
 import networkInfo from '../../helpers/networkInfo';
 import networkTypes from '../../helpers/networkTypes';
 import { useAccountSettings, useInternetStatus } from '../../hooks';
+import Navigation from '../../navigation/Navigation';
 import { Icon } from '../icons';
 import { Nbsp, Text } from '../text';
 import Toast from './Toast';
+import Routes from '@rainbow-me/routes';
 
 const TestnetToast = () => {
   const isConnected = useInternetStatus();
@@ -32,7 +34,13 @@ const TestnetToast = () => {
   const { colors } = useTheme();
 
   return (
-    <Toast isVisible={visible} testID={`testnet-toast-${networkName}`}>
+    <Toast
+      isVisible={visible}
+      targetTranslate={
+        Navigation.getActiveRouteName() === Routes.WALLET_SCREEN ? -80 : false
+      }
+      testID={`testnet-toast-${networkName}`}
+    >
       <Icon color={color} marginHorizontal={5} marginTop={5} name="dot" />
       <Text color={colors.white} size="smedium" weight="semibold">
         <Nbsp /> {networkName} <Nbsp />

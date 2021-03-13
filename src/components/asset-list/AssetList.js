@@ -2,13 +2,14 @@ import lang from 'i18n-js';
 import React from 'react';
 import { useSafeArea } from 'react-native-safe-area-context';
 import { magicMemo } from '../../utils';
-import { FabWrapperBottomPosition, FloatingActionButtonSize } from '../fab';
+import { FabWrapperBottomPosition, FabWrapperTopPadding } from '../fab';
 import { ListFooter } from '../list';
 import EmptyAssetList from './EmptyAssetList';
 import RecyclerAssetList from './RecyclerAssetList';
+import {WalletActionButtonSize} from "../buttons/WalletActionButton";
 
 const FabSizeWithPadding =
-  FloatingActionButtonSize + FabWrapperBottomPosition * 2;
+  WalletActionButtonSize + FabWrapperBottomPosition + FabWrapperTopPadding;
 
 const AssetList = ({
   fetchData,

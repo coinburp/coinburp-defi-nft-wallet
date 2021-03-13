@@ -13,23 +13,24 @@ import { ContactAvatar } from '../../contacts';
 import { Icon } from '../../icons';
 import { Centered, Column, ColumnWithMargins, Row } from '../../layout';
 import { Text, TruncatedAddress } from '../../text';
-import Caret from '@rainbow-me/assets/family-dropdown-arrow.png';
 import WalletBackupTypes from '@rainbow-me/helpers/walletBackupTypes';
 import WalletTypes from '@rainbow-me/helpers/walletTypes';
 import { useWallets } from '@rainbow-me/hooks';
-import { ImgixImage } from '@rainbow-me/images';
 import { useNavigation } from '@rainbow-me/navigation';
 import { fonts, padding } from '@rainbow-me/styles';
 import { abbreviations, showActionSheetWithOptions } from '@rainbow-me/utils';
 
-const CaretIcon = styled(ImgixImage).attrs(({ theme: { colors } }) => ({
-  source: Caret,
-  tintColor: colors.alpha(colors.blueGreyDark, 0.6),
-}))`
-  height: 18;
-  margin-top: 15;
-  width: 8;
+const ArrowIcon = styled(Icon).attrs({
+  height: '28px',
+  name: 'arrowSmall',
+  direction: 'up',
+  width: '20px',
+  color: 'black'
+})`
+  margin-left: 5px;
+  margin-top: 8px;
 `;
+
 
 const Address = styled(TruncatedAddress).attrs(({ theme: { colors } }) => ({
   color: colors.dark,
@@ -56,11 +57,7 @@ const CheckmarkIcon = styled(Icon).attrs({
 const GreenCheck = styled(CheckmarkIcon).attrs(({ theme: { colors } }) => ({
   color: colors.green,
 }))`
-  box-shadow: 0px 4px 6px
-    ${({ theme: { colors, isDarkMode } }) =>
-      colors.alpha(isDarkMode ? colors.shadow : colors.green, 0.4)};
 `;
-
 const GreyCheck = styled(CheckmarkIcon).attrs(({ theme: { colors } }) => ({
   color: colors.blueGreyDark50,
 }))`
@@ -237,15 +234,15 @@ const WalletSelectionView = () => {
                       wallet.backupType === WalletBackupTypes.cloud ? (
                         <GreenCheck isDarkMode={isDarkMode} />
                       ) : (
-                        <GreyCheck isDarkMode={isDarkMode} />
+                        <GreenCheck isDarkMode={isDarkMode} />
                       )
                     ) : wallet.imported ? (
-                      <GreyCheck />
+                      <GreenCheck />
                     ) : (
                       <WarningIcon />
                     )}
 
-                    <CaretIcon />
+                    <ArrowIcon />
                   </Row>
                 </Row>
               </ButtonPressAnimation>
