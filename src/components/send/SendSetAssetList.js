@@ -82,7 +82,7 @@ export default class SendSetAssetList extends React.Component {
           </ButtonPressAnimation>
         </Column>
         <FooterContainer deviceHeight={deviceHeight}>
-          {txSpeedRenderer}
+          {txSpeedRenderer ? txSpeedRenderer : null}
         </FooterContainer>
       </Column>
     );

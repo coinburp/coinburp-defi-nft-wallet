@@ -25,7 +25,7 @@ const FooterContainer = styled(ColumnWithMargins).attrs(({ deviceHeight }) => ({
 `;
 
 const FormContainer = styled(Column).attrs({
-  align: 'center'
+  align: 'center',
 })``;
 
 export default function SendAssetFormTokenOrNft({
@@ -106,8 +106,8 @@ export default function SendAssetFormTokenOrNft({
           )}
         </FloatingPanel>
         <FooterContainer deviceHeight={deviceHeight}>
-          {buttonRenderer}
-          {txSpeedRenderer}
+          {buttonRenderer ? buttonRenderer : null}
+          {txSpeedRenderer ? txSpeedRenderer : null}
         </FooterContainer>
       </FormContainer>
     </Fragment>
