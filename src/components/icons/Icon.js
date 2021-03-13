@@ -64,6 +64,7 @@ import PlusIcon from './svg/PlusIcon';
 import ProgressIcon from './svg/ProgressIcon';
 import QRCodeIcon from './svg/QRCodeIcon';
 import QRIcon from './svg/QRIcon';
+import RefreshIcon from './svg/RefreshIcon';
 import Scan from './svg/Scan';
 import ScannerIcon from './svg/ScannerIcon';
 import SearchIcon from './svg/SearchIcon';
@@ -95,7 +96,6 @@ import {
   UserIcon,
   WarningIcon,
 } from './svg/seetings';
-import RefreshIcon from "./svg/RefreshIcon";
 
 const IconTypes = {
   applePay: ApplePayIcon,

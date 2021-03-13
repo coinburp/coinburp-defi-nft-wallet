@@ -263,7 +263,6 @@ export default function ProfileMasthead({
       <AvatarCircle
         accountColor={accountColor}
         accountSymbol={accountSymbol}
-        borderColor={colors.gold}
         image={accountImage}
         isAvatarPickerAvailable={isAvatarPickerAvailable}
         onPress={handlePressAvatar}
