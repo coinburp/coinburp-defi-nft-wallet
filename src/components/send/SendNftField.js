@@ -22,10 +22,9 @@ const SendFormUniqueTokenCard = styled(UniqueTokenCard).attrs(
 const ArrowSmall = styled(Icon).attrs({
   name: 'arrowSmall',
 })`
-  margin-top: 12;
-  margin-left: 12;
+  margin-top: 15;
+  margin-left: 3;
 `;
-
 
 const Container = styled(ColumnWithMargins).attrs({ margin: 5 })`
   padding-top: 6;
@@ -50,7 +49,7 @@ export default function SendNftField({ item, colors, onPressSelectInputCurrency,
           <Text size={16} weight="heavy">
             {name}
           </Text>
-          <Text color={colors.skyBlue} size={14} weight="heavy">
+          <Text style={{ marginTop: android ? 0 : 6 }} color={colors.bold} size={16} weight="heavy">
             {`${asset_contract.name} #${
               id?.length > 6 ? id.toString().substring(0, 6) + '...' : id
             }`}
