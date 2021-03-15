@@ -21,7 +21,7 @@ const WithdrawModal = ({ route, navigation, ...props }) => {
       createRap={createWithdrawFromCompoundRap}
       defaultInputAsset={defaultInputAsset}
       estimateRap={estimateWithdrawFromCompound}
-      inputHeaderTitle={`Withdraw ${defaultInputAsset.symbol}`}
+      inputHeaderTitle="Unstake"
       navigation={navigation}
       showOutputField={false}
       supplyBalanceUnderlying={supplyBalanceUnderlying}
