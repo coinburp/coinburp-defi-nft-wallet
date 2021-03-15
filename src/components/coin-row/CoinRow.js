@@ -32,7 +32,6 @@ const Content = styled(Column).attrs({ justify: 'space-between' })`
   flex: 1;
   height: ${CoinIconSize};
   margin-left: 12;
-  margin-top: 9px;
   opacity: ${({ isHidden }) => (isHidden ? 0.4 : 1)};
 `;
 
