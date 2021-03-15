@@ -23,7 +23,7 @@ const ArrowSmall = styled(Icon).attrs({
   name: 'arrowSmall',
 })`
   margin-top: 15;
-  margin-left: 3;
+  margin-left: 12;
 `;
 
 const Container = styled(ColumnWithMargins).attrs({ margin: 5 })`
@@ -49,7 +49,7 @@ export default function SendNftField({ item, colors, onPressSelectInputCurrency,
           <Text size={16} weight="heavy">
             {name}
           </Text>
-          <Text style={{ marginTop: android ? 0 : 6 }} color={colors.bold} size={16} weight="heavy">
+          <Text style={{ marginTop: android ? 0 : 6 }} color={colors.skyBlue} size={14} weight="heavy">
             {`${asset_contract.name} #${
               id?.length > 6 ? id.toString().substring(0, 6) + '...' : id
             }`}
