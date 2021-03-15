@@ -56,7 +56,7 @@ const CoinDividerEditButton = ({
             letterSpacing="roundedTight"
             opacity={textOpacityAlwaysOn || isActive ? 1 : 0.3333333333}
             size="lmedium"
-            weight="bold"
+            weight={900}
           >
             {text}
           </Text>
