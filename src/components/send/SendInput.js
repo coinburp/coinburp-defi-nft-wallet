@@ -151,6 +151,7 @@ export default function SendInput({
               placeholder="0x..."
               placeholderTextColor={colors.skyBlue}
               ref={recipientFieldRef}
+              isValidAddress={isValidAddress}
               testID="send-asset-form-field"
             />
             {isValidAddress ? (

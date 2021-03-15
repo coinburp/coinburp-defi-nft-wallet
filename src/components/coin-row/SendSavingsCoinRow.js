@@ -12,7 +12,6 @@ const isTinyPhone = deviceUtils.dimensions.height <= 568;
 const selectedHeight = isTinyPhone ? 62 : 78;
 
 const containerStyles = css`
-  padding-bottom: 18;
   padding-left: 0;
   padding-top: 6;
 `;
@@ -32,7 +31,7 @@ const BottomRow = ({
   return (
     <Text
       color={colors.blueGrey}
-      css={{ top: ios ? 0 : -12 }}
+      css={{ top: ios ? -3 : -12 }}
       size={14}
       weight="bold"
     >
