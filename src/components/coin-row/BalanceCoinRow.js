@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Animated from 'react-native-reanimated';
 import { View } from 'react-primitives';
 import { connect } from 'react-redux';
@@ -20,7 +20,6 @@ import {
   pushSelectedCoin,
   removeSelectedCoin,
 } from '@rainbow-me/redux/editOptions';
-import { margin, padding } from '@rainbow-me/styles';
 import { isNewValueForObjectPaths, isNewValueForPath } from '@rainbow-me/utils';
 
 const editTranslateOffsetInner = android ? -8 : 0;

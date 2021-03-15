@@ -45,9 +45,6 @@ const BottomRow = ({ description, native, status, type }) => {
   const isSent = status === TransactionStatusTypes.sent;
 
   const isOutgoingSwap = status === TransactionStatusTypes.swapped;
-  const isIncomingSwap =
-    status === TransactionStatusTypes.received &&
-    type === TransactionTypes.trade;
 
   let prefix = null;
   if (isSent || isOutgoingSwap) prefix = '-';
@@ -61,7 +58,9 @@ const BottomRow = ({ description, native, status, type }) => {
   return (
     <Row align="center" justify="space-between">
       <FlexItem flex={1}>
-        <CoinName color={colors.dark}>{description}</CoinName>
+        <CoinName color={colors.dark} style={{ top: 0 }}>
+          {description}
+        </CoinName>
       </FlexItem>
       <BalanceText color={colors.dark} weight={isReceived ? 'medium' : null}>
         {balanceText}
@@ -90,7 +89,7 @@ const TopRow = ({ balance, pending, status, title, type }) => {
   );
 };
 
-export default function TransactionCoinRow({ item, ...props }) {
+export default function TransactionCoinRow({ item, isFirst, index, ...props }) {
   const { contact } = item;
   const { accountAddress } = useAccountSettings();
   const { navigate } = useNavigation();
@@ -195,6 +194,13 @@ export default function TransactionCoinRow({ item, ...props }) {
     }
   }, [accountAddress, contact, item, navigate]);
 
+  const isIncomingSwap =
+    item.status === TransactionStatusTypes.received &&
+    item.type === TransactionTypes.trade;
+  const isOutgoingSwap = item?.status === TransactionStatusTypes.swapped;
+
+  const first = ios ? isFirst : index === 0;
+
   return (
     <ButtonPressAnimation onPress={onPressTransaction} scaleTo={0.96}>
       <CoinRow
@@ -202,12 +208,12 @@ export default function TransactionCoinRow({ item, ...props }) {
         {...props}
         bottomRowRender={BottomRow}
         containerStyles={containerStyles}
+        spacingBottom={isOutgoingSwap}
+        spacingTop={!first && isIncomingSwap}
         {...(android
           ? {
               contentStyles: {
-                height:
-                  CoinIconSize +
-                  (item.status === TransactionStatusTypes.swapped ? 0 : 14),
+                height: CoinIconSize + 14,
               },
             }
           : {})}

@@ -19,7 +19,12 @@ const Container = styled(Row).attrs({
 })`
   ${({ thin }) =>
     padding(thin ? 0 : CoinRowPaddingTop, 24, thin ? 0 : CoinRowPaddingBottom)};
-  ${({ thin }) => margin(0, 16, thin ? 16 : CoinRowMarginBottom)};
+  ${({ thin, spacingTop, spacingBottom }) =>
+    margin(
+      spacingTop ? 12 : 0,
+      16,
+      thin ? 16 : spacingBottom ? CoinRowMarginBottom * 2 : CoinRowMarginBottom
+    )};
   width: ${({ width }) => width - 32};
 `;
 
@@ -42,6 +47,8 @@ export default function CoinRow({
   isPinned,
   isPool,
   name,
+  spacingBottom,
+  spacingTop,
   symbol,
   testID,
   thin,
@@ -58,6 +65,8 @@ export default function CoinRow({
       backgroundColor={colors.white}
       borderRadius={24}
       css={containerStyles}
+      spacingBottom={spacingBottom}
+      spacingTop={spacingTop}
       thin={thin}
       width={editing ? width - 42 : width}
     >
