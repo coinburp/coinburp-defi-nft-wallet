@@ -19,15 +19,15 @@ import WalletTypes from '@rainbow-me/helpers/walletTypes';
 import { useWallets } from '@rainbow-me/hooks';
 import { margin, padding, position, shadow } from '@rainbow-me/styles';
 import logger from 'logger';
+import {SheetActionButton} from "../sheet/sheet-action-buttons";
+import {View} from "react-native";
 
 const AuthenticationText = styled(Text).attrs({
   align: 'center',
-  color: 'blueGreyDark',
-  size: 'large',
-  weight: 'normal',
-})`
-  ${padding(0, 60)};
-`;
+  color: 'skyBlue',
+  size: 'lmedium',
+  weight: 'bold',
+})``;
 
 const CopyButtonIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
   color: colors.coinburp,
@@ -138,13 +138,16 @@ export default function SecretDisplaySection({
           <AuthenticationText>
             {`You need to authenticate in order to access your recovery ${typeLabel}`}
           </AuthenticationText>
-          <ToggleSecretButton onPress={loadSeed}>
-            <BiometricButtonContent
-              color={colors.white}
-              showIcon={!seed}
-              text={`Show Recovery ${upperFirst(typeLabel)}`}
+          <View>
+            <SheetActionButton
+              color={colors.coinburp}
+              fullWidth
+              label={`Show Recovery ${upperFirst(typeLabel)}`}
+              onPress={loadSeed}
+              size="larger"
+              weight="heavy"
             />
-          </ToggleSecretButton>
+          </View>
         </Fragment>
       )}
     </ColumnWithMargins>
