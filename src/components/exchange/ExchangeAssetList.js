@@ -14,7 +14,8 @@ import { deviceUtils, magicMemo } from '@rainbow-me/utils';
 const deviceWidth = deviceUtils.dimensions.width;
 
 const Header = styled.View`
-  ${padding(11, 0, 2.5, 19)};
+  ${padding(11, 0, 0, 24)};
+  margin-bottom: 18px;
   position: relative;
 `;
 
@@ -64,6 +65,7 @@ const ExchangeAssetSectionListHeader = ({ section }) => {
             color={section.iconColor}
             marginRight={12}
             name={section.icon}
+            size={section.iconSize}
           />
         ) : null}
         <TitleComponent color={section.color} colors={section.colors || null}>

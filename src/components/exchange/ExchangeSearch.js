@@ -21,7 +21,7 @@ export const ExchangeSearchHeight = 40;
 const ExchangeSearchWidth = deviceUtils.dimensions.width - 30;
 
 const Container = styled(Row)`
-  ${margin(0, 15, 8)};
+  ${margin(0, 24, 8)};
   ${padding(0, 37, 0, 12)};
   background-color: ${({ theme: { colors } }) => colors.transparent};
   border-radius: ${ExchangeSearchHeight / 2};
@@ -56,14 +56,13 @@ const SearchInput = styled(Input).attrs(({ theme: { colors } }) => ({
   autoCapitalize: 'words',
   blurOnSubmit: false,
   clearTextOnFocus: true,
-  color: colors.alpha(colors.coinburp, 0.8),
+  color: colors.dark,
   enablesReturnKeyAutomatically: true,
   keyboardAppearance: 'dark',
   keyboardType: 'ascii-capable',
   lineHeight: 'loose',
   placeholderTextColor: colors.skyBlue,
   returnKeyType: 'search',
-  selectionColor: colors.appleBlue,
   size: 'lmedium',
   spellCheck: false,
   weight: 'semibold',
