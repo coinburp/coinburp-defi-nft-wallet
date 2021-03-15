@@ -464,6 +464,7 @@ export default class SendAssetList extends React.Component {
           onChangeText={handleUpdateStateSearch}
           testID="currency-select-search"
         />
+        <Spacer />
         <Row height={deviceHeight - 350} justify="space-between">
           {dataProvider ? (
             <SendAssetRecyclerListView

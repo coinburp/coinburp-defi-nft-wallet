@@ -13,7 +13,9 @@ import { Centered, Row } from '../layout';
 import { SendAssetList } from '../send';
 import { SheetTitle } from '../sheet';
 import { ProfileModal } from './profile';
-import { padding } from '@rainbow-me/styles';
+import {fonts, padding} from '@rainbow-me/styles';
+import {BackButton} from "../header";
+import colors from "../../context/currentColors";
 
 const ArrowSmall = styled(Icon).attrs({
   direction: 'left',
@@ -23,7 +25,7 @@ const ArrowSmall = styled(Icon).attrs({
 })``;
 
 const Spacer = styled.View`
-  height: 24px;
+  height: 8px;
 `;
 
 const CurrencySelectState = () => {
@@ -139,21 +141,14 @@ const CurrencySelectState = () => {
       overflow="hidden"
       radius={30}
     >
-      <Centered css={padding(16, 24, 25, 25)} direction="column">
+      <Centered css={padding(16, 5, 0, 5)} direction="column">
         <Row align="center" justify="space-between" width="100%">
-          <ButtonPressAnimation
-            onPress={() => {
-              goBack();
-              android && Keyboard.dismiss();
-            }}
-          >
-            <ArrowSmall />
-          </ButtonPressAnimation>
-
+          <BackButton size={24} />
           <SheetTitle
-            color="black"
+            color={colors.dark}
             css={{ left: -12 }}
-            size={20}
+            letterSpacing={0.5}
+            size="large"
             weight="heavy"
           >
             Withdraw
