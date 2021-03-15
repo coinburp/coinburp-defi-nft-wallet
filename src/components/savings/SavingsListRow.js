@@ -103,12 +103,12 @@ const APYText = styled(Text).attrs({
 const APYGradientText = styled(GradientText).attrs({
   angle: 277,
   colors: ['#ff2700', '#ffdb00'],
-  lineHeight: 16,
-  size: 16,
+  lineHeight: 14,
+  size: 14,
   steps: [0.3, 1],
   weight: 'bold',
 })`
-  margin-left: ${ios ? 8 : 10};
+  margin-left: ${ios ? 12 : 10};
   margin-top: ${ios ? 0 : 18};
 `;
 

@@ -111,7 +111,6 @@ export default function ProfileScreen({ navigation }) {
         isLoading={isLoading}
         navigation={navigation}
         network={network}
-        recyclerListView={ios}
         sections={sections}
         {...accountTransactions}
       />

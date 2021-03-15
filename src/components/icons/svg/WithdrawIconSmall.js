@@ -2,8 +2,8 @@ import React from 'react';
 import { G, Path } from 'react-native-svg';
 import Svg from '../Svg';
 
-const WithdrawIconSmall = () => (
-  <Svg height="16" viewBox="0 0 16 16" width="16">
+const WithdrawIconSmall = ({ ...props }) => (
+  <Svg height="16" viewBox="0 0 16 16" width="16" {...props}>
     <G fill="none" fillRule="evenodd">
       <G fill="#FF0C00">
         <Path

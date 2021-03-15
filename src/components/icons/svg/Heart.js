@@ -1,23 +1,13 @@
 import React from 'react';
-import { Defs, G, LinearGradient, Path, Stop, Svg } from 'react-native-svg';
+import { G, Path, Svg } from 'react-native-svg';
 
 const Heart = () => (
-  <Svg
-    height="21"
-    viewBox="0 0 24 21"
-    width="24"
-  >
-    <Defs>
-      <LinearGradient id="qjj8o7vnla" x1="50%" x2="50%" y1="100%" y2=".092%">
-        <Stop offset="0%" stopColor="#FE5196" />
-        <Stop offset="99.908%" stopColor="#F77062" />
-      </LinearGradient>
-    </Defs>
+  <Svg height="20" viewßßBox="0 0 23 20" width="23">
     <G fill="none" fill-rule="evenodd">
-      <G fill="url(#qjj8o7vnla)" transform="translate(-16 -677)">
+      <G fill="#FD5194" fillRule="nonzero">
         <Path
-          d="M1.757 1.757c2.344-2.343 6.142-2.343 8.486 0L12 3.515l1.757-1.758c2.344-2.343 6.142-2.343 8.486 0 2.343 2.344 2.343 6.142 0 8.486L12 20.485 1.757 10.243c-2.343-2.344-2.343-6.142 0-8.486z"
-          transform="translate(-1 613) translate(0 62) translate(17) translate(0 2)"
+          d="M19.445.82c-2.523-1.395-5.85-.971-7.941.976C9.403-.15 6.07-.569 3.555.821 1.364 2.023 0 4.327 0 6.828c0 .716.115 1.428.318 2.041C1.391 13.675 8.276 20 11.504 20c3.22 0 10.1-6.325 11.155-11.05.226-.695.341-1.405.341-2.122 0-2.501-1.362-4.805-3.555-6.007z"
+          transform="translate(-16 -516) translate(-1 452) translate(0 62) translate(17) translate(0 2)"
         />
       </G>
     </G>

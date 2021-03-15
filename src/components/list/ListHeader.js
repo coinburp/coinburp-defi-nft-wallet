@@ -70,7 +70,6 @@ export default function ListHeader({
   } else {
     return (
       <Fragment>
-        <BackgroundGradient />
         <Content isSticky={isSticky}>
           <Row align="center">
             {createElement(titleRenderer, { children: title })}
@@ -78,7 +77,6 @@ export default function ListHeader({
           </Row>
           {children}
         </Content>
-        {showDivider && <Divider />}
         {!isSticky && title !== 'Balances' && (
           <StickyBackgroundBlocker
             deviceDimensions={deviceDimensions}

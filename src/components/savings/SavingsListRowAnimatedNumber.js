@@ -23,7 +23,7 @@ const sx = StyleSheet.create({
     fontWeight: fonts.weight.black,
     letterSpacing: fonts.letterSpacing.roundedTightest,
     marginBottom: 0.5,
-    marginLeft: 6,
+    marginLeft: 12,
     marginRight: 4,
     textAlign: 'left',
   },
