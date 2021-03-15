@@ -230,7 +230,7 @@ const SavingsListRow = ({
 
   const displayValue = formatSavingsAmount(value);
 
-  const { colors } = useTheme();
+  const { colors, isDarkMode } = useTheme();
 
   if (underlying.symbol && supplyBalanceUnderlying && !isNaN(displayValue)) {
     return (
@@ -257,6 +257,14 @@ const SavingsListRow = ({
       </ButtonPressAnimation>
     );
   }
+
+  const shadows = useMemo(
+    () => [
+      [0, 10, 30, colors.shadow, 0.2],
+      [0, 5, 15, colors.shadow, isDarkMode ? 0 : 0.4],
+    ],
+    [isDarkMode, colors]
+  );
 
   return !underlying || !underlying.address ? null : (
     <ButtonPressAnimation
@@ -305,7 +313,7 @@ const SavingsListRow = ({
           </Row>
           <Column align="center" css={padding(24)} justify="space-between">
             <SavingsIcon />
-            <Column css={padding(13, 48, 24, 48)}>
+            <Column css={padding(13, 24, 24)}>
               <Row>
                 <Text align="center" color="#fff" size={20} weight={900}>
                   Stake{' '}
@@ -320,7 +328,7 @@ const SavingsListRow = ({
                 <Text
                   align="center"
                   color="#fff"
-                  css={{ top: ios ? -6 : -10 }}
+                  css={{ top: ios ? -6 : -16 }}
                   size={20}
                   weight={900}
                 >
@@ -329,14 +337,12 @@ const SavingsListRow = ({
               </Row>
             </Column>
             <ShadowStack
-              backgroundColor={colors.transparent}
+              backgroundColor={colors.white}
+              borderRadius={24}
               css={{ top: ios ? -18 : -21 }}
-              height={100}
-              shadows={[
-                [0, 10, 30, colors.shadow, 0.1],
-                [0, 5, 15, colors.shadow, 0.04],
-              ]}
-              width={295}
+              height={52}
+              shadows={shadows}
+              width={deviceWidth - 38 - 48}
             >
               <StakeButton>
                 <ButtonText>Stake Dai</ButtonText>
