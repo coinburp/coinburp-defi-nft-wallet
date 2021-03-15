@@ -42,7 +42,7 @@ export default function SendInput({
   showEmptyState,
   buttonRenderer,
   txSpeedRenderer,
-                                    filteredContacts,
+  filteredContacts,
 }) {
   const { setClipboard } = useClipboard();
   const { navigate } = useNavigation();
@@ -116,7 +116,8 @@ export default function SendInput({
 
   const defaultRadius = 24;
   const borderRadiusTop = defaultRadius;
-  const borderRadiusBottom = showEmptyState && filteredContacts.length ? 0 : defaultRadius;
+  const borderRadiusBottom =
+    showEmptyState && filteredContacts.length ? 0 : defaultRadius;
 
   const isPreExistingContact = (contact?.nickname?.length || 0) > 0;
 
@@ -140,11 +141,17 @@ export default function SendInput({
               ADDRESS
             </Text>
           </Row>
-          <Row align="center" height={(android && showEmptyState && filteredContacts.length)
-            ? 55 : 75} justify="space-between">
+          <Row
+            align="center"
+            height={
+              android && showEmptyState && filteredContacts.length ? 55 : 75
+            }
+            justify="space-between"
+          >
             <AddressField
               address={recipient}
               autoFocus={!showAssetList}
+              isValidAddress={isValidAddress}
               name={contact.nickname}
               onChange={onChangeAddressInput}
               onFocus={onFocus}

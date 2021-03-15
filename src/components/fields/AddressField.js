@@ -7,7 +7,6 @@ import { Row } from '../layout';
 import { useClipboard } from '@rainbow-me/hooks';
 import { buildTextStyles, fonts } from '@rainbow-me/styles';
 import { abbreviations, addressUtils } from '@rainbow-me/utils';
-import { isEmpty } from 'lodash';
 
 const AddressInput = styled(TextInput).attrs(
   ({ theme: { colors }, isValidAddress }) => ({

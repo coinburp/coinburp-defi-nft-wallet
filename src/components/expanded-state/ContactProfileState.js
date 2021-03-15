@@ -106,15 +106,11 @@ const ContactProfileState = ({ address, color: colorProp, contact }) => {
     <ProfileModal onPressBackdrop={handleAddContact}>
       <Centered css={padding(16, 24, 25, 25)} direction="column">
         <ButtonPressAnimation
+          onPress={() => {
+            goBack();
+            android && Keyboard.dismiss();
+          }}
           style={{ left: 33, position: 'absolute', top: 7 }}
-          onPress={
-            contact
-              ? handleDeleteContact
-              : () => {
-                  goBack();
-                  android && Keyboard.dismiss();
-                }
-          }
         >
           <ArrowSmall />
         </ButtonPressAnimation>

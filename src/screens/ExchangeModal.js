@@ -554,7 +554,6 @@ export default function ExchangeModal({
           <FloatingPanel
             marginLeft={15}
             overflow="visible"
-            paddingBottom={showOutputField ? 0 : 26}
             radius={24}
             testID={testID}
             width="92%"
@@ -566,7 +565,12 @@ export default function ExchangeModal({
             {/*  title={inputHeaderTitle}*/}
             {/*/>*/}
             {/*{showOutputField && <ExchangeNotch />}*/}
-            <Row justify="space-between" marginTop={16} paddingHorizontal={24}>
+            <Row
+              justify="space-between"
+              marginBottom={isWithdrawal ? 16 : 0}
+              marginTop={16}
+              paddingHorizontal={24}
+            >
               <PanelTitle>
                 {!(isDeposit || isWithdrawal) ? 'Send' : 'Amount'}
               </PanelTitle>
@@ -641,8 +645,19 @@ export default function ExchangeModal({
             <Fragment>
               <Centered
                 flexShrink={0}
+                paddingBottom={12}
                 paddingHorizontal={15}
-                paddingTop={42}
+                paddingTop={
+                  isWithdrawal ||
+                  !(
+                    isDeposit &&
+                    outputCurrency &&
+                    inputAmount > 0 &&
+                    outputAmountDisplay
+                  )
+                    ? 24
+                    : 1
+                }
                 width="100%"
               >
                 <ConfirmExchangeButton
