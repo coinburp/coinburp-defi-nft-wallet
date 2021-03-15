@@ -147,7 +147,10 @@ const AmountButton = ({ amount, backgroundColor, color, onPress }) => {
       <Wrapper disabled={android} onPress={handlePress}>
         <InnerBPA onPress={handlePress} reanimatedButton style={{ flex: 1 }}>
           <Row backgroundColor={backgroundColor} borderRadius={24} height={61}>
-            <AmountText color={color}>{nativeCurrencySymbol}{amount}</AmountText>
+            <AmountText color={color}>
+              {nativeCurrencySymbol}
+              {amount}
+            </AmountText>
           </Row>
         </InnerBPA>
       </Wrapper>
@@ -203,8 +206,8 @@ const AddFundsInterstitial = ({ network, offsetY = 0 }) => {
             <Title>Buy some ETH</Title>
             {ios ? (
               <Row align="center">
-                <Title>with </Title>
-                <Icon color={colors.black} name="applePay" />
+                <Title>with{'  '}</Title>
+                <Icon color={colors.black} name="applePay" size={32} />
               </Row>
             ) : null}
             <Row justify="space-between" marginVertical={30}>
@@ -227,22 +230,24 @@ const AddFundsInterstitial = ({ network, offsetY = 0 }) => {
                 onPress={handlePressAmount}
               />
             </Row>
-            <InterstitialButtonRow>
-              <InterstitialButton
-                onPress={handlePressAmount}
-                radiusAndroid={23}
-              >
-                <Text
-                  align="center"
-                  color={colors.blueGrey}
-                  lineHeight="loose"
-                  size={16}
-                  weight={900}
+            <Row justify="center" width={width}>
+              <InterstitialButtonRow>
+                <InterstitialButton
+                  onPress={handlePressAmount}
+                  radiusAndroid={23}
                 >
-                  Other amount
-                </Text>
-              </InterstitialButton>
-            </InterstitialButtonRow>
+                  <Text
+                    align="center"
+                    color={colors.blueGrey}
+                    lineHeight="loose"
+                    size={16}
+                    weight={900}
+                  >
+                    Other amount
+                  </Text>
+                </InterstitialButton>
+              </InterstitialButtonRow>
+            </Row>
             {!isSmallPhone && <InterstitialDivider />}
             <Subtitle isSmallPhone={isSmallPhone}>
               Or deposit ETH to this wallet

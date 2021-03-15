@@ -258,14 +258,6 @@ const SavingsListRow = ({
     );
   }
 
-  const shadows = useMemo(
-    () => [
-      [0, 10, 30, colors.shadow, 0.2],
-      [0, 5, 15, colors.shadow, isDarkMode ? 0 : 0.4],
-    ],
-    [isDarkMode, colors]
-  );
-
   return !underlying || !underlying.address ? null : (
     <ButtonPressAnimation
       onPress={onButtonPress}
@@ -341,7 +333,10 @@ const SavingsListRow = ({
               borderRadius={24}
               css={{ top: ios ? 3 : -21 }}
               height={52}
-              shadows={shadows}
+              shadows={[
+                [0, 10, 30, colors.shadow, 0.2],
+                [0, 5, 15, colors.shadow, isDarkMode ? 0 : 0.4],
+              ]}
               width={deviceWidth - 38 - 48}
             >
               <StakeButton>
