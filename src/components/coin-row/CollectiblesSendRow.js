@@ -115,6 +115,7 @@ const CollectiblesSendRow = React.memo(
             bottomRowRender={BottomRow}
             coinIconRender={UniqueTokenCoinIcon}
             containerStyles={selected ? selectedStyles : containerStyles}
+            contentStyles={{ marginTop: android ? 0 : 8 }}
             selected={selected}
             subtitle={subtitle}
             testID={testID + item.name}
