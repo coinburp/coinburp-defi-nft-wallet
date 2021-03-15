@@ -104,6 +104,7 @@ export default function BackupManualStep() {
       </Masthead>
       <Content isTallPhone={isTallPhone} paddingHorizontal={30}>
         <SecretDisplaySection
+          fullWidth
           onSecretLoaded={setSecretLoaded}
           onWalletTypeIdentified={setType}
         />

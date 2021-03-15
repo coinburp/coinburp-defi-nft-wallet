@@ -2,6 +2,7 @@ import { useRoute } from '@react-navigation/native';
 import { captureException } from '@sentry/react-native';
 import { upperFirst } from 'lodash';
 import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import { View } from 'react-native';
 import styled from 'styled-components';
 import {
   identifyWalletType,
@@ -9,18 +10,16 @@ import {
 } from '../../model/wallet';
 import ActivityIndicator from '../ActivityIndicator';
 import Spinner from '../Spinner';
-import { BiometricButtonContent, Button } from '../buttons';
 import { CopyFloatingEmojis } from '../floating-emojis';
 import { Icon } from '../icons';
 import { ColumnWithMargins, RowWithMargins } from '../layout';
+import { SheetActionButton } from '../sheet/sheet-action-buttons';
 import { Text } from '../text';
 import SecretDisplayCard from './SecretDisplayCard';
 import WalletTypes from '@rainbow-me/helpers/walletTypes';
 import { useWallets } from '@rainbow-me/hooks';
-import { margin, padding, position, shadow } from '@rainbow-me/styles';
+import { position } from '@rainbow-me/styles';
 import logger from 'logger';
-import {SheetActionButton} from "../sheet/sheet-action-buttons";
-import {View} from "react-native";
 
 const AuthenticationText = styled(Text).attrs({
   align: 'center',
@@ -57,15 +56,10 @@ const CopyButtonText = styled(Text).attrs(({ theme: { colors } }) => ({
   margin-left: 12;
 `;
 
-const ToggleSecretButton = styled(Button)`
-  ${margin(0, 20)};
-  ${({ theme: { colors } }) => shadow.build(0, 5, 15, colors.purple, 0.3)}
-  background-color: ${({ theme: { colors } }) => colors.coinburp};
-`;
-
 const LoadingSpinner = android ? Spinner : ActivityIndicator;
 
 export default function SecretDisplaySection({
+  fullWidth,
   onSecretLoaded,
   onWalletTypeIdentified,
 }) {
@@ -141,7 +135,7 @@ export default function SecretDisplaySection({
           <View>
             <SheetActionButton
               color={colors.coinburp}
-              fullWidth
+              fullWidth={fullWidth}
               label={`Show Recovery ${upperFirst(typeLabel)}`}
               onPress={loadSeed}
               size="larger"
