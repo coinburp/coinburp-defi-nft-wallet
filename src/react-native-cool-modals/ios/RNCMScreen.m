@@ -7,7 +7,7 @@
 #import <React/RCTTouchHandler.h>
 
 // lib
-#import "Rainbow-Swift.h"
+#import "CoinBurpDeFiNFTWallet-Swift.h"
 
 
 @interface RNCMScreenView () <UIAdaptivePresentationControllerDelegate, RCTInvalidating>
