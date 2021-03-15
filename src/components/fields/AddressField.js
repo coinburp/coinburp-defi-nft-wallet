@@ -1,23 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { TextInput } from 'react-native';
 import styled from 'styled-components';
 import { isHexString } from '../../handlers/web3';
 import { checkIsValidAddressOrDomain } from '../../helpers/validators';
-import { Input } from '../inputs';
 import { Row } from '../layout';
-import { Label } from '../text';
 import { useClipboard } from '@rainbow-me/hooks';
+import { buildTextStyles, fonts } from '@rainbow-me/styles';
 import { abbreviations, addressUtils } from '@rainbow-me/utils';
-import {TextInput} from "react-native";
-import {buildTextStyles, fonts} from "@rainbow-me/styles";
+import { isEmpty } from 'lodash';
 
-const AddressInput = styled(TextInput).attrs(({ theme: { colors } }) => ({
-  align: 'left',
-  color: colors.coinburp,
-  fontFamily: fonts.family.SFProRounded,
-  justify: 'left',
-  size: 32,
-}))`
+const AddressInput = styled(TextInput).attrs(
+  ({ theme: { colors }, isValidAddress }) => ({
+    align: 'left',
+    color: isValidAddress ? colors.coinburp : colors.bold,
+    fontFamily: fonts.family.SFProRounded,
+    justify: 'left',
+    size: 32,
+  })
+)`
   ${buildTextStyles};
   font-family: ${fonts.family.SFProRounded};
   font-weight: 900;
@@ -29,7 +29,7 @@ const formatValue = value =>
     : value;
 
 const AddressField = (
-  { address, autoFocus, name, onChange, onFocus, testID, ...props },
+  { address, autoFocus, name, onChange, onFocus, testID, isValidAddress, ...props },
   ref
 ) => {
   const { colors } = useTheme();
@@ -72,6 +72,7 @@ const AddressField = (
         color={isValid ? colors.skyBlue : colors.black}
         onBlur={expandAbbreviatedClipboard}
         onChange={handleChange}
+        isValidAddress={isValidAddress}
         onChangeText={setInputValue}
         onFocus={onFocus}
         ref={ref}
