@@ -7,9 +7,6 @@ const CheckmarkIcon = styled(Icon).attrs(({ theme: { colors } }) => ({
   color: colors.coinburp,
   name: 'checkmarkCircled',
 }))`
-  box-shadow: 0px 4px 6px
-    ${({ theme: { colors, isDarkMode } }) =>
-      colors.alpha(isDarkMode ? colors.shadow : colors.appleBlue, 0.4)};
   margin-bottom: 1px;
   position: absolute;
   right: 0;

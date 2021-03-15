@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C5A679425FF70BD00AB0A00 /* SF-Pro-Rounded-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C5A679325FF70BD00AB0A00 /* SF-Pro-Rounded-Black.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -80,6 +81,7 @@
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* RainbowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RainbowTests.m; sourceTree = "<group>"; };
+		0C5A679325FF70BD00AB0A00 /* SF-Pro-Rounded-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Rounded-Black.ttf"; path = "../src/assets/fonts/SF-Pro-Rounded-Black.ttf"; sourceTree = "<group>"; };
 		11CCA3399B351ABE3E5296FE /* Pods-Rainbow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rainbow.release.xcconfig"; path = "Target Support Files/Pods-Rainbow/Pods-Rainbow.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Rainbow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rainbow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Rainbow/AppDelegate.h; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 		DCAC1D8CC45E468FBB7E1395 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0C5A679325FF70BD00AB0A00 /* SF-Pro-Rounded-Black.ttf */,
 				668A9E253DAF444A90ECB997 /* SFMono-Medium.otf */,
 				95F2888C850F40C8A26E083B /* SFMono-Regular.otf */,
 				AA6228EB24272B200078BDAA /* SF-Pro-Rounded-Bold.otf */,
@@ -536,6 +539,7 @@
 				B7A3E82A4C4449F4A18EB5C2 /* SFMono-Regular.otf in Resources */,
 				C04D10F025AFC8C1003BEF7A /* Extras.json in Resources */,
 				AA6228EF24272F510078BDAA /* SF-Pro-Rounded-Bold.otf in Resources */,
+				0C5A679425FF70BD00AB0A00 /* SF-Pro-Rounded-Black.ttf in Resources */,
 				AA6228F024272F510078BDAA /* SF-Pro-Rounded-Heavy.otf in Resources */,
 				AA6228F124272F510078BDAA /* SF-Pro-Rounded-Medium.otf in Resources */,
 				AA6228F224272F510078BDAA /* SF-Pro-Rounded-Regular.otf in Resources */,

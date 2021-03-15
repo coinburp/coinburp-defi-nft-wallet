@@ -109,7 +109,7 @@ const APYGradientText = styled(GradientText).attrs({
   weight: 'bold',
 })`
   margin-left: ${ios ? 12 : 12};
-  margin-top: ${ios ? 0 : 24};
+  margin-top: ${ios ? 10 : 24};
 `;
 
 const Pill = styled(LinearGradient)`
