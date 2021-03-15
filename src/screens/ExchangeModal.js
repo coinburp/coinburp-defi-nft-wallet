@@ -515,7 +515,7 @@ export default function ExchangeModal({
         direction="column"
       >
         <SheetHandle color="white" marginTop={150} />
-        <SheetTitle color="white" size={32} style={{ marginTop: 16 }}>
+        <SheetTitle color="white" size={32} style={{ marginTop: ios ? 16 : 0 }}>
           {inputHeaderTitle === 'Send' ? 'Swap' : inputHeaderTitle}
         </SheetTitle>
         <AnimatedFloatingPanels
