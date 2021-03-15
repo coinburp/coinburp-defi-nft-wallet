@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import { Row } from '../layout';
 import ExchangeField from './ExchangeField';
 
-const paddingTop = android ? 15 : 32;
-
 const Container = styled(Row).attrs({ align: 'center' })`
   overflow: hidden;
-  padding-top: ${paddingTop};
+  padding-top: ${android ? 6 : 10};
+  padding-bottom: ${android ? 12 : 24};
   width: 100%;
 `;
 
