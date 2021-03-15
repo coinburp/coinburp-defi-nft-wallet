@@ -101,7 +101,7 @@ const ExchangeCoinRow = ({
           wide
         >
           {showBalance && (
-            <ColumnWithMargins align="end" margin={-10}>
+            <ColumnWithMargins align="end" margin={ios ? 0 : -10}>
               <BalanceText>{item?.native?.balance?.display || '–'}</BalanceText>
               <BottomRowText color={colors.blueGrey}>
                 {item?.balance?.display || ''}
