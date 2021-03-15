@@ -313,7 +313,7 @@ const SavingsListRow = ({
           </Row>
           <Column align="center" css={padding(24)} justify="space-between">
             <SavingsIcon />
-            <Column css={padding(13, 24, 24)}>
+            <Column css={padding(ios ? 16 : 13, 24, 24)}>
               <Row>
                 <Text align="center" color="#fff" size={20} weight={900}>
                   Stake{' '}
@@ -328,7 +328,7 @@ const SavingsListRow = ({
                 <Text
                   align="center"
                   color="#fff"
-                  css={{ top: ios ? -6 : -16 }}
+                  css={{ top: ios ? 0 : -16 }}
                   size={20}
                   weight={900}
                 >
@@ -339,7 +339,7 @@ const SavingsListRow = ({
             <ShadowStack
               backgroundColor={colors.white}
               borderRadius={24}
-              css={{ top: ios ? -18 : -21 }}
+              css={{ top: ios ? 3 : -21 }}
               height={52}
               shadows={shadows}
               width={deviceWidth - 38 - 48}
