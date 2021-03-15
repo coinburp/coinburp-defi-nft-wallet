@@ -11,7 +11,7 @@ import { position } from '@rainbow-me/styles';
 export const FabWrapperBottomPosition = 12 + safeAreaInsetValues.bottom;
 export const FabWrapperTopPadding = 48;
 
-const FabWrapperRow = styled(RowWithMargins).attrs({ margin: 0 })`
+const FabWrapperRow = styled(RowWithMargins).attrs({ margin: 24 })`
   bottom: ${({ isEditMode }) => (isEditMode ? -240 : 0)};
   justify-content: space-evenly;
   padding-bottom: ${FabWrapperBottomPosition};
@@ -41,7 +41,7 @@ export default function FabWrapper({
             colors={[colors.alpha(colors.background, 0), colors.background]}
             end={{ x: 0.5, y: ios ? 0.2 : 0.3 }}
             start={{ x: 0.5, y: 0 }}
-            style={position.coverAsObject}
+            style={[position.coverAsObject, { width: '100%' }]}
           />
           {fabs.map((fab, id) =>
             createElement(fab, {

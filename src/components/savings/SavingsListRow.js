@@ -54,7 +54,7 @@ const SavingsListRowShadowStack = styled(ShadowStack).attrs(
   ({ deviceWidth, theme: { colors } }) => ({
     backgroundColor: colors.white,
     borderRadius: 24,
-    height: 357,
+    height: 354,
     shadows: [
       [0, 10, 30, colors.shadow, 0.1],
       [0, 5, 15, colors.shadow, 0.04],
@@ -103,12 +103,13 @@ const APYText = styled(Text).attrs({
 const APYGradientText = styled(GradientText).attrs({
   angle: 277,
   colors: ['#ff2700', '#ffdb00'],
-  size: 16,
+  lineHeight: 14,
+  size: 14,
   steps: [0.3, 1],
   weight: 'bold',
 })`
-  margin-left: ${ios ? 8 : 10};
-  margin-top: ${ios ? 0 : 12}
+  margin-left: ${ios ? 12 : 12};
+  margin-top: ${ios ? 10 : 24};
 `;
 
 const Pill = styled(LinearGradient)`
@@ -229,15 +230,7 @@ const SavingsListRow = ({
 
   const displayValue = formatSavingsAmount(value);
 
-  const { isDarkMode, colors } = useTheme();
-
-  const shadows = useMemo(
-    () => [
-      [0, 10, 30, colors.shadow, 0.2],
-      [0, 5, 15, colors.shadow, isDarkMode ? 0 : 0.4],
-    ],
-    [isDarkMode, colors]
-  );
+  const { colors, isDarkMode } = useTheme();
 
   if (underlying.symbol && supplyBalanceUnderlying && !isNaN(displayValue)) {
     return (
@@ -249,7 +242,7 @@ const SavingsListRow = ({
         <Centered direction="column" marginBottom={15}>
           <SavingsListRowItem deviceWidth={deviceWidth}>
             <CoinIcon address={underlying.address} symbol={underlying.symbol} />
-            <Column width="100%">
+            <Column height={40} justify="space-around" width="100%">
               <SavingsListRowAnimatedNumber
                 initialValue={initialValue}
                 interval={ANIMATE_NUMBER_INTERVAL}
@@ -264,6 +257,14 @@ const SavingsListRow = ({
       </ButtonPressAnimation>
     );
   }
+
+  const shadows = useMemo(
+    () => [
+      [0, 10, 30, colors.shadow, 0.2],
+      [0, 5, 15, colors.shadow, isDarkMode ? 0 : 0.4],
+    ],
+    [isDarkMode, colors]
+  );
 
   return !underlying || !underlying.address ? null : (
     <ButtonPressAnimation
@@ -286,11 +287,17 @@ const SavingsListRow = ({
           >
             <Row align="center">
               <DAIIcon />
-              <Column css={padding(0, 0, 0, 15)} justify="space-between">
+              <Column css={padding(0, 0, 0, 15)} height={40} justify="center">
                 <Text color="#fff" lineHeight="normal" size={20} weight={900}>
                   Dai
                 </Text>
-                <Text color="#fff" lineHeight="normal" size={14} weight="bold">
+                <Text
+                  color="#fff"
+                  css={{ marginTop: 6 }}
+                  lineHeight={14}
+                  size={14}
+                  weight="bold"
+                >
                   DAI
                 </Text>
               </Column>
@@ -306,7 +313,7 @@ const SavingsListRow = ({
           </Row>
           <Column align="center" css={padding(24)} justify="space-between">
             <SavingsIcon />
-            <Column css={padding(16, 48, 24, 48)}>
+            <Column css={padding(ios ? 16 : 13, 24, 24)}>
               <Row>
                 <Text align="center" color="#fff" size={20} weight={900}>
                   Stake{' '}
@@ -321,7 +328,7 @@ const SavingsListRow = ({
                 <Text
                   align="center"
                   color="#fff"
-                  css={{ top: ios ? -6 : -10 }}
+                  css={{ top: ios ? 0 : -16 }}
                   size={20}
                   weight={900}
                 >
@@ -330,11 +337,12 @@ const SavingsListRow = ({
               </Row>
             </Column>
             <ShadowStack
-              backgroundColor={colors.transparent}
-              css={{ top: ios ? -18 : -21 }}
-              height={100}
+              backgroundColor={colors.white}
+              borderRadius={24}
+              css={{ top: ios ? 3 : -21 }}
+              height={52}
               shadows={shadows}
-              width={295}
+              width={deviceWidth - 38 - 48}
             >
               <StakeButton>
                 <ButtonText>Stake Dai</ButtonText>

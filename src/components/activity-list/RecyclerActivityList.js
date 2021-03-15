@@ -155,7 +155,7 @@ export default class RecyclerActivityList extends PureComponent {
     this.rlv = ref;
   };
 
-  rowRenderer = (type, data) => {
+  rowRenderer = (type, data, index) => {
     if (type === ViewTypes.COMPONENT_HEADER) {
       const header = (
         <ProfileMasthead
@@ -180,7 +180,15 @@ export default class RecyclerActivityList extends PureComponent {
     if (!data.hash) return <RequestCoinRow item={data} />;
     if (!data.symbol && data.dappName)
       return <ContractInteractionCoinRow item={data} />;
-    return <TransactionCoinRow item={data} />;
+    return (
+      <TransactionCoinRow
+        isFirst={
+          this.state.dataProvider._data[index - 1] &&
+          !this.state.dataProvider._data[index - 1].type
+        }
+        item={data}
+      />
+    );
   };
 
   render = () => (

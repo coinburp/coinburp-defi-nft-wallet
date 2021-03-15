@@ -16,7 +16,7 @@ const NativeFieldRow = styled(Row).attrs({
   justify: 'space-between',
 })`
   height: 57px;
-  padding-left: 19;
+  padding-left: 24px;
 `;
 
 export default function ExchangeInputField({

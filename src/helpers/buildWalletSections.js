@@ -248,7 +248,7 @@ const coinEditContextMenu = (
             },
           }
         : undefined,
-    title: lang.t('account.tab_balances'),
+    title: 'Funds',
     totalItems: isLoadingAssets ? 1 : allAssetsCount,
     totalValue: totalValue,
   };
@@ -279,8 +279,6 @@ const withBalanceSection = (
     true
   );
   let balanceSectionData = [...assets];
-
-  console.log(assets[4]);
 
   // const totalBalanceWithSavingsValue = add(
   //   totalBalancesValue,

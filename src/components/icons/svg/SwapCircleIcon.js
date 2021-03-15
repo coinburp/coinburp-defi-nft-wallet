@@ -2,8 +2,8 @@ import React from 'react';
 import { G, Path } from 'react-native-svg';
 import Svg from '../Svg';
 
-const SwapCircleIcon = ({ color, colors }) => (
-  <Svg height="16" viewBox="0 0 16 16" width="16">
+const SwapCircleIcon = ({ color, colors, ...props }) => (
+  <Svg height="16" viewBox="0 0 16 16" width="16" {...props}>
     <G fill="none" fillRule="evenodd">
       <G fill={color || colors.neonGreen}>
         <Path

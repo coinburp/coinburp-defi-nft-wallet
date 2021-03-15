@@ -21,8 +21,8 @@ const StatusProps = {
     marginRight: 4,
   },
   [TransactionStatusTypes.deposited]: {
+    marginRight: 2,
     name: 'depositIconSmall',
-    style: { fontSize: 11, left: -1.3, marginBottom: 1.5, marginRight: 1 },
   },
   [TransactionStatusTypes.depositing]: {
     marginRight: 4,
@@ -49,7 +49,7 @@ const StatusProps = {
     marginRight: 4,
   },
   [TransactionStatusTypes.received]: {
-    marginRight: 6,
+    marginRight: 2,
     name: 'depositIconSmall',
   },
   [TransactionStatusTypes.self]: {
@@ -60,11 +60,11 @@ const StatusProps = {
     marginRight: 4,
   },
   [TransactionStatusTypes.sent]: {
-    marginRight: 6,
+    marginRight: 2,
     name: 'withdrawIconSmall',
   },
   [TransactionStatusTypes.swapped]: {
-    marginRight: 6,
+    marginRight: 2,
     name: 'swapCircle',
   },
   [TransactionStatusTypes.swapping]: {
@@ -74,8 +74,8 @@ const StatusProps = {
     marginRight: 4,
   },
   [TransactionStatusTypes.withdrew]: {
+    marginRight: 2,
     name: 'withdrawIconSmall',
-    style: { fontSize: 11, left: -1.3, marginBottom: 1.5, marginRight: 1 },
   },
 };
 

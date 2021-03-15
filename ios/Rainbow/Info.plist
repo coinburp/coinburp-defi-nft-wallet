@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>CoinBurp DEFI</string>
+	<string>CoinBurp DeFi</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -100,6 +100,7 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SF-Pro-Rounded-Black.ttf</string>
 		<string>SFMono-Medium.otf</string>
 		<string>SFMono-Regular.otf</string>
 		<string>SF-Pro-Rounded-Bold.otf</string>

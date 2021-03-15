@@ -77,7 +77,7 @@ export default function ProfileScreen({ navigation }) {
 
   return (
     <ProfileScreenPage testID="profile-screen">
-      <Header align="center" justify="space-between">
+      <Header align="center" justify="space-between" style={{ marginTop: -5 }}>
         <HeaderButton
           onPress={onPressSettings}
           opacityTouchable={false}
@@ -111,7 +111,6 @@ export default function ProfileScreen({ navigation }) {
         isLoading={isLoading}
         navigation={navigation}
         network={network}
-        recyclerListView={ios}
         sections={sections}
         {...accountTransactions}
       />

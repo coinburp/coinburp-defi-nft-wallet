@@ -8,12 +8,12 @@ import { fonts, fontWithWidth } from '@rainbow-me/styles';
 const TextChunk = styled(TextInput).attrs({
   editable: false,
 })`
-  ${fontWithWidth(fonts.weight.heavy)};
+  ${fontWithWidth(fonts.weight.black)};
   color: ${({ theme: { colors } }) => colors.dark};
-  font-variant: tabular-nums;
-  font-size: ${parseFloat(fonts.size.large)};
+  font-size: ${parseFloat(fonts.size.larger)};
   text-align: left;
-  height: 46;
+  height: 52;
+  font-weight: 900;
 `;
 
 const Row = styled.View`

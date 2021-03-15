@@ -1,18 +1,13 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { magicMemo } from '../../utils';
 import { ButtonPressAnimation } from '../animations';
 import { InnerBorder } from '../layout';
 import UniqueTokenImage from './UniqueTokenImage';
-import { useShowcaseTokens } from '@rainbow-me/hooks';
-import { shadow as shadowUtil } from '@rainbow-me/styles';
 
 const UniqueTokenCardBorderRadius = 20;
-const UniqueTokenCardShadowFactory = colors => [0, 2, 6, colors.shadow, 0.08];
 
-const Container = styled.View`
-  ${({ shadow }) => shadowUtil.build(...shadow)};
-`;
+const Container = styled.View``;
 
 const Content = styled.View`
   border-radius: ${UniqueTokenCardBorderRadius};
@@ -31,7 +26,6 @@ const UniqueTokenCard = ({
   onPress,
   resizeMode,
   scaleTo = 0.96,
-  shadow,
   style,
   width,
   ...props
@@ -44,14 +38,6 @@ const UniqueTokenCard = ({
 
   const { colors } = useTheme();
 
-  const { showcaseTokens } = useShowcaseTokens();
-
-  // const isShowcase = !!showcaseTokens.find(i => item.uniqueId === i);
-
-  const defaultShadow = useMemo(() => UniqueTokenCardShadowFactory(colors), [
-    colors,
-  ]);
-
   return (
     <Container
       as={ButtonPressAnimation}
@@ -59,13 +45,10 @@ const UniqueTokenCard = ({
       enableHapticFeedback={enableHapticFeedback}
       onPress={handlePress}
       scaleTo={scaleTo}
-      shadow={shadow || defaultShadow}
     >
       <Content {...props} height={height} style={style} width={width}>
         <UniqueTokenImage
-          backgroundColor={
-            background || isShowcase ? colors.transparent : colors.white
-          }
+          backgroundColor={background || colors.white}
           imageUrl={image_preview_url}
           item={item}
           resizeMode={resizeMode}

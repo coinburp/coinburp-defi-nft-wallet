@@ -5,10 +5,11 @@ import { ListHeader } from '../list';
 import { Text } from '../text';
 
 const ActivityListHeaderTitle = styled(Text).attrs({
-  size: '32',
+  lineHeight: 32,
+  size: 32,
   weight: 'bold',
 })`
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 `;
 
 const ActivityListHeader = props => (

@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">CoinBurp</string>
+    <string name="app_name">CoinBurp DeFi</string>
     <string moduleConfig="true" name="CodePushDeploymentKey">DeploymentKey</string>
 </resources>

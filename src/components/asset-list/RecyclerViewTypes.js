@@ -17,7 +17,7 @@ import { TokenFamilyHeaderHeight } from '../token-family';
 import { UniqueTokenRow } from '../unique-token';
 import AssetListHeader, { AssetListHeaderHeight } from './AssetListHeader';
 
-export const firstCoinRowMarginTop = 6;
+export const firstCoinRowMarginTop = 12;
 const lastCoinRowAdditionalHeight = 1;
 
 const openSmallBalancesAdditionalHeight = 15;

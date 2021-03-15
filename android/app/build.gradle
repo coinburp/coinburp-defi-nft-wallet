@@ -176,7 +176,7 @@ android {
         applicationId "com.coinburp.wallet"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 25
+        versionCode 26
         versionName "1.0.1"
         missingDimensionStrategy 'react-native-camera', 'general'
         renderscriptTargetApi 23
@@ -289,6 +289,10 @@ dependencies {
         releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
         implementation jscFlavor
+    }
+
+    compile ('com.google.android.gms:play-services-drive:10.2.0') {
+        force = true;
     }
 
     // DETOX

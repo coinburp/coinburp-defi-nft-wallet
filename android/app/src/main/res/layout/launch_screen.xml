@@ -7,8 +7,8 @@
     android:gravity="center"
 >
     <ImageView
-        android:layout_width="108dp"
-        android:layout_height="108dp"
+        android:layout_width="96dp"
+        android:layout_height="94dp"
         android:scaleType="fitXY"
         android:src="@drawable/launch_screen"
         android:background="@color/primary_dark"

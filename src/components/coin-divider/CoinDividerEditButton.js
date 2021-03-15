@@ -12,18 +12,8 @@ const ButtonContent = styled(Row).attrs({
   justify: 'center',
 })`
   ${padding(ios ? 5 : 0, 10, 6)};
-  ${({ isActive, theme: { colors, isDarkMode } }) =>
-    isActive
-      ? shadow.build(
-          0,
-          4,
-          12,
-          isDarkMode ? colors.shadow : colors.coinburp,
-          0.4
-        )
-      : ''};
   background-color: ${({ isActive, theme: { colors } }) =>
-    isActive ? colors.coinburp : colors.alpha(colors.blueGreyDark, 0.06)};
+    isActive ? colors.coinburp : colors.alpha(colors.blueGrey, 0.16)};
   border-radius: 15;
   height: 30;
 `;
@@ -61,12 +51,12 @@ const CoinDividerEditButton = ({
             color={
               isActive
                 ? colors.whiteLabel
-                : colors.alpha(colors.blueGreyDark, 0.6)
+                : colors.blueGrey
             }
             letterSpacing="roundedTight"
             opacity={textOpacityAlwaysOn || isActive ? 1 : 0.3333333333}
             size="lmedium"
-            weight="bold"
+            weight={900}
           >
             {text}
           </Text>

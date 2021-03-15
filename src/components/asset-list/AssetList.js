@@ -29,7 +29,7 @@ const AssetList = ({
       hideHeader={hideHeader}
       isWalletEthZero={isWalletEthZero}
       network={network}
-      title={lang.t('account.tab_balances')}
+      title="Funds"
     />
   ) : (
     <RecyclerAssetList

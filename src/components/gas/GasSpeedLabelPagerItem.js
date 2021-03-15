@@ -40,7 +40,7 @@ const TransitionContainer = styled(Transitioning.View)`
 const GasSpeedLabel = styled(Text).attrs({
   align: 'right',
   size: 16,
-  weight: 'bold',
+  weight: 900,
 })``;
 
 const distance = 20;

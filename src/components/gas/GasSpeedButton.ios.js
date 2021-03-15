@@ -200,7 +200,7 @@ const GasSpeedButton = ({
         }
         letterSpacing="roundedTight"
         size="lmedium"
-        weight="bold"
+        weight={900}
       >
         {isEmpty(gasPricesAvailable) ||
         isEmpty(txFees) ||
