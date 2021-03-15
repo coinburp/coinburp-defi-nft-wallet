@@ -41,9 +41,9 @@ export default function ChartContextButton({ asset, color }) {
 
   const options = useMemo(
     () => [
-      `📌️ ${currentAction === EditOptions.unpin ? 'Unpin' : 'Pin'}`,
-      `🙈️ ${currentAction === EditOptions.unhide ? 'Unhide' : 'Hide'}`,
-      ...(asset?.address === 'eth' ? [] : ['🔍 View on Etherscan']),
+      `${currentAction === EditOptions.unpin ? 'Unpin' : 'Pin'}`,
+      `${currentAction === EditOptions.unhide ? 'Unhide' : 'Hide'}`,
+      ...(asset?.address === 'eth' ? [] : ['View on Etherscan']),
       ...(ios ? [lang.t('wallet.action.cancel')] : []),
     ],
     [asset?.address, currentAction]
