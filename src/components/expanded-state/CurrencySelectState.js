@@ -146,7 +146,7 @@ const CurrencySelectState = () => {
           <BackButton
             onPress={() => {
               goBack();
-              android && Keyboard.dismiss();
+              return android && Keyboard.dismiss();
             }}
             size={24}
           />
