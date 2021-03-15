@@ -24,6 +24,7 @@ const DepositAmountInput = styled(TextInput).attrs(({ theme: { colors } }) => ({
   fontFamily: fonts.family.SFProRounded,
   justify: 'center',
   size: 48,
+  top: -5,
 }))`
   ${buildTextStyles};
   font-family: ${fonts.family.SFProRounded};
@@ -55,7 +56,7 @@ const AddCashForm = ({
   const { params } = useRoute();
   const [paymentSheetVisible, setPaymentSheetVisible] = useState(false);
 
-  const initialCurrencyIndex = isWalletEthZero ? 1 : 0;
+  const initialCurrencyIndex = 0;
   const [currency, setCurrency] = useState(currencies[initialCurrencyIndex]);
   const [value, setValue] = useState(
     params?.amount ? params?.amount?.toString() : ''
