@@ -17,14 +17,24 @@ const Container = styled(Row).attrs({
   grow: 0,
   shrink: 1,
 })`
-  ${({ thin }) =>
-    padding(thin ? 0 : CoinRowPaddingTop, 24, thin ? 0 : CoinRowPaddingBottom)};
-  ${({ thin, spacingTop, spacingBottom }) =>
-    margin(
+  ${({ thin, wide }) =>
+    padding(
+      thin ? 0 : CoinRowPaddingTop,
+      wide ? 10 : 24,
+      thin ? 0 : CoinRowPaddingBottom
+    )};
+  ${({ thin, superThin, spacingTop, spacingBottom }) => {
+    const thinSize = superThin ? 10 : 16;
+    return margin(
       spacingTop ? 12 : 0,
       16,
-      thin ? 16 : spacingBottom ? CoinRowMarginBottom * 2 : CoinRowMarginBottom
-    )};
+      thin
+        ? thinSize
+        : spacingBottom
+        ? CoinRowMarginBottom * 2
+        : CoinRowMarginBottom
+    );
+  }};
   width: ${({ width }) => width - 32};
 `;
 
@@ -49,11 +59,13 @@ export default function CoinRow({
   name,
   spacingBottom,
   spacingTop,
+  superThin,
   symbol,
   testID,
   thin,
   topRowRender,
   tokens,
+  wide,
   ...props
 }) {
   const accountSettings = useAccountSettings();
@@ -67,7 +79,9 @@ export default function CoinRow({
       css={containerStyles}
       spacingBottom={spacingBottom}
       spacingTop={spacingTop}
+      superThin={superThin}
       thin={thin}
+      wide={wide}
       width={editing ? width - 42 : width}
     >
       {isPool ? (

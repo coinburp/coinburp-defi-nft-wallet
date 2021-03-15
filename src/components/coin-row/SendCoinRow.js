@@ -31,7 +31,7 @@ const BottomRow = ({ balance, native, nativeCurrencySymbol }) => {
   return (
     <Text
       color={colors.blueGrey}
-      css={{ top: ios ? 0 : -12 }}
+      css={{ top: ios ? -3 : -12 }}
       size={14}
       weight="bold"
     >
@@ -52,6 +52,7 @@ const SendCoinRow = magicMemo(
         {...props}
         bottomRowRender={BottomRow}
         containerStyles={selected ? containerSelectedStyles : containerStyles}
+        contentStyles={{ marginTop: android ? 0 : 9 }}
         isHidden={false}
         selected={selected}
         testID={testID}

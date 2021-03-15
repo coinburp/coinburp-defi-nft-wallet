@@ -57,6 +57,7 @@ export default function SendSavingsCoinRow({
         {...props}
         bottomRowRender={BottomRow}
         containerStyles={selected ? containerSelectedStyles : containerStyles}
+        contentStyles={{ marginTop: android ? 0 : 9 }}
         onPress={onPress}
         testID={testID}
         topRowRender={TopRow}

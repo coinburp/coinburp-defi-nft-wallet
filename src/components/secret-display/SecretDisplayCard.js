@@ -71,7 +71,7 @@ export default function SecretDisplayCard({ seed, type }) {
   return (
     <Centered>
       <Content>
-        <CopyTooltip textToCopy={seed} tooltipText="Copy to clipboard">
+        <CopyTooltip textToCopy={seed} tooltipText="Copy">
           {seed && type === WalletTypes.mnemonic && (
             <SeedWordGrid seed={seed} />
           )}
