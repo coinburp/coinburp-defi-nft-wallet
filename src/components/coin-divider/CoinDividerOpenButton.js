@@ -19,7 +19,6 @@ import {ImgixImage} from "@rainbow-me/images";
 const closedWidth = 62;
 
 const CaretContainer = styled.View`
-  opacity: 0.6;
   padding-bottom: 1;
 `;
 
