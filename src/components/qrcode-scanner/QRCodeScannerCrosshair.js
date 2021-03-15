@@ -8,6 +8,7 @@ import { Text } from '../text';
 import { useDimensions } from '@rainbow-me/hooks';
 import { position, fonts } from '@rainbow-me/styles';
 import { ImgixImage } from '@rainbow-me/images';
+import findACodeToScan from '../../assets/findACodeToScan.png';
 
 const CrossHairAspectRatio = 259 / 375;
 
@@ -33,18 +34,18 @@ export default function QRCodeScannerCrosshair() {
       <Crosshair color={colors.whiteLabel} />
       
       <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
-        <Text color="whiteLabel" lineHeight="none" size="large" weight="bold"
+        <ImgixImage
+          source={findACodeToScan}
           style={{
+            width: 200,
+            height: 40,
             textShadowColor: 'rgba(0, 0, 0, 0.75)',
             textShadowOffset: {width: -1, height: 1},
             textShadowRadius: 10,
             fontFamily: fonts.family.SFProRounded,
             fontWeight: '900',
           }}
-          weight='900'
-        >
-          Find a code to scan
-        </Text>
+        />
       </View>
     </Container>
   );
