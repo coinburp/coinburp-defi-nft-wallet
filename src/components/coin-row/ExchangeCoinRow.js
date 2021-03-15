@@ -47,7 +47,7 @@ const BottomRow = ({ showBalance, showFavoriteButton, symbol }) => {
 };
 
 const TopRow = ({ name, showBalance, showFavoriteButton }) => (
-  <Centered height={showBalance || showFavoriteButton ? CoinIconSize : null}>
+  <Centered height={showBalance || showFavoriteButton ? CoinIconSize + 8 : null}>
     <CoinName>{name}</CoinName>
   </Centered>
 );
@@ -94,12 +94,14 @@ const ExchangeCoinRow = ({
           )}
           showBalance={showBalance}
           showFavoriteButton={showFavoriteButton}
+          superThin={showBalance}
           testID="exchange-coin-row"
           thin
           topRowRender={TopRow}
+          wide
         >
           {showBalance && (
-            <ColumnWithMargins align="end" margin={0}>
+            <ColumnWithMargins align="end" margin={-10}>
               <BalanceText>{item?.native?.balance?.display || '–'}</BalanceText>
               <BottomRowText color={colors.blueGrey}>
                 {item?.balance?.display || ''}

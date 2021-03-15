@@ -4,6 +4,7 @@ import RadialGradient from 'react-native-radial-gradient';
 import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { CoinIconSize } from '../coin-icon';
+import { Icon } from '../icons';
 import { Centered } from '../layout';
 import { Text } from '../text';
 import { padding } from '@rainbow-me/styles';
@@ -22,45 +23,22 @@ const FavoriteButton = styled(Centered)`
   width: 68px;
 `;
 
-const Circle = styled(RadialGradient).attrs(
-  ({ isFavorited, theme: { colors, isDarkMode } }) => ({
-    center: [0, 15],
-    colors: isFavorited
-      ? [
-          colors.alpha('#FFB200', isDarkMode ? 0.15 : 0),
-          colors.alpha('#FFB200', isDarkMode ? 0.05 : 0.2),
-        ]
-      : colors.gradients.favoriteCircle,
-  })
-)`
-  border-radius: 15px;
-  height: 30px;
-  overflow: hidden;
-  width: 30px;
-`;
-
-const StarIcon = styled(Text).attrs(({ isFavorited, theme: { colors } }) => ({
+const StarIcon = styled(Icon).attrs(({ isFavorited, theme: { colors } }) => ({
   align: 'center',
-  color: isFavorited
-    ? colors.yellowFavorite
-    : colors.alpha(colors.blueGreyDark, 0.2),
-  letterSpacing: 'zero',
-  size: 'smaller',
-  weight: 'heavy',
+  color: isFavorited ? colors.gold : colors.blueGrey,
+  name: 'star',
+  size: 24,
 }))`
   height: 100%;
   line-height: 28px;
   width: 100%;
+  opacity: ${({ isFavorited }) => (isFavorited ? 1 : 0.68)};
 `;
 
 const CoinRowFavoriteButton = ({ isFavorited, onPress }) => {
-  const { isDarkMode: darkMode } = useTheme();
-
   return (
     <FavoriteButton as={BaseButton} onPress={onPress}>
-      <Circle darkMode={darkMode} isFavorited={isFavorited}>
-        <StarIcon isFavorited={isFavorited}>􀋃</StarIcon>
-      </Circle>
+      <StarIcon isFavorited={isFavorited} />
     </FavoriteButton>
   );
 };

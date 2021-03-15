@@ -26,12 +26,10 @@ const HeaderContainer = styled(Centered)`
 
 const Title = styled(TruncatedText).attrs({
   align: 'center',
-  lineHeight: 'loose',
-  size: 24,
+  size: 20,
   weight: 900,
 })`
   ${padding(1, 0, 0)};
-  height: 21px;
 `;
 
 export default function CurrencySelectModalHeader({ testID, ...props }) {
@@ -61,12 +59,12 @@ export default function CurrencySelectModalHeader({ testID, ...props }) {
           direction="left"
           height={CurrencySelectModalHeaderHeight}
           onPress={handlePressBack}
+          size={24}
           testID={testID}
-          textChevron={android}
           throttle
         />
       </BackButtonWrapper>
-      <Title weight={900}>{title}</Title>
+      <Title>{title}</Title>
     </HeaderContainer>
   );
 }
