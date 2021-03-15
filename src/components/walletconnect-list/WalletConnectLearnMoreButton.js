@@ -13,7 +13,7 @@ const WalletConnectLearnMoreButton = () => {
 
   const { colors } = useTheme();
   return (
-    <Row align="start" style={{top: -20}}>
+    <Row align="start" style={{top: ios ? -20 : 8}}>
       <ButtonPressAnimation
         activeOpacity={0.5}
         onPress={openWalletConnectWebsite}
@@ -24,7 +24,7 @@ const WalletConnectLearnMoreButton = () => {
             color="#00dc68"
             css={padding(0, 0)}
             size="lmedium"
-            weight="bold"
+            weight={900}
           >
             What?
           </Text>
