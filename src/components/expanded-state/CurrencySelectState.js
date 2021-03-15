@@ -4,18 +4,18 @@ import React, { useState } from 'react';
 import { Keyboard, View } from 'react-native';
 import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
+import colors from '../../context/currentColors';
 import { useAccountAssets, useDimensions } from '../../hooks';
 import { useNavigation } from '../../navigation/Navigation';
 import { magicMemo } from '../../utils';
 import { ButtonPressAnimation } from '../animations';
+import { BackButton } from '../header';
 import { Icon } from '../icons';
 import { Centered, Row } from '../layout';
 import { SendAssetList } from '../send';
 import { SheetTitle } from '../sheet';
 import { ProfileModal } from './profile';
-import {fonts, padding} from '@rainbow-me/styles';
-import {BackButton} from "../header";
-import colors from "../../context/currentColors";
+import { fonts, padding } from '@rainbow-me/styles';
 
 const ArrowSmall = styled(Icon).attrs({
   direction: 'left',
@@ -143,7 +143,13 @@ const CurrencySelectState = () => {
     >
       <Centered css={padding(16, 5, 0, 5)} direction="column">
         <Row align="center" justify="space-between" width="100%">
-          <BackButton size={24} />
+          <BackButton
+            onPress={() => {
+              goBack();
+              android && Keyboard.dismiss();
+            }}
+            size={24}
+          />
           <SheetTitle
             color={colors.dark}
             css={{ left: -12 }}
