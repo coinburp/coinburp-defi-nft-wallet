@@ -125,7 +125,7 @@ export default function SecretDisplaySection({
               <CopyFloatingEmojis textToCopy={seed}>
                 <CopyButtonRow>
                   <CopyButtonIcon />
-                  <CopyButtonText>Copy to clipboard</CopyButtonText>
+                  <CopyButtonText>Copy</CopyButtonText>
                 </CopyButtonRow>
               </CopyFloatingEmojis>
             </Fragment>
