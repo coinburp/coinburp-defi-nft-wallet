@@ -254,9 +254,9 @@ export default function ProfileMasthead({
   return (
     <Column
       align="center"
-      height={addCashAvailable ? 335 : 250}
+      height={addCashAvailable ? 335 : 314}
       marginBottom={24}
-      marginTop={64}
+      marginTop={96}
     >
       {/* [AvatarCircle -> ImageAvatar -> ImgixImage], so no need to sign accountImage here. */}
       <AvatarCircle

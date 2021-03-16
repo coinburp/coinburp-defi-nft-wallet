@@ -10,7 +10,7 @@ const ChartHeaderSubtitle = styled(TruncatedText).attrs(
   }) => ({
     color,
     letterSpacing,
-    size: 'larger',
+    size: 'lmedium',
     weight,
   })
 )`

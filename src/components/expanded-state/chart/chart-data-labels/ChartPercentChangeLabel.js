@@ -14,9 +14,9 @@ import { fonts, fontWithWidth } from '@rainbow-me/styles';
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 const PercentLabel = styled(AnimatedTextInput)`
-  ${fontWithWidth(fonts.weight.bold)};
+  ${fontWithWidth(fonts.weight.heavy)};
   background-color: ${({ theme: { colors } }) => colors.transparent};
-  font-size: ${fonts.size.big};
+  font-size: ${fonts.size.larger};
   font-variant: tabular-nums;
   letter-spacing: ${fonts.letterSpacing.roundedTightest};
   text-align: right;
@@ -43,8 +43,7 @@ export default function ChartPercentChangeLabel() {
             return '';
           }
           return (
-            (android ? '' : value > 0 ? '↑' : value < 0 ? '↓' : '') +
-            ' ' +
+            (android ? '' : value > 0 ? '+' : value < 0 ? '-' : '') +
             Math.abs(value).toFixed(2) +
             '%'
           );
@@ -66,8 +65,7 @@ export default function ChartPercentChangeLabel() {
                     100 -
                   100;
                 return (
-                  (android ? '' : value > 0 ? '↑' : value < 0 ? '↓' : '') +
-                  ' ' +
+                  (android ? '' : value > 0 ? '+' : value < 0 ? '-' : '') +
                   Math.abs(value).toFixed(2) +
                   '%'
                 );

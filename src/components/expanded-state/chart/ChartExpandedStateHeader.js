@@ -4,7 +4,7 @@ import Animated, { useSharedValue } from 'react-native-reanimated';
 import styled from 'styled-components';
 import { useCallbackOne } from 'use-memo-one';
 import { ButtonPressAnimation } from '../../animations';
-import { CoinIconGroup } from '../../coin-icon';
+import CoinIcon from '../../coin-icon/CoinIcon';
 import { Icon } from '../../icons';
 import { Column, ColumnWithMargins, Row, RowWithMargins } from '../../layout';
 import ChartContextButton from './ChartContextButton';
@@ -15,7 +15,10 @@ import {
   ChartPriceLabel,
 } from './chart-data-labels';
 import { convertAmountToNativeDisplay } from '@rainbow-me/helpers/utilities';
-import {useAccountSettings, useBooleanState, useDimensions} from '@rainbow-me/hooks';
+import {
+  useAccountSettings,
+  useBooleanState,
+} from '@rainbow-me/hooks';
 import { useNavigation } from '@rainbow-me/navigation';
 import { padding } from '@rainbow-me/styles';
 
@@ -72,6 +75,7 @@ export default function ChartExpandedStateHeader({
   const tokens = useMemo(() => {
     return isPool ? asset.tokens : [asset];
   }, [asset, isPool]);
+  const token = tokens[0];
   const { nativeCurrency } = useAccountSettings();
   const tabularNums = useTabularNumsWhileScrubbing(isScrubbing);
 
@@ -98,7 +102,6 @@ export default function ChartExpandedStateHeader({
 
   const showPriceChange = !isNoPriceData && showChart && !isNaN(latestChange);
   const { goBack } = useNavigation();
-  const { width } = useDimensions();
 
   return (
     <Container showChart={showChart}>
@@ -118,14 +121,15 @@ export default function ChartExpandedStateHeader({
         <ChartContextButton asset={asset} color={color} />
       </Row>
       <Column>
-        <RowWithMargins
-          height={30}
-          justify="space-between"
-          marginHorizontal={1}
-        >
+        <RowWithMargins height={24} justify="space-between">
           <Row>
-            <CoinIconGroup tokens={tokens} />
+            <CoinIcon
+              address={token?.address}
+              size={48}
+              symbol={token?.symbol}
+            />
             <ChartPriceLabel
+              color={color}
               defaultValue={isNoPriceData ? title : price}
               isNoPriceData={isNoPriceData}
               isPool={isPool}
@@ -148,19 +152,18 @@ export default function ChartExpandedStateHeader({
             />
           )}
         </RowWithMargins>
-
         <RowWithMargins
-          height={30}
+          height={20}
           justify="space-between"
-          marginHorizontal={android ? (isNoPriceData ? -7 : 0) : 1}
-          marginVertical={android ? 4 : 1}
-          paddingLeft={android ? (width - 330) : (width - 340)}
+          marginHorizontal={android ? (isNoPriceData ? -7 : 0) : 0}
+          marginLeft={60}
+          marginTop={4}
         >
           <ChartHeaderSubtitle
             color={
               isNoPriceData ? colors.alpha(colors.blueGreyDark, 0.8) : color
             }
-            weight={isNoPriceData ? 'semibold' : 'bold'}
+            weight="bold"
           >
             {titleOrNoPriceData}
           </ChartHeaderSubtitle>

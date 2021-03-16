@@ -179,10 +179,12 @@ const AddCashForm = ({
           <Row align="center" height={74} justify="space-between">
             <CurrencySymbol>$</CurrencySymbol>
             <DepositAmountInput
+              keyboardAppearance="dark"
               keyboardType="numeric"
               onChange={handleNumpadPress}
               placeholder="0"
               placeholderTextColor={colors.coinburp}
+              returnKeyType="done"
               value={value}
             />
           </Row>
@@ -202,7 +204,7 @@ const AddCashForm = ({
           <Text css={margin(0, 0, 16)} size={16} weight="bold">
             ASSET
           </Text>
-          <Row justify="space-between">
+          <Row justify="space-between" marginTop={16}>
             <AddCashSelector
               currencies={currencies}
               initialCurrencyIndex={initialCurrencyIndex}

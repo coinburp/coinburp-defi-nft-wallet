@@ -60,7 +60,7 @@ const Content = styled(Centered)`
 const Title = styled(Text).attrs(({ smallButton }) => ({
   color: 'whiteLabel',
   size: smallButton ? 'large' : 'larger',
-  weight: 'bold',
+  weight: 900,
 }))`
   margin-bottom: 4;
 `;
@@ -214,7 +214,7 @@ class HoldToAuthorizeButton extends PureComponent {
 
     let bgColor = backgroundColor || colors.coinburp;
     if (disabled) {
-      bgColor = disabledBackgroundColor || ButtonDisabledBgColor(colors)[theme];
+      bgColor = disabledBackgroundColor || colors.buttonDark;
     }
 
     return (

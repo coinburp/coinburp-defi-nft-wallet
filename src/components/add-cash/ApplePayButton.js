@@ -37,7 +37,7 @@ const ApplePayButton = ({ disabled, onDisabledPress, onSubmit }) => {
     if (disabled) {
       return [
         [0, 10, 30, colors.shadow, 0.2],
-        [0, 5, 15, colors.blueGreyDark50, darkMode ? 0 : 0.4],
+        [0, 5, 15, colors.buttonDark, darkMode ? 0 : 0.4],
       ];
     } else
       return [
@@ -51,13 +51,7 @@ const ApplePayButton = ({ disabled, onDisabledPress, onSubmit }) => {
     ease: Easing.out(Easing.ease),
   });
 
-  const backgroundColor = mixColor(
-    disabledAnimation,
-    darkMode
-      ? colors.alpha(darkModeThemeColors.grey20, 0.3)
-      : lightModeThemeColors.blueGreyDark50,
-    darkMode ? darkModeThemeColors.darkModeDark : lightModeThemeColors.dark
-  );
+  const backgroundColor = disabled ? colors.buttonDark : colors.coinburp;
 
   const defaultShadowOpacity = interpolate(disabledAnimation, {
     inputRange: [0, 1],
@@ -110,6 +104,7 @@ const ApplePayButton = ({ disabled, onDisabledPress, onSubmit }) => {
               }
               flex={1}
               marginBottom={2}
+              size={32}
               name="applePay"
             />
           </Centered>

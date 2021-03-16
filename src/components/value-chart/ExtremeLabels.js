@@ -63,7 +63,6 @@ export default function Labels({ color, width }) {
   const { nativeCurrency } = useAccountSettings();
   const nativeSelected = get(supportedNativeCurrencies, `${nativeCurrency}`);
   const { greatestX, greatestY, smallestX, smallestY } = useChartData();
-  const { colors } = useTheme();
 
   if (!greatestX) {
     return null;
@@ -79,10 +78,10 @@ export default function Labels({ color, width }) {
     <>
       {positionMin ? (
         <CenteredLabel
-          color={colors.alpha(color, 0.8)}
+          color={color}
           position={positionMin}
           style={{
-            bottom: -20,
+            bottom: -4,
           }}
           width={width}
         >
@@ -91,10 +90,10 @@ export default function Labels({ color, width }) {
       ) : null}
       {positionMax ? (
         <CenteredLabel
-          color={colors.alpha(color, 0.8)}
+          color={color}
           position={positionMax}
           style={{
-            top: -20,
+            top: -12,
           }}
           width={width}
         >

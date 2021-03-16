@@ -18,6 +18,7 @@ const AndroidMaskWrapper = styled.View`
 const Input = styled(TextInputMask).attrs({
   allowFontScaling: false,
   keyboardType: 'decimal-pad',
+  returnKeyType: 'done',
 })`
   ${buildTextStyles};
   ${android ? 'font-weight: normal' : ''};
