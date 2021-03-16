@@ -16,12 +16,12 @@ const Label = styled(ChartYLabel)`
   ${fontWithWidth(fonts.weight.heavy)};
   font-size: ${fonts.size.larger};
   letter-spacing: ${fonts.letterSpacing.roundedTight};
-  margin-left: 12px;
+  ${ios && `margin-left: 12px;`}
   ${android &&
   `margin-top: -30;
-     margin-bottom: -30;
-     width: 150px;
-     `}
+   margin-bottom: -30;
+   width: 150px;
+  `}
 `;
 
 const AndroidCurrencySymbolLabel = styled(ChartYLabel)`
