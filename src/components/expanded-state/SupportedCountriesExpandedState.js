@@ -1,12 +1,15 @@
 import { values } from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
+import { ButtonPressAnimation } from '../animations';
 import { FloatingEmojisTapper } from '../floating-emojis';
 import { AssetPanel, FloatingPanels } from '../floating-panels';
+import { Icon } from '../icons';
 import { Centered, Column, Row } from '../layout';
 import { Emoji, Text } from '../text';
 import isNativeStackAvailable from '@rainbow-me/helpers/isNativeStackAvailable';
 import { useDimensions } from '@rainbow-me/hooks';
+import { useNavigation } from '@rainbow-me/navigation';
 import { supportedCountries } from '@rainbow-me/references/wyre';
 import { padding } from '@rainbow-me/styles';
 import { neverRerender } from '@rainbow-me/utils';
@@ -16,6 +19,12 @@ const Panel = styled(Column)`
     (isTallPhone ? 90 : 45) + (isNativeStackAvailable ? 10 : 0)};
   max-width: ${({ deviceDimensions: { width } }) => width - 32};
 `;
+
+const BackButton = styled(Icon).attrs({
+  direction: 'left',
+  name: 'caretThick',
+  size: 24,
+})``;
 
 const FooterText = styled(Text).attrs({
   size: 16,
@@ -36,7 +45,8 @@ const TitleText = styled(Text).attrs({
   size: 20,
   weight: 900,
 })`
-  margin-bottom: 32px;
+  left: -8;
+  margin-bottom: 28px;
 `;
 
 const countries = values(supportedCountries).map(c => ({
@@ -53,6 +63,7 @@ const SupportCountriesExpandedState = () => {
   const deviceDimensions = useDimensions();
 
   const { colors } = useTheme();
+  const { goBack } = useNavigation();
 
   const countriesList = countries.map(country => (
     <Row paddingVertical={1}>
@@ -63,24 +74,30 @@ const SupportCountriesExpandedState = () => {
 
   return (
     <Panel deviceDimensions={deviceDimensions}>
-      <FloatingEmojisTapper
-        disableRainbow
-        distance={600}
-        duration={600}
-        emojis={emojiArray}
-        opacityThreshold={0.75}
-        scaleTo={0.5}
-        size={40}
-        wiggleFactor={0}
-      >
-        <AssetPanel>
-          <Column css={padding(19, 30, 24)}>
+      <AssetPanel>
+        <Column css={padding(16, 30, 24)}>
+          <Row justify="space-between">
+            <ButtonPressAnimation onPress={goBack}>
+              <BackButton />
+            </ButtonPressAnimation>
             <TitleText>Supported Countries</TitleText>
+            <Row />
+          </Row>
+          <FloatingEmojisTapper
+            disableRainbow
+            distance={600}
+            duration={600}
+            emojis={emojiArray}
+            opacityThreshold={0.75}
+            scaleTo={0.5}
+            size={40}
+            wiggleFactor={0}
+          >
             {countriesList}
             <FooterText>More coming soon...</FooterText>
-          </Column>
-        </AssetPanel>
-      </FloatingEmojisTapper>
+          </FloatingEmojisTapper>
+        </Column>
+      </AssetPanel>
     </Panel>
   );
 };
