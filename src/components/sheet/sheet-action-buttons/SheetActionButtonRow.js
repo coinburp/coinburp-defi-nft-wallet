@@ -22,10 +22,6 @@ const Item = styled(Column)`
 `;
 
 function renderButton(child) {
-  if (android) {
-    return child;
-  }
-  if (!child) return null;
   return <Item>{child}</Item>;
 }
 

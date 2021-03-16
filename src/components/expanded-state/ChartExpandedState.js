@@ -16,7 +16,6 @@ import {
   SwapActionButton,
 } from '../sheet';
 import {
-  TokenInfoBalanceValue,
   TokenInfoItem,
   TokenInfoRow,
   TokenInfoSection,
@@ -25,7 +24,7 @@ import { Chart } from '../value-chart';
 import { ChartPathProvider } from '@rainbow-me/animated-charts';
 import AssetInputTypes from '@rainbow-me/helpers/assetInputTypes';
 
-const baseHeight = 309 + (android && 20 - getSoftMenuBarHeight());
+const baseHeight = 309 + (android && 150 - getSoftMenuBarHeight());
 const heightWithoutChart = baseHeight + (android && 30);
 const heightWithChart = baseHeight + 310;
 

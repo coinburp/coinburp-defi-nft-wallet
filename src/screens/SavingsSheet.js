@@ -35,7 +35,7 @@ import Routes from '@rainbow-me/routes';
 import { position } from '@rainbow-me/styles';
 
 export const SavingsSheetEmptyHeight = 350;
-export const SavingsSheetHeight = android ? 580 - getSoftMenuBarHeight() : 565;
+export const SavingsSheetHeight = android ? 655 - getSoftMenuBarHeight() : 565;
 
 const Container = styled(Centered).attrs({ direction: 'column' })`
   ${position.cover};
