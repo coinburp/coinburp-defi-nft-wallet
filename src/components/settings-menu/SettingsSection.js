@@ -30,7 +30,7 @@ const { RainbowRequestReview, RNReview } = NativeModules;
 export const SettingsExternalURLs = {
   coinburpHomepage: 'https://coinburp.com',
   review:
-    'itms-apps://itunes.apple.com/app/apple-store/id1486342307?mt=8&action=write-review',
+    'itms-apps://itunes.apple.com/app/apple-store/id1558706287?mt=8&action=write-review',
   twitterDeepLink: 'twitter://user?screen_name=coinburp',
   twitterWebUrl: 'https://twitter.com/coinburp/',
 };
