@@ -23,8 +23,8 @@ export default function useColorForAsset(asset, fallbackColor) {
     () =>
       isETH(address)
         ? isDarkMode
-          ? colors.brighten(lightModeThemeColors.dark)
-          : colors.dark
+          ? colors.brighten(lightModeThemeColors.specialGrey)
+          : colors.specialGrey
         : pseudoRandomArrayItemFromString(address, colors.avatarColor),
     [address, colors, isDarkMode]
   );

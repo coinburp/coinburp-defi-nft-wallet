@@ -1,14 +1,13 @@
 import analytics from '@segment/analytics-react-native';
 import React, { useCallback } from 'react';
 
-import SheetActionButton from './SheetActionButton';
+import WalletActionButton from '../../buttons/WalletActionButton';
 import showWalletErrorAlert from '@rainbow-me/helpers/support';
 import { useExpandedStateNavigation, useWallets } from '@rainbow-me/hooks';
 
 import Routes from '@rainbow-me/routes';
-import WalletActionButton from "../../buttons/WalletActionButton";
 
-export default function BuyActionButton({ color: givenColor, ...props }) {
+export default function BuyActionButton({ color: givenColor }) {
   const { colors } = useTheme();
   const color = givenColor || colors.paleBlue;
   const navigate = useExpandedStateNavigation();

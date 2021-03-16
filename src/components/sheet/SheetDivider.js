@@ -3,7 +3,7 @@ import { neverRerender } from '../../utils';
 import Divider from '../Divider';
 
 const SheetDivider = styled(Divider).attrs(({ theme: { colors } }) => ({
-  color: colors.rowDividerExtraLight,
+  color: colors.rowDividerLight,
 }))`
   z-index: 1;
 `;

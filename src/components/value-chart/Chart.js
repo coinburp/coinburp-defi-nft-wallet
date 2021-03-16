@@ -69,7 +69,7 @@ const Dot = styled(ChartDot)`
   justify-content: center;
 `;
 
-const HEIGHT = 146.5;
+const HEIGHT = 171;
 
 const Overlay = styled(Animated.View).attrs({
   pointerEvents: 'none',

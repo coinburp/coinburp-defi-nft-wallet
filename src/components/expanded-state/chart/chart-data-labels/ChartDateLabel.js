@@ -7,8 +7,8 @@ import { ChartXLabel } from '@rainbow-me/animated-charts';
 import { fonts, fontWithWidth } from '@rainbow-me/styles';
 
 const Label = styled(ChartXLabel)`
-  ${fontWithWidth(fonts.weight.semibold)};
-  font-size: ${fonts.size.larger};
+  ${fontWithWidth(fonts.weight.bold)};
+  font-size: ${fonts.size.lmedium};
   font-variant: tabular-nums;
   letter-spacing: ${fonts.letterSpacing.roundedMedium};
   text-align: right;

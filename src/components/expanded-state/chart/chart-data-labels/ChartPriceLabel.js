@@ -12,10 +12,11 @@ import { fonts, fontWithWidth } from '@rainbow-me/styles';
 const ChartPriceRow = styled(Row)``;
 
 const Label = styled(ChartYLabel)`
-  color: ${({ theme: { colors } }) => colors.dark};
+  color: ${({ color, theme: { colors } }) => color || colors.dark};
   ${fontWithWidth(fonts.weight.heavy)};
-  font-size: ${fonts.size.big};
+  font-size: ${fonts.size.larger};
   letter-spacing: ${fonts.letterSpacing.roundedTight};
+  margin-left: 12px;
   ${android &&
   `margin-top: -30;
      margin-bottom: -30;
@@ -24,10 +25,11 @@ const Label = styled(ChartYLabel)`
 `;
 
 const AndroidCurrencySymbolLabel = styled(ChartYLabel)`
-  color: ${({ theme: { colors } }) => colors.dark};
+  color: ${({ color, theme: { colors } }) => color || colors.dark};
   ${fontWithWidth(fonts.weight.heavy)};
-  font-size: ${fonts.size.big};
+  font-size: ${fonts.size.larger};
   letter-spacing: ${fonts.letterSpacing.roundedTight};
+  margin-left: 12px;
   ${android &&
   `margin-top: -30;
      margin-bottom: -30;
@@ -68,6 +70,7 @@ export function formatNative(value, priceSharedValue, nativeSelected) {
 }
 
 export default function ChartPriceLabel({
+  color,
   defaultValue,
   isNoPriceData,
   priceSharedValue,
@@ -81,6 +84,7 @@ export default function ChartPriceLabel({
       {android && (
         <AndroidCurrencySymbolLabel
           as={Text}
+          color={color}
           defaultValue={nativeSelected?.symbol}
           editable={false}
         >
@@ -88,6 +92,7 @@ export default function ChartPriceLabel({
         </AndroidCurrencySymbolLabel>
       )}
       <Label
+        color={color}
         format={value => {
           'worklet';
           const formatted = formatNative(
