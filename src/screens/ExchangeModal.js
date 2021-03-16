@@ -567,7 +567,7 @@ export default function ExchangeModal({
             {/*{showOutputField && <ExchangeNotch />}*/}
             <Row
               justify="space-between"
-              marginBottom={isWithdrawal ? 16 : 0}
+              marginBottom={isWithdrawal || ios ? 16 : 0}
               marginTop={16}
               paddingHorizontal={24}
             >

@@ -202,7 +202,7 @@ const AddCashForm = ({
           <Text css={margin(0, 0, 16)} size={16} weight="bold">
             ASSET
           </Text>
-          <Row justify="space-between">
+          <Row justify="space-between" marginTop={16}>
             <AddCashSelector
               currencies={currencies}
               initialCurrencyIndex={initialCurrencyIndex}

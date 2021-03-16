@@ -51,13 +51,7 @@ const ApplePayButton = ({ disabled, onDisabledPress, onSubmit }) => {
     ease: Easing.out(Easing.ease),
   });
 
-  const backgroundColor = mixColor(
-    disabledAnimation,
-    darkMode
-      ? colors.alpha(darkModeThemeColors.grey20, 0.3)
-      : lightModeThemeColors.blueGreyDark50,
-    darkMode ? darkModeThemeColors.darkModeDark : lightModeThemeColors.dark
-  );
+  const backgroundColor = colors.coldGrey;
 
   const defaultShadowOpacity = interpolate(disabledAnimation, {
     inputRange: [0, 1],
