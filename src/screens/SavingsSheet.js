@@ -19,7 +19,6 @@ import {
   SavingsSheetHeader,
 } from '../components/savings';
 import {
-  SheetActionButton,
   SheetActionButtonRow,
   SlackSheet,
 } from '../components/sheet';
@@ -36,7 +35,7 @@ import Routes from '@rainbow-me/routes';
 import { position } from '@rainbow-me/styles';
 
 export const SavingsSheetEmptyHeight = 350;
-export const SavingsSheetHeight = android ? 580 - getSoftMenuBarHeight() : 460;
+export const SavingsSheetHeight = android ? 580 - getSoftMenuBarHeight() : 565;
 
 const Container = styled(Centered).attrs({ direction: 'column' })`
   ${position.cover};
@@ -170,7 +169,7 @@ const SavingsSheet = () => {
               balance={balance}
               lifetimeAccruedInterest={lifetimeAccruedInterest}
             />
-            <SheetActionButtonRow>
+            <SheetActionButtonRow paddingBottom={48}>
               <WalletActionButton
                 onPress={onDeposit}
                 title="Stake"
@@ -195,7 +194,7 @@ const SavingsSheet = () => {
             >
               {({ onNewEmoji }) => (
                 <FloatingEmojisTapHandler onNewEmoji={onNewEmoji}>
-                  <Column paddingBottom={9} paddingTop={4}>
+                  <Column paddingTop={12}>
                     <SavingsCoinRow
                       item={savingsRowItem}
                       key={underlying.address}

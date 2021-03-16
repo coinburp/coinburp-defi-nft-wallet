@@ -6,8 +6,12 @@ import { padding } from '@rainbow-me/styles';
 const Container = styled(Row).attrs({
   justify: 'center',
 })`
-  ${({ ignorePaddingBottom, ignorePaddingTop }) =>
-    padding(ignorePaddingTop ? 0 : 32, 0, ignorePaddingBottom ? 0 : 24)};
+  ${({ ignorePaddingBottom, ignorePaddingTop, paddingBottom }) =>
+    padding(
+      ignorePaddingTop ? 0 : 32,
+      0,
+      ignorePaddingBottom ? 0 : paddingBottom || 24
+    )};
   width: 100%
   z-index: 2;
 `;
@@ -29,11 +33,13 @@ export default function SheetActionButtonRow({
   children,
   ignorePaddingBottom,
   ignorePaddingTop,
+  paddingBottom,
 }) {
   return (
     <Container
       ignorePaddingBottom={ignorePaddingBottom}
       ignorePaddingTop={ignorePaddingTop}
+      paddingBottom={paddingBottom}
     >
       {Children.map(children, renderButton)}
     </Container>
