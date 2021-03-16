@@ -18,7 +18,7 @@ const BottomRow = ({ lifetimeSupplyInterestAccrued, supplyRate, symbol }) => {
   const { colors } = useTheme();
 
   return (
-    <Fragment>
+    <Row>
       <APYPill small value={apyTruncated} />
       <RowWithMargins flex={1} margin={4}>
         <Column flex={1}>
@@ -30,24 +30,24 @@ const BottomRow = ({ lifetimeSupplyInterestAccrued, supplyRate, symbol }) => {
             weight="bold"
           >
             {'+$'}
-            {convertAmountToBalanceDisplay(
-              lifetimeSupplyInterestAccrued,
-              1
-            )}
+            {convertAmountToBalanceDisplay(lifetimeSupplyInterestAccrued, 1)}
           </Text>
         </Column>
       </RowWithMargins>
-    </Fragment>
+    </Row>
   );
 };
 
 const TopRow = ({ name, supplyBalanceUnderlying, symbol }) => (
-  <Row align="center" justify="space-between" marginBottom={2}>
-    <FlexItem flex={1}>
-      <CoinName letterSpacing={1} weight="bold">
-        {name}
-      </CoinName>
-    </FlexItem>
+  <Row
+    align="center"
+    justify="space-between"
+    marginBottom={-6}
+    width="100%"
+  >
+    <CoinName letterSpacing={1} style={{ top: 0 }} weight="bold">
+      {name}
+    </CoinName>
     <BalanceText>
       {convertAmountToBalanceDisplay(supplyBalanceUnderlying, { symbol })}
     </BalanceText>
