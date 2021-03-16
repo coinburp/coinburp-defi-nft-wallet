@@ -179,10 +179,12 @@ const AddCashForm = ({
           <Row align="center" height={74} justify="space-between">
             <CurrencySymbol>$</CurrencySymbol>
             <DepositAmountInput
+              keyboardAppearance="dark"
               keyboardType="numeric"
               onChange={handleNumpadPress}
               placeholder="0"
               placeholderTextColor={colors.coinburp}
+              returnKeyType="done"
               value={value}
             />
           </Row>

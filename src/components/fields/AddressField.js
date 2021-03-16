@@ -7,6 +7,7 @@ import { Row } from '../layout';
 import { useClipboard } from '@rainbow-me/hooks';
 import { buildTextStyles, fonts } from '@rainbow-me/styles';
 import { abbreviations, addressUtils } from '@rainbow-me/utils';
+import {SendInput} from "../send";
 
 const AddressInput = styled(TextInput).attrs(
   ({ theme: { colors }, isValidAddress }) => ({
@@ -69,9 +70,10 @@ const AddressField = (
         {...props}
         autoFocus={autoFocus}
         color={isValid ? colors.skyBlue : colors.black}
+        isValidAddress={isValidAddress}
+        keyboardAppearance="dark"
         onBlur={expandAbbreviatedClipboard}
         onChange={handleChange}
-        isValidAddress={isValidAddress}
         onChangeText={setInputValue}
         onFocus={onFocus}
         ref={ref}
