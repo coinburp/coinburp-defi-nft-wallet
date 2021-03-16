@@ -92,7 +92,7 @@ const icons = Object.keys(iconList).reduce((list, key) => {
   list[key] = styled(Icon).attrs({
     name: iconList[key],
   })`
-  margin-right: 12px;
+  margin-right: 8px;
   `;
   return list;
 }, {});
