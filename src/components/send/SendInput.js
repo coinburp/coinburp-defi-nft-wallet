@@ -18,7 +18,7 @@ const DefaultContactItem = {
   nickname: '',
 };
 
-const footerMargin = 31;
+const footerMargin = 6;
 const FooterContainer = styled(ColumnWithMargins).attrs(({ deviceHeight }) => ({
   alignltemes: 'stretch',
   alignSelf: 'stretch',
@@ -136,7 +136,7 @@ export default function SendInput({
           paddingRight={24}
           width={width - 32}
         >
-          <Row align="center" height={51} justify="space-between">
+          <Row align="center" height={15} marginTop={16} justify="space-between">
             <Text color={colors.black} size={16} weight="bold">
               ADDRESS
             </Text>

@@ -11,13 +11,13 @@ const speedColorsFactory = colors => ({
     colors.whiteLabel,
     colors.whiteLabel,
     colors.whiteLabel,
-    colors.appleBlue,
+    colors.coinburp,
   ],
   light: [
     colors.alpha(colors.blueGreyDark, 0.8),
     colors.alpha(colors.blueGreyDark, 0.8),
     colors.alpha(colors.blueGreyDark, 0.8),
-    colors.appleBlue,
+    colors.coinburp,
   ],
 });
 
@@ -50,11 +50,11 @@ const GasSpeedLabelPager = ({
               backgroundColor={
                 speed === label
                   ? label === 'custom'
-                    ? colors.appleBlue
+                    ? colors.coinburp
                     : speedColors[theme][i]
                   : theme === 'dark'
-                  ? colors.alpha(colors.blueGreyDark, 0.3)
-                  : colors.alpha(colors.blueGreyDark, 0.3)
+                  ? colors.alpha(colors.blueGreyDark, 0.75)
+                  : colors.alpha(colors.blueGreyDark, 0.75)
               }
               key={`pager-${speed}-${i}`}
               selected={speed === label}
