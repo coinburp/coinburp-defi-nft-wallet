@@ -1,11 +1,10 @@
-![](https://assets.coinburp.com/CoinBurp_Wallet_Super_MVP_GitHub_Profile_banner.png)
-### CoinBurp DeFi | NFT Wallet - Forked from 🌈️ Rainbow
-> based on the amazing work [Rainbow team](https://github.com/rainbow-me/rainbow/) did
+![](https://pbs.twimg.com/profile_banners/1103191459409420288/1573207178/1500x500)
+### 🌈️ Rainbow
+> the Ethereum wallet that lives in your pocket!
 
-[Soon available on the iOS App Store.](https://coinburp.com)
-[Soon available on the Android App Store.](https://coinburp.com)
+📲️ [Available on the iOS App Store.](https://apps.apple.com/us/app/rainbow-ethereum-wallet/id1457119021)
 
-[Follow CoinBurp on Twitter](https://twitter.com/coinburp)
+🐦️ [Follow us on Twitter](https://twitter.com/rainbowdotme)
 
 ## Requirements
 
@@ -42,7 +41,7 @@ If you are new to React Native, this is a helpful introduction: https://facebook
 
 7. Run `yarn start` to start the React Native Bundler.
 
-8. Open `coinburp-defi-nft-wallet/ios/CoinBurpDeFiNFTWallet.xcworkspace` in XCode.
+8. Open `rainbow-wallet/ios/RainbowWallet.xcworkspace` in XCode.
 
 9. Run the project by clicking the play button.
 
@@ -60,7 +59,7 @@ At this point you will be required to log into the account tied to the code push
 
 ### Deployment
 ```
-code-push release-react CoinBurpDeFiNFTWallet-iOS ios -d <DEPLOYMENT>
+code-push release-react RainbowWallet-iOS ios -d <DEPLOYMENT>
 ```
 
 The deployment can either be `Staging` or `Production` depending on the mode of the application you wish to update was built in through XCode.

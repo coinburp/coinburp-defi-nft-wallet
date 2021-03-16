@@ -6,7 +6,7 @@
 //
 
 #import "React/RCTViewManager.h"
-#import "CoinBurpDeFiNFTWallet-Swift.h"
+#import "Rainbow-Swift.h"
 
 @interface RCT_EXTERN_MODULE(ButtonManager, RCTViewManager)
 

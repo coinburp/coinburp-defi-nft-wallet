@@ -6,7 +6,7 @@
 //
 
 #import <React/RCTConvert.h>
-#import "CoinBurpDeFiNFTWallet-Swift.h"
+#import "Rainbow-Swift.h"
 
 @interface RCTConvert (TransactionList)
 

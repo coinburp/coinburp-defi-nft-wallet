@@ -7,7 +7,7 @@
 
 #import "Firebase.h"
 #import "AppDelegate.h"
-#import "CoinBurpDeFiNFTWallet-Swift.h"
+#import "Rainbow-Swift.h"
 #import <RNBranch/RNBranch.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
