@@ -1,10 +1,11 @@
-![](https://pbs.twimg.com/profile_banners/1103191459409420288/1573207178/1500x500)
-### 🌈️ Rainbow
-> the Ethereum wallet that lives in your pocket!
+![](https://assets.coinburp.com/CoinBurp_Wallet_Super_MVP_GitHub_Profile_banner.png)
+### CoinBurp DeFi | NFT Wallet - Forked from 🌈️ Rainbow
+> based on the amazing work [Rainbow team](https://github.com/rainbow-me/rainbow/) did
 
-📲️ [Available on the iOS App Store.](https://apps.apple.com/us/app/rainbow-ethereum-wallet/id1457119021)
+[Soon available on the iOS App Store.](https://coinburp.com)
+[Soon available on the Android App Store.](https://coinburp.com)
 
-🐦️ [Follow us on Twitter](https://twitter.com/rainbowdotme)
+[Follow CoinBurp on Twitter](https://twitter.com/coinburp)
 
 ## Requirements
 

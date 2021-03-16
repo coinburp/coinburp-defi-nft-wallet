@@ -130,22 +130,22 @@ export default function NeedsBackupView() {
               it if you lose this device.
             </DescriptionText>
           </Column>
-          <Column align="center">
-            <ButtonPressAnimation onPress={onIcloudBackup} scaleTo={0.9}>
-              <Row align="center">
-                <Icon marginRight={12} name="pinkCloud" />
-                <GradientText
-                  angle={360}
-                  colors={['#fa71cd', '#c471f5']}
-                  size={20}
-                  steps={[0, 0.9]}
-                  weight={900}
-                >
-                  {`Back up to ${cloudPlatform}`}
-                </GradientText>
-              </Row>
-            </ButtonPressAnimation>
-          </Column>
+          {/*<Column align="center">*/}
+          {/*  <ButtonPressAnimation onPress={onIcloudBackup} scaleTo={0.9}>*/}
+          {/*    <Row align="center">*/}
+          {/*      <Icon marginRight={12} name="pinkCloud" />*/}
+          {/*      <GradientText*/}
+          {/*        angle={360}*/}
+          {/*        colors={['#fa71cd', '#c471f5']}*/}
+          {/*        size={20}*/}
+          {/*        steps={[0, 0.9]}*/}
+          {/*        weight={900}*/}
+          {/*      >*/}
+          {/*        {`Back up to ${cloudPlatform}`}*/}
+          {/*      </GradientText>*/}
+          {/*    </Row>*/}
+          {/*  </ButtonPressAnimation>*/}
+          {/*</Column>*/}
         </Column>
         <SheetActionButton
           androidWidth={220}

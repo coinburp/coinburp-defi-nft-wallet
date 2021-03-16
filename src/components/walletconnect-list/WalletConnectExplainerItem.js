@@ -45,7 +45,8 @@ export default function WalletConnectExplainerItem({
             size="smedium"
             numberOfLines={5}
             style={{
-              maxWidth: '50%',
+              marginBottom: 16,
+              maxWidth: '60%',
               minWidth:150,
               flex: 0.5,
               textAlign: 'center',

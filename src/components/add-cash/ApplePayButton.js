@@ -13,9 +13,9 @@ import ShadowStack from 'react-native-shadow-stack';
 const AnimatedCenter = Animated.createAnimatedComponent(Centered);
 const AnimatedShadowStack = Animated.createAnimatedComponent(ShadowStack);
 
-const ApplePayButtonBorderRadius = 28;
+const ApplePayButtonBorderRadius = 24;
 const ApplePayButtonDimensions = {
-  height: 56,
+  height: 64,
   width: '100%',
 };
 

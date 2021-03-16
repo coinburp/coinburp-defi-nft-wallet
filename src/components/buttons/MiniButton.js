@@ -37,9 +37,9 @@ const Content = styled(RowWithMargins).attrs({
   align: 'center',
   margin: 5,
 })`
-  ${({ hasLeadingIcon }) => padding(0, 10, 1, hasLeadingIcon ? 6 : 10)};
+  ${padding(3, 6)};
   border-radius: 8px;
-  height: 30;
+  height: 25px;
   z-index: 1;
 `;
 

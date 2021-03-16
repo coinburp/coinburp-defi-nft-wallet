@@ -260,38 +260,38 @@ export default function AlreadyBackedUpView() {
           />
         </Column>
       </Content>
-      {walletStatus !== WalletBackupStatus.CLOUD_BACKUP ? (
-        <Footer>
-          <ButtonPressAnimation onPress={handleIcloudBackup}>
-            <Row align="center">
-              <Icon marginRight={12} name="pinkCloud" />
-              <GradientText
-                angle={360}
-                colors={['#fa71cd', '#c471f5']}
-                size={20}
-                steps={[0, 0.9]}
-                weight={900}
-              >
-                {`Back up to ${cloudPlatform}`}
-              </GradientText>
-            </Row>
-          </ButtonPressAnimation>
-        </Footer>
-      ) : !hasMultipleWallets ? (
-        <Footer>
-          <ButtonPressAnimation onPress={manageCloudBackups}>
-            <Text
-              align="center"
-              color={colors.coinburp}
-              letterSpacing="roundedMedium"
-              size="larger"
-              weight="heavy"
-            >
-              {cloudPlatform} Backups
-            </Text>
-          </ButtonPressAnimation>
-        </Footer>
-      ) : null}
+      {/*{walletStatus !== WalletBackupStatus.CLOUD_BACKUP ? (*/}
+      {/*  <Footer>*/}
+      {/*    <ButtonPressAnimation onPress={handleIcloudBackup}>*/}
+      {/*      <Row align="center">*/}
+      {/*        <Icon marginRight={12} name="pinkCloud" />*/}
+      {/*        <GradientText*/}
+      {/*          angle={360}*/}
+      {/*          colors={['#fa71cd', '#c471f5']}*/}
+      {/*          size={20}*/}
+      {/*          steps={[0, 0.9]}*/}
+      {/*          weight={900}*/}
+      {/*        >*/}
+      {/*          {`Back up to ${cloudPlatform}`}*/}
+      {/*        </GradientText>*/}
+      {/*      </Row>*/}
+      {/*    </ButtonPressAnimation>*/}
+      {/*  </Footer>*/}
+      {/*) : !hasMultipleWallets ? (*/}
+      {/*  <Footer>*/}
+      {/*    <ButtonPressAnimation onPress={manageCloudBackups}>*/}
+      {/*      <Text*/}
+      {/*        align="center"*/}
+      {/*        color={colors.coinburp}*/}
+      {/*        letterSpacing="roundedMedium"*/}
+      {/*        size="larger"*/}
+      {/*        weight="heavy"*/}
+      {/*      >*/}
+      {/*        {cloudPlatform} Backups*/}
+      {/*      </Text>*/}
+      {/*    </ButtonPressAnimation>*/}
+      {/*  </Footer>*/}
+      {/*) : null}*/}
     </Fragment>
   );
 }
