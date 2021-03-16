@@ -1,13 +1,12 @@
 import React from 'react';
-import { CoinIcon } from '../coin-icon';
+import { useTheme } from 'styled-components';
 import { RowWithMargins } from '../layout';
 import TokenInfoValue from './TokenInfoValue';
-import { useColorForAsset } from '@rainbow-me/hooks';
 import { magicMemo } from '@rainbow-me/utils';
 
-const TokenInfoBalanceValue = ({ align, asset, ...props }) => {
-  const { address, balance, symbol, value } = asset;
-  const color = useColorForAsset(asset);
+const TokenInfoBalanceValue = ({ align, asset, size, ...props }) => {
+  const { balance, value } = asset;
+  const { colors } = useTheme();
 
   return (
     <RowWithMargins
@@ -17,7 +16,9 @@ const TokenInfoBalanceValue = ({ align, asset, ...props }) => {
       margin={0}
       marginKey={align === 'left' ? 'marginRight' : 'marginLeft'}
     >
-      <TokenInfoValue color={color}>{balance?.display || value}</TokenInfoValue>
+      <TokenInfoValue color={colors.dark} size={size}>
+        {balance?.display || value}
+      </TokenInfoValue>
     </RowWithMargins>
   );
 };

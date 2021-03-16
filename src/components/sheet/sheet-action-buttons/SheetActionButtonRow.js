@@ -1,15 +1,20 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
-import { FlexItem, Row } from '../../layout';
+import { Column, Row } from '../../layout';
 import { padding } from '@rainbow-me/styles';
 
 const Container = styled(Row).attrs({
-  justify: 'space-around',
+  justify: 'center',
 })`
   ${({ ignorePaddingBottom, ignorePaddingTop }) =>
-    padding(ignorePaddingTop ? 0 : 19, 11.5, ignorePaddingBottom ? 0 : 24)};
-  width: 100%;
+    padding(ignorePaddingTop ? 0 : 32, 0, ignorePaddingBottom ? 0 : 24)};
+  width: 100%
   z-index: 2;
+`;
+
+const Item = styled(Column)`
+  margin-left: 20;
+  margin-right: 20;
 `;
 
 function renderButton(child) {
@@ -17,7 +22,7 @@ function renderButton(child) {
     return child;
   }
   if (!child) return null;
-  return <FlexItem marginHorizontal={7.5}>{child}</FlexItem>;
+  return <Item>{child}</Item>;
 }
 
 export default function SheetActionButtonRow({

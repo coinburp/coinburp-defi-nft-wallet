@@ -7,7 +7,7 @@ import ChartTypes from '@rainbow-me/helpers/chartTypes';
 import { padding } from '@rainbow-me/styles';
 
 const Container = styled(Centered)`
-  padding-top: 30;
+  padding-top: 12;
   width: 100%;
 `;
 
@@ -16,8 +16,8 @@ const TimespanItemLabel = styled(Text).attrs(
     align: 'center',
     color: isSelected ? color : colors.skyBlue,
     letterSpacing: 'roundedTighter',
-    size: 'smedium',
-    weight: 'heavy',
+    size: 'lmedium',
+    weight: 'bold',
   })
 )`
   ${padding(0, 9)};
@@ -58,7 +58,7 @@ const TimespanSelector = ({
   return (
     <Container>
       <JellySelector
-        backgroundColor={colors.alpha(color || colors.dark, 0.06)}
+        backgroundColor={colors.alpha(color || colors.dark, 0.08)}
         color={color || colors.dark}
         defaultIndex={defaultIndex}
         enableHapticFeedback

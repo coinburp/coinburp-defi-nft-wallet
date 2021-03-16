@@ -5,6 +5,8 @@ const ChartHeaderTitle = styled(TruncatedText).attrs({
   letterSpacing: 'roundedTight',
   size: 'big',
   weight: 'bold',
-})``;
+})`
+  margin-left: 12;
+`;
 
 export default ChartHeaderTitle;

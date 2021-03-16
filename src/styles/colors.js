@@ -99,7 +99,7 @@ const getColorsByTheme = darkMode => {
     rowDivider: 'rgba(60, 66, 82, 0.03)', // '60, 66, 82, 0.03'
     rowDividerExtraLight: 'rgba(60, 66, 82, 0.015)', // '60, 66, 82, 0.015'
     rowDividerFaint: 'rgba(60, 66, 82, 0.01)', // '60, 66, 82, 0.01'
-    rowDividerLight: 'rgba(60, 66, 82, 0.02)', // '60, 66, 82, 0.02'
+    rowDividerLight: 'rgba(175, 210, 255, 0.16)', // '60, 66, 82, 0.02'
     shadow: '#25292E', // '37, 41, 46'
     shadowBlack: '#000000', // '0, 0, 0'
     shadowGrey: '#6F6F6F', // '111, 111, 111'

@@ -136,7 +136,7 @@ const JellySelector = ({
             renderItem={renderItem}
             scaleTo={scaleTo}
             testID={`chart-timespan-${item}`}
-            width={widths[index]}
+            width={45}
           />
         ))}
       </JellySelectorRow>

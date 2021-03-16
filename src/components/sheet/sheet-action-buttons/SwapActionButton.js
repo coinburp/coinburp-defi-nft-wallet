@@ -1,15 +1,11 @@
 import React, { useCallback } from 'react';
 import { useExpandedStateNavigation } from '../../../hooks';
-import SheetActionButton from './SheetActionButton';
+import WalletActionButton from '../../buttons/WalletActionButton';
 import Routes from '@rainbow-me/routes';
-import {padding} from "@rainbow-me/styles";
-import WalletActionButton from "../../buttons/WalletActionButton";
-import {Row} from "../../layout";
 
 export default function SwapActionButton({
   color: givenColor,
   inputType,
-  ...props
 }) {
   const { colors } = useTheme();
   const color = givenColor || colors.swapPurple;
