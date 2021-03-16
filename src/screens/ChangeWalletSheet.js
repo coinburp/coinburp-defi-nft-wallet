@@ -74,7 +74,7 @@ const EditButtonLabel = styled(Text).attrs(({ theme: { colors } }) => ({
   weight: 'bold',
 }))`
   margin-left: ${android ? '8' : '0'};
-  margin-right: ${android ? '0' : '24'};
+  right: ${android ? '0' : '24'};
 `;
 
 const Whitespace = styled.View`
