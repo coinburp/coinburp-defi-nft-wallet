@@ -71,14 +71,7 @@ const buildTextStyles = css`
       : `font-weight: ${get(fonts, `weight[${weight}]`, weight)};`}
 
   /* Letter Spacing */
-  ${({ letterSpacing = 'rounded' }) =>
-    isNil(letterSpacing)
-      ? ''
-      : `letter-spacing: ${get(
-          fonts,
-          `letterSpacing[${letterSpacing}]`,
-          letterSpacing
-        )};`}
+  letter-spacing: 1px;
 
   /* Line Height */
   ${({ isEmoji, lineHeight }) =>

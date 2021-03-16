@@ -6,7 +6,7 @@ import ExchangeField from './ExchangeField';
 const Container = styled(Row).attrs({ align: 'center' })`
   overflow: hidden;
   padding-top: ${android ? 6 : 10};
-  padding-bottom: ${android ? 12 : 24};
+  padding-bottom: ${android ? 0 : 12};
   width: 100%;
 `;
 

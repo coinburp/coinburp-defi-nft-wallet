@@ -63,6 +63,7 @@ const getColorsByTheme = darkMode => {
     blueGreyDarker: '#0F0F11', // '15, 15, 17'
     blueGreyDarkLight: '#F3F4F5', // '243, 244, 245'
     brightRed: '#FF7171', // '255, 113, 113'
+    buttonDark: '#242328',
     chartGreen: '#66D28F', // '102, 210, 143'
     coinburp: '#00dc68',
     coldGrey: '#8794a9',
