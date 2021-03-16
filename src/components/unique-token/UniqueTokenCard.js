@@ -5,7 +5,7 @@ import { ButtonPressAnimation } from '../animations';
 import { InnerBorder } from '../layout';
 import UniqueTokenImage from './UniqueTokenImage';
 
-const UniqueTokenCardBorderRadius = 0;
+const UniqueTokenCardBorderRadius = 20;
 
 const Container = styled.View``;
 

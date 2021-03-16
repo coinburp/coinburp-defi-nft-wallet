@@ -13,7 +13,6 @@ import CoinRow from './CoinRow';
 import TransactionStatusBadge from './TransactionStatusBadge';
 import TransactionActions from '@rainbow-me/helpers/transactionActions';
 import TransactionStatusTypes from '@rainbow-me/helpers/transactionStatusTypes';
-import TransactionTypes from '@rainbow-me/helpers/transactionTypes';
 import {
   getHumanReadableDate,
   hasAddableContact,
@@ -32,13 +31,12 @@ import {
 } from '@rainbow-me/utils';
 
 const containerStyles = css`
-  padding-left: 24;
-  padding-right: 24;
+  padding-left: 24px;
+  padding-right: 24px;
 `;
 
-const BottomRow = ({ description, native, status, type }) => {
+const BottomRow = ({ description, native, status }) => {
   const { colors } = useTheme();
-  const isFailed = status === TransactionStatusTypes.failed;
   const isReceived =
     status === TransactionStatusTypes.received ||
     status === TransactionStatusTypes.purchased;
@@ -89,7 +87,7 @@ const TopRow = ({ balance, pending, status, title, type }) => {
   );
 };
 
-export default function TransactionCoinRow({ item, isFirst, index, ...props }) {
+export default function TransactionCoinRow({ item, ...props }) {
   const { contact } = item;
   const { accountAddress } = useAccountSettings();
   const { navigate } = useNavigation();
@@ -194,13 +192,6 @@ export default function TransactionCoinRow({ item, isFirst, index, ...props }) {
     }
   }, [accountAddress, contact, item, navigate]);
 
-  const isIncomingSwap =
-    item.status === TransactionStatusTypes.received &&
-    item.type === TransactionTypes.trade;
-  const isOutgoingSwap = item?.status === TransactionStatusTypes.swapped;
-
-  const first = ios ? isFirst : index === 0;
-
   return (
     <ButtonPressAnimation onPress={onPressTransaction} scaleTo={0.96}>
       <CoinRow
@@ -208,8 +199,6 @@ export default function TransactionCoinRow({ item, isFirst, index, ...props }) {
         {...props}
         bottomRowRender={BottomRow}
         containerStyles={containerStyles}
-        spacingBottom={isOutgoingSwap}
-        spacingTop={!first && isIncomingSwap}
         {...(android
           ? {
               contentStyles: {
