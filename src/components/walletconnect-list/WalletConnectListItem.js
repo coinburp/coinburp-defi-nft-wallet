@@ -2,6 +2,7 @@ import analytics from '@segment/analytics-react-native';
 import lang from 'i18n-js';
 import React, { useCallback, useMemo } from 'react';
 import { RequestVendorLogoIcon } from '../coin-icon';
+import CoinCheckButton from '../coin-row/CoinCheckButton';
 import { ContextMenu } from '../context-menu';
 import { Centered, ColumnWithMargins, Row } from '../layout';
 import { Text, TruncatedText } from '../text';
@@ -12,7 +13,6 @@ import {
 } from '@rainbow-me/helpers/dappNameHandler';
 import { useWalletConnectConnections } from '@rainbow-me/hooks';
 import { padding } from '@rainbow-me/styles';
-import CoinCheckButton from '../coin-row/CoinCheckButton';
 
 const ContainerPadding = 15;
 const VendorLogoIconSize = 50;
@@ -67,6 +67,7 @@ export default function WalletConnectListItem({ dappIcon, dappName, dappUrl }) {
         <ColumnWithMargins css={padding(0, 19, 1.5, 12)} flex={1} margin={2}>
           <Row>
             <TruncatedText
+              color={colors.whiteLabel}
               letterSpacing="roundedTight"
               size="lmedium"
               weight="bold"
@@ -74,17 +75,20 @@ export default function WalletConnectListItem({ dappIcon, dappName, dappUrl }) {
               {overrideName || dappName || 'Unknown Application'}{' '}
             </TruncatedText>
             {isAuthenticated && (
-              <CoinCheckButton style={{
-                width: 24,
-                position: 'absolute',
-                left: 86,
-                top: -14
-              }} toggle={true} />
+              <CoinCheckButton
+                style={{
+                  left: 86,
+                  position: 'absolute',
+                  top: -14,
+                  width: 24,
+                }}
+                toggle
+              />
             )}
           </Row>
 
           <TruncatedText
-            color={colors.alpha(colors.blueGreyDark, 0.6)}
+            color={colors.whiteLabel}
             size="smedium"
             weight="medium"
           >

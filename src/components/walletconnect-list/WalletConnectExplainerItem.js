@@ -1,64 +1,54 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Column, FlexItem, Row } from '../layout';
-import { Emoji, Text, TruncatedText } from '../text';
-import { padding, fonts } from '@rainbow-me/styles';
-
 import { Icon } from '../icons';
+import { Column, FlexItem } from '../layout';
+import { Emoji, Text, TruncatedText } from '../text';
+
 export default function WalletConnectExplainerItem({
   children,
   content,
   emoji,
   title,
-  isWithdraw
+  isWithdraw,
 }) {
   const { colors } = useTheme();
   return (
-    <Column align="center" css={padding(0, 18, 0, 0)}>
+    <Column align="center">
       <Emoji size="bmedium">{emoji}</Emoji>
-      <Column align="center" flex={1} paddingLeft={8}>
-        <FlexItem
-          grow={isWithdraw ? 0 : 1}
+      <Column align="center" flex={1}>
+        <View style={{ marginBottom: 12 }}>
+          {isWithdraw ? (
+            <Icon name="withdrawIcon" />
+          ) : (
+            <Icon name="connectWave" />
+          )}
+        </View>
+        <TruncatedText
+          color={colors.white}
+          lineHeight="normal"
+          size="bmedium"
+          weight={900}
         >
-          <View style={{ marginLeft: 11.2, marginBottom: 12}}>
-            { isWithdraw ? <Icon name="withdrawIcon" /> : <Icon name="connectWave" /> }
-          </View>
-          <TruncatedText
-            color={colors.white}
-            lineHeight="normal"
-            size="bmedium"
-            weight="semibold"
-            style={{
-              fontWeight: '900',
-            }}
-            weight='900'
-          >
-            {title}
-          </TruncatedText>
-        </FlexItem>
-        <FlexItem
-          marginTop={4}
-        >
+          {title}
+        </TruncatedText>
           <Text
             color={colors.alpha(colors.white, 1)}
             lineHeight="loose"
-            size="smedium"
             numberOfLines={5}
+            size="smedium"
             style={{
-              marginBottom: 16,
-              maxWidth: '60%',
-              minWidth:150,
-              flex: 0.5,
-              textAlign: 'center',
               flexWrap: 'wrap',
-              fontWeight: 'bold',
+              marginBottom: 16,
+              marginTop: 6,
+              maxWidth: ios ? '60%' : '50%',
+              minWidth: 150,
+              textAlign: 'center',
             }}
-            weight='bold'
+            weight="bold"
           >
             {content}
           </Text>
-        </FlexItem>
-        {children && <FlexItem marginTop={-30}>{children}</FlexItem>}
+        {children && <FlexItem marginTop={-68}>{children}</FlexItem>}
       </Column>
     </Column>
   );
