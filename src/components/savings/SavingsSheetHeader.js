@@ -12,7 +12,7 @@ const SavingsSheetHeader = ({ balance, lifetimeAccruedInterest }) => {
         Staked
       </Text>
       <DollarFigure decimals={2} value={balance} />
-      <RowWithMargins align="center" margin={4} marginTop={1}>
+      <RowWithMargins align="center" margin={4} marginTop={android ? -8 : 1}>
         <Text
           align="center"
           color={colors.neonGreen}
