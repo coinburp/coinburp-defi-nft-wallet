@@ -84,7 +84,7 @@ const AddCashForm = ({
       e.preventDefault();
       setValue(prevValue => {
         const t = e.nativeEvent?.text || '';
-        const newValue = t.length < prevValue.length ? 'back' : t[t.length - 1];
+        const newValue = prevValue && t.length < prevValue.length ? 'back' : t[t.length - 1];
 
         const isExceedingWeeklyLimit =
           parseFloat(prevValue + parseFloat(newValue)) > limitWeekly;

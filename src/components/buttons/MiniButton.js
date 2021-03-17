@@ -1,37 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
 import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
-import { darkModeThemeColors, lightModeThemeColors } from '../../styles/colors';
 import { ButtonPressAnimation } from '../animations';
-import { InnerBorder, RowWithMargins } from '../layout';
+import { InnerBorder, Row, RowWithMargins } from '../layout';
 import { Text } from '../text';
-import { padding, position } from '@rainbow-me/styles';
-import ShadowStack from 'react-native-shadow-stack';
-
-const shadowsFactory = darkMode => ({
-  default: [
-    [
-      0,
-      4,
-      12,
-      darkMode ? darkModeThemeColors.shadow : lightModeThemeColors.appleBlue,
-      0.4,
-    ],
-  ],
-  disabled: [
-    [
-      0,
-      4,
-      12,
-      darkMode ? darkModeThemeColors.lightGrey : lightModeThemeColors.lightGrey,
-      darkMode ? 0 : 0.4,
-    ],
-  ],
-});
-
-const shadowLight = shadowsFactory(false);
-const shadowsDark = shadowsFactory(true);
+import { padding } from '@rainbow-me/styles';
 
 const Content = styled(RowWithMargins).attrs({
   align: 'center',
@@ -47,17 +20,13 @@ export default function MiniButton({
   borderRadius = 8,
   children,
   disabled,
-  shadowsDisabled,
   hasLeadingIcon,
   onPress,
   scaleTo = 0.82,
-  width,
   height,
   ...props
 }) {
   const { isDarkMode, colors } = useTheme();
-
-  const shadows = isDarkMode ? shadowsDark : shadowLight;
 
   return (
     <ButtonPressAnimation
@@ -68,17 +37,11 @@ export default function MiniButton({
       scaleTo={scaleTo}
       {...props}
     >
-      <View style={{ borderRadius }}>
-        <ShadowStack
-          {...position.coverAsObject}
-          backgroundColor={disabled ? colors.skyBlue : colors.coinburp}
-          borderRadius={borderRadius}
-          height={height}
-          shadows={
-            shadowsDisabled || disabled ? shadows.disabled : shadows.default
-          }
-          width={width}
-        />
+      <Row
+        backgroundColor={disabled ? colors.skyBlue : colors.coinburp}
+        height={height}
+        style={{ borderRadius }}
+      >
         <Content hasLeadingIcon={hasLeadingIcon}>
           {typeof children === 'string' ? (
             <Text align="center" color="whiteLabel" weight="bold">
@@ -89,7 +52,7 @@ export default function MiniButton({
           )}
         </Content>
         <InnerBorder radius={borderRadius} />
-      </View>
+      </Row>
     </ButtonPressAnimation>
   );
 }
