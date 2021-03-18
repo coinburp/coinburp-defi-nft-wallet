@@ -24,7 +24,7 @@ import {
   calculateCompoundInterestInDays,
   formatSavingsAmount,
 } from '@rainbow-me/helpers/savings';
-import { useDimensions } from '@rainbow-me/hooks';
+import {useDimensions, useWallets} from '@rainbow-me/hooks';
 import { useNavigation } from '@rainbow-me/navigation';
 import Routes from '@rainbow-me/routes';
 import { padding, position } from '@rainbow-me/styles';
@@ -141,6 +141,7 @@ const SavingsListRow = ({
 }) => {
   const { width: deviceWidth } = useDimensions();
   const { navigate } = useNavigation();
+  const { isReadOnlyWallet } = useWallets();
 
   const initialValue = supplyBalanceUnderlying;
   const [value, setValue] = useState(initialValue);
@@ -168,7 +169,7 @@ const SavingsListRow = ({
         lifetimeSupplyInterestAccrued,
         lifetimeSupplyInterestAccruedNative,
         longFormHeight: supplyBalanceUnderlying
-          ? SavingsSheetHeight
+          ? SavingsSheetHeight - (isReadOnlyWallet ? 200 : 0)
           : SavingsSheetEmptyHeight,
         supplyBalanceUnderlying,
         supplyRate,

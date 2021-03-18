@@ -2,14 +2,9 @@ import React, { Fragment, useCallback, useMemo } from 'react';
 import Link from '../Link';
 import { ButtonPressAnimation } from '../animations';
 import ShowcaseHeart from '../icons/svg/ShowcaseHeart';
-import { Centered, Column, ColumnWithDividers } from '../layout';
-import {
-  SendActionButton,
-  SheetActionButton,
-  SheetActionButtonRow,
-  SheetDivider,
-  SlackSheet,
-} from '../sheet';
+import WithdrawIcon from '../icons/svg/WithdrawIcon';
+import { Column, ColumnWithDividers } from '../layout';
+import { SheetActionButtonRow, SheetDivider, SlackSheet } from '../sheet';
 import { Text } from '../text';
 import { ShowcaseToast, ToastPositionContainer } from '../toasts';
 import { UniqueTokenAttributes } from '../unique-token';
@@ -23,11 +18,10 @@ import {
   useDimensions,
   useExpandedStateNavigation,
   useShowcaseTokens,
+  useWallets,
 } from '@rainbow-me/hooks';
 import Routes from '@rainbow-me/routes';
 import { magicMemo } from '@rainbow-me/utils';
-import WithdrawArrowIcon from "../icons/svg/WithdrawArrowIcon";
-import WithdrawIcon from "../icons/svg/WithdrawIcon";
 
 const UniqueTokenExpandedState = ({ asset }) => {
   const {
@@ -48,6 +42,8 @@ const UniqueTokenExpandedState = ({ asset }) => {
     showcaseTokens,
   } = useShowcaseTokens();
 
+  const { isReadOnlyWallet } = useWallets();
+
   const isShowcaseAsset = useMemo(() => showcaseTokens.includes(uniqueId), [
     showcaseTokens,
     uniqueId,
@@ -62,7 +58,7 @@ const UniqueTokenExpandedState = ({ asset }) => {
   }, [addShowcaseToken, isShowcaseAsset, removeShowcaseToken, uniqueId]);
 
   const { height: screenHeight } = useDimensions();
-  const { colors, isDarkMode } = useTheme();
+  const { colors } = useTheme();
 
   const navigate = useExpandedStateNavigation();
   const handlePressSend = useCallback(
@@ -90,7 +86,10 @@ const UniqueTokenExpandedState = ({ asset }) => {
         <UniqueTokenExpandedStateHeader asset={asset} />
         <UniqueTokenExpandedStateImage asset={asset} />
         <SheetActionButtonRow>
-          <ButtonPressAnimation onPress={handlePressShowcase}>
+          <ButtonPressAnimation
+            onPress={handlePressShowcase}
+            style={{ left: isReadOnlyWallet ? 16 : 0 }}
+          >
             <Column align="center">
               <ShowcaseHeart selected={isShowcaseAsset} />
               <Text color={colors.heartPink} weight={900}>
@@ -98,7 +97,7 @@ const UniqueTokenExpandedState = ({ asset }) => {
               </Text>
             </Column>
           </ButtonPressAnimation>
-          {isSendable && (
+          {isSendable && !isReadOnlyWallet && (
             <ButtonPressAnimation onPress={handlePressSend}>
               <Column align="center">
                 <WithdrawIcon />

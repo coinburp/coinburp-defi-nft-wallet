@@ -8,6 +8,7 @@ import { Centered, Column } from '../layout';
 import AssetListHeader, { AssetListHeaderHeight } from './AssetListHeader';
 import AssetListItemSkeleton from './AssetListItemSkeleton';
 import { position } from '@rainbow-me/styles';
+import {useWallets} from "@rainbow-me/hooks";
 
 const Container = styled(Column)`
   ${position.size('100%')};

@@ -33,6 +33,7 @@ export default function WalletActionButton({
   };
 
   const handlePress = useCallback(() => {
+    // alert(isReadOnlyWallet)
     if (!isReadOnlyWallet || enableActionsOnReadOnlyWallet) {
       switch (type) {
         case 'add':

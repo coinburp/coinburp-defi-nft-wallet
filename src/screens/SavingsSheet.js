@@ -18,10 +18,7 @@ import {
   SavingsSheetEmptyState,
   SavingsSheetHeader,
 } from '../components/savings';
-import {
-  SheetActionButtonRow,
-  SlackSheet,
-} from '../components/sheet';
+import { SheetActionButtonRow, SlackSheet } from '../components/sheet';
 import { enableActionsOnReadOnlyWallet } from '@rainbow-me/config/debug';
 import { isSymbolStablecoin } from '@rainbow-me/helpers/savings';
 import { convertAmountToNativeDisplay } from '@rainbow-me/helpers/utilities';
@@ -146,16 +143,24 @@ const SavingsSheet = () => {
     }
   }, [isEmpty, isReadOnlyWallet, navigate, underlying, underlyingPrice]);
 
+  const readOnlyOffset = isReadOnlyWallet ? 200 : 0;
+
   return (
     <Container
       deviceHeight={deviceHeight}
-      height={isEmpty ? SavingsSheetEmptyHeight : SavingsSheetHeight}
+      height={
+        isEmpty ? SavingsSheetEmptyHeight : SavingsSheetHeight - readOnlyOffset
+      }
       insets={insets}
     >
       <StatusBar barStyle="light-content" />
       <SlackSheet
         additionalTopPadding={android}
-        contentHeight={isEmpty ? SavingsSheetEmptyHeight : SavingsSheetHeight}
+        contentHeight={
+          isEmpty
+            ? SavingsSheetEmptyHeight
+            : SavingsSheetHeight - readOnlyOffset
+        }
       >
         {isEmpty ? (
           <SavingsSheetEmptyState
@@ -169,18 +174,20 @@ const SavingsSheet = () => {
               balance={balance}
               lifetimeAccruedInterest={lifetimeAccruedInterest}
             />
-            <SheetActionButtonRow paddingBottom={48}>
-              <WalletActionButton
-                onPress={onDeposit}
-                title="Stake"
-                type="stake"
-              />
-              <WalletActionButton
-                onPress={onWithdraw}
-                title="Unstake"
-                type="unstake"
-              />
-            </SheetActionButtonRow>
+            {!isReadOnlyWallet ? (
+              <SheetActionButtonRow paddingBottom={48}>
+                <WalletActionButton
+                  onPress={onDeposit}
+                  title="Stake"
+                  type="stake"
+                />
+                <WalletActionButton
+                  onPress={onWithdraw}
+                  title="Unstake"
+                  type="unstake"
+                />
+              </SheetActionButtonRow>
+            ) : null}
             <Divider color={colors.rowDividerLight} zIndex={0} />
             <FloatingEmojis
               disableHorizontalMovement

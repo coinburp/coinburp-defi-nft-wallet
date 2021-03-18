@@ -124,7 +124,7 @@ export default function WalletScreen() {
       <Animated.View style={{ opacity: isCoinListEditedValue }} />
       <Animated.Code exec={scrollViewTracker} />
       <FabWrapper
-        disabled={isEmpty || !!params?.emptyWallet}
+        disabled={isEmpty || !!params?.emptyWallet || isReadOnlyWallet}
         fabs={fabs}
         isCoinListEdited={isCoinListEdited}
         isReadOnlyWallet={isReadOnlyWallet}

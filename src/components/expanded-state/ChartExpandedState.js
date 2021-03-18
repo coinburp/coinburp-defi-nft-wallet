@@ -6,6 +6,7 @@ import {
   useChartThrottledPoints,
   useDimensions,
   useUniswapAssetsInWallet,
+  useWallets,
 } from '../../hooks';
 import {
   BuyActionButton,
@@ -15,11 +16,7 @@ import {
   SlackSheet,
   SwapActionButton,
 } from '../sheet';
-import {
-  TokenInfoItem,
-  TokenInfoRow,
-  TokenInfoSection,
-} from '../token-info';
+import { TokenInfoItem, TokenInfoRow, TokenInfoSection } from '../token-info';
 import { Chart } from '../value-chart';
 import { ChartPathProvider } from '@rainbow-me/animated-charts';
 import AssetInputTypes from '@rainbow-me/helpers/assetInputTypes';
@@ -36,6 +33,7 @@ const Spacer = styled.View`
 
 export default function ChartExpandedState({ asset }) {
   const { height: deviceHeight } = useDimensions();
+  const { isReadOnlyWallet } = useWallets();
 
   const inlineBaseHeight =
     deviceHeight + (android && 20 - getSoftMenuBarHeight());
@@ -107,24 +105,28 @@ export default function ChartExpandedState({ asset }) {
           <TokenInfoItem asset={asset} size="smedium" />
         </TokenInfoRow>
       </TokenInfoSection>
-      {needsEth ? (
-        <SheetActionButtonRow>
-          <BuyActionButton color={colors.coinburp} fullWidth />
-        </SheetActionButtonRow>
-      ) : (
-        <SheetActionButtonRow>
-          {showSwapButton && (
-            <SwapActionButton
-              color={colors.coinburp}
-              inputType={AssetInputTypes.in}
-            />
+      {!isReadOnlyWallet ? (
+        <>
+          {needsEth ? (
+            <SheetActionButtonRow>
+              <BuyActionButton color={colors.coinburp} fullWidth />
+            </SheetActionButtonRow>
+          ) : (
+            <SheetActionButtonRow>
+              {showSwapButton && (
+                <SwapActionButton
+                  color={colors.coinburp}
+                  inputType={AssetInputTypes.in}
+                />
+              )}
+              <SendActionButton
+                color={colors.coinburp}
+                fullWidth={!showSwapButton}
+              />
+            </SheetActionButtonRow>
           )}
-          <SendActionButton
-            color={colors.coinburp}
-            fullWidth={!showSwapButton}
-          />
-        </SheetActionButtonRow>
-      )}
+        </>
+      ) : null}
     </SlackSheet>
   );
 }

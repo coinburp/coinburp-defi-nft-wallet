@@ -25,6 +25,7 @@ import {
 } from '@rainbow-me/helpers/dappNameHandler';
 import { useNavigation } from '@rainbow-me/navigation';
 import { ethereumUtils } from '@rainbow-me/utils';
+import {useDimensions} from "@rainbow-me/hooks";
 
 const DappLogo = styled(RequestVendorLogoIcon).attrs(
   ({ theme: { colors } }) => ({
@@ -41,6 +42,7 @@ export default function WalletConnectApprovalSheet() {
   const { colors } = useTheme();
   const { goBack } = useNavigation();
   const { params } = useRoute();
+  const { width } = useDimensions();
   const [scam, setScam] = useState(false);
   const handled = useRef(false);
   const meta = params?.meta || {};
@@ -169,7 +171,7 @@ export default function WalletConnectApprovalSheet() {
           size="larger"
           style={{ marginTop: -30 }}
           weight={900}
-          width="100%"
+          width={width - 32}
         />
       </SheetActionButtonRow>
       <SheetActionButtonRow>
@@ -182,6 +184,7 @@ export default function WalletConnectApprovalSheet() {
           style={{ marginTop: -30 }}
           textColor={colors.red}
           weight={900}
+          width={width - 32}
         />
       </SheetActionButtonRow>
     </Sheet>

@@ -656,7 +656,7 @@ export default function ExchangeModal({
                     outputAmountDisplay
                   )
                     ? 24
-                    : 1
+                    : 40
                 }
                 width="100%"
               >
