@@ -48,7 +48,7 @@ export default function WalletConnectExplainerItem({
           {content}
         </Text>
         {children && (
-          <FlexItem marginTop={ios ? -8 : -68}>{children}</FlexItem>
+          <FlexItem marginTop={ios ? -8 : -48}>{children}</FlexItem>
         )}
       </Column>
     </Column>
