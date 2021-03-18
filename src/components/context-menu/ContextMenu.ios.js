@@ -1,6 +1,7 @@
 import { omit, pick } from 'lodash';
 import React, { Fragment, useCallback, useRef, useState } from 'react';
 import ActionSheet from 'react-native-actionsheet';
+import { useTheme } from '../../context/ThemeContext';
 import { ButtonPressAnimation } from '../animations';
 import { Icon } from '../icons';
 import { Centered } from '../layout';
@@ -16,9 +17,9 @@ const ActionSheetProps = [
   'title',
 ];
 
-const ContextButton = props => (
+const ContextButton = ({ color, ...props }) => (
   <Centered css={padding(12, 8)} {...props}>
-    <Icon name="threeDots" />
+    <Icon color={color} name="threeDots" />
   </Centered>
 );
 
@@ -33,6 +34,7 @@ export default function ContextMenu({
 }) {
   const actionsheetRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
+  const { colors } = useTheme();
 
   const handlePressActionSheet = useCallback(
     buttonIndex => {
@@ -60,7 +62,12 @@ export default function ContextMenu({
           activeOpacity={activeOpacity}
           onPress={handleShowActionSheet}
         >
-          {children || <ContextButton {...omit(props, ActionSheetProps)} />}
+          {children || (
+            <ContextButton
+              color={colors.coinburp}
+              {...omit(props, ActionSheetProps)}
+            />
+          )}
         </ButtonPressAnimation>
       )}
       <ActionSheet

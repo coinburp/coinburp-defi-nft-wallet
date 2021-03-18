@@ -5,7 +5,7 @@ import { RequestVendorLogoIcon } from '../coin-icon';
 import CoinCheckButton from '../coin-row/CoinCheckButton';
 import { ContextMenu } from '../context-menu';
 import { Centered, ColumnWithMargins, Row } from '../layout';
-import { Text, TruncatedText } from '../text';
+import { TruncatedText } from '../text';
 import {
   dappLogoOverride,
   dappNameOverride,
