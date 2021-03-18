@@ -36,6 +36,7 @@ import {
   isUnstoppableAddressFormat,
   isValidWallet,
 } from '@rainbow-me/helpers/validators';
+import isKeyboardOpen from '@rainbow-me/helpers/isKeyboardOpen';
 import WalletBackupStepTypes from '@rainbow-me/helpers/walletBackupStepTypes';
 import walletLoadingStates from '@rainbow-me/helpers/walletLoadingStates';
 import {
@@ -81,8 +82,8 @@ const Footer = styled(Row).attrs({
   align: 'start',
   justify: 'end',
 })`
-  bottom: ${android ? 15 : 0};
-  position: ${android ? 'absolute' : 'relative'};
+  bottom: ${android ? 15 : 70};
+  position: ${android ? 'absolute' : 'absolute'};
   right: 0;
   width: 100%;
   ${android
@@ -97,6 +98,7 @@ const LoadingSpinner = styled(android ? Spinner : ActivityIndicator).attrs({
   size: 15,
 })`
   margin-right: 5;
+  top: 3;
   margin-top: ${android ? 0 : 2};
 `;
 
@@ -108,6 +110,7 @@ const FooterButton = styled(MiniButton).attrs({
 const KeyboardSizeView = styled(KeyboardArea)`
   background-color: ${({ theme: { colors } }) => colors.white};
   justify-content: center;
+  // margin-top: 64px;
 `;
 
 const SecretTextArea = styled(Input).attrs(({ value }) => ({
@@ -134,7 +137,7 @@ const SecretTextArea = styled(Input).attrs(({ value }) => ({
 
 const SecretTextAreaContainer = styled(Centered)`
   ${padding(0, ios ? 42 : 24)};
-  margin-top: 50%;
+  // margin-top: 50%;
 `;
 
 const Sheet = styled(Column).attrs({
@@ -150,7 +153,7 @@ const Sheet = styled(Column).attrs({
 const ImportIcon = styled(Icon).attrs({
   name: 'import',
 })`
-  margin: 4px 8px 4px 4px;
+  margin: 4px 8px 0px 4px;
   top: ${ios ? 0 : 8};
 `;
 
@@ -422,7 +425,7 @@ export default function ImportSeedPhraseSheet() {
           </Column>
           <Column align="flex-end" flex="1" height={24} />
         </Row>
-        <Column>
+        <Column height="100%" justify="center" paddingBottom={64}>
           <SecretTextAreaContainer>
             <SecretTextArea
               color={isSecretValid ? colors.neonGreen : colors.dark}

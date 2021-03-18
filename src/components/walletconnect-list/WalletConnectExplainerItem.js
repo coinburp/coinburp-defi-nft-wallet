@@ -13,8 +13,7 @@ export default function WalletConnectExplainerItem({
 }) {
   const { colors } = useTheme();
   return (
-    <Column align="center">
-      <Emoji size="bmedium">{emoji}</Emoji>
+    <Column align="center" width="50%">
       <Column align="center" flex={1}>
         <View style={{ marginBottom: 12 }}>
           {isWithdraw ? (
@@ -31,24 +30,26 @@ export default function WalletConnectExplainerItem({
         >
           {title}
         </TruncatedText>
-          <Text
-            color={colors.alpha(colors.white, 1)}
-            lineHeight="loose"
-            numberOfLines={5}
-            size="smedium"
-            style={{
-              flexWrap: 'wrap',
-              marginBottom: 16,
-              marginTop: 6,
-              maxWidth: ios ? '60%' : '50%',
-              minWidth: 150,
-              textAlign: 'center',
-            }}
-            weight="bold"
-          >
-            {content}
-          </Text>
-        {children && <FlexItem marginTop={-68}>{children}</FlexItem>}
+        <Text
+          color={colors.alpha(colors.white, 1)}
+          lineHeight="loose"
+          numberOfLines={5}
+          size="smedium"
+          style={{
+            flexWrap: 'wrap',
+            marginBottom: 16,
+            marginTop: 6,
+            maxWidth: '55%',
+            minWidth: 150,
+            textAlign: 'center',
+          }}
+          weight="bold"
+        >
+          {content}
+        </Text>
+        {children && (
+          <FlexItem marginTop={ios ? -8 : -68}>{children}</FlexItem>
+        )}
       </Column>
     </Column>
   );

@@ -17,8 +17,9 @@ const Container = styled(Row).attrs({
 `;
 
 const Item = styled(Column)`
-  margin-left: 20;
-  margin-right: 20;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
 `;
 
 function renderButton(child) {

@@ -14,7 +14,6 @@ const CurrencyItemHeight = 40;
 const CurrencyItemLabel = styled(Text).attrs(
   ({ isSelected, theme: { colors } }) => ({
     color: isSelected ? colors.coinburp : colors.blueGrey,
-    letterSpacing: 'roundedMedium',
     size: 32,
     weight: 900,
   })

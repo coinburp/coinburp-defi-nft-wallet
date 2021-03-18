@@ -112,6 +112,10 @@ export const supportedCountries = {
     emojiName: 'flag_switzerland',
     name: 'Switzerland',
   },
+  GB: {
+    emojiName: 'flag_united_kingdom',
+    name: 'United Kingdom',
+  },
   US: {
     emojiName: 'flag_united_states',
     name: 'United States',

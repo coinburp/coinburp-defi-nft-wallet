@@ -9,9 +9,9 @@ import React, {
 } from 'react';
 import { InteractionManager } from 'react-native';
 import styled from 'styled-components';
-import Divider from '../components/Divider';
 import { Alert } from '../components/alerts';
 import { RequestVendorLogoIcon } from '../components/coin-icon';
+import CoinCheckButton from '../components/coin-row/CoinCheckButton';
 import { Centered, Row } from '../components/layout';
 import {
   Sheet,
@@ -25,7 +25,6 @@ import {
 } from '@rainbow-me/helpers/dappNameHandler';
 import { useNavigation } from '@rainbow-me/navigation';
 import { ethereumUtils } from '@rainbow-me/utils';
-import CoinCheckButton from '../components/coin-row/CoinCheckButton';
 
 const DappLogo = styled(RequestVendorLogoIcon).attrs(
   ({ theme: { colors } }) => ({
@@ -134,11 +133,12 @@ export default function WalletConnectApprovalSheet() {
           <Row>
             <Text
               align="center"
-              color={colors.alpha(colors.blueGreyDark, 0.6)}
+              color={colors.dark}
               lineHeight={29}
-              size="big"
+              size={20}
+              weight={900}
             >
-              <Text color="dark" size="big" weight="bold">
+              <Text color={colors.coinburp} size={20} weight={900}>
                 {dappName}
               </Text>{' '}
               wants to connect to your wallet
@@ -146,38 +146,42 @@ export default function WalletConnectApprovalSheet() {
           </Row>
         </Centered>
         <Row marginBottom={30} marginTop={15}>
-          { isAuthenticated && 
-            <CoinCheckButton style={{
-              width: 24,
-              left: -5,
-              top: -10
-            }} toggle={true} />
-          }
-          <Text color="coinburp" lineHeight={29} size="large" weight="bold">
-            { formattedDappUrl }
+          {isAuthenticated && (
+            <CoinCheckButton
+              style={{
+                left: -5,
+                top: -10,
+                width: 24,
+              }}
+              toggle
+            />
+          )}
+          <Text color="coinburp" lineHeight={29} size={16} weight={900}>
+            {formattedDappUrl}
           </Text>
         </Row>
-        <Divider color={colors.rowDividerLight} inset={[0, 84]} />
       </Centered>
       <SheetActionButtonRow>
         <SheetActionButton
           color={colors.coinburp}
           label="Connect"
           onPress={handleConnect}
-          size="big"
-          weight="bold"
-          style={{marginTop: -30}}
+          size="larger"
+          style={{ marginTop: -30 }}
+          weight={900}
+          width="100%"
         />
       </SheetActionButtonRow>
       <SheetActionButtonRow>
         <SheetActionButton
           color={colors.white}
+          height={64}
           label="Cancel"
           onPress={handleCancel}
-          size="big"
+          size="larger"
+          style={{ marginTop: -30 }}
           textColor={colors.red}
-          weight="bold"
-          style={{marginTop: -30}}
+          weight={900}
         />
       </SheetActionButtonRow>
     </Sheet>

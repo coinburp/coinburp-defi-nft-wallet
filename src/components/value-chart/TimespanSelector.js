@@ -30,7 +30,7 @@ const TimespanItemRow = styled(Row).attrs({
 `;
 
 const TimespanItem = ({ color, isSelected, item, ...props }) => (
-  <Centered flexShrink={0} height={32} {...props}>
+  <Centered flexShrink={0} height={32} width={45} {...props}>
     <TimespanItemLabel color={color} isSelected={isSelected}>
       {ChartTypes[item] === ChartTypes.max
         ? 'MAX'
