@@ -34,9 +34,11 @@ const Container = styled(ColumnWithMargins).attrs({
 `;
 
 const CaretIcon = styled(Icon).attrs({
-  name: 'caret',
+  direction: 'left',
+  name: 'caretThick',
+  size: 24,
 })`
-  margin-bottom: 5.25;
+  margin-bottom: 5.25px;
 `;
 
 function useTabularNumsWhileScrubbing(isScrubbing) {

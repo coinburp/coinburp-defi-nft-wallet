@@ -18,6 +18,7 @@ import Labels from './ExtremeLabels';
 import TimespanSelector from './TimespanSelector';
 import { ChartDot, ChartPath, useChartData } from '@rainbow-me/animated-charts';
 import ChartTypes from '@rainbow-me/helpers/chartTypes';
+import { useDimensions } from '@rainbow-me/hooks';
 import { ImgixImage } from '@rainbow-me/images';
 import { useNavigation } from '@rainbow-me/navigation';
 import { position } from '@rainbow-me/styles';
@@ -42,8 +43,8 @@ const ChartSpinner = styled(ImgixImage).attrs(({ color }) => ({
   source: Spinner,
   tintColor: color,
 }))`
-  height: 28;
-  width: 28;
+  height: 28px;
+  width: 28px;
 `;
 
 const Container = styled(Column)`
@@ -124,6 +125,7 @@ export default function ChartWrapper({
   const spinnerRotation = useSharedValue(0);
   const spinnerScale = useSharedValue(0);
   const chartTimeSharedValue = useSharedValue('');
+  const { isShortPhone } = useDimensions();
   const { colors } = useTheme();
 
   const { setOptions } = useNavigation();
@@ -211,7 +213,7 @@ export default function ChartWrapper({
               fill="none"
               gestureEnabled={!fetchingCharts && !!throttledData}
               hapticsEnabled
-              height={HEIGHT}
+              height={isShortPhone ? HEIGHT - 50 : HEIGHT}
               hitSlop={30}
               longPressGestureHandlerProps={{
                 minDurationMs: 60,

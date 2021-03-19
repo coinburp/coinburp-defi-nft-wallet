@@ -32,11 +32,11 @@ const Spacer = styled.View`
 `;
 
 export default function ChartExpandedState({ asset }) {
-  const { height: deviceHeight } = useDimensions();
+  const { height: deviceHeight, isShortPhone } = useDimensions();
   const { isReadOnlyWallet } = useWallets();
 
   const inlineBaseHeight =
-    deviceHeight + (android && 20 - getSoftMenuBarHeight());
+    deviceHeight + (android && 150 - getSoftMenuBarHeight());
   const inlineBheightWithoutChart = inlineBaseHeight + (android && 30);
   const inlineBheightWithChart = inlineBaseHeight + 310;
 
@@ -68,8 +68,11 @@ export default function ChartExpandedState({ asset }) {
   if (duration.current === 0) {
     duration.current = 300;
   }
+  const smallPhoneAdjust = isShortPhone ? 64 : 0;
+  const noButtonsAdjust = isReadOnlyWallet ? 100 : 0;
+  const adjust = smallPhoneAdjust + noButtonsAdjust;
   const ChartExpandedStateSheetHeight =
-    ios || showChart ? heightWithChart : heightWithoutChart;
+    ios || showChart ? heightWithChart - adjust : heightWithoutChart - adjust;
 
   const { colors } = useTheme();
 

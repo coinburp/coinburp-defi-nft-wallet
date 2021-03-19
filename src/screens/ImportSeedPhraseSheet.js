@@ -82,7 +82,7 @@ const Footer = styled(Row).attrs({
   align: 'start',
   justify: 'end',
 })`
-  bottom: ${android ? 15 : 70};
+  bottom: 70px;
   position: ${android ? 'absolute' : 'absolute'};
   right: 0;
   width: 100%;
@@ -110,7 +110,6 @@ const FooterButton = styled(MiniButton).attrs({
 const KeyboardSizeView = styled(KeyboardArea)`
   background-color: ${({ theme: { colors } }) => colors.white};
   justify-content: center;
-  // margin-top: 64px;
 `;
 
 const SecretTextArea = styled(Input).attrs(({ value }) => ({

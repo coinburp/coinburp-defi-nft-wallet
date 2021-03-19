@@ -21,6 +21,7 @@ export default function useDimensions() {
     height,
     isLargePhone: width >= deviceDimensions.iphoneX.width,
     isNarrowPhone: width < deviceDimensions.iphoneX.width,
+    isShortPhone: height <= 700,
     isSmallPhone: height <= deviceDimensions.iphone6.height,
     isTallPhone: height >= deviceDimensions.iphoneX.height,
     isTinyPhone: height <= deviceDimensions.iphoneSE.height,

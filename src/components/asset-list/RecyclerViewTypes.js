@@ -23,7 +23,7 @@ const lastCoinRowAdditionalHeight = 1;
 const openSmallBalancesAdditionalHeight = 15;
 const closedSmallBalancesAdditionalHeight = 18;
 
-const savingsOpenAdditionalHeight = -7.5;
+const savingsOpenAdditionalHeight = 200;
 const savingsLastOpenAdditionalHeight = 275;
 const savingsListAdditionalHeight = 0;
 
