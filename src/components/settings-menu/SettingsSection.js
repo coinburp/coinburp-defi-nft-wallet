@@ -136,7 +136,7 @@ export default function SettingsSection({
   onPressShowSecret,
 }) {
   const isReviewAvailable = useExperimentalFlag(REVIEW_ANDROID) || ios;
-  const { wallets } = useWallets();
+  const { wallets, isReadOnlyWallet } = useWallets();
   const { /*language,*/ nativeCurrency, network } = useAccountSettings();
   const { isTinyPhone } = useDimensions();
 
@@ -190,7 +190,7 @@ export default function SettingsSection({
   return (
     <Container backgroundColor={colors.white} scrollEnabled={isTinyPhone}>
       <Column marginTop={30}>
-        {canBeBackedUp && (
+        {canBeBackedUp && !isReadOnlyWallet && (
           <ListItem
             icon={<icons.Backup />}
             label="Backup"
