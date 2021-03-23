@@ -73,24 +73,24 @@ export default function BackupSheetSection({
         <MastheadDescription>{descriptionText}</MastheadDescription>
       </Masthead>
       <Footer align="center">
-        {/*<ButtonPressAnimation*/}
-        {/*  onPress={onPrimaryAction}*/}
-        {/*  scaleTo={0.9}*/}
-        {/*  testID={primaryButtonTestId}*/}
-        {/*>*/}
-        {/*  <Row align="center">*/}
-        {/*    <Icon marginRight={12} name="pinkCloud" />*/}
-        {/*    <GradientText*/}
-        {/*      angle={360}*/}
-        {/*      colors={['#fa71cd', '#c471f5']}*/}
-        {/*      size={20}*/}
-        {/*      steps={[0, 0.9]}*/}
-        {/*      weight={900}*/}
-        {/*    >*/}
-        {/*      {primaryLabel}*/}
-        {/*    </GradientText>*/}
-        {/*  </Row>*/}
-        {/*</ButtonPressAnimation>*/}
+        <ButtonPressAnimation
+          onPress={onPrimaryAction}
+          scaleTo={0.9}
+          testID={primaryButtonTestId}
+        >
+          <Row align="center">
+            <Icon marginRight={12} name="pinkCloud" />
+            <GradientText
+              angle={360}
+              colors={['#fa71cd', '#c471f5']}
+              size={20}
+              steps={[0, 0.9]}
+              weight={900}
+            >
+              {primaryLabel}
+            </GradientText>
+          </Row>
+        </ButtonPressAnimation>
         <SheetActionButton
           androidWidth={maxButtonWidth}
           color={colors.white}

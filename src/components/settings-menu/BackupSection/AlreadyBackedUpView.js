@@ -37,8 +37,9 @@ const CheckmarkIcon = styled(Icon).attrs({
 
 const Content = styled(Centered).attrs({
   direction: 'column',
+  justify: 'space-between',
 })`
-  ${padding(0, 19, 30)};
+  ${padding(64, 19, 30)};
   flex: 1;
 `;
 
@@ -49,7 +50,7 @@ const DescriptionText = styled(Text).attrs(({ theme: { colors } }) => ({
   size: 'lmedium',
   weight: 'bold',
 }))`
-  margin-bottom: 42;
+//  margin-bottom: 42;
   margin-top: 32
   padding-horizontal: 23;
   max-width: 295px;
@@ -73,7 +74,7 @@ const Title = styled(Text).attrs({
   size: 'coinburpBig',
   weight: 'heavy',
 })`
-  margin-bottom: 8;
+  //margin-bottom: 8;
   margin-top: 16px;
   padding-horizontal: 11;
   max-width: 240px;
@@ -231,6 +232,7 @@ export default function AlreadyBackedUpView() {
           (walletStatus === WalletBackupStatus.IMPORTED && `Imported`)}
       </Subtitle>
       <Content>
+        <Column />
         <Centered direction="column">
           <CheckmarkIcon color={checkmarkColor} isDarkMode={isDarkMode} />
           <Title>
@@ -259,39 +261,40 @@ export default function AlreadyBackedUpView() {
             weight="heavy"
           />
         </Column>
+        <Column />
       </Content>
-      {/*{walletStatus !== WalletBackupStatus.CLOUD_BACKUP ? (*/}
-      {/*  <Footer>*/}
-      {/*    <ButtonPressAnimation onPress={handleIcloudBackup}>*/}
-      {/*      <Row align="center">*/}
-      {/*        <Icon marginRight={12} name="pinkCloud" />*/}
-      {/*        <GradientText*/}
-      {/*          angle={360}*/}
-      {/*          colors={['#fa71cd', '#c471f5']}*/}
-      {/*          size={20}*/}
-      {/*          steps={[0, 0.9]}*/}
-      {/*          weight={900}*/}
-      {/*        >*/}
-      {/*          {`Back up to ${cloudPlatform}`}*/}
-      {/*        </GradientText>*/}
-      {/*      </Row>*/}
-      {/*    </ButtonPressAnimation>*/}
-      {/*  </Footer>*/}
-      {/*) : !hasMultipleWallets ? (*/}
-      {/*  <Footer>*/}
-      {/*    <ButtonPressAnimation onPress={manageCloudBackups}>*/}
-      {/*      <Text*/}
-      {/*        align="center"*/}
-      {/*        color={colors.coinburp}*/}
-      {/*        letterSpacing="roundedMedium"*/}
-      {/*        size="larger"*/}
-      {/*        weight="heavy"*/}
-      {/*      >*/}
-      {/*        {cloudPlatform} Backups*/}
-      {/*      </Text>*/}
-      {/*    </ButtonPressAnimation>*/}
-      {/*  </Footer>*/}
-      {/*) : null}*/}
+      {walletStatus !== WalletBackupStatus.CLOUD_BACKUP ? (
+        <Footer>
+          <ButtonPressAnimation onPress={handleIcloudBackup}>
+            <Row align="center">
+              <Icon marginRight={12} name="pinkCloud" />
+              <GradientText
+                angle={360}
+                colors={['#fa71cd', '#c471f5']}
+                size={20}
+                steps={[0, 0.9]}
+                weight={900}
+              >
+                {`Back up to ${cloudPlatform}`}
+              </GradientText>
+            </Row>
+          </ButtonPressAnimation>
+        </Footer>
+      ) : !hasMultipleWallets ? (
+        <Footer>
+          <ButtonPressAnimation onPress={manageCloudBackups}>
+            <Text
+              align="center"
+              color={colors.coinburp}
+              letterSpacing="roundedMedium"
+              size="larger"
+              weight="heavy"
+            >
+              {cloudPlatform} Backups
+            </Text>
+          </ButtonPressAnimation>
+        </Footer>
+      ) : null}
     </Fragment>
   );
 }
