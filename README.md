@@ -1,5 +1,5 @@
 ![](https://assets.coinburp.com/CoinBurp_Wallet_Super_MVP_GitHub_Profile_banner.png)
-### CoinBurp DeFi | NFT Wallet - Forked from 🌈️ Rainbow
+### CoinBurp DeFi | NFT Wallet - Based on the amazing work of the 🌈️ Rainbow Team
 > based on the amazing work [Rainbow team](https://github.com/rainbow-me/rainbow/) did
 
 [Available on the iOS App Store.](https://apps.apple.com/us/app/coinburp-defi-nft-wallet/id1558706287)
