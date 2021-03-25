@@ -2,8 +2,8 @@
 ### CoinBurp DeFi | NFT Wallet - Forked from 🌈️ Rainbow
 > based on the amazing work [Rainbow team](https://github.com/rainbow-me/rainbow/) did
 
-[Soon available on the iOS App Store.](https://coinburp.com)
-[Soon available on the Android App Store.](https://coinburp.com)
+[Available on the iOS App Store.](https://apps.apple.com/us/app/coinburp-defi-nft-wallet/id1558706287)
+[Available on the Google Play Store.](https://play.google.com/store/apps/details?id=com.coinburp.wallet)
 
 [Follow CoinBurp on Twitter](https://twitter.com/coinburp)
 
