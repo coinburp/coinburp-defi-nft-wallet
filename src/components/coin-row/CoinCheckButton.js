@@ -23,7 +23,7 @@ const Content = styled(Row).attrs(({ isAbsolute }) => ({
 const CheckmarkIcon = styled(Icon).attrs({
   name: 'checkmark',
 })`
-  right: 7;
+  right: ${ios ? 7 : 0};
 `;
 
 const CoinCheckButton = ({ isAbsolute, onPress, toggle, ...props }) => {
