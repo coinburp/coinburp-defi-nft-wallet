@@ -82,6 +82,8 @@ target 'Rainbow' do
 
   pod 'Shimmer'
 
+  pod 'OpenSSL-Universal', '~>1.0.2.20'
+  
   use_native_modules!
 
   # Enables Flipper.
