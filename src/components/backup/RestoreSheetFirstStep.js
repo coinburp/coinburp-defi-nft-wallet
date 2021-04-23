@@ -132,7 +132,7 @@ export default function RestoreSheetFirstStep({
             <CaretIcon />
           </TitleRow>
           <DescriptionText>
-            Use your recovery phrase from Rainbow or another crypto wallet
+            Use your recovery phrase from CoinBurp or another crypto wallet
           </DescriptionText>
         </Column>
       </SheetRow>
