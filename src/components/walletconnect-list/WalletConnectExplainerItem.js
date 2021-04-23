@@ -35,12 +35,9 @@ export default function WalletConnectExplainerItem({
           lineHeight="loose"
           numberOfLines={5}
           size="smedium"
-          style={{
-            flexWrap: 'wrap',
-            marginBottom: 16,
-            marginTop: 6,
-            maxWidth: '55%',
-            minWidth: 150,
+          style={{ 
+            marginTop: 6, 
+            maxWidth: '55%', 
             textAlign: 'center',
           }}
           weight="bold"
@@ -48,7 +45,7 @@ export default function WalletConnectExplainerItem({
           {content}
         </Text>
         {children && (
-          <FlexItem marginTop={ios ? -8 : -48}>{children}</FlexItem>
+          <FlexItem marginTop={ios ? 28 : 0}>{children}</FlexItem>
         )}
       </Column>
     </Column>
