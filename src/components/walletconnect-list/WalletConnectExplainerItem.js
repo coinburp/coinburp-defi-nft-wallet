@@ -13,7 +13,7 @@ export default function WalletConnectExplainerItem({
 }) {
   const { colors } = useTheme();
   return (
-    <Column align="center" width="50%">
+    <Column align="center" width="55%">
       <Column align="center" flex={1}>
         <View style={{ marginBottom: 12 }}>
           {isWithdraw ? (
