@@ -5,7 +5,6 @@ import WalletConnectExplainerItem from './WalletConnectExplainerItem';
 import WalletConnectLearnMoreButton from './WalletConnectLearnMoreButton';
 import { useAccountSettings } from '@rainbow-me/hooks';
 
-import { View } from "react-native";
 
 export default function WalletConnectExplainer() {
   const { network } = useAccountSettings();
