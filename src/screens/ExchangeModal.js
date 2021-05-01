@@ -386,7 +386,7 @@ export default function ExchangeModal({
         tokenAddress: outputCurrency?.address,
         type,
       });
-
+      
       setIsAuthorizing(true);
       try {
         const wallet = await loadWallet();

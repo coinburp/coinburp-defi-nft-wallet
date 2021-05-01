@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React, { Fragment, useCallback, useMemo } from 'react';
-import { Linking, NativeModules, ScrollView, Share, Switch } from 'react-native';
+import { Linking, NativeModules, ScrollView, Share, Platform } from 'react-native';
 import styled from 'styled-components';
 import { REVIEW_ANDROID } from '../../config/experimental';
 import useExperimentalFlag from '../../config/experimentalHooks';
@@ -278,6 +278,16 @@ export default function SettingsSection({
           onPress={onSendFeedback}
           testID="feedback-section"
         />
+        {
+        /* Platform.OS=="android" &&
+        <ListItem
+          icon={<icons.Feedback />}
+          label="Bio Auth"
+          onPress={()=> console.log("tik")}
+          testID="feedback-section"
+          switch={{isEnabled:true}}
+        /> */
+        }
         {isReviewAvailable && (
           <ListItem
             icon={<icons.Review />}
