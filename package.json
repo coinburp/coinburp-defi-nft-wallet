@@ -31,9 +31,12 @@
     "update-env": "curl -H 'Authorization: token '$GITHUB_TOKEN -H 'Accept: application/vnd.github.v3.raw' -O  -L https://api.github.com/repos/rainbow-me/rainbow-env/contents/dotenv && rm -f .env && mv dotenv .env",
     "android-reverse-ports": "adb reverse tcp:8097 tcp:8097 && adb reverse tcp:8081 tcp:8081",
     "update-token-list": "./scripts/update-token-list.sh",
-    "CodePush:Demo":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-Android -d Demo",
-    "CodePush:Prod":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-Android -d Production",
-    "CodePush:Stage":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-Android -d Staging"
+    "CP-and:Demo":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-Android -d Demo",
+    "CP-and:Prod":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-Android -d Production",
+    "CP-and:Stage":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-Android -d Staging",
+    "CP-ios:Demo":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-iOS -d Demo",
+    "CP-ios:Prod":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-iOS -d Production",
+    "CP-ios:Stage":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-iOS -d Staging"
   },
   "husky": {
     "hooks": {
