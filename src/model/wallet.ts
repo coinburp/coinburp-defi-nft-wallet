@@ -833,7 +833,6 @@ export const getPrivateKey = async (
       );
       return null;
     }
-    console.log("------------------------------------ savasssssss -> ", pkey)
     return pkey || null;
   } catch (error) {
     logger.sentry('Error in getPrivateKey');
