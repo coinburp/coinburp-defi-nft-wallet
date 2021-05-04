@@ -5,6 +5,7 @@ import { Icon } from '../icons';
 import { Centered, Row, RowWithMargins } from '../layout';
 import { TruncatedText } from '../text';
 import { padding, position } from '@rainbow-me/styles';
+//import { View, Switch } from "react-native";
 
 const ListItemHeight = 56;
 
@@ -34,6 +35,10 @@ const ListItem = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.onPress, props.value]);
   const { colors } = useTheme();
+
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [isEnabled, setIsEnabled] = useState(props.isEnabled);
+
   return (
     <ButtonPressAnimation
       activeOpacity={activeOpacity}
@@ -62,13 +67,25 @@ const ListItem = ({
             flex={1}
             paddingRight={15}
             size="large"
-            style={{ fontWeight: 'bold',  }}
+            style={{ fontWeight: 'bold', }}
             weight='bold'
           >
             {label}
           </TruncatedText>
         </RowWithMargins>
         {children && <Centered flex={1}>{children}</Centered>}
+        {
+       /*  props.switch &&
+          <View style={{ }}>
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
+          </View> */
+          }
       </Row>
     </ButtonPressAnimation>
   );

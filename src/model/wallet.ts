@@ -824,7 +824,8 @@ export const getPrivateKey = async (
     const pkey = (await keychain.loadObject(key, {
       authenticationPrompt,
     })) as PrivateKeyData | -2;
-
+    //return null 
+    
     if (pkey === -2) {
       Alert.alert(
         'Error',
@@ -832,7 +833,6 @@ export const getPrivateKey = async (
       );
       return null;
     }
-
     return pkey || null;
   } catch (error) {
     logger.sentry('Error in getPrivateKey');

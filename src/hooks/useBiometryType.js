@@ -35,6 +35,6 @@ export default function useBiometryType() {
       getSupportedBiometryType();
     }
   }, [biometryType, isMounted, justBecameActive, prevBiometricType]);
-
-  return biometryType;
+  
+  return biometryType != "none" ? biometryType : BiometryTypes.passcode;
 }
