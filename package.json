@@ -30,7 +30,10 @@
     "test": "jest test.js",
     "update-env": "curl -H 'Authorization: token '$GITHUB_TOKEN -H 'Accept: application/vnd.github.v3.raw' -O  -L https://api.github.com/repos/rainbow-me/rainbow-env/contents/dotenv && rm -f .env && mv dotenv .env",
     "android-reverse-ports": "adb reverse tcp:8097 tcp:8097 && adb reverse tcp:8081 tcp:8081",
-    "update-token-list": "./scripts/update-token-list.sh"
+    "update-token-list": "./scripts/update-token-list.sh",
+    "CodePush:Demo":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-Android -d Demo",
+    "CodePush:Prod":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-Android -d Production",
+    "CodePush:Stage":"appcenter codepush release-react -a CoinBurp/CoinBurp-Wallet-Android -d Staging"
   },
   "husky": {
     "hooks": {
