@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">CoinBurp DeFi</string>
-    <string moduleConfig="true" name="CodePushDeploymentKey">DeploymentKey</string>
+    <!-- Codepush Demo -->
+    <string moduleConfig="true" name="CodePushDeploymentKey">RMYgyYuZREfJYYOMW78GK7ArMLaCKaNVBJ2z6</string>
+    <!-- Codepush Staging -->
+<!--    <string moduleConfig="true" name="CodePushDeploymentKey">4JEhmYhzGCBNy6yWqaPEKYIwtDRA_VnHNViF2</string>-->
+    <!-- Codepush Production -->
+<!--    <string moduleConfig="true" name="CodePushDeploymentKey">cOGjpYe2JwuSzQIhc6wT6t8a-XkumPBYyV8_7G</string>-->
 </resources>
