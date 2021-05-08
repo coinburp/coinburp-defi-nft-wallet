@@ -416,7 +416,7 @@ export default function ImportSeedPhraseSheet() {
       <Sheet>
         <SheetHandle marginBottom={7} marginTop={6} />
         <Row>
-          <Column align="flex-end" flex="1" height={24} justify="space-between">
+          <Column align="flex-end" flex="1" height={24} justify="space-between" marginLeft={12}>
             <ModalHeaderButton onPress={goBack} side="left" />
           </Column>
           <Column align="center" flex="6" height={52} justify="space-between">
