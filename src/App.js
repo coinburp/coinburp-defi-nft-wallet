@@ -318,6 +318,6 @@ const AppWithRedux = connect(
 const AppWithCodePush = CodePush({
   checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
   installMode: CodePush.InstallMode.ON_NEXT_RESUME,
-})(() => <AppWithRedux store={store} />);
+ })(() => <AppWithRedux store={store} />);
 
 AppRegistry.registerComponent('Rainbow', () => AppWithCodePush);

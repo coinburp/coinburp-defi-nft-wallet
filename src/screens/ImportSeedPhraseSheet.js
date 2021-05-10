@@ -123,7 +123,7 @@ const SecretTextArea = styled(Input).attrs(({ value }) => ({
   lineHeight: '40',
   multiline: true,
   numberOfLines: android ? 5 : 4,
-  placeholder: 'Send phrase, private key, Ethereum address, or ENS name',
+  placeholder: 'Send: phrase, private key, Ethereum address, or ENS name',
   returnKeyType: 'done',
   size: 'h2',
   spellCheck: false,
@@ -416,7 +416,7 @@ export default function ImportSeedPhraseSheet() {
       <Sheet>
         <SheetHandle marginBottom={7} marginTop={6} />
         <Row>
-          <Column align="flex-end" flex="1" height={24} justify="space-between">
+          <Column align="flex-end" flex="1" height={24} justify="space-between" marginLeft={12}>
             <ModalHeaderButton onPress={goBack} side="left" />
           </Column>
           <Column align="center" flex="6" height={52} justify="space-between">
@@ -431,7 +431,7 @@ export default function ImportSeedPhraseSheet() {
               onChangeText={handleSetSeedPhrase}
               onFocus={handleFocus}
               onSubmitEditing={handlePressImportButton}
-              placeholder="Send phrase, private key, Ethereum address, or ENS name"
+              placeholder="Send: phrase, private key, Ethereum address, or ENS name"
               placeholderTextColor={colors.skyBlue}
               ref={inputRef}
               returnKeyType="done"
