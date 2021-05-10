@@ -40,7 +40,7 @@ export default function MiniButton({
       <Row
         backgroundColor={disabled ? colors.skyBlue : colors.coinburp}
         height={height}
-        style={{ borderRadius }}
+        style={{ borderRadius, alignItems:'center' }}
       >
         <Content hasLeadingIcon={hasLeadingIcon}>
           {typeof children === 'string' ? (
