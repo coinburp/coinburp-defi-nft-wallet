@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, View, Text } from 'react-native';
 import styled from 'styled-components';
 import CoinBurpLogo from '../assets/logo.png';
 import { Centered, Column, ColumnWithMargins } from '../components/layout';
@@ -38,6 +38,7 @@ const PinAuthenticationScreen = () => {
   const { isNarrowPhone, isSmallPhone, isTallPhone } = useDimensions();
 
   const [attemptsLeft, setAttemptsLeft] = useState(MAX_ATTEMPTS);
+  const [errorMsg, setErrorMsg] = useState(false);
   const [value, setValue] = useState('');
   const [initialPin, setInitialPin] = useState('');
   const [actionType, setActionType] = useState(
@@ -141,6 +142,7 @@ const PinAuthenticationScreen = () => {
           if (actionType === 'authentication') {
             const valid = params.validPin === nextValue;
             if (!valid) {
+              setErrorMsg(true)
               onShake();
               setAttemptsLeft(attemptsLeft - 1);
               savePinAuthAttemptsLeft(attemptsLeft - 1);
@@ -186,7 +188,6 @@ const PinAuthenticationScreen = () => {
   );
 
   const { colors } = useTheme();
-
   return (
     <Column
       backgroundColor={colors.coinburp}
@@ -207,10 +208,18 @@ const PinAuthenticationScreen = () => {
               {actionType === 'authentication'
                 ? 'Type your PIN'
                 : actionType === 'creation'
-                ? 'Choose your PIN'
-                : 'Confirm your PIN'}
+                  ? 'Choose your PIN'
+                  : 'Confirm your PIN'}
             </SheetTitle>
             <PinValue translateX={errorAnimation} value={value} />
+            {
+              errorMsg &&
+              <View style={{ alignSelf: 'center', backgroundColor: 'red', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 7 }}>
+                <Text style={{ color: '#fff', textAlign: 'center' }}>
+                  Wrong PIN!
+              </Text>
+              </View>
+            }
           </ColumnWithMargins>
         </ColumnWithMargins>
       </Centered>
