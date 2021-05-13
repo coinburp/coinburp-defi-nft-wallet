@@ -98,8 +98,6 @@
 			<string>One</string>
 		</dict>
 	</dict>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>Tracking is used to inform us on how to improve the app going forward.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Rounded-Black.ttf</string>

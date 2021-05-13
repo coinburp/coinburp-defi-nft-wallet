@@ -25,7 +25,6 @@ import {
 } from 'react-native-dotenv';
 // eslint-disable-next-line import/default
 import RNIOS11DeviceCheck from 'react-native-ios11-devicecheck';
-import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
 import VersionNumber from 'react-native-version-number';
@@ -216,29 +215,7 @@ class App extends Component {
 
   handleInitializeAnalytics = async () => {
     // Comment the line below to debug analytics
-    // if (__DEV__) return false;
-
-    const trackingPermission = await check(
-      PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY
-    );
-
-    if (trackingPermission === RESULTS.DENIED) {
-      const permissionRequest = await request(
-        PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY
-      );
-
-      if (
-        permissionRequest !== RESULTS.GRANTED &&
-        permissionRequest !== RESULTS.UNAVAILABLE
-      ) {
-        return;
-      }
-    } else if (
-      trackingPermission === RESULTS.BLOCKED ||
-      trackingPermission === RESULTS.LIMITED
-    ) {
-      return;
-    }
+    if (__DEV__) return false;
 
     const storedIdentifier = await keychain.loadString(
       'analyticsUserIdentifier'
