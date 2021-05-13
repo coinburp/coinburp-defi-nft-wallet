@@ -51,7 +51,9 @@ const ApplePayButton = ({ disabled, onDisabledPress, onSubmit }) => {
     ease: Easing.out(Easing.ease),
   });
 
-  const backgroundColor = disabled ? colors.buttonDark : colors.coinburp;
+  const backgroundColor = disabled
+    ? colors.alpha(colors.shadowBlack, 0.4)
+    : colors.whiteLabel;
 
   const defaultShadowOpacity = interpolate(disabledAnimation, {
     inputRange: [0, 1],
@@ -98,14 +100,14 @@ const ApplePayButton = ({ disabled, onDisabledPress, onSubmit }) => {
           <Centered {...position.sizeAsObject('100%')}>
             <Icon
               color={
-                darkMode && disabled
-                  ? colors.alpha(colors.blueGreyDark, 0.4)
-                  : colors.whiteLabel
+                disabled
+                  ? colors.alpha(colors.shadowBlack, 0.4)
+                  : colors.shadowBlack
               }
               flex={1}
               marginBottom={2}
-              size={32}
               name="applePay"
+              size={32}
             />
           </Centered>
           <InnerBorder radius={ApplePayButtonBorderRadius} />

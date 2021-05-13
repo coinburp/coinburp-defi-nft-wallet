@@ -25,7 +25,7 @@
       "@rainbow-me/model": ["src/model"],
       "@rainbow-me/navigation": ["src/navigation"],
       "@rainbow-me/networkTypes": ["./src/helpers/networkTypes"],
-      "@rainbow-me/parsers": ["src/parsers"],      
+      "@rainbow-me/parsers": ["src/parsers"],
       "@rainbow-me/raps": ["src/raps"],
       "@rainbow-me/redux": ["src/redux"],
       "@rainbow-me/redux/*": ["src/redux/*"],
@@ -49,5 +49,8 @@
     "babel.config.js",
     "metro.config.js",
     "jest.config.js"
+  ],
+  "files": [
+    "./node_modules/@types/node/index.d.ts"
   ]
 }
