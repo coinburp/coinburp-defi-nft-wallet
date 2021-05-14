@@ -38,12 +38,13 @@ const PinAuthenticationScreen = () => {
   const { isNarrowPhone, isSmallPhone, isTallPhone } = useDimensions();
 
   const [attemptsLeft, setAttemptsLeft] = useState(MAX_ATTEMPTS);
-  const [errorMsg, setErrorMsg] = useState(false);
   const [value, setValue] = useState('');
   const [initialPin, setInitialPin] = useState('');
   const [actionType, setActionType] = useState(
     params.validPin ? 'authentication' : 'creation'
   );
+  //zvs
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const finished = useRef(false);
 
@@ -142,6 +143,7 @@ const PinAuthenticationScreen = () => {
           if (actionType === 'authentication') {
             const valid = params.validPin === nextValue;
             if (!valid) {
+              //zvs
               setErrorMsg(true)
               onShake();
               setAttemptsLeft(attemptsLeft - 1);
@@ -213,11 +215,16 @@ const PinAuthenticationScreen = () => {
             </SheetTitle>
             <PinValue translateX={errorAnimation} value={value} />
             {
+              //zvs
               errorMsg &&
-              <View style={{ alignSelf: 'center', backgroundColor: 'red', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 7 }}>
-                <Text style={{ color: '#fff', textAlign: 'center' }}>
-                  Wrong PIN!
-              </Text>
+              <View style={{
+                alignSelf: 'center', backgroundColor: 'red', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 0,
+                borderRadius: 50,
+
+              }}>
+                <SheetTitle color={colors.white} size={18} weight={900} >
+                  Incorrect PIN!
+              </SheetTitle>
               </View>
             }
           </ColumnWithMargins>
