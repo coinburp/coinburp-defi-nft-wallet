@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, View, Text } from 'react-native';
 import styled from 'styled-components';
 import CoinBurpLogo from '../assets/logo.png';
 import { Centered, Column, ColumnWithMargins } from '../components/layout';
@@ -43,6 +43,8 @@ const PinAuthenticationScreen = () => {
   const [actionType, setActionType] = useState(
     params.validPin ? 'authentication' : 'creation'
   );
+  //zvs
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const finished = useRef(false);
 
@@ -141,6 +143,8 @@ const PinAuthenticationScreen = () => {
           if (actionType === 'authentication') {
             const valid = params.validPin === nextValue;
             if (!valid) {
+              //zvs
+              setErrorMsg(true)
               onShake();
               setAttemptsLeft(attemptsLeft - 1);
               savePinAuthAttemptsLeft(attemptsLeft - 1);
@@ -186,7 +190,6 @@ const PinAuthenticationScreen = () => {
   );
 
   const { colors } = useTheme();
-
   return (
     <Column
       backgroundColor={colors.coinburp}
@@ -207,10 +210,23 @@ const PinAuthenticationScreen = () => {
               {actionType === 'authentication'
                 ? 'Type your PIN'
                 : actionType === 'creation'
-                ? 'Choose your PIN'
-                : 'Confirm your PIN'}
+                  ? 'Choose your PIN'
+                  : 'Confirm your PIN'}
             </SheetTitle>
             <PinValue translateX={errorAnimation} value={value} />
+            {
+              //zvs
+              errorMsg &&
+              <View style={{
+                alignSelf: 'center', backgroundColor: 'red', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 0,
+                borderRadius: 50,
+
+              }}>
+                <SheetTitle color={colors.white} size={18} weight={900} >
+                  Incorrect PIN!
+              </SheetTitle>
+              </View>
+            }
           </ColumnWithMargins>
         </ColumnWithMargins>
       </Centered>
