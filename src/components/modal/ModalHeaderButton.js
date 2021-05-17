@@ -26,6 +26,7 @@ const Container = styled(Row).attrs(({ side }) => ({
   padding-left: ${({ side }) => (side === 'left' ? 15 : 48)};
   padding-right: ${({ side }) => (side === 'left' ? 48 : 15)};
   z-index: 2;
+  margin-top:-6px;
 `;
 
 const Text = styled(UnstyledText).attrs(({ theme: { colors } }) => ({
@@ -38,7 +39,7 @@ const Text = styled(UnstyledText).attrs(({ theme: { colors } }) => ({
 `;
 
 const ModalHeaderButton = ({ label, onPress, side }) => (
-  <Container as={ios ? BorderlessButton : Button} onPress={onPress} side={side}>
+  <Container as={BorderlessButton} onPress={onPress} side={side}>
     <Row>
       {side === 'left' && <BackArrow />}
       <Text side={side}>{label}</Text>
