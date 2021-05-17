@@ -15,10 +15,6 @@ const blacklistRE = blacklist([
 module.exports = {
   resolver: {
     blacklistRE,
-    extraNodeModules: {
-      crypto: require.resolve('crypto-browserify'),
-      stream: require.resolve('stream-browserify'),
-    },
   },
   transformer: {
     babelTransformerPath: require.resolve('./metro.transform.js'),
