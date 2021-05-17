@@ -70,7 +70,7 @@ export default function BiometricButtonContent({
         <BiometryIcon biometryType={biometryType} color={color} />
       )}
       <Container color={buttonColor}>
-        {showFaceIDCharacter && <FaceIdIcon color="white" />}
+        {!android && showFaceIDCharacter && (<FaceIdIcon color="white" />)}
         <ButtonLabel color={color || colors.appleBlue} testID={testID}>
           {text}
         </ButtonLabel>
